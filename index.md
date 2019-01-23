@@ -7,6 +7,6 @@ Feel free to edit/adapt/use them as you want, but please mention me! (link to th
 
 #### Player: 
 
-Url: https://trianguloy.github.io/githubPages/Player.html
+Url: https://trianguloy.github.io/githubPages/html/Player.html
 
 Description: Load a wav sample and play the piano with it.
