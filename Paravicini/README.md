@@ -7,14 +7,14 @@ EDIT: ahora se pueden ver directamente gracias a GithubPages
 
 
 #### Urls: [test](test.md)
-* {% link Paravicini/acertijo_tablero_guardias.html  %}
-* {% link Paravicini/acertijo_tablero_guardias1.html %}
-* {% link Paravicini/acertijo_tablero_guardias2.html %}
-* {% link Paravicini/acertijo_tablero_guardias3.html %}
-* {% link Paravicini/acertijo_tablero_guardias4.html %}
-* {% link Paravicini/acertijo_tablero_guardias5.html %}
-* {% link Paravicini/generateData.html               %}
-* {% link Paravicini/generateGuardias.html           %}
+* {{ site.baseurl }}{% link Paravicini/acertijo_tablero_guardias.html  %}
+* {{ site.baseurl }}{% link Paravicini/acertijo_tablero_guardias1.html %}
+* {{ site.baseurl }}{% link Paravicini/acertijo_tablero_guardias2.html %}
+* {{ site.baseurl }}{% link Paravicini/acertijo_tablero_guardias3.html %}
+* {{ site.baseurl }}{% link Paravicini/acertijo_tablero_guardias4.html %}
+* {{ site.baseurl }}{% link Paravicini/acertijo_tablero_guardias5.html %}
+* {{ site.baseurl }}{% link Paravicini/generateData.html               %}
+* {{ site.baseurl }}{% link Paravicini/generateGuardias.html           %}
 
 #### Description:
 

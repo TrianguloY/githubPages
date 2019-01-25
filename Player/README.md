@@ -2,7 +2,7 @@
 
 #### Url: 
 
-{% link Player/main.html %}
+{{ site.baseurl }}{% link Player/main.html %}
 
 #### Description:
 
