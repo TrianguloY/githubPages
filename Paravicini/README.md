@@ -7,14 +7,14 @@ EDIT: ahora se pueden ver directamente gracias a GithubPages
 
 
 #### Urls:
-* [tablero 0]({% link Paravicini/acertijo_tablero_guardias.html  %})
-* [tablero 1]({% link Paravicini/acertijo_tablero_guardias1.html %})
-* [tablero 2]({% link Paravicini/acertijo_tablero_guardias2.html %})
-* [tablero 3]({% link Paravicini/acertijo_tablero_guardias3.html %})
-* [tablero 4]({% link Paravicini/acertijo_tablero_guardias4.html %})
-* [tablero 5]({% link Paravicini/acertijo_tablero_guardias5.html %})
-* [generar datos]({% link Paravicini/generateData.html           %})
-* [generar guardias]({% link Paravicini/generateGuardias.html    %})
+* https://trianguloy.github.io/githubPages/Paravicini/acertijo_tablero_guardias.html 
+* https://trianguloy.github.io/githubPages/Paravicini/acertijo_tablero_guardias1.html
+* https://trianguloy.github.io/githubPages/Paravicini/acertijo_tablero_guardias2.html
+* https://trianguloy.github.io/githubPages/Paravicini/acertijo_tablero_guardias3.html
+* https://trianguloy.github.io/githubPages/Paravicini/acertijo_tablero_guardias4.html
+* https://trianguloy.github.io/githubPages/Paravicini/acertijo_tablero_guardias5.html
+* https://trianguloy.github.io/githubPages/Paravicini/generateData.html
+* https://trianguloy.github.io/githubPages/Paravicini/generateGuardias.html
 
 #### Description:
 
