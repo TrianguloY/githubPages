@@ -2,7 +2,7 @@
 
 #### Url: 
 
-https://trianguloy.github.io/githubPages/Player/main.html
+Player/main.html
 
 #### Description:
 
