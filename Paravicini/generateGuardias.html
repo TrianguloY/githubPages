@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Checker Board</title>
+
+		<script>
+
+var lados = "dr,ur,d,ud,ud,ud,ud,ud,ud,ud,ud,ud,ud,ud,ur,dr,udr,ur;dl,udl,ur,dr,ud,ur,d,ud,udr,ud,u,dr,u,r,rl,drl,udrl,url;dr,ud,ul,rl,d,udrl,ud,ur,dl,ud,ur,dl,ur,rl,rl,dl,udl,url;dl,ud,ud,udrl,ur,dl,ur,dl,ur,d,udl,ur,rl,rl,drl,ud,u,rl;dr,ud,u,rl,dl,u,dl,ur,dl,ud,ud,ul,rl,rl,rl,d,ud,url;drl,udr,ur,rl,dr,ud,ud,url,dr,udr,ud,ud,ul,rl,drl,ud,u,rl;rl,rl,dl,url,rl,dr,ur,rl,rl,dl,ud,ud,ur,rl,rl,dr,udr,url;rl,drl,ur,rl,rl,dl,ul,rl,rl,dr,ud,ur,dl,ul,rl,drl,udrl,url;rl,rl,rl,dl,udl,udr,ud,ul,dl,udl,ur,dl,ud,ur,rl,drl,udrl,url;rl,rl,dl,ud,ur,l,dr,ud,ud,ur,rl,dr,ud,ul,rl,drl,udrl,url;rl,dl,udr,ur,dl,udr,ul,dr,ur,l,rl,dl,ud,ur,dl,udl,udl,ul;dl,ur,l,dl,ur,l,r,rl,dl,udr,ul,dr,ud,ul,dr,ud,ud,ur;r,dl,ud,ur,dl,ud,url,rl,r,dl,u,dl,ud,ur,rl,dr,ud,ul;drl,ud,ur,drl,ud,ur,rl,drl,url,dr,ud,ud,ud,ul,rl,rl,d,ur;rl,r,dl,ul,dr,ul,l,rl,rl,rl,d,udr,ud,u,rl,dl,ud,ul;rl,drl,ud,ur,dl,ud,ud,ul,rl,drl,ud,ul,d,u,dl,ud,ur,r;rl,rl,r,dl,ud,ud,ud,ud,ul,rl,dr,udr,udr,udr,udr,udr,url,rl;rl,rl,drl,ud,ud,ud,ud,ud,ud,ul,drl,udrl,udrl,udrl,udrl,udrl,url,rl;rl,l,rl,dr,ud,ud,ud,ud,ud,udr,udrl,udrl,udrl,udrl,udrl,udrl,url,rl;rl,r,rl,rl,dr,udr,udr,udr,ur,rl,drl,udrl,udrl,udrl,udrl,udrl,url,rl;rl,rl,rl,rl,drl,udrl,udrl,udrl,url,rl,drl,udrl,udrl,udrl,udrl,udrl,url,rl;rl,dl,ul,rl,dl,udl,udl,udl,ul,rl,drl,udrl,udrl,udrl,udrl,udrl,url,rl;dl,ud,ud,udl,ud,ud,ud,ud,ud,ul,dl,udl,udl,udl,udl,udl,ul,l";
+
+
+var dataEnemigos = "";
+
+
+	
+var ancho = 30;
+var alto = 30;	
+
+
+
+
+var canvas;
+var context2D;
+var matrix;
+var sizeX;
+var sizeY;
+
+var recording = false;
+
+		
+function initialize(){
+
+
+	matrix = lados.split(";").map(function(v){return v.split(",")});
+	sizeX = matrix.length;
+	sizeY = matrix[0].length;
+
+
+	//draw matrix
+	canvas = document.getElementById("background");
+	context2D = canvas.getContext("2d");
+
+	canvas.height = alto*sizeY;
+	canvas.width = ancho*sizeX;
+
+	document.getElementById("canvas").setAttribute("style","width:"+canvas.width+"px;height:"+canvas.height+"px");
+
+
+
+
+	context2D.beginPath();
+	context2D.lineWidth="5";
+	context2D.strokeStyle="black";
+
+	for(var i=0;i<matrix.length;++i){
+		var columnas=matrix[i];
+		for(var j=0;j<columnas.length;++j){
+			var elemento=columnas[j];
+			if(elemento.indexOf("l")==-1){
+				context2D.moveTo(i*ancho,j*alto);
+				context2D.lineTo(i*ancho,(j+1)*alto);
+				context2D.stroke();
+			}
+			if(elemento.indexOf("r")==-1){
+				context2D.moveTo((i+1)*ancho,j*alto);
+				context2D.lineTo((i+1)*ancho,(j+1)*alto);
+				context2D.stroke();
+			}
+			if(elemento.indexOf("u")==-1){
+				context2D.moveTo(i*ancho,j*alto);
+				context2D.lineTo((i+1)*ancho,j*alto);
+				context2D.stroke();
+			}
+			if(elemento.indexOf("d")==-1){
+				context2D.moveTo(i*ancho,(j+1)*alto);
+				context2D.lineTo((i+1)*ancho,(j+1)*alto);
+				context2D.stroke();
+			}
+
+			if(elemento.length==0){
+				drawSquare([i,j],'black',1);
+			}
+
+		}
+	}
+
+
+	//set other layer
+	canvas = document.getElementById("players");
+	context2D = canvas.getContext("2d");
+
+	canvas.height=alto*sizeY;
+	canvas.width=ancho*sizeX;
+
+
+	//initialize the other layer
+	reset();
+
+}
+
+function reset(){
+
+	player = [0,0];
+
+	refresh();
+
+}
+
+function refresh(){
+
+	context2D.clearRect(0, 0, canvas.width, canvas.height);
+
+	//draw player
+	drawLetter(player,recording?"X":"P");
+
+}
+
+
+function record(moved,toggled){
+	var s=document.getElementById("matrixString").innerHTML;
+	if(toggled){
+		if(recording){
+			s=s.substring(0,s.length-2)+'-"+\n"';
+		}else{
+			s=s.substring(0,s.length-1)+'";';
+		}
+	}
+	if(moved){
+		s+=player[0]+","+player[1]+";";
+	}
+	document.getElementById("matrixString").innerHTML=s;
+}
+
+
+
+function movePlayer(d){
+
+	if(!recording || matrix[player[0]][player[1]].indexOf(d)!=-1){
+		if(d=="u"){
+			if(player[1]<=0) return;
+			player[1]--;
+		}else if(d=="d"){
+			if(player[1]>=sizeY-1) return;
+			player[1]++;
+		}else if(d=="r"){
+			if(player[0]>=sizeX-1) return;
+			player[0]++;
+		}else if(d=="l"){
+			if(player[0]<=0) return;
+			player[0]--;
+		}
+		
+		if(recording){
+			record(true,false);
+		}
+		
+		refresh();
+		
+		
+	}
+}
+		
+		
+
+
+function drawSquare(pos,color,alpha=0.2){
+	var l=context2D.lineWidth/2;
+
+	context2D.globalAlpha=alpha;
+	context2D.fillStyle=color;
+
+	context2D.fillRect(pos[0]*ancho+l,pos[1]*alto+l,ancho-l-l,alto-l-l);
+
+}
+
+function drawLetter(pos,letter){
+
+	
+	context2D.font="30px Arial";
+	context2D.textAlign="center";
+	context2D.textBaseline="middle";
+	context2D.fillStyle= "black";
+	context2D.globalAlpha=1;
+	context2D.fillText(letter,(pos[0]+0.5)*ancho,(pos[1]+0.5)*alto,ancho);
+
+}
+
+
+function drawDoorLetter(pos,n){
+	var vert = pos[2];
+	
+	context2D.font="10px Arial";
+	context2D.textAlign=vert?"right":"center";
+	context2D.textBaseline=vert?"middle":"bottom";
+	context2D.fillStyle="black";
+	context2D.globalAlpha=1;
+	context2D.fillText(n+"",(pos[0]+(vert?0.925:0.5))*ancho,(pos[1]+(vert?0.5:0.975))*alto,ancho);
+
+}
+
+
+document.onkeydown = function(e){
+
+	if ( !e.metaKey ) {
+		e.preventDefault();
+	}
+
+    e = e || window.event;
+	
+	return checkKey(e.keyCode);
+
+};
+
+function checkKey(code) {
+	
+
+    if (code == '38') {//up
+        movePlayer("u");
+    }
+    else if (code == '40') {//down
+        movePlayer("d");
+    }
+    else if (code == '37') {//left
+       movePlayer("l");
+    }
+    else if (code == '39') {//right
+       movePlayer("r");
+    }
+	else if(code == '27') {//esc
+		reset();
+	}
+	else if(code == '82') {//r (record)
+		recording = !recording;
+		record(false,true);
+		refresh();
+	}else if(code == '72'){//h
+		alert("Position: "+player+"\nDirections: "+matrix[player[0]][player[1]]);
+	}else{
+		return true;
+	}
+		
+	
+	
+	
+	return false;
+}
+
+
+
+
+
+function same(a,b){
+	return a[0]==b[0] && a[1]==b[1];
+}
+
+		</script>
+		<style>
+		.cuarto{
+		width:150px;
+		height:150px;
+		}
+		.todo{
+		width:600px;
+		height:70px;
+		}
+		</style>
+	</head>
+
+	<body onload="initialize();">
+		<div id="canvas" style="position:relative;height:500px;width:500px">
+		 <canvas id="background" width="500" height="500" 
+		   style="position: absolute; left: 0px; top: 0px; z-index: 0;"></canvas>
+		 <canvas id="players" width="500" height="500" 
+		   style="position: absolute; left: 0px; top: 0px; z-index: 1;"></canvas>
+		</div>
+		<br>
+		<button class="cuarto" type="button" onclick="checkKey(37)"><</button>
+		<button class="cuarto" type="button" onclick="checkKey(38)">/\</button>
+		<button class="cuarto" type="button" onclick="checkKey(40)">\/</button>
+		<button class="cuarto" type="button" onclick="checkKey(39)">></button>
+		<br>
+		<button class="todo" type="button" onclick="checkKey(82)">></button>
+		<br>
+		<textarea id="matrixString">test</textarea>
+	</body>
+</html>

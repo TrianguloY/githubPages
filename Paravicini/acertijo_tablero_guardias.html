@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Checker Board</title>
+
+		<script>
+
+var lados = "udr,ld,rd,lrd,lrd,lrd,lrd,ld;"+
+            "udr,udrl,ulr,ulr,ulr,ulr,udrl,uld;"+
+			"ur,ul,dr,lr,lr,ld,urd,uld;"+
+			"dr,ld,ud,rd,ld,ud,udr,udl;"+
+			"udr,udl,ud,udr,udl,ud,udr,udl;"+
+			"udr,udrl,ulr,url,url,ul,udr,ul;"+
+			"urd,uld,rd,rld,rld,rld,udrl,ld;"+
+			"ur,ulr,ulr,ulr,ulr,ulr,ulr,ul"
+			;//"ur,lr,ld;d,d,ud;ur,url,ul";
+		
+var dataEnemigos = "1,0;1,1;1,2;0,2;0,1;0,0-"+
+			"2,0;3,0;4,0;5,0;6,0;7,0;7,1;6,1;5,1;4,1;3,1;2,1-"+
+			"7,5;6,5;6,4;6,3;6,2;6,1;6,0;7,0;7,1;7,2;7,3;7,4-"+
+			"6,6;5,6;4,6;3,6;2,6;2,7;3,7;4,7;5,7;6,7;7,7;7,6-"+
+			"0,3;1,3;1,4;1,5;1,6;1,7;0,7;0,6;0,5;0,4-"+
+			"4,2;3,2;2,2;2,3;2,4;2,5;3,5;4,5;5,5;5,4;5,3;5,2"
+			//"0,0;1,0;2,0;1,0-2,2;1,2;0,2;1,2";
+
+var end = [0,-1];
+var inicial = [3,3];
+
+
+	
+var ancho;
+var alto;	
+var canvas;
+var context2D;
+var matrix;
+var sizeX;
+var sizeY;
+var enemigos;
+var caminos;
+var alive;
+
+var player;
+
+		
+function initialize(){
+canvas = document.getElementById("checkerboard");
+context2D = canvas.getContext("2d");
+
+matrix=[];
+
+var filas = lados.split(";");
+sizeX=filas.length;
+alto = canvas.height/sizeX;
+sizeY=filas[0].split(",").length;
+ancho = canvas.width/sizeY;
+
+
+for(var i=0;i<filas.length;++i){
+	matrix[i]=[];
+	var columnas=filas[i].split(",");
+	for(var j=0;j<columnas.length;++j){
+		var elemento=columnas[j];
+		matrix[i][j]=elemento;
+	}
+}
+
+caminos=[];
+enemigos=[];
+var en=dataEnemigos.split("-");
+for(var i=0;i<en.length;++i){
+var enemy = en[i];
+caminos[i]=enemy.split(";").map(function(v){return v.split(",").map(function(v){return parseInt(v)})});
+
+enemigos[i]=0;
+}
+
+
+alive=true;
+player = [inicial[0],inicial[1]];
+document.getElementById("historial").value="Historial:\n";
+refresh();
+
+}
+
+function refresh(){
+
+context2D.clearRect(0, 0, canvas.width, canvas.height);
+
+context2D.beginPath();
+context2D.lineWidth="5";
+context2D.strokeStyle="black";
+
+for(var i=0;i<matrix.length;++i){
+var columnas=matrix[i];
+for(var j=0;j<columnas.length;++j){
+var elemento=columnas[j];
+if(elemento.indexOf("l")==-1){
+context2D.moveTo(j*ancho,i*alto);
+context2D.lineTo(j*ancho,(i+1)*alto);
+context2D.stroke();
+}
+if(elemento.indexOf("r")==-1){
+context2D.moveTo((j+1)*ancho,i*alto);
+context2D.lineTo((j+1)*ancho,(i+1)*alto);
+context2D.stroke();
+}
+if(elemento.indexOf("u")==-1){
+context2D.moveTo(j*ancho,i*alto);
+context2D.lineTo((j+1)*ancho,i*alto);
+context2D.stroke();
+}
+if(elemento.indexOf("d")==-1){
+context2D.moveTo(j*ancho,(i+1)*alto);
+context2D.lineTo((j+1)*ancho,(i+1)*alto);
+context2D.stroke();
+}
+}
+}
+
+
+
+//draw player
+context2D.font="30px Arial";
+context2D.textAlign="center";
+context2D.textBaseline="middle"; 
+context2D.fillText("P",(player[0]+0.5)*ancho,(player[1]+0.5)*alto,ancho);
+
+
+
+//draw enemigos
+for(var i=0;i<enemigos.length;++i){
+var c=caminos[i];
+
+var pos=c[enemigos[i]];
+
+
+drawEnemyVision(pos[0],pos[1]);
+
+
+var pos1=c[(enemigos[i]+1)%c.length];
+drawEnemyVision(pos1[0],pos1[1]);
+
+var pos2=c[(enemigos[i]+2)%c.length];
+if(pos2[0]==pos[0] || pos2[1]==pos[1]){
+drawEnemyVision(pos2[0],pos2[1]);
+}
+
+
+context2D.font="30px Arial";
+context2D.textAlign="center";
+context2D.textBaseline="middle"; 
+context2D.fillText("X",(pos[0]+0.5)*ancho,(pos[1]+0.5)*alto,ancho);
+
+}
+
+
+}
+
+
+function drawEnemyVision(x,y){
+
+var l=context2D.lineWidth;
+
+context2D.globalAlpha=0.2;
+context2D.fillStyle="#FF0000";
+
+context2D.fillRect(x*ancho+l,y*alto+l,ancho-l-l,alto-l-l);
+
+context2D.globalAlpha=1;
+context2D.fillStyle="#000000";
+
+if(x==player[0] && y==player[1]){
+alert("te han pillado, intentalo otra vez");
+alive=false;
+}
+}
+
+
+
+function movePlayer(d){
+if(!alive) return;
+
+	if(matrix[player[1]][player[0]].indexOf(d)!=-1){
+		if(d=="u"){
+		player[1]--;
+		document.getElementById("historial").value+="Arriba\n";
+		}else if(d=="d"){
+		player[1]++;
+		document.getElementById("historial").value+="Abajo\n";
+		}else if(d=="r"){
+		player[0]++;
+		document.getElementById("historial").value+="Derecha\n";
+		}else if(d=="l"){
+		player[0]--;
+		document.getElementById("historial").value+="Izquierda\n";
+		}
+		
+		updateEnemys();
+		
+		refresh();
+		
+		if(player[0]==end[0] && player[1]==end[1]){
+		//sí, ésta es la frase, pero ¿no es más divertido resolver el acertijo de forma normal en lugar de mirar el código fuente?
+		alert('¡Enhorabuena! Lo has conseguido. Envíale a Jorge la frase:\n"Ahora ya tengo Rolls Royce"');
+		alive=false;
+		}
+	}
+}
+		
+		
+		
+		
+function updateEnemys(){
+
+for(var i=0;i<enemigos.length;++i){
+enemigos[i]=(enemigos[i]+1)%caminos[i].length;
+}
+
+}
+		</script>
+		<style>
+		.mover{
+		width:150px;
+		height:150px;
+		}
+		.reset{
+		width:600px;
+		height:70px;
+		}
+		.historial{
+		width:600px;
+		height:600px;
+		}
+		</style>
+	</head>
+
+	<body onload="initialize();">
+		<canvas id="checkerboard" width="600" height="600">
+		</canvas>
+		<br>
+		<button class="mover" type="button" onclick="movePlayer('l')"><</button>
+		<button class="mover" type="button" onclick="movePlayer('u')">/\</button>
+		<button class="mover" type="button" onclick="movePlayer('d')">\/</button>
+		<button class="mover" type="button" onclick="movePlayer('r')">></button>
+		<br>
+		<button class="reset" type="button" onclick="initialize()">Reset</button>
+		<br>
+		<textarea class="historial" id="historial" cols="20">
+		</textarea>
+	</body>
+</html>
