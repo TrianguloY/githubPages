@@ -6,15 +6,15 @@ Este proyecto fue creado para poder tener las páginas publicadas y disponibles 
 EDIT: ahora se pueden ver directamente gracias a GithubPages
 
 
-#### Urls: 
-* Paravicini/acertijo_tablero_guardias.html
-* Paravicini/acertijo_tablero_guardias1.html
-* Paravicini/acertijo_tablero_guardias2.html
-* Paravicini/acertijo_tablero_guardias3.html
-* Paravicini/acertijo_tablero_guardias4.html
-* Paravicini/acertijo_tablero_guardias5.html
-* Paravicini/generateData.html
-* Paravicini/generateGuardias.html
+#### Urls: [test](test.md)
+* {% link Paravicini/acertijo_tablero_guardias.html  %}
+* {% link Paravicini/acertijo_tablero_guardias1.html %}
+* {% link Paravicini/acertijo_tablero_guardias2.html %}
+* {% link Paravicini/acertijo_tablero_guardias3.html %}
+* {% link Paravicini/acertijo_tablero_guardias4.html %}
+* {% link Paravicini/acertijo_tablero_guardias5.html %}
+* {% link Paravicini/generateData.html               %}
+* {% link Paravicini/generateGuardias.html           %}
 
 #### Description:
 

@@ -2,7 +2,7 @@
 
 #### Url: 
 
-Player/main.html
+{% link Player/main.html %}
 
 #### Description:
 
