@@ -2,19 +2,19 @@
 
 (Only available in spanish).
 
-Este proyecto fue creado para poder tener las páginas publicadas y disponibles con url desde cualquier parte gracias a http://htmlpreview.github.io
+~~Este proyecto fue creado para poder tener las páginas publicadas y disponibles con url desde cualquier parte gracias a http://htmlpreview.github.io~~
 EDIT: ahora se pueden ver directamente gracias a GithubPages
 
 
 #### Urls:
-* https://trianguloy.github.io/githubPages/Paravicini/acertijo_tablero_guardias.html 
-* https://trianguloy.github.io/githubPages/Paravicini/acertijo_tablero_guardias1.html
-* https://trianguloy.github.io/githubPages/Paravicini/acertijo_tablero_guardias2.html
-* https://trianguloy.github.io/githubPages/Paravicini/acertijo_tablero_guardias3.html
-* https://trianguloy.github.io/githubPages/Paravicini/acertijo_tablero_guardias4.html
-* https://trianguloy.github.io/githubPages/Paravicini/acertijo_tablero_guardias5.html
-* https://trianguloy.github.io/githubPages/Paravicini/generateData.html
-* https://trianguloy.github.io/githubPages/Paravicini/generateGuardias.html
+* [https://trianguloy.github.io/githubPages/Paravicini/acertijo_tablero_guardias.html ](https://trianguloy.github.io/githubPages/Paravicini/acertijo_tablero_guardias.html )
+* [https://trianguloy.github.io/githubPages/Paravicini/acertijo_tablero_guardias1.html](https://trianguloy.github.io/githubPages/Paravicini/acertijo_tablero_guardias1.html)
+* [https://trianguloy.github.io/githubPages/Paravicini/acertijo_tablero_guardias2.html](https://trianguloy.github.io/githubPages/Paravicini/acertijo_tablero_guardias2.html)
+* [https://trianguloy.github.io/githubPages/Paravicini/acertijo_tablero_guardias3.html](https://trianguloy.github.io/githubPages/Paravicini/acertijo_tablero_guardias3.html)
+* [https://trianguloy.github.io/githubPages/Paravicini/acertijo_tablero_guardias4.html](https://trianguloy.github.io/githubPages/Paravicini/acertijo_tablero_guardias4.html)
+* [https://trianguloy.github.io/githubPages/Paravicini/acertijo_tablero_guardias5.html](https://trianguloy.github.io/githubPages/Paravicini/acertijo_tablero_guardias5.html)
+* [https://trianguloy.github.io/githubPages/Paravicini/generateData.html              ](https://trianguloy.github.io/githubPages/Paravicini/generateData.html              )
+* [https://trianguloy.github.io/githubPages/Paravicini/generateGuardias.html          ](https://trianguloy.github.io/githubPages/Paravicini/generateGuardias.html          )
 
 #### Description:
 
