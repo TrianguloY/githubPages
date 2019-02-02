@@ -12,6 +12,10 @@ Feel free to edit/adapt/use them as you want, but please mention me! (link to th
 
 --------------------------------------------------
 
+{% include_relative Visor/README.md %}
+
+--------------------------------------------------
+
 {% include_relative Paravicini/README.md %}
 
 --------------------------------------------------

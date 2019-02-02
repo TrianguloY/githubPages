@@ -1,0 +1,76 @@
+<!DOCTYPE htmls>
+<html>
+<style>
+label{
+	padding-left: 10px;
+}
+body{
+	height:95%; 
+	width:95%; 
+	display:flex; 
+	flex-flow:column;
+}
+</style>
+<body>
+
+<div>
+	<label>This allows you to play a video by its url. Unfortunately it only works with some videos and some browsers...but better than nothing for a ~1Kb page!
+	</label>
+	<br/>
+	<br/>
+	<label>Url:
+		<input id="url" type="url">
+	</label>
+	<input type="button" onclick="reload();" value="Play">
+</div>
+<video id="video" controls style="flex: 1 1 auto">
+	<source id="source">
+</video>
+
+</body>
+
+<script type="text/javascript">
+var e_video = document.getElementById('video');
+var e_source = document.getElementById('source');
+var e_url = document.getElementById("url")
+
+
+//on button clicked
+function reload(){
+
+	var url = e_url.value
+	console.log(url);
+	
+	if(url != ""){
+		e_source.setAttribute('src', url);
+		
+		e_video.load();
+		e_video.play();	
+	}else{
+		alert();
+	}
+	
+}
+
+
+//on error from player
+function onError(evt){
+	console.log(evt);
+	if(e_source.getAttribute('src')!=null){
+		alert("The video with url='"+e_source.getAttribute('src')+"' couldn't be played :( try another browser or another extension!");
+	}
+}
+e_source.addEventListener('error', onError);
+
+
+//run url from parameters (?something) if found
+function onLoad(){
+	var url = location.search;
+	if(url != ""){
+		e_url.value = location.search.substring(1);
+		reload();
+	}
+}
+window.onload = onLoad;
+</script>
+</html>
