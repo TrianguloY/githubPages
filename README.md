@@ -1,2 +1,2 @@
-Proyectos HTML:
-https://abeln94.github.io/Proyectos-HTML/
+HTML projects:
+https://trianguloy.github.io/githubPages/
