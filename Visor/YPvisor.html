@@ -1,0 +1,107 @@
+<!DOCTYPE htmls>
+<html>
+<style>
+label{
+	padding-left: 10px;
+}
+body{
+	height:95%; 
+	width:95%; 
+	display:flex; 
+	flex-flow:column;
+}
+</style>
+<body>
+
+<div>
+	<label>Season:
+		<input id="season" type="number" min="1" max="9" value="1">
+	</label>
+	<label>Episode:
+		<input id="episode" type="number" min="1" max="26" value="1">
+	</label>
+	<label>|</label>
+	<select id="quality">
+		<option value="7">720p</option>
+		<option value="1">1080p</option>
+	</select>
+	<select id="format">
+		<option value="R">iTunes Raw US</option>
+		<option value="S">Scootaloo Remastered x264</option>
+		<option value="STB">Scootaloo Definitive HEVC</option>
+		<option value="A">iTunes Raw AU</option>
+		<option value="Z">Color corrected by ZR</option>
+		<option value="ZA">Color corrected by ZR (alternate)</option>
+		<option value="TV">TVRips (Spazz or Mentos)</option>
+	</select>
+	<select id="server">
+		<option value="https%3A%2F%2Fdl.yayponies.no%2F">Yay Ponies</option>
+		<option value="https%3A%2F%2Fyp.coco-pommel.org%2Fypvideo%2F">Coco Pommel</option>
+	</select>
+	<label>|</label>
+	<input type="button" onclick="reload();" value="Play">
+</div>
+<video id="video" controls style="flex: 1 1 auto">
+	<source id="source">
+</video>
+
+</body>
+
+<script type="text/javascript">
+function getValue(id){
+	return document.getElementById(id).value;
+}
+
+var video = document.getElementById('video');
+var source = document.getElementById('source');
+
+function reload(){
+	var season = getValue("season");
+	var episode = getValue("episode");
+
+	var quality = getValue("quality");
+	var format = getValue("format");
+	var server = getValue("server");
+
+	var url = decodeURIComponent(server)+"YP-"+quality+format+"-"+season.padStart(2, "0")+"x"+episode.padStart(2, "0")+".mkv"
+	console.log(url);
+	
+	
+	var settings = window.location.toString().replace(/\?.*/,'') 
+								+ "?season=" + season
+								+ "&episode=" + episode
+								+ "&quality=" + quality
+								+ "&format=" + format
+								+ "&server=" + server;
+	window.history.pushState({path:settings}, url, settings)
+	
+	source.setAttribute('src', url);
+	
+	video.load();
+	video.play();
+}
+
+function onError(evt){
+	console.log(evt);
+	if(source.getAttribute('src')!=null){
+		alert("Video not available Try other settings or try again later.\nurl="+source.getAttribute('src'));
+	}
+}
+source.addEventListener('error', onError);
+
+function onLoad(evt){
+	var params = window.location.search.substring(1).split("&").forEach(function(v){
+		var data = v.split("=");
+		try{
+			document.getElementById(data[0]).value = data[1];
+		}catch(e){
+		}
+	});
+	
+	if(window.chrome == undefined){
+		alert("This only seems to work with Chrome :( sorry. But you can try anyway.");
+	}
+}
+window.onload = onLoad;
+</script>
+</html>
