@@ -42,6 +42,12 @@ body{
 	<label id='l2'>|</label>
 	<input type="button" onclick="reload();" value="Play">
 	<a href="https://yayponies.no/videos/episodes.php">Source</a>
+	
+	<br/>
+	<br/>
+	<label>Play other file (may not work):</label>
+	<select id="selection" onchange="playraw()"><option value="">Choose</option><option value="_load_" selected>Load list</option></select>
+	
 </div>
 <video id="video" controls style="flex: 1 1 auto">
 	<source id="source">
@@ -51,12 +57,14 @@ body{
 
 </body>
 
+<!-- main -->
 <script type="text/javascript">
+// tools
 function getValue(id){
 	return document.getElementById(id).value;
 }
 
-
+// updating
 function updateEpisode(){
 	var episode = document.getElementById('episode');
 	
@@ -75,11 +83,11 @@ function updateEpisode(){
 	}
 	
 	episode.value = episode.value >= episode.max ? episode.max
-								: episode.value <= episode.min ? episode.min
-								: episode.value ;
+				: episode.value <= episode.min ? episode.min
+				: episode.value ;
 }
 
-
+// playing
 var video = document.getElementById('video');
 var source = document.getElementById('source');
 
@@ -111,15 +119,16 @@ function reload(autoplay=true){
 	}
 }
 
-function onError(evt){
+// onError message
+source.addEventListener('error', evt =>{
 	console.log(evt);
 	if(source.getAttribute('src')!=null){
 		alert("The video can't be played. Try other settings or try again later.\nurl="+source.getAttribute('src'));
 	}
-}
-source.addEventListener('error', onError);
+});
 
-function onLoad(evt){
+// onLoad
+window.onload = ((prev,post)=>{prev && prev(); post();})(window.onload,()=>{
 	var params = window.location.search.substring(1).split("&").forEach(function(v){
 		var data = v.split("=");
 		try{
@@ -129,32 +138,103 @@ function onLoad(evt){
 	});
 	
 	if(window.chrome == undefined){
-		alert("This only seems to work with Chrome :( sorry. But you can try anyway.");
+		alert("This only seems to work with Chrome :( sorry. But you can try anyway. (or play other files)");
 	}
 	
 	reload(false);
-	
-	document.getElementById('l1').onclick = addPonies;
-	document.getElementById('l2').onclick = removePonies;
+})
+</script>
+
+<!-- generic load -->
+<script type="text/javascript">
+// tools
+function _options(id){
+	return '('+Array.from(document.getElementById(id).options).map(v=>v.value).join('|')+')'
 }
-window.onload = onLoad;
+
+// play
+var selection = document.getElementById('selection');
+function playraw(){
+	var link = selection.options[selection.selectedIndex].value;
+	if(link=="_load_"){populate();return;}
+	if(link=="")return;
+	
+	console.log(link);
+	source.setAttribute('src', link);
+	video.load();
+	video.play();
+}
+
+// load
+function populate(){
+	selection.options[1].text = "Loading...";
+	selection.options[1].value = "";
+	
+	var dlurl = 'https://dl.yayponies.no/'
+	fetch('https://cors-anywhere.herokuapp.com/'+dlurl,{headers: {"X-Requested-With":"YPVisor"}})
+	.then(function(response) {
+		return response.text();
+	}).then(function(data) {
+		// remove loading
+		selection.options[1] = null; 
+	  
+		var regexp = /href="([^"]*)"/g;
+		var results = Array.from(data.matchAll(regexp)).map(v=>v[1])
+			// only videos/audio
+			.filter(v => /\.(mkv|mp4|mp3|flac)$/i.test(v)) 
+			// remove those that can be selected with the normal options
+			.filter(v => !(new RegExp("YP-"+_options('quality')+_options('format')+"-"+"[0-9][0-9]"+"x"+"[0-9][0-9]"+".mkv", 'i')).test(v))
+			// add
+			.forEach(v => selection.options.add(new Option(v,dlurl+v,false))) 
+		;
+	});
+}
 </script>
 
 
 <!-- My little easter egg -->
-<script type="text/javascript" src="https://panzi.github.io/Browser-Ponies/basecfg.js" id="browser-ponies-config"></script>
-<script type="text/javascript" src="https://panzi.github.io/Browser-Ponies/browserponies.js" id="browser-ponies-script">
-</script><script type="text/javascript">
-/* <![CDATA[ */ 
-(function (cfg) {BrowserPonies.setBaseUrl(cfg.baseurl);BrowserPonies.loadConfig(BrowserPoniesBaseConfig);BrowserPonies.loadConfig(cfg);})({"baseurl":"https://panzi.github.io/Browser-Ponies/","fadeDuration":500,"volume":1,"fps":25,"speed":3,"audioEnabled":false,"showFps":false,"showLoadProgress":true,"speakProbability":0.1,"spawn":{},"spawnRandom":0,"autostart":false}); /* ]]> */
+<script type="text/javascript">
+// loading
+var egg = false;
+function loadEgg(){
+	var script = document.createElement('script');
+	script.type = 'text/javascript';
+	script.src = 'https://panzi.github.io/Browser-Ponies/basecfg.js';
+	script.onreadystatechange = load2Egg;
+	script.onload = load2Egg;
+	document.getElementsByTagName('head')[0].appendChild(script);
+}
+function load2Egg(){
+	var script = document.createElement('script');
+	script.type = 'text/javascript';
+	script.src = 'https://panzi.github.io/Browser-Ponies/browserponies.js';
+	script.onreadystatechange = load3Egg;
+	script.onload = load3Egg;
+	document.getElementsByTagName('head')[0].appendChild(script);
+}
+function load3Egg(){
+	(cfg => {BrowserPonies.setBaseUrl(cfg.baseurl);BrowserPonies.loadConfig(BrowserPoniesBaseConfig);BrowserPonies.loadConfig(cfg);})({"baseurl":"https://panzi.github.io/Browser-Ponies/","fadeDuration":500,"volume":1,"fps":25,"speed":3,"audioEnabled":false,"showFps":false,"showLoadProgress":true,"speakProbability":0.1,"spawn":{},"spawnRandom":0,"autostart":false});
+	egg = true;
+	addPonies();
+}
+
+// functions
 function addPonies(){
+	if(!egg){load(); return;}
 	if(!BrowserPonies.running()) BrowserPonies.start();
 	BrowserPonies.spawnRandom(5);
 }
 function removePonies(){
+	if(!egg){return;}
 	BrowserPonies.unspawnAll();
 	BrowserPonies.stop();
 }
+
+// onLoad
+window.onload = ((prev,post)=>{prev && prev(); post();})(window.onload,()=>{
+	document.getElementById('l1').onclick = addPonies;
+	document.getElementById('l2').onclick = removePonies;
+})
 </script>
 
 </html>
