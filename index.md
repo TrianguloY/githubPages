@@ -19,3 +19,7 @@ Feel free to edit/adapt/use them as you want, but please mention me! (link to th
 {% include_relative Encrypter/README.md %}
 
 --------------------------------------------------
+
+{% include_relative javascriptEval/README.md %}
+
+--------------------------------------------------
