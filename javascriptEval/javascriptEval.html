@@ -1,27 +1,32 @@
 <!DOCTYPE html>
 <html>
-    <body><div>
-		<button onclick="javascriptEvalRun()">Run</button>
-		<span>Press the button and the code will run using javascript eval, without iframes. Nothing more, nothing less.</span>
-		<button onclick="javascriptEvalShare()">Share</button>
+    <body><div id="javascriptEval">
+		<button onclick="
+let r;
+try{
+	r = eval(document.getElementById('javascriptEvalEditor').value);
+}catch(e){
+	r = e;
+}
+try{
+	document.getElementById('javascriptEvalInfo').textContent = r;
+}catch(ignore){}
+		">Eval</button>
+		<button onclick="
+let url = window.location.toString().replace(/\?.*/,'') + '?' + encodeURI(document.getElementById('javascriptEvalEditor').value);
+window.history.pushState({},'', url);
+prompt('copy',url);
+		">Share</button>
+		<button onclick="
+if(confirm('Press the Eval button and the code will run using javascript eval, without iframes.\nPress the Share button to generate an url with the current input code.\nDo you want more info? Press yes to open GitHub.')) window.open('https://github.com/TrianguloY/githubPages/tree/master/javascriptEval')
+		">Info</button>
 		<br/>
-        <textarea id="javascriptEvalEditor" style="width:100%;"></textarea>
+        <textarea id="javascriptEvalEditor" style="width:100%" rows="5"></textarea>
 		<br/>
 		<span>Output: </span><span id="javascriptEvalInfo"></span>
 		<script>
-			function javascriptEvalRun(){
-				let r;
-				try{
-					r = eval(document.getElementById('javascriptEvalEditor').value);
-				}catch(e){
-					r = e;
-				}
-				document.getElementById('javascriptEvalInfo').textContent = r;
-			}
-			function javascriptEvalShare(){
-				prompt("copy",window.location.toString().replace(/\?.*/,'') + '?' + encodeURI(document.getElementById('javascriptEvalEditor').value));
-			}
-			if(location.search != "") document.getElementById('javascriptEvalEditor').value = decodeURI(location.search.substring(1))
+let editor = document.getElementById('javascriptEvalEditor');
+if(location.search != '' && editor.value == '') editor.value = decodeURI(location.search.substring(1))
 		</script>
     </div></body>
 </html>
