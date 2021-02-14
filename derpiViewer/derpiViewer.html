@@ -1,0 +1,378 @@
+﻿<!DOCTYPE html><html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>DerpiViewer</title>
+</head>
+
+<style>
+    /* dark background */
+    body {
+        background-color: #333333;
+    }
+    
+    /* full width */
+    #canvas,#next,img,video {
+        width: 100%;
+    }
+    
+    /* tall element */
+    #next {
+        height: 50px;
+    }
+    
+    /* flex container */
+    .flex {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    /* growing flex child */
+    .flex input,select {
+        flex-grow: 1;
+        font-size: 20px;
+    }
+    
+    /* square button */
+    button {
+        height: 30px;
+        width: 30px;
+    }   
+
+    /* white readable keeping-spaces text */
+    span,code {
+        font-size: 20px;
+        color: #ffffff;
+        white-space: pre-line;
+        word-break: break-word;
+    }
+    
+    /* hidden by default */
+    #settings,#info,.infoImg,#next,#about {
+        display: none;
+    }
+        
+    /* centered parent */
+    .relative {
+        position: relative;
+    }
+    
+    /* centered */
+    .play {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+  transform: translate(-50%, -50%);
+    }
+
+</style>
+
+<body>
+    <div class="flex">
+        <input id="q" autocomplete="off" onkeyup="press(event, 'search')"/>
+        <button id="search" onclick="newQuery()">></button>
+        <button onclick="toggleVisibility('about')">i</button>
+        <button onclick="toggleVisibility('info')">?</button>
+        <button onclick="toggleVisibility(e_settings)">@</button>
+    </div>
+    <hr>
+    <div id="about">
+        <span>Page made by TrianguloY. Source code available on <a href="https://github.com/TrianguloY/githubPages/tree/master/derpiViewer">Github</a></span>
+        <hr>
+    </div>
+    <div id="info">
+        <span>This page allows you to search any query from <a href="https://derpibooru.org/">derpibooru</a> and display the results in an endless scrollable view. 
+* Press the @ button to display and change the settings. 
+* Enter a query and press the > button (or enter). 
+* Scroll. 
+* Press the top of an image to reload as full resolution.
+* Press the middle of an image to play/pause (for webm only).
+* Press the bottom of an image to show the image data.
+This was made for personal use from a mobile device and may or may not update it, depending on how much I use it, but if you find it useful any <a href="https://github.com/TrianguloY/githubPages/tree/master/derpiViewer">discussion/request</a> is welcomed.</span>
+        <hr>
+    </div>
+    <div id="settings"></div>
+    <div id="canvas"></div>
+    <button id="next" onclick="nextPage()">.</button>
+    <!--<span id="debug"></span>-->
+</body>
+    
+<script type="text/javascript">
+
+    ////////// prefetched elements //////////
+    
+    let e_canvas = document.getElementById('canvas');
+    let e_q = document.getElementById('q');
+    let e_settings = document.getElementById('settings');
+    let e_next = document.getElementById('next');
+
+    ////////// settings //////////
+
+    // place here the settings in the format: key:["description",options]
+    // if the setting is a simple value, set options: "value"
+    // if the setting is a multiple value set options: [defaultIndex, option1, option2, ...]
+    // if the display option is the same as the internal value, set optionsN: "data"
+    // if the display option is different as the internal value, set optionN: ["key","value"]
+    // This element will mutate to contain the chosen value on initialization
+    let settings = {
+        base_url: ["The api main entry point of the booru", "https://derpibooru.org/api/v1/json/search/images"],
+        filter_id: ["The id of a filter to apply", ''],
+        sf: ["How to sort the results", [10, 
+            ["id", "Sort by image ID"],
+            ["updated_at", "Sort by last modification date"],
+            ["first_seen_at", "Sort by initial post date"],
+            ["aspect_ratio", "Sort by aspect ratio"],
+            ["faves", "Sort by fave count"],
+            ["upvotes", "Sort by upvotes"],
+            ["downvotes", "Sort by downvotes"],
+            ["score", "Sort by score"],
+            ["wilson_score", "Sort by Wilson score"],
+            ["_score", "Sort by relevance"],
+            ["width", "Sort by width"],
+            ["height", "Sort by height"],
+            ["comment_count", "Sort by comments"],
+            ["tag_count", "Sort by tag count"],
+            ["pixels", "Sort by pixels"],
+            ["size", "Sort by file size"],
+            ["duration", "Sort by duration"],
+            ["random:3050304329", "Random!"]
+        ]],
+        sd: ["Order to sort the results", [1, 
+            ["desc", "Descending"],
+            ["asc", "Ascending"]
+        ]],
+        default_representation: ["Resolution of images. Independently of this setting press the top of the images to load as full", [3, 
+            "full", "large", "medium", "small", "tall", "thumb", "thumb_small", "thumb_tiny"
+        ]],
+        auto_load: ["If enabled, new images will be automatically fetched when scrolling to the end of the page", [1, 'yes', 'no']],
+        max_images: ["Maximum number of images to keep displayed", 50],
+        fix_scroll: ["Enable this if the page jumps when loading images", [2, 'yes', 'no']],
+        start_page: ["The first page to load", 1]
+    }
+
+    function initSettings() {
+        for (key in settings) {
+            // get saved value
+            let value;
+            try {
+                value = localStorage.getItem(key);
+            } catch (e) {
+                alert("Corrupted data, restart the browser\n\n" + e)
+            }
+
+            let description = settings[key][0];
+            let options = settings[key][1];
+
+            // get default
+            let defaultV, defaultD;
+            if (options instanceof Array) {
+                // an array, the first element is the index of the default entry
+                let val = options[options[0]];
+                if (val instanceof Array) {
+                    [defaultV, defaultD] = val;
+                } else {
+                    [defaultV, defaultD] = [val, val];
+                }
+                options.shift(); // removes the default marker
+
+            } else {
+                // a simple string 
+                [defaultV, defaultD] = [options, options];
+            }
+            description += ` [default: ${defaultD || 'none'}]`;
+
+            if (value === null) {
+                // no saved value, set as default
+                value = defaultV;
+            }
+
+            // create element
+            let htmlElement;
+            if (options instanceof Array) {
+                htmlElement = `<select id="${key}" onchange="updateSetting(this)">` + options
+                    .map(e => e instanceof Array ? e : [e, e])
+                    .map(e => `<option value="${e[0]}" ${value==e[0]?'selected="selected"':''}>${e[1]}</option>`)
+                    .join() + `</select>`;
+
+            } else {
+                htmlElement = `<input id='${key}' value='${value}' onchange='updateSetting(this)'/>`;
+            }
+
+
+            // final element
+            e_settings.insertAdjacentHTML('beforeend', `<span>${description}</span><br/><div class="flex"><span>${key}:</span>${htmlElement}</div><hr>`);
+
+            // set
+            settings[key] = value;
+        }
+    }
+    initSettings();
+
+    function updateSetting(e) {
+        settings[e.id] = e.value;
+        localStorage.setItem(e.id, e.value);
+    }
+
+    ////////// image loading //////////
+
+    let next_data = null;
+
+    function newQuery() {
+        // clear
+        e_canvas.innerHTML = "";
+        // run
+        run(encodeURIComponent(e_q.value), settings.start_page);
+    }
+
+    function nextPage() {
+        // check
+        if (next_data == null) return;
+        // run
+        run(next_data.q, next_data.page);
+    }
+
+    function run(q, page) {
+
+        e_next.style.display = "block";
+        e_next.innerHTML = "Loading...";
+        next_data = null;
+
+        optset = (d) => settings[d] != '' ? '&' + d + '=' + settings[d] : '';
+
+        fetch(settings.base_url + "?q=" + q + "&page=" + page + optset('filter_id') + optset('sf') + optset('sd'))
+            .then(v => v.json())
+            .then(v => {
+
+                if (v.images.length == 0) {
+                    // no more images
+                    e_next.innerHTML = "end";
+                    return;
+                }
+
+                // add images
+                e_canvas.insertAdjacentHTML('beforeend', `<center><span>${page}</span></center><hr>`)
+                v.images.forEach(i => addImage(i));
+
+                // prepare next
+                page++;
+                e_next.innerHTML = "Next (" + page + "/" + Math.ceil(v.total / v.images.length) + ")";
+                next_data = {
+                    q: q,
+                    page: page
+                };
+
+            }).catch(e => {
+                // error
+                e_next.innerHTML = "error:\n" + e;
+                next_data = {
+                    q: q,
+                    page: page
+                };
+            })
+    }
+
+    function addImage(data) {
+        // insert element
+        let imgHtml;
+        if (data.format == 'webm') {
+            imgHtml = `<div class="relative"><video id="tmp" onended="endListener(this)"></video>
+                <button class="play" onclick="playListener(this)">></button></div>`;
+        } else {
+            imgHtml = `<img id="tmp"></img>`;
+        }
+
+        // insert info
+        let infoHtml = "";
+        infoHtml += `🔼${data.upvotes} 🔶${data.score} 🔽${data.downvotes} 🔷${data.wilson_score} ❤${data.faves} 💬${data.comment_count}<br><br>`
+        infoHtml += `${data.uploader || ""} @ ${data.created_at} <a href="${data.source_url}">(source)</a><br><br>`
+        infoHtml += `Name:<br>${data.name}<br><br>`
+        infoHtml += `Description:<br>${data.description}<br><br>`
+        infoHtml += `Tags:<br>${data.tags.join(", ")}`
+
+        e_canvas.insertAdjacentHTML('beforeend', `<div>${imgHtml}<span id="tmpC" class="infoImg">${infoHtml}</span><hr></div>`)
+
+        // set properties
+        let img = document.getElementById("tmp");
+        let info = document.getElementById("tmpC");
+        img.onclick = makeImageCallback(img, info, data);
+        img.src = data.representations[settings.default_representation];
+        img.removeAttribute('id');
+        info.removeAttribute('id');
+
+        // remove image if more than chosen
+        while (settings.max_images > 0 && e_canvas.childNodes.length > settings.max_images) {
+            if (settings.fix_scroll == 'yes') window.scrollBy(0, -(e_canvas.childNodes[1].getBoundingClientRect().top - e_canvas.childNodes[0].getBoundingClientRect().top));
+            e_canvas.removeChild(e_canvas.childNodes[0]);
+        }
+    }
+
+    function makeImageCallback(img, info, data) {
+        return event => {
+            let bb = img.getBoundingClientRect();
+            if (event.clientY < (bb.bottom + bb.top) / 2) {
+                // click on the top half, load full resolution
+                img.src = data.representations.full;
+            } else {
+                // click on the bottom half, toggle data visibility
+                toggleVisibility(info);
+            }
+        }
+    }
+
+    function playListener(p) {
+        if (p.previousSibling.paused) {
+            p.previousSibling.play();
+            p.style.opacity = 0;
+        } else {
+            p.previousSibling.pause();
+            p.style.opacity = 1;
+        }
+    }
+
+    function endListener(v) {
+        v.nextSibling.style.opacity = 1;
+    }
+
+    ////////// enter to search //////////
+
+    function press(event, id) {
+        if (event.keyCode == 13) {
+            // press enter to search
+            event.preventDefault();
+            document.getElementById(id).click();
+        }
+    }
+
+    ////////// autoload on scrolling //////////
+
+    let requested = false;
+
+    function onScroll() {
+        if (settings.auto_load != 'yes') return;
+        let screen = document.documentElement.clientHeight // size of screen
+        let current = document.documentElement.scrollTop // current scroll position
+        let total = document.documentElement.scrollHeight // total scroll
+
+        //document.getElementById("debug").innerHTML = scroll+"\n"+height+"\n"+yoffset
+
+        if (total - current <= 2 * screen) {
+            // almost at the end, fetch new images
+            if (requested) return;
+            requested = true;
+            document.getElementById("next").click();
+        } else {
+            requested = false;
+        }
+    }
+    window.onscroll = onScroll;
+
+    ////////// utils //////////
+
+    function toggleVisibility(id) {
+        let e = id instanceof Element ? id : document.getElementById(id);
+        e.style.display = (e.offsetWidth > 0 || e.offsetHeight > 0) ? 'none' : 'block';
+    }
+</script>
+
+</html>
