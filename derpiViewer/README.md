@@ -2,7 +2,7 @@
 
 #### Url: 
 
-[https://trianguloy.github.io/githubPages/derpiViewer/derpiViewer.html](https://trianguloy.github.io/githubPages/derpyViewer/derpyViewer.html)
+[https://trianguloy.github.io/githubPages/derpiViewer/derpiViewer.html](https://trianguloy.github.io/githubPages/derpiViewer/derpiViewer.html)
 
 #### Description:
 
