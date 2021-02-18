@@ -6,9 +6,10 @@
 </head>
 
 <style>
-    /* dark background */
+    /* dark centered background */
     body {
         background-color: #333333;
+        margin: 0 auto;
     }
     
     /* full width */
@@ -84,12 +85,12 @@
     <div id="info">
         <span>This page allows you to search any query from <a href="https://derpibooru.org/">derpibooru</a> and display the results in an endless scrollable view. 
 * Press the @ button to display and change the settings. 
-* Enter a query and press the > button (or enter). 
+* Enter a query and press the > button (or enter). [you can prepopulate it by appending "?asdf" to the url]
 * Scroll. 
 * Press the top of an image to reload as full resolution.
-* Press the middle of an image to play/pause (for webm only).
+* Press the middle button of a webm to play/pause.
 * Press the bottom of an image to show the image data.
-This was made for personal use from a mobile device and may or may not update it, depending on how much I use it, but if you find it useful any <a href="https://github.com/TrianguloY/githubPages/tree/master/derpiViewer">discussion/request</a> is welcomed.</span>
+This was made for personal use from a mobile device and may or may not update it, depending on how much I use it, but if you find it useful any <a href="https://github.com/TrianguloY/githubPages/issues">discussion/request</a> is welcomed.</span>
         <hr>
     </div>
     <div id="settings"></div>
@@ -148,7 +149,8 @@ This was made for personal use from a mobile device and may or may not update it
         auto_load: ["If enabled, new images will be automatically fetched when scrolling to the end of the page", [1, 'yes', 'no']],
         max_images: ["Maximum number of images to keep displayed", 50],
         fix_scroll: ["Enable this if the page jumps when loading images", [2, 'yes', 'no']],
-        start_page: ["The first page to load", 1]
+        start_page: ["The first page to load", 1],
+        max_width: ["Maximum width of the page (px)", 1000],
     }
 
     function initSettings() {
@@ -205,6 +207,8 @@ This was made for personal use from a mobile device and may or may not update it
 
             // set
             settings[key] = value;
+            
+            onChangeSetting(key);
         }
     }
     initSettings();
@@ -212,6 +216,14 @@ This was made for personal use from a mobile device and may or may not update it
     function updateSetting(e) {
         settings[e.id] = e.value;
         localStorage.setItem(e.id, e.value);
+        onChangeSetting(e.id)
+    }
+    
+    function onChangeSetting(s){
+        if(s=='max_width'){
+            // the max_width needs to sync instantaneously with the css property
+            document.body.style.maxWidth = settings[s] + 'px'
+        }
     }
 
     ////////// image loading //////////
@@ -321,11 +333,11 @@ This was made for personal use from a mobile device and may or may not update it
     }
 
     function playListener(p) {
-        if (p.previousSibling.paused) {
-            p.previousSibling.play();
+        if (p.previousElementSibling.paused) {
+            p.previousElementSibling.play();
             p.style.opacity = 0;
         } else {
-            p.previousSibling.pause();
+            p.previousElementSibling.pause();
             p.style.opacity = 1;
         }
     }
@@ -334,8 +346,13 @@ This was made for personal use from a mobile device and may or may not update it
         v.nextSibling.style.opacity = 1;
     }
 
-    ////////// enter to search //////////
+    ////////// search textbox //////////
+    
+    // prepopulate with url
+    let url_q = location.search.replace(/^\?/,'');
+    if(e_q.value == '' && url_q != '') e_q.value = url_q;
 
+    // enter to search
     function press(event, id) {
         if (event.keyCode == 13) {
             // press enter to search
