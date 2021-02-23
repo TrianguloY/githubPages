@@ -66,6 +66,14 @@
         left: 50%;
   transform: translate(-50%, -50%);
     }
+	
+	/* links */
+	a:link {
+		color: #00bbff;
+	}
+	a:visited {
+		color: #ffbbff;;
+	}
 
 </style>
 
@@ -90,6 +98,7 @@
 * Press the top of an image to reload as full resolution.
 * Press the middle button of a webm to play/pause.
 * Press the bottom of an image to show the image data.
+* Press a page number to jump to a different one.
 This was made for personal use from a mobile device and may or may not update it, depending on how much I use it, but if you find it useful any <a href="https://github.com/TrianguloY/githubPages/issues">discussion/request</a> is welcomed.</span>
         <hr>
     </div>
@@ -149,7 +158,6 @@ This was made for personal use from a mobile device and may or may not update it
         auto_load: ["If enabled, new images will be automatically fetched when scrolling to the end of the page", [1, 'yes', 'no']],
         max_images: ["Maximum number of images to keep displayed", 50],
         fix_scroll: ["Enable this if the page jumps when loading images", [2, 'yes', 'no']],
-        start_page: ["The first page to load", 1],
         max_width: ["Maximum width of the page (px)", 1000],
     }
 
@@ -230,11 +238,11 @@ This was made for personal use from a mobile device and may or may not update it
 
     let next_data = null;
 
-    function newQuery() {
+    function newQuery(start_page=1) {
         // clear
         e_canvas.innerHTML = "";
         // run
-        run(encodeURIComponent(e_q.value), settings.start_page);
+        run(encodeURIComponent(e_q.value), start_page);
     }
 
     function nextPage() {
@@ -243,6 +251,13 @@ This was made for personal use from a mobile device and may or may not update it
         // run
         run(next_data.q, next_data.page);
     }
+	
+	function askPage(n) {
+		// ask
+		let page = prompt("Which page?",n)
+		// load (as new)
+		if(page!=null) newQuery(page);
+	}
 
     function run(q, page) {
 
@@ -262,8 +277,8 @@ This was made for personal use from a mobile device and may or may not update it
                     return;
                 }
 
-                // add images
-                e_canvas.insertAdjacentHTML('beforeend', `<center><span>${page}</span></center><hr>`)
+                // add page number and images
+                e_canvas.insertAdjacentHTML('beforeend', `<center><a onclick="askPage(this.innerHTML); return false;" href=''>${page}</a></center><hr>`)
                 v.images.forEach(i => addImage(i));
 
                 // prepare next
