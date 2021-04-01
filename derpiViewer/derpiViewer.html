@@ -36,7 +36,7 @@
     }
     
     /* square button */
-    button {
+    .flex > button {
         height: 30px;
         width: 30px;
     }   
@@ -66,14 +66,14 @@
         left: 50%;
   transform: translate(-50%, -50%);
     }
-	
-	/* links */
-	a:link {
-		color: #00bbff;
-	}
-	a:visited {
-		color: #ffbbff;;
-	}
+    
+    /* links */
+    a:link {
+        color: #00bbff;
+    }
+    a:visited {
+        color: #ffbbff;;
+    }
 
 </style>
 
@@ -251,13 +251,13 @@ This was made for personal use from a mobile device and may or may not update it
         // run
         run(next_data.q, next_data.page);
     }
-	
-	function askPage(n) {
-		// ask
-		let page = prompt("Which page?",n)
-		// load (as new)
-		if(page!=null) newQuery(page);
-	}
+    
+    function askPage(n) {
+        // ask
+        let page = prompt("Which page?",n)
+        // load (as new)
+        if(page!=null) newQuery(page);
+    }
 
     function run(q, page) {
 
@@ -276,14 +276,16 @@ This was made for personal use from a mobile device and may or may not update it
                     e_next.innerHTML = "end";
                     return;
                 }
+                
+                pageIndicator = page + "/" + Math.ceil(v.total / v.images.length);
 
                 // add page number and images
-                e_canvas.insertAdjacentHTML('beforeend', `<center><a onclick="askPage(this.innerHTML); return false;" href=''>${page}</a></center><hr>`)
+                e_canvas.insertAdjacentHTML('beforeend', `<center><button onclick="askPage(${page});">${pageIndicator}</button></center><hr>`)
                 v.images.forEach(i => addImage(i));
 
                 // prepare next
                 page++;
-                e_next.innerHTML = "Next (" + page + "/" + Math.ceil(v.total / v.images.length) + ")";
+                e_next.innerHTML = "Next (" + pageIndicator + ")";
                 next_data = {
                     q: q,
                     page: page
@@ -311,8 +313,8 @@ This was made for personal use from a mobile device and may or may not update it
 
         // insert info
         let infoHtml = "";
-        infoHtml += `🔼${data.upvotes} 🔶${data.score} 🔽${data.downvotes} 🔷${data.wilson_score} ❤${data.faves} 💬${data.comment_count}<br><br>`
-        infoHtml += `${data.uploader || ""} @ ${data.created_at} <a href="${data.source_url}">(source)</a><br><br>`
+        infoHtml += `🔼${data.upvotes} 🔷${data.score} 🔽${data.downvotes} 🔶${data.wilson_score} ❤${data.faves} 💬${data.comment_count}<br><br>`
+        infoHtml += `${data.uploader || "unknown uploader"} @ ${data.created_at} [ID:${data.id}] <a href="${data.source_url}">(source)</a><br><br>`
         infoHtml += `Name:<br>${data.name}<br><br>`
         infoHtml += `Description:<br>${data.description}<br><br>`
         infoHtml += `Tags:<br>${data.tags.join(", ")}`
@@ -336,6 +338,11 @@ This was made for personal use from a mobile device and may or may not update it
 
     function makeImageCallback(img, info, data) {
         return event => {
+            if(img.paused === false){
+                // pause playing video
+                playListener(img.nextElementSibling);
+                return;
+            }
             let bb = img.getBoundingClientRect();
             if (event.clientY < (bb.bottom + bb.top) / 2) {
                 // click on the top half, load full resolution
@@ -358,13 +365,13 @@ This was made for personal use from a mobile device and may or may not update it
     }
 
     function endListener(v) {
-        v.nextSibling.style.opacity = 1;
+        v.nextElementSibling.style.opacity = 1;
     }
 
     ////////// search textbox //////////
     
     // prepopulate with url
-    let url_q = location.search.replace(/^\?/,'');
+    let url_q = decodeURIComponent(location.search.replace(/^\?/,''));
     if(e_q.value == '' && url_q != '') e_q.value = url_q;
 
     // enter to search
