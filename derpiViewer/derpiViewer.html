@@ -79,7 +79,7 @@
 
 <body>
     <div class="flex">
-        <input id="q" autocomplete="off" onkeyup="press(event, 'search')"/>
+        <input id="q" autocomplete="off" onkeyup="press(event, 'search')" placeholder="Enter a query (or leave empty) and press the '>' button." />
         <button id="search" onclick="newQuery()">></button>
         <button onclick="toggleVisibility('about')">i</button>
         <button onclick="toggleVisibility('info')">?</button>
@@ -168,7 +168,7 @@ This was made for personal use from a mobile device and may or may not update it
             try {
                 value = localStorage.getItem(key);
             } catch (e) {
-                alert("Corrupted data, restart the browser\n\n" + e)
+                alert("Can't access the saved data, try restarting the browser\n\n" + e)
             }
 
             let description = settings[key][0];
@@ -242,7 +242,7 @@ This was made for personal use from a mobile device and may or may not update it
         // clear
         e_canvas.innerHTML = "";
         // run
-        run(encodeURIComponent(e_q.value), start_page);
+        run(encodeURIComponent(e_q.value == '' ? '*' : e_q.value), start_page);
     }
 
     function nextPage() {
@@ -260,6 +260,7 @@ This was made for personal use from a mobile device and may or may not update it
     }
 
     function run(q, page) {
+		console.log('Fetching page '+page);
 
         e_next.style.display = "block";
         e_next.innerHTML = "Loading...";
@@ -290,6 +291,8 @@ This was made for personal use from a mobile device and may or may not update it
                     q: q,
                     page: page
                 };
+				
+				console.log('Done fetching');
 
             }).catch(e => {
                 // error
