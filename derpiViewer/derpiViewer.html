@@ -35,11 +35,15 @@
         font-size: 20px;
     }
     
-    /* square button */
-    .flex > button {
+    /* button size */
+    button {
         height: 30px;
+    }
+    
+    /* square button */
+    .flex > button, .play {
         width: 30px;
-    }   
+    }
 
     /* white readable keeping-spaces text */
     span,code {
@@ -64,7 +68,7 @@
         position: absolute;
         top: 50%;
         left: 50%;
-  transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
     }
     
     /* links */
@@ -260,7 +264,7 @@ This was made for personal use from a mobile device and may or may not update it
     }
 
     function run(q, page) {
-		console.log('Fetching page '+page);
+        console.log('Fetching page '+page);
 
         e_next.style.display = "block";
         e_next.innerHTML = "Loading...";
@@ -291,8 +295,8 @@ This was made for personal use from a mobile device and may or may not update it
                     q: q,
                     page: page
                 };
-				
-				console.log('Done fetching');
+                
+                console.log('Done fetching');
 
             }).catch(e => {
                 // error
@@ -308,10 +312,10 @@ This was made for personal use from a mobile device and may or may not update it
         // insert element
         let imgHtml;
         if (data.format == 'webm') {
-            imgHtml = `<div class="relative"><video id="tmp" onended="endListener(this)"></video>
-                <button class="play" onclick="playListener(this)">></button></div>`;
+            imgHtml = `<div class="relative"><video id="tmp" onloadeddata="loadListener(this)" onended="endListener(this)" preload="metadata"></video>
+                <button class="play" onclick="playListener(this)">...</button></div>`;
         } else {
-            imgHtml = `<img id="tmp"></img>`;
+            imgHtml = `<img id="tmp" loading="lazy" alt="${data.name}"></img>`;
         }
 
         // insert info
@@ -333,7 +337,7 @@ This was made for personal use from a mobile device and may or may not update it
         info.removeAttribute('id');
 
         // remove image if more than chosen
-        while (settings.max_images > 0 && e_canvas.childNodes.length > settings.max_images) {
+        while (settings.max_images > 0 && e_canvas.querySelectorAll('img,video').length > settings.max_images) {
             if (settings.fix_scroll == 'yes') window.scrollBy(0, -(e_canvas.childNodes[1].getBoundingClientRect().top - e_canvas.childNodes[0].getBoundingClientRect().top));
             e_canvas.removeChild(e_canvas.childNodes[0]);
         }
@@ -356,13 +360,21 @@ This was made for personal use from a mobile device and may or may not update it
             }
         }
     }
+    
+    function loadListener(v){
+        v.nextElementSibling.innerHTML = '>';
+    }
 
     function playListener(p) {
         if (p.previousElementSibling.paused) {
-            p.previousElementSibling.play();
-            p.style.opacity = 0;
+            p.innerHTML = '...';
+            p.previousElementSibling.play().then(()=>{
+                p.innerHTML = '>';
+                p.style.opacity = 0
+            });
         } else {
             p.previousElementSibling.pause();
+            p.innerHTML = '>';
             p.style.opacity = 1;
         }
     }
