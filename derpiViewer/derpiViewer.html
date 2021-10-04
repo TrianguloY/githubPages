@@ -315,7 +315,7 @@ This was made for personal use from a mobile device and may or may not update it
             imgHtml = `<div class="relative"><video id="tmp" onloadeddata="loadListener(this)" onended="endListener(this)" preload="metadata"></video>
                 <button class="play" onclick="playListener(this)">...</button></div>`;
         } else {
-            imgHtml = `<img id="tmp" loading="lazy" alt="${data.name}"></img>`;
+            imgHtml = `<img id="tmp" loading="lazy" alt="${data.name}" style="aspect-ratio:${data.aspect_ratio}"></img>`;
         }
 
         // insert info
