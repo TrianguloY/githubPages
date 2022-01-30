@@ -160,6 +160,7 @@ This was made for personal use from a mobile device and may or may not update it
             "full", "large", "medium", "small", "tall", "thumb", "thumb_small", "thumb_tiny"
         ]],
         auto_load: ["If enabled, new images will be automatically fetched when scrolling to the end of the page", [1, 'yes', 'no']],
+        per_page: ["Images to load in each petition (max 50)", 25],
         max_images: ["Maximum number of images to keep displayed", 50],
         fix_scroll: ["Enable this if the page jumps when loading images", [2, 'yes', 'no']],
         max_width: ["Maximum width of the page (px)", 1000],
@@ -256,9 +257,9 @@ This was made for personal use from a mobile device and may or may not update it
         run(next_data.q, next_data.page);
     }
     
-    function askPage(n) {
+    function askPage(n, total) {
         // ask
-        let page = prompt("Which page?",n)
+        let page = prompt(`Which page? [1,${total}]`, n)
         // load (as new)
         if(page!=null) newQuery(page);
     }
@@ -270,35 +271,35 @@ This was made for personal use from a mobile device and may or may not update it
         e_next.innerHTML = "Loading...";
         next_data = null;
 
-        optset = (d) => settings[d] != '' ? '&' + d + '=' + settings[d] : '';
+        let optset = (d) => settings[d] != '' ? '&' + d + '=' + settings[d] : '';
 
-        fetch(settings.base_url + "?q=" + q + "&page=" + page + optset('filter_id') + optset('sf') + optset('sd'))
+        fetch(settings.base_url + "?q=" + q + "&page=" + page + optset('filter_id') + optset('sf') + optset('sd') + optset('per_page'))
             .then(v => v.json())
             .then(v => {
 
-                if (v.images.length == 0) {
+                if (v.images.length == 0){
                     // no more images
                     e_next.innerHTML = "end";
                     return;
                 }
                 
-                pageIndicator = page + "/" + Math.ceil(v.total / v.images.length);
+                let totalPage = Math.ceil(v.total / settings.per_page);
 
                 // add page number and images
-                e_canvas.insertAdjacentHTML('beforeend', `<center><button onclick="askPage(${page});">${pageIndicator}</button></center><hr>`)
+                e_canvas.insertAdjacentHTML('beforeend', `<center><button onclick="askPage(${page}, ${totalPage});">Page ${page}/${totalPage} (${v.total} images)</button></center><hr>`)
                 v.images.forEach(i => addImage(i));
 
                 // prepare next
                 page++;
-                e_next.innerHTML = "Next (" + pageIndicator + ")";
                 next_data = {
                     q: q,
                     page: page
                 };
-                
-                console.log('Done fetching');
+                e_next.innerHTML = page > totalPage ? "end" : `Next (${page}/${totalPage})`;
 
-            }).catch(e => {
+            })
+            .then(() => console.log('Done fetching'))
+            .catch(e => {
                 // error
                 e_next.innerHTML = "error:\n" + e;
                 next_data = {
