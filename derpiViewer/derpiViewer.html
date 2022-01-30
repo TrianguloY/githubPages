@@ -325,7 +325,14 @@ This was made for personal use from a mobile device and may or may not update it
         infoHtml += `${data.uploader || "unknown uploader"} @ ${data.created_at} [ID:${data.id}] <a href="${data.source_url}">(source)</a><br><br>`
         infoHtml += `Name:<br>${data.name}<br><br>`
         infoHtml += `Description:<br>${data.description}<br><br>`
-        infoHtml += `Tags:<br>${data.tags.join(", ")}`
+        infoHtml += `Tags:<br><ul>${ data.tags.slice().sort().map(t => 
+            // tag and buttons
+            `<li>${t}  ${
+            containsTag(t) ? '' : `<button onclick="addTag('${t}');">include</button>  `
+            }  <button onclick="removeTag('${t}');">exclude</button>  ${
+            containsTag(t,true) ? '' : `<button onclick="onlyTag('${t}');">only</button>`
+            }</li>`
+        ).join("") }</ul>`
 
         e_canvas.insertAdjacentHTML('beforeend', `<div>${imgHtml}<span id="tmpC" class="infoImg">${infoHtml}</span><hr></div>`)
 
@@ -381,7 +388,28 @@ This was made for personal use from a mobile device and may or may not update it
     }
 
     function endListener(v) {
-        v.nextElementSibling.style.opacity = 1;
+        v.nextElementSibling.style.opacity = 1
+    }
+    
+    function containsTag(tag, alone=false){
+        return alone ? e_q.value.trim() == tag : e_q.value.split(',').map(e => e.trim()).indexOf(tag) != -1
+    }
+    
+    function addTag(tag){
+        e_q.value += (e_q.value.trim() == '' || e_q.value.trim().endsWith(',') ? '' : ', ') + tag
+        newQuery()
+    }
+    
+    function removeTag(tag){
+        // first remove if found
+        e_q.value = e_q.value.split(',').filter(e => e.trim() != tag).join(',')
+        addTag('!'+tag)
+        newQuery()
+    }
+    
+    function onlyTag(tag){
+        e_q.value = tag
+        newQuery()
     }
 
     ////////// search textbox //////////
