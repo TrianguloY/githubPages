@@ -310,22 +310,27 @@ This was made for personal use from a mobile device and may or may not update it
     }
 
     function addImage(data) {
+        
         // insert element
         let imgHtml;
         if (data.format == 'webm') {
-            imgHtml = `<div class="relative"><video id="tmp" onloadeddata="loadListener(this)" onended="endListener(this)" preload="metadata"></video>
-                <button class="play" onclick="playListener(this)">...</button></div>`;
+            imgHtml = `<div class="relative">
+                <video id="tmp" onloadeddata="loadListener(this)" onended="endListener(this)" preload="metadata"></video>
+                <button class="play" onclick="playListener(this)">...</button>
+            </div>`
         } else {
-            imgHtml = `<img id="tmp" loading="lazy" alt="${data.name}" style="aspect-ratio:${data.aspect_ratio}"></img>`;
+            imgHtml = `<img id="tmp" loading="lazy" alt="${data.name}" style="aspect-ratio:${data.aspect_ratio}"></img>`
         }
 
         // insert info
-        let infoHtml = "";
-        infoHtml += `🔼${data.upvotes} 🔷${data.score} 🔽${data.downvotes} 🔶${data.wilson_score} ❤${data.faves} 💬${data.comment_count}<br><br>`
-        infoHtml += `${data.uploader || "unknown uploader"} @ ${data.created_at} [ID:${data.id}] <a href="${data.source_url}">(source)</a><br><br>`
-        infoHtml += `Name:<br>${data.name}<br><br>`
-        infoHtml += `Description:<br>${data.description}<br><br>`
-        infoHtml += `Tags:<br><ul>${ data.tags.slice().sort().map(t => 
+        let url = new URL('/'+data.id,settings['base_url']).href
+        let infoHtml = `<a href="${url}" target="_blank">${url}</a><br>`
+        infoHtml += `🔼${data.upvotes} 🔷${data.score} 🔽${data.downvotes} 🔶${data.wilson_score} ❤${data.faves} 💬${data.comment_count}<br>`
+        infoHtml += `${data.uploader || "unknown uploader"} @ ${data.created_at} <br>`
+        infoHtml += (data.source_url == null ? 'No source' : `Source: <a href="${data.source_url}" target="_blank">${data.source_url}</a>`) + `<br><br>`
+        infoHtml += (!data.name ? 'No name' : `Name:<br>${data.name}`) + `<br><br>`
+        infoHtml += (!data.description ? 'No description' : `Description:<br>${data.description}`) + `<br><br>`
+        infoHtml += `Tags:<ul>${ data.tags.slice().sort().map(t => 
             // tag and buttons
             `<li>${t}  ${
             containsTag(t) ? '' : `<button onclick="addTag('${t}');">include</button>  `
@@ -364,7 +369,10 @@ This was made for personal use from a mobile device and may or may not update it
                 img.src = data.representations.full;
             } else {
                 // click on the bottom half, toggle data visibility
-                toggleVisibility(info);
+                toggleVisibility(info)
+                
+                // debug
+                if (typeof debug !== 'undefined') console.log(data)
             }
         }
     }
