@@ -36,8 +36,8 @@ body{
 		<option value="TV">TVRips (Spazz or Mentos)</option>
 	</select>
 	<select id="server">
-		<option value="https%3A%2F%2Fdl.yayponies.no%2F">Yay Ponies</option>
-		<option value="https%3A%2F%2Fyp.coco-pommel.org%2Fypvideo%2F">Coco Pommel</option>
+		<option value="https://yp.birds.web.id/">Yay Ponies 1</option>
+		<option value="https://ydl.me/files/">Yay Ponies 2</option>
 	</select>
 	<label id='l2'>|</label>
 	<input type="button" onclick="reload();" value="Play">
@@ -170,11 +170,12 @@ function populate(){
 	selection.options[1].text = "Loading...";
 	selection.options[1].value = "";
 	
-	var dlurl = 'https://dl.yayponies.no/'
-	fetch('https://cors-anywhere.herokuapp.com/'+dlurl,{headers: {"X-Requested-With":"YPVisor"}})
+	var dlurl = 'https://ydl.me/files/'
+	fetch('https://api.allorigins.win/get?url='+dlurl)
 	.then(function(response) {
-		return response.text();
-	}).then(function(data) {
+		return response.json();
+	}).then(function(json) {
+		let data = json.contents;
 		// remove loading
 		selection.options[1] = null; 
 	  
