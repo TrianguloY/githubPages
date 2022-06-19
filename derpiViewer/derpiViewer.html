@@ -333,9 +333,9 @@ This was made for personal use from a mobile device and may or may not update it
         infoHtml += `Tags:<ul>${ data.tags.slice().sort().map(t => 
             // tag and buttons
             `<li>${t}  ${
-            containsTag(t) ? '' : `<button onclick="addTag('${t}');">include</button>  `
-            }  <button onclick="removeTag('${t}');">exclude</button>  ${
-            containsTag(t,true) ? '' : `<button onclick="onlyTag('${t}');">only</button>`
+            containsTag(t) ? '' : `<button onclick="addTag('${escape(t)}');">include</button>  `
+            }  <button onclick="removeTag('${escape(t)}');">exclude</button>  ${
+            containsTag(t,true) ? '' : `<button onclick="onlyTag('${escape(t)}');">only</button>`
             }</li>`
         ).join("") }</ul>`
 
@@ -464,6 +464,11 @@ This was made for personal use from a mobile device and may or may not update it
         let e = id instanceof Element ? id : document.getElementById(id);
         e.style.display = (e.offsetWidth > 0 || e.offsetHeight > 0) ? 'none' : 'block';
     }
+	
+	function escape(text, char="'"){
+		return text.replaceAll(char,'\\'+char);
+	}
+	
 </script>
 
 </html>
