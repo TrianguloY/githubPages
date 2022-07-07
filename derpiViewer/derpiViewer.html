@@ -465,8 +465,8 @@ This was made for personal use from a mobile device and may or may not update it
         e.style.display = (e.offsetWidth > 0 || e.offsetHeight > 0) ? 'none' : 'block';
     }
 	
-	function escape(text, char="'"){
-		return text.replaceAll(char,'\\'+char);
+	function escape(text){
+		return text.replace(/'/g,"\\'");
 	}
 	
 </script>
