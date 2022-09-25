@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<title>Changelog</title>
+	<style>
+	/*  https://gist.github.com/JoeyBurzynski/617fb6201335779f8424ad9528b72c41#100-bytes-of-css-to-look-great-everywhere-enhanced-version */
+	html {
+		max-width: 70ch;
+		margin: auto;
+		line-height: 1.75;
+		font-size: 1.25em;
+	}
+	
+	/* https://www.w3schools.com/howto/howto_css_loader.asp */
+	.loader {
+		border: 16px solid #f3f3f3; /* Light grey */
+		border-top: 16px solid #3498db; /* Blue */
+		border-radius: 50%;
+		width: 120px;
+		height: 120px;
+		margin: auto;
+		animation: spin 2s linear infinite;
+	}
+	@keyframes spin {
+		0% { transform: rotate(0deg); }
+		100% { transform: rotate(360deg); }
+	}
+	
+	/* header */
+	h1 {
+		text-align: center;
+		position: sticky;
+		top: 0px;
+		background-color: white;
+	}
+	
+	/* content */
+	p {
+		white-space: pre-wrap; 
+		text-align: center;
+	}
+	</style>
+</head>
+<body>
+
+	<h1><a id="title">TrianguloY's apps automatic changelog</a></h1>
+	<p id="content">
+		This page will display automatic changelogs for specific apps in specific locales. 
+		<noscript><br>This static page requires Javascript for it to work. If you want to manually check the changelogs yourself plase find it on my <a href="https://triangularapps.blogspot.com/">blog</a> or search it on the corresponding <a href="https://github.com/TrianguloY?tab=repositories">repository</a>.</noscript>
+	</p>
+
+<script>
+
+// data
+let DATA = {
+	'com.trianguloy.openInWhatsapp': {
+		'title': "Click to chat",
+		'changelog': "https://raw.githubusercontent.com/TrianguloY/OpenInWhatsapp_Translation/master/res/raw%locale/changelog.txt",
+		'link': "https://triangularapps.blogspot.com/search/label/OpenInWhatsApp"
+	}
+};
+let DEFAULT = 'en';
+
+// elements
+let TITLE = document.getElementById('title');
+let CONTENT = document.getElementById('content');
+
+// on load
+window.addEventListener("load", async () => {
+	let locale = null;
+
+	try{
+
+		// get params
+		let params = new URLSearchParams(window.location.search);
+		locale = params.get('locale');
+		let package = params.get('package');
+
+		// validate package
+		if (package == null) throw "Missing package";
+		if (!(package in DATA)) throw "Invalid data";
+		
+		// validate locale
+		if(locale == null) {
+			locale = DEFAULT;
+			params.set('locale', DEFAULT);
+			window.location.search = params.toString();
+		}
+
+		// get
+		let data = DATA[package];
+
+		// set content
+		TITLE.innerHTML = data.title;
+		TITLE.href = data.link;
+		CONTENT.innerHTML = `<div class="loader"></div>`;
+		CONTENT.innerHTML = (await Promise.all([
+			getChangelog(data.changelog, locale),
+			// minimum 500 ms (otherwise the loading indicator flashes and it looks horrible)
+			new Promise((resolve, reject) => setTimeout(()=>resolve(0),500)),
+		]))[0];
+	
+	}catch(e){
+		console.log(e);
+		
+		// selector
+		TITLE.innerHTML = "Apps";
+		delete TITLE['href'];
+		CONTENT.innerHTML = "<ul>" 
+			+ Object.entries(DATA)
+				.map(([k,v])=>`<li><a href="?package=${k}${locale!=null?`&locale=${locale}`:''}">${v.title}</a></li>`)
+				.reduce((s,v)=>s+v,"") 
+			+ "</ul>";
+	}
+
+});
+
+// return the changelog as text
+async function getChangelog(url, locale) {
+	return await fetch(url.replace('%locale', locale != DEFAULT && locale != null ? '-' + locale : ''))
+		.then(async r => r.ok ? r.text() : locale != null ? await getChangelog(url) : "Not available");
+}
+
+</script>
+
+</body>
+</html>
