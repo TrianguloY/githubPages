@@ -1,0 +1,1064 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Android Intent flags decoder</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+<base href="https://developer.android.com/"/>
+<style>
+body{
+	max-width: 700px;
+	text-align: center;
+	padding: 10px;
+}
+
+.center{
+	margin:0 auto;
+}
+
+input{
+	font-family: monospace
+}
+
+.input{
+	border: 1px solid #ccc;
+	border-radius: 10px;
+	padding: 10px;
+	display: inline-block;
+}
+
+summary{
+	background-color: #cccc;
+	padding: 10px;
+}
+details{
+	border: 1px solid #ccc;
+	border-radius: 10px;
+	margin: 10px;
+	overflow: hidden;
+}
+
+.content{
+	padding: 10px;
+	padding-bottom: 0px;
+}
+
+button, h3{
+	display: none
+}
+
+label {
+	white-space: pre; 
+}
+
+</style>
+</head>
+<body class="center">
+
+<div><div class="center input">
+	<label>Intent flags: 0x</label>
+	<input type="text" required pattern="[0-9a-fA-F]+" size=8 id="flags" oninput="update()">
+	<label>  (made by TrianguloY)</label>
+</div></div>
+
+
+<script>
+
+let input = document.getElementById('flags');
+function update(){
+	// get and parse input
+	let val = input.value;
+	val = val.match(/(0x)?([0-9a-fA-F]+)/);
+	val = val != null ? val[2] : "";
+	val = val.toUpperCase();
+	input.value = val;
+	
+	// set all flags visibility
+	let n = parseInt(val, 16);
+	[...document.getElementsByClassName("flag")].forEach(e=>{
+		let f = parseInt(e.getAttribute('data-value'));
+		e.style.display = (n & f) != 0 ? null : "none";
+	});
+	
+	// replace url
+	let url = new URL(window.location.href);
+	url.search = "?flags="+val;
+	window.history.replaceState(null, "", url.href);
+}
+
+window.addEventListener('load', ()=>{
+	// if no value is saved
+	if(input.value==""){
+		// set value from query
+		let query = new URLSearchParams(window.location.search).get('flags');
+		// or default otherwise
+		input.value = query != null ? query : "FFFFFFFF";
+	}
+	update();
+});
+</script>
+
+
+
+<!-- 
+
+Content copied from https://developer.android.com/reference/android/content/Intent using:
+
+[...document.querySelectorAll('h3.api-name')]
+  .filter(e => e.id.startsWith("FLAG_ACTIVITY_"))
+  .map(e => [e.id, e.parentElement])
+  .map(([name, body]) => [name, body, body.innerText.match(/Constant Value: (\d+) \(0x\d+\)/)[1]])
+  .map(([name, body, value]) => `
+<details class="flag" data-value="${value}"><summary>${name}</summary>
+<div class="content">
+	${body.innerHTML}
+  </div>
+</details>
+`).join("\n");
+
+
+-->
+
+
+<details class="flag" data-value="4194304"><summary>FLAG_ACTIVITY_BROUGHT_TO_FRONT</summary>
+<div class="content">
+	
+    <h3 class="api-name" id="FLAG_ACTIVITY_BROUGHT_TO_FRONT" data-text="FLAG_ACTIVITY_BROUGHT_TO_FRONT" role="presentation"><span class="devsite-heading" role="heading" aria-level="3">FLAG_<wbr>ACTIVITY_<wbr>BROUGHT_<wbr>TO_<wbr>FRONT</span><button type="button" class="devsite-heading-link button-flat material-icons" aria-label="Copiar el vínculo a esta sección: FLAG_ACTIVITY_BROUGHT_TO_FRONT" data-title="Copiar el vínculo a esta sección: FLAG_ACTIVITY_BROUGHT_TO_FRONT" data-id="FLAG_ACTIVITY_BROUGHT_TO_FRONT"></button></h3>
+    <div class="api-level">
+      
+    Added in <a href="/guide/topics/manifest/uses-sdk-element#ApiLevels">API level 1</a>
+  
+      
+  
+
+    </div>
+<devsite-code no-copy="" data-copy-event-label=""><div class="devsite-code-buttons-container" role="group" aria-label="Botones de acción"><button type="button" class="gc-analytics-event material-icons devsite-icon-code-dark devsite-toggle-dark" data-category="Site-Wide Custom Events" data-label="Dark Code Toggle" track-type="exampleCode" track-name="darkCodeToggle" aria-label="Código en tema oscuro" data-title="Código en tema oscuro"></button><button type="button" class="gc-analytics-event material-icons devsite-icon-code-light devsite-toggle-light" data-category="Site-Wide Custom Events" data-label="Light Code Toggle" track-type="exampleCode" track-name="lightCodeToggle" aria-label="Código en tema claro" data-title="Código en tema claro"></button></div><pre class="api-signature no-pretty-print" translate="no" dir="ltr" is-upgraded="">public static final int FLAG_ACTIVITY_BROUGHT_TO_FRONT</pre></devsite-code>
+    
+    
+
+    
+  <p>This flag is not normally set by application code, but set for you by
+ the system as described in the
+ <code translate="no" dir="ltr"><a href="/reference/android/R.styleable#AndroidManifestActivity_launchMode">launchMode</a></code> documentation for the singleTask mode.</p><p></p>
+
+    
+      <p>Constant Value:
+      
+          4194304
+          (0x00400000)
+      
+    
+</p>
+  </div>
+</details>
+
+
+<details class="flag" data-value="32768"><summary>FLAG_ACTIVITY_CLEAR_TASK</summary>
+<div class="content">
+	
+    <h3 class="api-name" id="FLAG_ACTIVITY_CLEAR_TASK" data-text="FLAG_ACTIVITY_CLEAR_TASK" role="presentation"><span class="devsite-heading" role="heading" aria-level="3">FLAG_<wbr>ACTIVITY_<wbr>CLEAR_<wbr>TASK</span><button type="button" class="devsite-heading-link button-flat material-icons" aria-label="Copiar el vínculo a esta sección: FLAG_ACTIVITY_CLEAR_TASK" data-title="Copiar el vínculo a esta sección: FLAG_ACTIVITY_CLEAR_TASK" data-id="FLAG_ACTIVITY_CLEAR_TASK"></button></h3>
+    <div class="api-level">
+      
+    Added in <a href="/guide/topics/manifest/uses-sdk-element#ApiLevels">API level 11</a>
+  
+      
+  
+
+    </div>
+<devsite-code no-copy="" data-copy-event-label=""><div class="devsite-code-buttons-container" role="group" aria-label="Botones de acción"><button type="button" class="gc-analytics-event material-icons devsite-icon-code-dark devsite-toggle-dark" data-category="Site-Wide Custom Events" data-label="Dark Code Toggle" track-type="exampleCode" track-name="darkCodeToggle" aria-label="Código en tema oscuro" data-title="Código en tema oscuro"></button><button type="button" class="gc-analytics-event material-icons devsite-icon-code-light devsite-toggle-light" data-category="Site-Wide Custom Events" data-label="Light Code Toggle" track-type="exampleCode" track-name="lightCodeToggle" aria-label="Código en tema claro" data-title="Código en tema claro"></button></div><pre class="api-signature no-pretty-print" translate="no" dir="ltr" is-upgraded="">public static final int FLAG_ACTIVITY_CLEAR_TASK</pre></devsite-code>
+    
+    
+
+    
+  <p>If set in an Intent passed to <code translate="no" dir="ltr"><a href="/reference/android/content/Context#startActivity(android.content.Intent)">Context.startActivity()</a></code>,
+ this flag will cause any existing task that would be associated with the
+ activity to be cleared before the activity is started.  That is, the activity
+ becomes the new root of an otherwise empty task, and any old activities
+ are finished.  This can only be used in conjunction with <code translate="no" dir="ltr"><a href="/reference/android/content/Intent#FLAG_ACTIVITY_NEW_TASK">FLAG_ACTIVITY_NEW_TASK</a></code>.</p><p></p>
+
+    
+      <p>Constant Value:
+      
+          32768
+          (0x00008000)
+      
+    
+</p>
+  </div>
+</details>
+
+
+<details class="flag" data-value="67108864"><summary>FLAG_ACTIVITY_CLEAR_TOP</summary>
+<div class="content">
+	
+    <h3 class="api-name" id="FLAG_ACTIVITY_CLEAR_TOP" data-text="FLAG_ACTIVITY_CLEAR_TOP" role="presentation"><span class="devsite-heading" role="heading" aria-level="3">FLAG_<wbr>ACTIVITY_<wbr>CLEAR_<wbr>TOP</span><button type="button" class="devsite-heading-link button-flat material-icons" aria-label="Copiar el vínculo a esta sección: FLAG_ACTIVITY_CLEAR_TOP" data-title="Copiar el vínculo a esta sección: FLAG_ACTIVITY_CLEAR_TOP" data-id="FLAG_ACTIVITY_CLEAR_TOP"></button></h3>
+    <div class="api-level">
+      
+    Added in <a href="/guide/topics/manifest/uses-sdk-element#ApiLevels">API level 1</a>
+  
+      
+  
+
+    </div>
+<devsite-code no-copy="" data-copy-event-label=""><div class="devsite-code-buttons-container" role="group" aria-label="Botones de acción"><button type="button" class="gc-analytics-event material-icons devsite-icon-code-dark devsite-toggle-dark" data-category="Site-Wide Custom Events" data-label="Dark Code Toggle" track-type="exampleCode" track-name="darkCodeToggle" aria-label="Código en tema oscuro" data-title="Código en tema oscuro"></button><button type="button" class="gc-analytics-event material-icons devsite-icon-code-light devsite-toggle-light" data-category="Site-Wide Custom Events" data-label="Light Code Toggle" track-type="exampleCode" track-name="lightCodeToggle" aria-label="Código en tema claro" data-title="Código en tema claro"></button></div><pre class="api-signature no-pretty-print" translate="no" dir="ltr" is-upgraded="">public static final int FLAG_ACTIVITY_CLEAR_TOP</pre></devsite-code>
+    
+    
+
+    
+  <p>If set, and the activity being launched is already running in the
+ current task, then instead of launching a new instance of that activity,
+ all of the other activities on top of it will be closed and this Intent
+ will be delivered to the (now on top) old activity as a new Intent.
+
+ </p><p>For example, consider a task consisting of the activities: A, B, C, D.
+ If D calls startActivity() with an Intent that resolves to the component
+ of activity B, then C and D will be finished and B receive the given
+ Intent, resulting in the stack now being: A, B.
+
+ </p><p>The currently running instance of activity B in the above example will
+ either receive the new intent you are starting here in its
+ onNewIntent() method, or be itself finished and restarted with the
+ new intent.  If it has declared its launch mode to be "multiple" (the
+ default) and you have not set <code translate="no" dir="ltr"><a href="/reference/android/content/Intent#FLAG_ACTIVITY_SINGLE_TOP">FLAG_ACTIVITY_SINGLE_TOP</a></code> in
+ the same intent, then it will be finished and re-created; for all other
+ launch modes or if <code translate="no" dir="ltr"><a href="/reference/android/content/Intent#FLAG_ACTIVITY_SINGLE_TOP">FLAG_ACTIVITY_SINGLE_TOP</a></code> is set then this
+ Intent will be delivered to the current instance's onNewIntent().
+
+ </p><p>This launch mode can also be used to good effect in conjunction with
+ <code translate="no" dir="ltr"><a href="/reference/android/content/Intent#FLAG_ACTIVITY_NEW_TASK">FLAG_ACTIVITY_NEW_TASK</a></code>: if used to start the root activity
+ of a task, it will bring any currently running instance of that task
+ to the foreground, and then clear it to its root state.  This is
+ especially useful, for example, when launching an activity from the
+ notification manager.
+
+ </p><p>See
+ <a href="/guide/topics/fundamentals/tasks-and-back-stack">Tasks and Back
+ Stack</a> for more information about tasks.</p><p></p>
+
+    
+      <p>Constant Value:
+      
+          67108864
+          (0x04000000)
+      
+    
+</p>
+  </div>
+</details>
+
+
+<details class="flag" data-value="524288"><summary>FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET</summary>
+<div class="content">
+	
+    <h3 class="api-name" id="FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET" data-text="FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET">FLAG_<wbr>ACTIVITY_<wbr>CLEAR_<wbr>WHEN_<wbr>TASK_<wbr>RESET</h3>
+    <div class="api-level">
+      
+    Added in <a href="/guide/topics/manifest/uses-sdk-element#ApiLevels">API level 3</a>
+  <br>Deprecated in
+    <a href="/guide/topics/manifest/uses-sdk-element#ApiLevels">API level
+      21</a>
+  
+      
+  
+
+    </div>
+<devsite-code no-copy="" data-copy-event-label=""><pre class="api-signature no-pretty-print" translate="no" dir="ltr" is-upgraded="">public static final int FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET</pre></devsite-code>
+    
+    
+
+    <p>
+  </p><p class="caution"><strong>
+      This constant was deprecated
+      in API level 21.</strong><br>
+    As of API 21 this performs identically to
+ <code translate="no" dir="ltr"><a href="/reference/android/content/Intent#FLAG_ACTIVITY_NEW_DOCUMENT">FLAG_ACTIVITY_NEW_DOCUMENT</a></code> which should be used instead of this.
+  </p>
+  <p></p><p></p>
+
+    
+      <p>Constant Value:
+      
+          524288
+          (0x00080000)
+      
+    
+</p>
+  </div>
+</details>
+
+
+<details class="flag" data-value="8388608"><summary>FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS</summary>
+<div class="content">
+	
+    <h3 class="api-name" id="FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS" data-text="FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS">FLAG_<wbr>ACTIVITY_<wbr>EXCLUDE_<wbr>FROM_<wbr>RECENTS</h3>
+    <div class="api-level">
+      
+    Added in <a href="/guide/topics/manifest/uses-sdk-element#ApiLevels">API level 1</a>
+  
+      
+  
+
+    </div>
+<devsite-code no-copy="" data-copy-event-label=""><pre class="api-signature no-pretty-print" translate="no" dir="ltr" is-upgraded="">public static final int FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS</pre></devsite-code>
+    
+    
+
+    
+  <p>If set, the new activity is not kept in the list of recently launched
+ activities.</p><p></p>
+
+    
+      <p>Constant Value:
+      
+          8388608
+          (0x00800000)
+      
+    
+</p>
+  </div>
+</details>
+
+
+<details class="flag" data-value="33554432"><summary>FLAG_ACTIVITY_FORWARD_RESULT</summary>
+<div class="content">
+	
+    <h3 class="api-name" id="FLAG_ACTIVITY_FORWARD_RESULT" data-text="FLAG_ACTIVITY_FORWARD_RESULT">FLAG_ACTIVITY_FORWARD_RESULT</h3>
+    <div class="api-level">
+      
+    Added in <a href="/guide/topics/manifest/uses-sdk-element#ApiLevels">API level 1</a>
+  
+      
+  
+
+    </div>
+<devsite-code no-copy="" data-copy-event-label=""><pre class="api-signature no-pretty-print" translate="no" dir="ltr" is-upgraded="">public static final int FLAG_ACTIVITY_FORWARD_RESULT</pre></devsite-code>
+    
+    
+
+    
+  <p>If set and this intent is being used to launch a new activity from an
+ existing one, then the reply target of the existing activity will be
+ transferred to the new activity.  This way, the new activity can call
+ <code translate="no" dir="ltr"><a href="/reference/android/app/Activity#setResult(int)">Activity.setResult(int)</a></code> and have that result sent back to
+ the reply target of the original activity.</p><p></p>
+
+    
+      <p>Constant Value:
+      
+          33554432
+          (0x02000000)
+      
+    
+</p>
+  </div>
+</details>
+
+
+<details class="flag" data-value="1048576"><summary>FLAG_ACTIVITY_LAUNCHED_FROM_HISTORY</summary>
+<div class="content">
+	
+    <h3 class="api-name" id="FLAG_ACTIVITY_LAUNCHED_FROM_HISTORY" data-text="FLAG_ACTIVITY_LAUNCHED_FROM_HISTORY">FLAG_ACTIVITY_LAUNCHED_FROM_HISTORY</h3>
+    <div class="api-level">
+      
+    Added in <a href="/guide/topics/manifest/uses-sdk-element#ApiLevels">API level 1</a>
+  
+      
+  
+
+    </div>
+<devsite-code no-copy="" data-copy-event-label=""><pre class="api-signature no-pretty-print" translate="no" dir="ltr" is-upgraded="">public static final int FLAG_ACTIVITY_LAUNCHED_FROM_HISTORY</pre></devsite-code>
+    
+    
+
+    
+  <p>This flag is not normally set by application code, but set for you by
+ the system if this activity is being launched from history.</p><p></p>
+
+    
+      <p>Constant Value:
+      
+          1048576
+          (0x00100000)
+      
+    
+</p>
+  </div>
+</details>
+
+
+<details class="flag" data-value="4096"><summary>FLAG_ACTIVITY_LAUNCH_ADJACENT</summary>
+<div class="content">
+	
+    <h3 class="api-name" id="FLAG_ACTIVITY_LAUNCH_ADJACENT" data-text="FLAG_ACTIVITY_LAUNCH_ADJACENT">FLAG_ACTIVITY_LAUNCH_ADJACENT</h3>
+    <div class="api-level">
+      
+    Added in <a href="/guide/topics/manifest/uses-sdk-element#ApiLevels">API level 24</a>
+  
+      
+  
+
+    </div>
+<devsite-code no-copy="" data-copy-event-label=""><pre class="api-signature no-pretty-print" translate="no" dir="ltr" is-upgraded="">public static final int FLAG_ACTIVITY_LAUNCH_ADJACENT</pre></devsite-code>
+    
+    
+
+    
+  <p>This flag is only used for split-screen multi-window mode. The new activity will be displayed
+ adjacent to the one launching it. This can only be used in conjunction with
+ <code translate="no" dir="ltr"><a href="/reference/android/content/Intent#FLAG_ACTIVITY_NEW_TASK">FLAG_ACTIVITY_NEW_TASK</a></code>. Also, setting <code translate="no" dir="ltr"><a href="/reference/android/content/Intent#FLAG_ACTIVITY_MULTIPLE_TASK">FLAG_ACTIVITY_MULTIPLE_TASK</a></code> is
+ required if you want a new instance of an existing activity to be created.</p><p></p>
+
+    
+      <p>Constant Value:
+      
+          4096
+          (0x00001000)
+      
+    
+</p>
+  </div>
+</details>
+
+
+<details class="flag" data-value="2048"><summary>FLAG_ACTIVITY_MATCH_EXTERNAL</summary>
+<div class="content">
+	
+    <h3 class="api-name" id="FLAG_ACTIVITY_MATCH_EXTERNAL" data-text="FLAG_ACTIVITY_MATCH_EXTERNAL">FLAG_ACTIVITY_MATCH_EXTERNAL</h3>
+    <div class="api-level">
+      
+    Added in <a href="/guide/topics/manifest/uses-sdk-element#ApiLevels">API level 28</a>
+  
+      
+  
+
+    </div>
+<devsite-code no-copy="" data-copy-event-label=""><pre class="api-signature no-pretty-print" translate="no" dir="ltr" is-upgraded="">public static final int FLAG_ACTIVITY_MATCH_EXTERNAL</pre></devsite-code>
+    
+    
+
+    
+  <p>If set in an Intent passed to <code translate="no" dir="ltr"><a href="/reference/android/content/Context#startActivity(android.content.Intent)">Context.startActivity()</a></code>,
+ this flag will attempt to launch an instant app if no full app on the device can already
+ handle the intent.
+ </p><p>
+ When attempting to resolve instant apps externally, the following <code translate="no" dir="ltr"><a href="/reference/android/content/Intent">Intent</a></code> properties
+ are supported:
+ </p><ul>
+     <li><code translate="no" dir="ltr"><a href="/reference/android/content/Intent#setAction(java.lang.String)">Intent#setAction(String)</a></code></li>
+     <li><code translate="no" dir="ltr"><a href="/reference/android/content/Intent#addCategory(java.lang.String)">Intent#addCategory(String)</a></code></li>
+     <li><code translate="no" dir="ltr"><a href="/reference/android/content/Intent#setData(android.net.Uri)">Intent#setData(Uri)</a></code></li>
+     <li><code translate="no" dir="ltr"><a href="/reference/android/content/Intent#setType(java.lang.String)">Intent#setType(String)</a></code></li>
+     <li><code translate="no" dir="ltr"><a href="/reference/android/content/Intent#setPackage(java.lang.String)">Intent#setPackage(String)</a></code></li>
+     <li><code translate="no" dir="ltr"><a href="/reference/android/content/Intent#addFlags(int)">Intent#addFlags(int)</a></code></li>
+ </ul>
+ <p>
+ In the case that no instant app can be found, the installer will be launched to notify the
+ user that the intent could not be resolved. On devices that do not support instant apps,
+ the flag will be ignored.</p><p></p>
+
+    
+      <p>Constant Value:
+      
+          2048
+          (0x00000800)
+      
+    
+</p>
+  </div>
+</details>
+
+
+<details class="flag" data-value="134217728"><summary>FLAG_ACTIVITY_MULTIPLE_TASK</summary>
+<div class="content">
+	
+    <h3 class="api-name" id="FLAG_ACTIVITY_MULTIPLE_TASK" data-text="FLAG_ACTIVITY_MULTIPLE_TASK">FLAG_ACTIVITY_MULTIPLE_TASK</h3>
+    <div class="api-level">
+      
+    Added in <a href="/guide/topics/manifest/uses-sdk-element#ApiLevels">API level 1</a>
+  
+      
+  
+
+    </div>
+<devsite-code no-copy="" data-copy-event-label=""><pre class="api-signature no-pretty-print" translate="no" dir="ltr" is-upgraded="">public static final int FLAG_ACTIVITY_MULTIPLE_TASK</pre></devsite-code>
+    
+    
+
+    
+  <p>This flag is used to create a new task and launch an activity into it.
+ This flag is always paired with either <code translate="no" dir="ltr"><a href="/reference/android/content/Intent#FLAG_ACTIVITY_NEW_DOCUMENT">FLAG_ACTIVITY_NEW_DOCUMENT</a></code>
+ or <code translate="no" dir="ltr"><a href="/reference/android/content/Intent#FLAG_ACTIVITY_NEW_TASK">FLAG_ACTIVITY_NEW_TASK</a></code>. In both cases these flags alone would
+ search through existing tasks for ones matching this Intent. Only if no such
+ task is found would a new task be created. When paired with
+ FLAG_ACTIVITY_MULTIPLE_TASK both of these behaviors are modified to skip
+ the search for a matching task and unconditionally start a new task.
+
+ <strong>When used with <code translate="no" dir="ltr"><a href="/reference/android/content/Intent#FLAG_ACTIVITY_NEW_TASK">FLAG_ACTIVITY_NEW_TASK</a></code> do not use this
+ flag unless you are implementing your own
+ top-level application launcher.</strong>  Used in conjunction with
+ <code translate="no" dir="ltr"><a href="/reference/android/content/Intent#FLAG_ACTIVITY_NEW_TASK">FLAG_ACTIVITY_NEW_TASK</a></code> to disable the
+ behavior of bringing an existing task to the foreground.  When set,
+ a new task is <em>always</em> started to host the Activity for the
+ Intent, regardless of whether there is already an existing task running
+ the same thing.
+
+ </p><p><strong>Because the default system does not include graphical task management,
+ you should not use this flag unless you provide some way for a user to
+ return back to the tasks you have launched.</strong>
+
+ See <code translate="no" dir="ltr"><a href="/reference/android/content/Intent#FLAG_ACTIVITY_NEW_DOCUMENT">FLAG_ACTIVITY_NEW_DOCUMENT</a></code> for details of this flag's use for
+ creating new document tasks.
+
+ </p><p>This flag is ignored if one of <code translate="no" dir="ltr"><a href="/reference/android/content/Intent#FLAG_ACTIVITY_NEW_TASK">FLAG_ACTIVITY_NEW_TASK</a></code> or
+ <code translate="no" dir="ltr"><a href="/reference/android/content/Intent#FLAG_ACTIVITY_NEW_DOCUMENT">FLAG_ACTIVITY_NEW_DOCUMENT</a></code> is not also set.
+
+ </p><p>See
+ <a href="/guide/topics/fundamentals/tasks-and-back-stack">Tasks and Back
+ Stack</a> for more information about tasks.</p><p></p>
+  <div>
+      <p><b>See also:</b></p>
+      <ul class="nolist"><li><code translate="no" dir="ltr"><a href="/reference/android/content/Intent#FLAG_ACTIVITY_NEW_DOCUMENT">FLAG_ACTIVITY_NEW_DOCUMENT</a></code></li><li><code translate="no" dir="ltr"><a href="/reference/android/content/Intent#FLAG_ACTIVITY_NEW_TASK">FLAG_ACTIVITY_NEW_TASK</a></code></li>
+      </ul>
+  </div>
+
+    
+      <p>Constant Value:
+      
+          134217728
+          (0x08000000)
+      
+    
+</p>
+  </div>
+</details>
+
+
+<details class="flag" data-value="524288"><summary>FLAG_ACTIVITY_NEW_DOCUMENT</summary>
+<div class="content">
+	
+    <h3 class="api-name" id="FLAG_ACTIVITY_NEW_DOCUMENT" data-text="FLAG_ACTIVITY_NEW_DOCUMENT">FLAG_ACTIVITY_NEW_DOCUMENT</h3>
+    <div class="api-level">
+      
+    Added in <a href="/guide/topics/manifest/uses-sdk-element#ApiLevels">API level 21</a>
+  
+      
+  
+
+    </div>
+<devsite-code no-copy="" data-copy-event-label=""><pre class="api-signature no-pretty-print" translate="no" dir="ltr" is-upgraded="">public static final int FLAG_ACTIVITY_NEW_DOCUMENT</pre></devsite-code>
+    
+    
+
+    
+  <p>This flag is used to open a document into a new task rooted at the activity launched
+ by this Intent. Through the use of this flag, or its equivalent attribute,
+ <code translate="no" dir="ltr"><a href="/reference/android/R.attr#documentLaunchMode">R.attr.documentLaunchMode</a></code> multiple instances of the same activity
+ containing different documents will appear in the recent tasks list.
+
+ </p><p>The use of the activity attribute form of this,
+ <code translate="no" dir="ltr"><a href="/reference/android/R.attr#documentLaunchMode">R.attr.documentLaunchMode</a></code>, is
+ preferred over the Intent flag described here. The attribute form allows the
+ Activity to specify multiple document behavior for all launchers of the Activity
+ whereas using this flag requires each Intent that launches the Activity to specify it.
+
+ </p><p>Note that the default semantics of this flag w.r.t. whether the recents entry for
+ it is kept after the activity is finished is different than the use of
+ <code translate="no" dir="ltr"><a href="/reference/android/content/Intent#FLAG_ACTIVITY_NEW_TASK">FLAG_ACTIVITY_NEW_TASK</a></code> and <code translate="no" dir="ltr"><a href="/reference/android/R.attr#documentLaunchMode">R.attr.documentLaunchMode</a></code> -- if
+ this flag is being used to create a new recents entry, then by default that entry
+ will be removed once the activity is finished.  You can modify this behavior with
+ <code translate="no" dir="ltr"><a href="/reference/android/content/Intent#FLAG_ACTIVITY_RETAIN_IN_RECENTS">FLAG_ACTIVITY_RETAIN_IN_RECENTS</a></code>.
+
+ </p><p>FLAG_ACTIVITY_NEW_DOCUMENT may be used in conjunction with <code translate="no" dir="ltr"><a href="/reference/android/content/Intent#FLAG_ACTIVITY_MULTIPLE_TASK">FLAG_ACTIVITY_MULTIPLE_TASK</a></code>. When used alone it is the
+ equivalent of the Activity manifest specifying <code translate="no" dir="ltr"><a href="/reference/android/R.attr#documentLaunchMode">R.attr.documentLaunchMode</a></code>="intoExisting". When used with
+ FLAG_ACTIVITY_MULTIPLE_TASK it is the equivalent of the Activity manifest specifying
+ <code translate="no" dir="ltr"><a href="/reference/android/R.attr#documentLaunchMode">R.attr.documentLaunchMode</a></code>="always". The flag is ignored even in
+ conjunction with <code translate="no" dir="ltr"><a href="/reference/android/content/Intent#FLAG_ACTIVITY_MULTIPLE_TASK">FLAG_ACTIVITY_MULTIPLE_TASK</a></code> when the Activity manifest specifies
+ <code translate="no" dir="ltr"><a href="/reference/android/R.attr#documentLaunchMode">R.attr.documentLaunchMode</a></code>="never".
+
+ Refer to <code translate="no" dir="ltr"><a href="/reference/android/R.attr#documentLaunchMode">R.attr.documentLaunchMode</a></code> for more information.</p><p></p>
+  <div>
+      <p><b>See also:</b></p>
+      <ul class="nolist"><li><code translate="no" dir="ltr"><a href="/reference/android/R.attr#documentLaunchMode">R.attr.documentLaunchMode</a></code></li><li><code translate="no" dir="ltr"><a href="/reference/android/content/Intent#FLAG_ACTIVITY_MULTIPLE_TASK">FLAG_ACTIVITY_MULTIPLE_TASK</a></code></li>
+      </ul>
+  </div>
+
+    
+      <p>Constant Value:
+      
+          524288
+          (0x00080000)
+      
+    
+</p>
+  </div>
+</details>
+
+
+<details class="flag" data-value="268435456"><summary>FLAG_ACTIVITY_NEW_TASK</summary>
+<div class="content">
+	
+    <h3 class="api-name" id="FLAG_ACTIVITY_NEW_TASK" data-text="FLAG_ACTIVITY_NEW_TASK">FLAG_ACTIVITY_NEW_TASK</h3>
+    <div class="api-level">
+      
+    Added in <a href="/guide/topics/manifest/uses-sdk-element#ApiLevels">API level 1</a>
+  
+      
+  
+
+    </div>
+<devsite-code no-copy="" data-copy-event-label=""><pre class="api-signature no-pretty-print" translate="no" dir="ltr" is-upgraded="">public static final int FLAG_ACTIVITY_NEW_TASK</pre></devsite-code>
+    
+    
+
+    
+  <p>If set, this activity will become the start of a new task on this
+ history stack.  A task (from the activity that started it to the
+ next task activity) defines an atomic group of activities that the
+ user can move to.  Tasks can be moved to the foreground and background;
+ all of the activities inside of a particular task always remain in
+ the same order.  See
+ <a href="/guide/topics/fundamentals/tasks-and-back-stack">Tasks and Back
+ Stack</a> for more information about tasks.
+
+ </p><p>This flag is generally used by activities that want
+ to present a "launcher" style behavior: they give the user a list of
+ separate things that can be done, which otherwise run completely
+ independently of the activity launching them.
+
+ </p><p>When using this flag, if a task is already running for the activity
+ you are now starting, then a new activity will not be started; instead,
+ the current task will simply be brought to the front of the screen with
+ the state it was last in.  See <code translate="no" dir="ltr"><a href="/reference/android/content/Intent#FLAG_ACTIVITY_MULTIPLE_TASK">FLAG_ACTIVITY_MULTIPLE_TASK</a></code> for a flag
+ to disable this behavior.
+
+ </p><p>This flag can not be used when the caller is requesting a result from
+ the activity being launched.</p><p></p>
+
+    
+      <p>Constant Value:
+      
+          268435456
+          (0x10000000)
+      
+    
+</p>
+  </div>
+</details>
+
+
+<details class="flag" data-value="65536"><summary>FLAG_ACTIVITY_NO_ANIMATION</summary>
+<div class="content">
+	
+    <h3 class="api-name" id="FLAG_ACTIVITY_NO_ANIMATION" data-text="FLAG_ACTIVITY_NO_ANIMATION">FLAG_ACTIVITY_NO_ANIMATION</h3>
+    <div class="api-level">
+      
+    Added in <a href="/guide/topics/manifest/uses-sdk-element#ApiLevels">API level 5</a>
+  
+      
+  
+
+    </div>
+<devsite-code no-copy="" data-copy-event-label=""><pre class="api-signature no-pretty-print" translate="no" dir="ltr" is-upgraded="">public static final int FLAG_ACTIVITY_NO_ANIMATION</pre></devsite-code>
+    
+    
+
+    
+  <p>If set in an Intent passed to <code translate="no" dir="ltr"><a href="/reference/android/content/Context#startActivity(android.content.Intent)">Context.startActivity()</a></code>,
+ this flag will prevent the system from applying an activity transition
+ animation to go to the next activity state.  This doesn't mean an
+ animation will never run -- if another activity change happens that doesn't
+ specify this flag before the activity started here is displayed, then
+ that transition will be used.  This flag can be put to good use
+ when you are going to do a series of activity operations but the
+ animation seen by the user shouldn't be driven by the first activity
+ change but rather a later one.</p><p></p>
+
+    
+      <p>Constant Value:
+      
+          65536
+          (0x00010000)
+      
+    
+</p>
+  </div>
+</details>
+
+
+<details class="flag" data-value="1073741824"><summary>FLAG_ACTIVITY_NO_HISTORY</summary>
+<div class="content">
+	
+    <h3 class="api-name" id="FLAG_ACTIVITY_NO_HISTORY" data-text="FLAG_ACTIVITY_NO_HISTORY">FLAG_ACTIVITY_NO_HISTORY</h3>
+    <div class="api-level">
+      
+    Added in <a href="/guide/topics/manifest/uses-sdk-element#ApiLevels">API level 1</a>
+  
+      
+  
+
+    </div>
+<devsite-code no-copy="" data-copy-event-label=""><pre class="api-signature no-pretty-print" translate="no" dir="ltr" is-upgraded="">public static final int FLAG_ACTIVITY_NO_HISTORY</pre></devsite-code>
+    
+    
+
+    
+  <p>If set, the new activity is not kept in the history stack.  As soon as
+ the user navigates away from it, the activity is finished.  This may also
+ be set with the <code translate="no" dir="ltr"><a href="/reference/android/R.styleable#AndroidManifestActivity_noHistory">noHistory</a></code> attribute.
+
+ </p><p>If set, <code translate="no" dir="ltr"><a href="/reference/android/app/Activity#onActivityResult(int,%20int,%20android.content.Intent)">onActivityResult()</a></code>
+ is never invoked when the current activity starts a new activity which
+ sets a result and finishes.</p><p></p>
+
+    
+      <p>Constant Value:
+      
+          1073741824
+          (0x40000000)
+      
+    
+</p>
+  </div>
+</details>
+
+
+<details class="flag" data-value="262144"><summary>FLAG_ACTIVITY_NO_USER_ACTION</summary>
+<div class="content">
+	
+    <h3 class="api-name" id="FLAG_ACTIVITY_NO_USER_ACTION" data-text="FLAG_ACTIVITY_NO_USER_ACTION">FLAG_ACTIVITY_NO_USER_ACTION</h3>
+    <div class="api-level">
+      
+    Added in <a href="/guide/topics/manifest/uses-sdk-element#ApiLevels">API level 3</a>
+  
+      
+  
+
+    </div>
+<devsite-code no-copy="" data-copy-event-label=""><pre class="api-signature no-pretty-print" translate="no" dir="ltr" is-upgraded="">public static final int FLAG_ACTIVITY_NO_USER_ACTION</pre></devsite-code>
+    
+    
+
+    
+  <p>If set, this flag will prevent the normal <code translate="no" dir="ltr"><a href="/reference/android/app/Activity#onUserLeaveHint()">Activity.onUserLeaveHint()</a></code>
+ callback from occurring on the current frontmost activity before it is
+ paused as the newly-started activity is brought to the front.
+
+ </p><p>Typically, an activity can rely on that callback to indicate that an
+ explicit user action has caused their activity to be moved out of the
+ foreground. The callback marks an appropriate point in the activity's
+ lifecycle for it to dismiss any notifications that it intends to display
+ "until the user has seen them," such as a blinking LED.
+
+ </p><p>If an activity is ever started via any non-user-driven events such as
+ phone-call receipt or an alarm handler, this flag should be passed to <code translate="no" dir="ltr"><a href="/reference/android/content/Context#startActivity(android.content.Intent)">Context.startActivity</a></code>, ensuring that the pausing
+ activity does not think the user has acknowledged its notification.</p><p></p>
+
+    
+      <p>Constant Value:
+      
+          262144
+          (0x00040000)
+      
+    
+</p>
+  </div>
+</details>
+
+
+<details class="flag" data-value="16777216"><summary>FLAG_ACTIVITY_PREVIOUS_IS_TOP</summary>
+<div class="content">
+	
+    <h3 class="api-name" id="FLAG_ACTIVITY_PREVIOUS_IS_TOP" data-text="FLAG_ACTIVITY_PREVIOUS_IS_TOP">FLAG_ACTIVITY_PREVIOUS_IS_TOP</h3>
+    <div class="api-level">
+      
+    Added in <a href="/guide/topics/manifest/uses-sdk-element#ApiLevels">API level 1</a>
+  
+      
+  
+
+    </div>
+<devsite-code no-copy="" data-copy-event-label=""><pre class="api-signature no-pretty-print" translate="no" dir="ltr" is-upgraded="">public static final int FLAG_ACTIVITY_PREVIOUS_IS_TOP</pre></devsite-code>
+    
+    
+
+    
+  <p>If set and this intent is being used to launch a new activity from an
+ existing one, the current activity will not be counted as the top
+ activity for deciding whether the new intent should be delivered to
+ the top instead of starting a new one.  The previous activity will
+ be used as the top, with the assumption being that the current activity
+ will finish itself immediately.</p><p></p>
+
+    
+      <p>Constant Value:
+      
+          16777216
+          (0x01000000)
+      
+    
+</p>
+  </div>
+</details>
+
+
+<details class="flag" data-value="131072"><summary>FLAG_ACTIVITY_REORDER_TO_FRONT</summary>
+<div class="content">
+	
+    <h3 class="api-name" id="FLAG_ACTIVITY_REORDER_TO_FRONT" data-text="FLAG_ACTIVITY_REORDER_TO_FRONT">FLAG_ACTIVITY_REORDER_TO_FRONT</h3>
+    <div class="api-level">
+      
+    Added in <a href="/guide/topics/manifest/uses-sdk-element#ApiLevels">API level 3</a>
+  
+      
+  
+
+    </div>
+<devsite-code no-copy="" data-copy-event-label=""><pre class="api-signature no-pretty-print" translate="no" dir="ltr" is-upgraded="">public static final int FLAG_ACTIVITY_REORDER_TO_FRONT</pre></devsite-code>
+    
+    
+
+    
+  <p>If set in an Intent passed to <code translate="no" dir="ltr"><a href="/reference/android/content/Context#startActivity(android.content.Intent)">Context.startActivity()</a></code>,
+ this flag will cause the launched activity to be brought to the front of its
+ task's history stack if it is already running.
+
+ </p><p>For example, consider a task consisting of four activities: A, B, C, D.
+ If D calls startActivity() with an Intent that resolves to the component
+ of activity B, then B will be brought to the front of the history stack,
+ with this resulting order:  A, C, D, B.
+
+ This flag will be ignored if <code translate="no" dir="ltr"><a href="/reference/android/content/Intent#FLAG_ACTIVITY_CLEAR_TOP">FLAG_ACTIVITY_CLEAR_TOP</a></code> is also
+ specified.</p><p></p>
+
+    
+      <p>Constant Value:
+      
+          131072
+          (0x00020000)
+      
+    
+</p>
+  </div>
+</details>
+
+
+<details class="flag" data-value="512"><summary>FLAG_ACTIVITY_REQUIRE_DEFAULT</summary>
+<div class="content">
+	
+    <h3 class="api-name" id="FLAG_ACTIVITY_REQUIRE_DEFAULT" data-text="FLAG_ACTIVITY_REQUIRE_DEFAULT">FLAG_ACTIVITY_REQUIRE_DEFAULT</h3>
+    <div class="api-level">
+      
+    Added in <a href="/guide/topics/manifest/uses-sdk-element#ApiLevels">API level 30</a>
+  
+      
+  
+
+    </div>
+<devsite-code no-copy="" data-copy-event-label=""><pre class="api-signature no-pretty-print" translate="no" dir="ltr" is-upgraded="">public static final int FLAG_ACTIVITY_REQUIRE_DEFAULT</pre></devsite-code>
+    
+    
+
+    
+  <p>If set in an intent passed to <code translate="no" dir="ltr"><a href="/reference/android/content/Context#startActivity(android.content.Intent)">Context.startActivity()</a></code>, this
+ flag will only launch the intent if it resolves to a single result. If no such result exists
+ or if the system chooser would otherwise be displayed, an <code translate="no" dir="ltr"><a href="/reference/android/content/ActivityNotFoundException">ActivityNotFoundException</a></code>
+ will be thrown.</p><p></p>
+
+    
+      <p>Constant Value:
+      
+          512
+          (0x00000200)
+      
+    
+</p>
+  </div>
+</details>
+
+
+<details class="flag" data-value="1024"><summary>FLAG_ACTIVITY_REQUIRE_NON_BROWSER</summary>
+<div class="content">
+	
+    <h3 class="api-name" id="FLAG_ACTIVITY_REQUIRE_NON_BROWSER" data-text="FLAG_ACTIVITY_REQUIRE_NON_BROWSER">FLAG_ACTIVITY_REQUIRE_NON_BROWSER</h3>
+    <div class="api-level">
+      
+    Added in <a href="/guide/topics/manifest/uses-sdk-element#ApiLevels">API level 30</a>
+  
+      
+  
+
+    </div>
+<devsite-code no-copy="" data-copy-event-label=""><pre class="api-signature no-pretty-print" translate="no" dir="ltr" is-upgraded="">public static final int FLAG_ACTIVITY_REQUIRE_NON_BROWSER</pre></devsite-code>
+    
+    
+
+    
+  <p>If set in an intent passed to <code translate="no" dir="ltr"><a href="/reference/android/content/Context#startActivity(android.content.Intent)">Context.startActivity()</a></code>, this
+ flag will only launch the intent if it resolves to a result that is not a browser. If no such
+ result exists, an <code translate="no" dir="ltr"><a href="/reference/android/content/ActivityNotFoundException">ActivityNotFoundException</a></code> will be thrown.</p><p></p>
+
+    
+      <p>Constant Value:
+      
+          1024
+          (0x00000400)
+      
+    
+</p>
+  </div>
+</details>
+
+
+<details class="flag" data-value="2097152"><summary>FLAG_ACTIVITY_RESET_TASK_IF_NEEDED</summary>
+<div class="content">
+	
+    <h3 class="api-name" id="FLAG_ACTIVITY_RESET_TASK_IF_NEEDED" data-text="FLAG_ACTIVITY_RESET_TASK_IF_NEEDED">FLAG_ACTIVITY_RESET_TASK_IF_NEEDED</h3>
+    <div class="api-level">
+      
+    Added in <a href="/guide/topics/manifest/uses-sdk-element#ApiLevels">API level 1</a>
+  
+      
+  
+
+    </div>
+<devsite-code no-copy="" data-copy-event-label=""><pre class="api-signature no-pretty-print" translate="no" dir="ltr" is-upgraded="">public static final int FLAG_ACTIVITY_RESET_TASK_IF_NEEDED</pre></devsite-code>
+    
+    
+
+    
+  <p>If set, and this activity is either being started in a new task or
+ bringing to the top an existing task, then it will be launched as
+ the front door of the task.  This will result in the application of
+ any affinities needed to have that task in the proper state (either
+ moving activities to or from it), or simply resetting that task to
+ its initial state if needed.</p><p></p>
+  <div>
+      <p><b>See also:</b></p>
+      <ul class="nolist"><li><code translate="no" dir="ltr"><a href="/reference/android/R.attr#allowTaskReparenting">R.attr.allowTaskReparenting</a></code></li><li><code translate="no" dir="ltr"><a href="/reference/android/R.attr#clearTaskOnLaunch">R.attr.clearTaskOnLaunch</a></code></li><li><code translate="no" dir="ltr"><a href="/reference/android/R.attr#finishOnTaskLaunch">R.attr.finishOnTaskLaunch</a></code></li>
+      </ul>
+  </div>
+
+    
+      <p>Constant Value:
+      
+          2097152
+          (0x00200000)
+      
+    
+</p>
+  </div>
+</details>
+
+
+<details class="flag" data-value="8192"><summary>FLAG_ACTIVITY_RETAIN_IN_RECENTS</summary>
+<div class="content">
+	
+    <h3 class="api-name" id="FLAG_ACTIVITY_RETAIN_IN_RECENTS" data-text="FLAG_ACTIVITY_RETAIN_IN_RECENTS">FLAG_ACTIVITY_RETAIN_IN_RECENTS</h3>
+    <div class="api-level">
+      
+    Added in <a href="/guide/topics/manifest/uses-sdk-element#ApiLevels">API level 21</a>
+  
+      
+  
+
+    </div>
+<devsite-code no-copy="" data-copy-event-label=""><pre class="api-signature no-pretty-print" translate="no" dir="ltr" is-upgraded="">public static final int FLAG_ACTIVITY_RETAIN_IN_RECENTS</pre></devsite-code>
+    
+    
+
+    
+  <p>By default a document created by <code translate="no" dir="ltr"><a href="/reference/android/content/Intent#FLAG_ACTIVITY_NEW_DOCUMENT">FLAG_ACTIVITY_NEW_DOCUMENT</a></code> will
+ have its entry in recent tasks removed when the user closes it (with back
+ or however else it may finish()). If you would like to instead allow the
+ document to be kept in recents so that it can be re-launched, you can use
+ this flag. When set and the task's activity is finished, the recents
+ entry will remain in the interface for the user to re-launch it, like a
+ recents entry for a top-level application.
+ </p><p>
+ The receiving activity can override this request with
+ <code translate="no" dir="ltr"><a href="/reference/android/R.attr#autoRemoveFromRecents">R.attr.autoRemoveFromRecents</a></code> or by explcitly calling
+ <code translate="no" dir="ltr"><a href="/reference/android/app/Activity#finishAndRemoveTask()">Activity.finishAndRemoveTask()</a></code>.</p><p></p>
+
+    
+      <p>Constant Value:
+      
+          8192
+          (0x00002000)
+      
+    
+</p>
+  </div>
+</details>
+
+
+<details class="flag" data-value="536870912"><summary>FLAG_ACTIVITY_SINGLE_TOP</summary>
+<div class="content">
+	
+    <h3 class="api-name" id="FLAG_ACTIVITY_SINGLE_TOP" data-text="FLAG_ACTIVITY_SINGLE_TOP">FLAG_ACTIVITY_SINGLE_TOP</h3>
+    <div class="api-level">
+      
+    Added in <a href="/guide/topics/manifest/uses-sdk-element#ApiLevels">API level 1</a>
+  
+      
+  
+
+    </div>
+<devsite-code no-copy="" data-copy-event-label=""><pre class="api-signature no-pretty-print" translate="no" dir="ltr" is-upgraded="">public static final int FLAG_ACTIVITY_SINGLE_TOP</pre></devsite-code>
+    
+    
+
+    
+  <p>If set, the activity will not be launched if it is already running
+ at the top of the history stack.  See
+ <a href="/guide/topics/fundamentals/tasks-and-back-stack#TaskLaunchModes">
+ Tasks and Back Stack</a> for more information.</p><p></p>
+
+    
+      <p>Constant Value:
+      
+          536870912
+          (0x20000000)
+      
+    
+</p>
+  </div>
+</details>
+
+
+<details class="flag" data-value="16384"><summary>FLAG_ACTIVITY_TASK_ON_HOME</summary>
+<div class="content">
+	
+    <h3 class="api-name" id="FLAG_ACTIVITY_TASK_ON_HOME" data-text="FLAG_ACTIVITY_TASK_ON_HOME">FLAG_ACTIVITY_TASK_ON_HOME</h3>
+    <div class="api-level">
+      
+    Added in <a href="/guide/topics/manifest/uses-sdk-element#ApiLevels">API level 11</a>
+  
+      
+  
+
+    </div>
+<devsite-code no-copy="" data-copy-event-label=""><pre class="api-signature no-pretty-print" translate="no" dir="ltr" is-upgraded="">public static final int FLAG_ACTIVITY_TASK_ON_HOME</pre></devsite-code>
+    
+    
+
+    
+  <p>If set in an Intent passed to <code translate="no" dir="ltr"><a href="/reference/android/content/Context#startActivity(android.content.Intent)">Context.startActivity()</a></code>,
+ this flag will cause a newly launching task to be placed on top of the current
+ home activity task (if there is one).  That is, pressing back from the task
+ will always return the user to home even if that was not the last activity they
+ saw.   This can only be used in conjunction with <code translate="no" dir="ltr"><a href="/reference/android/content/Intent#FLAG_ACTIVITY_NEW_TASK">FLAG_ACTIVITY_NEW_TASK</a></code>.</p><p></p>
+
+    
+      <p>Constant Value:
+      
+          16384
+          (0x00004000)
+      
+    
+</p>
+  </div>
+</details>
+
+<!-- end of content -->
+
+</body>
+</html> 
