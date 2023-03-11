@@ -104,7 +104,7 @@ window.addEventListener('load', ()=>{
 Content copied from https://developer.android.com/reference/android/content/Intent using:
 
 [...document.querySelectorAll('h3.api-name')]
-  .filter(e => e.id.startsWith("FLAG_ACTIVITY_"))
+  .filter(e => e.id.startsWith("FLAG_"))
   .map(e => [e.id, e.parentElement])
   .map(([name, body]) => [name, body, body.innerText.match(/Constant Value: (\d+) \(0x\d+\)/)[1]])
   .map(([name, body, value]) => `
@@ -321,7 +321,7 @@ Content copied from https://developer.android.com/reference/android/content/Inte
 <details class="flag" data-value="33554432"><summary>FLAG_ACTIVITY_FORWARD_RESULT</summary>
 <div class="content">
 	
-    <h3 class="api-name" id="FLAG_ACTIVITY_FORWARD_RESULT" data-text="FLAG_ACTIVITY_FORWARD_RESULT">FLAG_ACTIVITY_FORWARD_RESULT</h3>
+    <h3 class="api-name" id="FLAG_ACTIVITY_FORWARD_RESULT" data-text="FLAG_ACTIVITY_FORWARD_RESULT">FLAG_<wbr>ACTIVITY_<wbr>FORWARD_<wbr>RESULT</h3>
     <div class="api-level">
       
     Added in <a href="/guide/topics/manifest/uses-sdk-element#ApiLevels">API level 1</a>
@@ -356,7 +356,7 @@ Content copied from https://developer.android.com/reference/android/content/Inte
 <details class="flag" data-value="1048576"><summary>FLAG_ACTIVITY_LAUNCHED_FROM_HISTORY</summary>
 <div class="content">
 	
-    <h3 class="api-name" id="FLAG_ACTIVITY_LAUNCHED_FROM_HISTORY" data-text="FLAG_ACTIVITY_LAUNCHED_FROM_HISTORY">FLAG_ACTIVITY_LAUNCHED_FROM_HISTORY</h3>
+    <h3 class="api-name" id="FLAG_ACTIVITY_LAUNCHED_FROM_HISTORY" data-text="FLAG_ACTIVITY_LAUNCHED_FROM_HISTORY">FLAG_<wbr>ACTIVITY_<wbr>LAUNCHED_<wbr>FROM_<wbr>HISTORY</h3>
     <div class="api-level">
       
     Added in <a href="/guide/topics/manifest/uses-sdk-element#ApiLevels">API level 1</a>
@@ -388,7 +388,7 @@ Content copied from https://developer.android.com/reference/android/content/Inte
 <details class="flag" data-value="4096"><summary>FLAG_ACTIVITY_LAUNCH_ADJACENT</summary>
 <div class="content">
 	
-    <h3 class="api-name" id="FLAG_ACTIVITY_LAUNCH_ADJACENT" data-text="FLAG_ACTIVITY_LAUNCH_ADJACENT">FLAG_ACTIVITY_LAUNCH_ADJACENT</h3>
+    <h3 class="api-name" id="FLAG_ACTIVITY_LAUNCH_ADJACENT" data-text="FLAG_ACTIVITY_LAUNCH_ADJACENT">FLAG_<wbr>ACTIVITY_<wbr>LAUNCH_<wbr>ADJACENT</h3>
     <div class="api-level">
       
     Added in <a href="/guide/topics/manifest/uses-sdk-element#ApiLevels">API level 24</a>
@@ -422,7 +422,7 @@ Content copied from https://developer.android.com/reference/android/content/Inte
 <details class="flag" data-value="2048"><summary>FLAG_ACTIVITY_MATCH_EXTERNAL</summary>
 <div class="content">
 	
-    <h3 class="api-name" id="FLAG_ACTIVITY_MATCH_EXTERNAL" data-text="FLAG_ACTIVITY_MATCH_EXTERNAL">FLAG_ACTIVITY_MATCH_EXTERNAL</h3>
+    <h3 class="api-name" id="FLAG_ACTIVITY_MATCH_EXTERNAL" data-text="FLAG_ACTIVITY_MATCH_EXTERNAL">FLAG_<wbr>ACTIVITY_<wbr>MATCH_<wbr>EXTERNAL</h3>
     <div class="api-level">
       
     Added in <a href="/guide/topics/manifest/uses-sdk-element#ApiLevels">API level 28</a>
@@ -470,7 +470,7 @@ Content copied from https://developer.android.com/reference/android/content/Inte
 <details class="flag" data-value="134217728"><summary>FLAG_ACTIVITY_MULTIPLE_TASK</summary>
 <div class="content">
 	
-    <h3 class="api-name" id="FLAG_ACTIVITY_MULTIPLE_TASK" data-text="FLAG_ACTIVITY_MULTIPLE_TASK">FLAG_ACTIVITY_MULTIPLE_TASK</h3>
+    <h3 class="api-name" id="FLAG_ACTIVITY_MULTIPLE_TASK" data-text="FLAG_ACTIVITY_MULTIPLE_TASK">FLAG_<wbr>ACTIVITY_<wbr>MULTIPLE_<wbr>TASK</h3>
     <div class="api-level">
       
     Added in <a href="/guide/topics/manifest/uses-sdk-element#ApiLevels">API level 1</a>
@@ -535,7 +535,7 @@ Content copied from https://developer.android.com/reference/android/content/Inte
 <details class="flag" data-value="524288"><summary>FLAG_ACTIVITY_NEW_DOCUMENT</summary>
 <div class="content">
 	
-    <h3 class="api-name" id="FLAG_ACTIVITY_NEW_DOCUMENT" data-text="FLAG_ACTIVITY_NEW_DOCUMENT">FLAG_ACTIVITY_NEW_DOCUMENT</h3>
+    <h3 class="api-name" id="FLAG_ACTIVITY_NEW_DOCUMENT" data-text="FLAG_ACTIVITY_NEW_DOCUMENT">FLAG_<wbr>ACTIVITY_<wbr>NEW_<wbr>DOCUMENT</h3>
     <div class="api-level">
       
     Added in <a href="/guide/topics/manifest/uses-sdk-element#ApiLevels">API level 21</a>
@@ -596,7 +596,7 @@ Content copied from https://developer.android.com/reference/android/content/Inte
 <details class="flag" data-value="268435456"><summary>FLAG_ACTIVITY_NEW_TASK</summary>
 <div class="content">
 	
-    <h3 class="api-name" id="FLAG_ACTIVITY_NEW_TASK" data-text="FLAG_ACTIVITY_NEW_TASK">FLAG_ACTIVITY_NEW_TASK</h3>
+    <h3 class="api-name" id="FLAG_ACTIVITY_NEW_TASK" data-text="FLAG_ACTIVITY_NEW_TASK">FLAG_<wbr>ACTIVITY_<wbr>NEW_<wbr>TASK</h3>
     <div class="api-level">
       
     Added in <a href="/guide/topics/manifest/uses-sdk-element#ApiLevels">API level 1</a>
@@ -648,7 +648,7 @@ Content copied from https://developer.android.com/reference/android/content/Inte
 <details class="flag" data-value="65536"><summary>FLAG_ACTIVITY_NO_ANIMATION</summary>
 <div class="content">
 	
-    <h3 class="api-name" id="FLAG_ACTIVITY_NO_ANIMATION" data-text="FLAG_ACTIVITY_NO_ANIMATION">FLAG_ACTIVITY_NO_ANIMATION</h3>
+    <h3 class="api-name" id="FLAG_ACTIVITY_NO_ANIMATION" data-text="FLAG_ACTIVITY_NO_ANIMATION">FLAG_<wbr>ACTIVITY_<wbr>NO_<wbr>ANIMATION</h3>
     <div class="api-level">
       
     Added in <a href="/guide/topics/manifest/uses-sdk-element#ApiLevels">API level 5</a>
@@ -687,7 +687,7 @@ Content copied from https://developer.android.com/reference/android/content/Inte
 <details class="flag" data-value="1073741824"><summary>FLAG_ACTIVITY_NO_HISTORY</summary>
 <div class="content">
 	
-    <h3 class="api-name" id="FLAG_ACTIVITY_NO_HISTORY" data-text="FLAG_ACTIVITY_NO_HISTORY">FLAG_ACTIVITY_NO_HISTORY</h3>
+    <h3 class="api-name" id="FLAG_ACTIVITY_NO_HISTORY" data-text="FLAG_ACTIVITY_NO_HISTORY">FLAG_<wbr>ACTIVITY_<wbr>NO_<wbr>HISTORY</h3>
     <div class="api-level">
       
     Added in <a href="/guide/topics/manifest/uses-sdk-element#ApiLevels">API level 1</a>
@@ -724,7 +724,7 @@ Content copied from https://developer.android.com/reference/android/content/Inte
 <details class="flag" data-value="262144"><summary>FLAG_ACTIVITY_NO_USER_ACTION</summary>
 <div class="content">
 	
-    <h3 class="api-name" id="FLAG_ACTIVITY_NO_USER_ACTION" data-text="FLAG_ACTIVITY_NO_USER_ACTION">FLAG_ACTIVITY_NO_USER_ACTION</h3>
+    <h3 class="api-name" id="FLAG_ACTIVITY_NO_USER_ACTION" data-text="FLAG_ACTIVITY_NO_USER_ACTION">FLAG_<wbr>ACTIVITY_<wbr>NO_<wbr>USER_<wbr>ACTION</h3>
     <div class="api-level">
       
     Added in <a href="/guide/topics/manifest/uses-sdk-element#ApiLevels">API level 3</a>
@@ -767,7 +767,7 @@ Content copied from https://developer.android.com/reference/android/content/Inte
 <details class="flag" data-value="16777216"><summary>FLAG_ACTIVITY_PREVIOUS_IS_TOP</summary>
 <div class="content">
 	
-    <h3 class="api-name" id="FLAG_ACTIVITY_PREVIOUS_IS_TOP" data-text="FLAG_ACTIVITY_PREVIOUS_IS_TOP">FLAG_ACTIVITY_PREVIOUS_IS_TOP</h3>
+    <h3 class="api-name" id="FLAG_ACTIVITY_PREVIOUS_IS_TOP" data-text="FLAG_ACTIVITY_PREVIOUS_IS_TOP">FLAG_<wbr>ACTIVITY_<wbr>PREVIOUS_<wbr>IS_<wbr>TOP</h3>
     <div class="api-level">
       
     Added in <a href="/guide/topics/manifest/uses-sdk-element#ApiLevels">API level 1</a>
@@ -803,7 +803,7 @@ Content copied from https://developer.android.com/reference/android/content/Inte
 <details class="flag" data-value="131072"><summary>FLAG_ACTIVITY_REORDER_TO_FRONT</summary>
 <div class="content">
 	
-    <h3 class="api-name" id="FLAG_ACTIVITY_REORDER_TO_FRONT" data-text="FLAG_ACTIVITY_REORDER_TO_FRONT">FLAG_ACTIVITY_REORDER_TO_FRONT</h3>
+    <h3 class="api-name" id="FLAG_ACTIVITY_REORDER_TO_FRONT" data-text="FLAG_ACTIVITY_REORDER_TO_FRONT">FLAG_<wbr>ACTIVITY_<wbr>REORDER_<wbr>TO_<wbr>FRONT</h3>
     <div class="api-level">
       
     Added in <a href="/guide/topics/manifest/uses-sdk-element#ApiLevels">API level 3</a>
@@ -844,7 +844,7 @@ Content copied from https://developer.android.com/reference/android/content/Inte
 <details class="flag" data-value="512"><summary>FLAG_ACTIVITY_REQUIRE_DEFAULT</summary>
 <div class="content">
 	
-    <h3 class="api-name" id="FLAG_ACTIVITY_REQUIRE_DEFAULT" data-text="FLAG_ACTIVITY_REQUIRE_DEFAULT">FLAG_ACTIVITY_REQUIRE_DEFAULT</h3>
+    <h3 class="api-name" id="FLAG_ACTIVITY_REQUIRE_DEFAULT" data-text="FLAG_ACTIVITY_REQUIRE_DEFAULT">FLAG_<wbr>ACTIVITY_<wbr>REQUIRE_<wbr>DEFAULT</h3>
     <div class="api-level">
       
     Added in <a href="/guide/topics/manifest/uses-sdk-element#ApiLevels">API level 30</a>
@@ -878,7 +878,7 @@ Content copied from https://developer.android.com/reference/android/content/Inte
 <details class="flag" data-value="1024"><summary>FLAG_ACTIVITY_REQUIRE_NON_BROWSER</summary>
 <div class="content">
 	
-    <h3 class="api-name" id="FLAG_ACTIVITY_REQUIRE_NON_BROWSER" data-text="FLAG_ACTIVITY_REQUIRE_NON_BROWSER">FLAG_ACTIVITY_REQUIRE_NON_BROWSER</h3>
+    <h3 class="api-name" id="FLAG_ACTIVITY_REQUIRE_NON_BROWSER" data-text="FLAG_ACTIVITY_REQUIRE_NON_BROWSER">FLAG_<wbr>ACTIVITY_<wbr>REQUIRE_<wbr>NON_<wbr>BROWSER</h3>
     <div class="api-level">
       
     Added in <a href="/guide/topics/manifest/uses-sdk-element#ApiLevels">API level 30</a>
@@ -911,7 +911,7 @@ Content copied from https://developer.android.com/reference/android/content/Inte
 <details class="flag" data-value="2097152"><summary>FLAG_ACTIVITY_RESET_TASK_IF_NEEDED</summary>
 <div class="content">
 	
-    <h3 class="api-name" id="FLAG_ACTIVITY_RESET_TASK_IF_NEEDED" data-text="FLAG_ACTIVITY_RESET_TASK_IF_NEEDED">FLAG_ACTIVITY_RESET_TASK_IF_NEEDED</h3>
+    <h3 class="api-name" id="FLAG_ACTIVITY_RESET_TASK_IF_NEEDED" data-text="FLAG_ACTIVITY_RESET_TASK_IF_NEEDED">FLAG_<wbr>ACTIVITY_<wbr>RESET_<wbr>TASK_<wbr>IF_<wbr>NEEDED</h3>
     <div class="api-level">
       
     Added in <a href="/guide/topics/manifest/uses-sdk-element#ApiLevels">API level 1</a>
@@ -952,7 +952,7 @@ Content copied from https://developer.android.com/reference/android/content/Inte
 <details class="flag" data-value="8192"><summary>FLAG_ACTIVITY_RETAIN_IN_RECENTS</summary>
 <div class="content">
 	
-    <h3 class="api-name" id="FLAG_ACTIVITY_RETAIN_IN_RECENTS" data-text="FLAG_ACTIVITY_RETAIN_IN_RECENTS">FLAG_ACTIVITY_RETAIN_IN_RECENTS</h3>
+    <h3 class="api-name" id="FLAG_ACTIVITY_RETAIN_IN_RECENTS" data-text="FLAG_ACTIVITY_RETAIN_IN_RECENTS">FLAG_<wbr>ACTIVITY_<wbr>RETAIN_<wbr>IN_<wbr>RECENTS</h3>
     <div class="api-level">
       
     Added in <a href="/guide/topics/manifest/uses-sdk-element#ApiLevels">API level 21</a>
@@ -993,7 +993,7 @@ Content copied from https://developer.android.com/reference/android/content/Inte
 <details class="flag" data-value="536870912"><summary>FLAG_ACTIVITY_SINGLE_TOP</summary>
 <div class="content">
 	
-    <h3 class="api-name" id="FLAG_ACTIVITY_SINGLE_TOP" data-text="FLAG_ACTIVITY_SINGLE_TOP">FLAG_ACTIVITY_SINGLE_TOP</h3>
+    <h3 class="api-name" id="FLAG_ACTIVITY_SINGLE_TOP" data-text="FLAG_ACTIVITY_SINGLE_TOP">FLAG_<wbr>ACTIVITY_<wbr>SINGLE_<wbr>TOP</h3>
     <div class="api-level">
       
     Added in <a href="/guide/topics/manifest/uses-sdk-element#ApiLevels">API level 1</a>
@@ -1027,7 +1027,7 @@ Content copied from https://developer.android.com/reference/android/content/Inte
 <details class="flag" data-value="16384"><summary>FLAG_ACTIVITY_TASK_ON_HOME</summary>
 <div class="content">
 	
-    <h3 class="api-name" id="FLAG_ACTIVITY_TASK_ON_HOME" data-text="FLAG_ACTIVITY_TASK_ON_HOME">FLAG_ACTIVITY_TASK_ON_HOME</h3>
+    <h3 class="api-name" id="FLAG_ACTIVITY_TASK_ON_HOME" data-text="FLAG_ACTIVITY_TASK_ON_HOME">FLAG_<wbr>ACTIVITY_<wbr>TASK_<wbr>ON_<wbr>HOME</h3>
     <div class="api-level">
       
     Added in <a href="/guide/topics/manifest/uses-sdk-element#ApiLevels">API level 11</a>
@@ -1058,7 +1058,506 @@ Content copied from https://developer.android.com/reference/android/content/Inte
   </div>
 </details>
 
+
+<details class="flag" data-value="8"><summary>FLAG_DEBUG_LOG_RESOLUTION</summary>
+<div class="content">
+	
+    <h3 class="api-name" id="FLAG_DEBUG_LOG_RESOLUTION" data-text="FLAG_DEBUG_LOG_RESOLUTION" role="presentation"><span class="devsite-heading" role="heading" aria-level="3">FLAG_<wbr>DEBUG_<wbr>LOG_<wbr>RESOLUTION</span><button type="button" class="devsite-heading-link button-flat material-icons" aria-label="Copiar el vínculo a esta sección: FLAG_DEBUG_LOG_RESOLUTION" data-title="Copiar el vínculo a esta sección: FLAG_DEBUG_LOG_RESOLUTION" data-id="FLAG_DEBUG_LOG_RESOLUTION"></button></h3>
+    <div class="api-level">
+      
+    Added in <a href="/guide/topics/manifest/uses-sdk-element#ApiLevels">API level 1</a>
+  
+      
+  
+
+    </div>
+<devsite-code no-copy="" data-copy-event-label=""><div class="devsite-code-buttons-container" role="group" aria-label="Botones de acción"><button type="button" class="gc-analytics-event material-icons devsite-icon-code-dark devsite-toggle-dark" data-category="Site-Wide Custom Events" data-label="Dark Code Toggle" track-type="exampleCode" track-name="darkCodeToggle" aria-label="Código en tema oscuro" data-title="Código en tema oscuro"></button><button type="button" class="gc-analytics-event material-icons devsite-icon-code-light devsite-toggle-light" data-category="Site-Wide Custom Events" data-label="Light Code Toggle" track-type="exampleCode" track-name="lightCodeToggle" aria-label="Código en tema claro" data-title="Código en tema claro"></button></div><pre class="api-signature no-pretty-print" translate="no" dir="ltr" is-upgraded="">public static final int FLAG_DEBUG_LOG_RESOLUTION</pre></devsite-code>
+    
+    
+
+    
+  <p>A flag you can enable for debugging: when set, log messages will be
+ printed during the resolution of this intent to show you what has
+ been found to create the final resolved list.</p><p></p>
+
+    
+      <p>Constant Value:
+      
+          8
+          (0x00000008)
+      
+    
+</p>
+  </div>
+</details>
+
+
+<details class="flag" data-value="256"><summary>FLAG_DIRECT_BOOT_AUTO</summary>
+<div class="content">
+	
+    <h3 class="api-name" id="FLAG_DIRECT_BOOT_AUTO" data-text="FLAG_DIRECT_BOOT_AUTO" role="presentation"><span class="devsite-heading" role="heading" aria-level="3">FLAG_<wbr>DIRECT_<wbr>BOOT_<wbr>AUTO</span><button type="button" class="devsite-heading-link button-flat material-icons" aria-label="Copiar el vínculo a esta sección: FLAG_DIRECT_BOOT_AUTO" data-title="Copiar el vínculo a esta sección: FLAG_DIRECT_BOOT_AUTO" data-id="FLAG_DIRECT_BOOT_AUTO"></button></h3>
+    <div class="api-level">
+      
+    Added in <a href="/guide/topics/manifest/uses-sdk-element#ApiLevels">API level 29</a>
+  
+      
+  
+
+    </div>
+<devsite-code no-copy="" data-copy-event-label=""><div class="devsite-code-buttons-container" role="group" aria-label="Botones de acción"><button type="button" class="gc-analytics-event material-icons devsite-icon-code-dark devsite-toggle-dark" data-category="Site-Wide Custom Events" data-label="Dark Code Toggle" track-type="exampleCode" track-name="darkCodeToggle" aria-label="Código en tema oscuro" data-title="Código en tema oscuro"></button><button type="button" class="gc-analytics-event material-icons devsite-icon-code-light devsite-toggle-light" data-category="Site-Wide Custom Events" data-label="Light Code Toggle" track-type="exampleCode" track-name="lightCodeToggle" aria-label="Código en tema claro" data-title="Código en tema claro"></button></div><pre class="api-signature no-pretty-print" translate="no" dir="ltr" is-upgraded="">public static final int FLAG_DIRECT_BOOT_AUTO</pre></devsite-code>
+    
+    
+
+    
+  <p>Flag used to automatically match intents based on their Direct Boot
+ awareness and the current user state.
+ </p><p>
+ Since the default behavior is to automatically apply the current user
+ state, this is effectively a sentinel value that doesn't change the
+ output of any queries based on its presence or absence.
+ </p><p>
+ Instead, this value can be useful in conjunction with
+ <code translate="no" dir="ltr"><a href="/reference/android/os/StrictMode.VmPolicy.Builder#detectImplicitDirectBoot()">StrictMode.VmPolicy.Builder.detectImplicitDirectBoot()</a></code>
+ to detect when a caller is relying on implicit automatic matching,
+ instead of confirming the explicit behavior they want.</p><p></p>
+
+    
+      <p>Constant Value:
+      
+          256
+          (0x00000100)
+      
+    
+</p>
+  </div>
+</details>
+
+
+<details class="flag" data-value="16"><summary>FLAG_EXCLUDE_STOPPED_PACKAGES</summary>
+<div class="content">
+	
+    <h3 class="api-name" id="FLAG_EXCLUDE_STOPPED_PACKAGES" data-text="FLAG_EXCLUDE_STOPPED_PACKAGES" role="presentation"><span class="devsite-heading" role="heading" aria-level="3">FLAG_<wbr>EXCLUDE_<wbr>STOPPED_<wbr>PACKAGES</span><button type="button" class="devsite-heading-link button-flat material-icons" aria-label="Copiar el vínculo a esta sección: FLAG_EXCLUDE_STOPPED_PACKAGES" data-title="Copiar el vínculo a esta sección: FLAG_EXCLUDE_STOPPED_PACKAGES" data-id="FLAG_EXCLUDE_STOPPED_PACKAGES"></button></h3>
+    <div class="api-level">
+      
+    Added in <a href="/guide/topics/manifest/uses-sdk-element#ApiLevels">API level 12</a>
+  
+      
+  
+
+    </div>
+<devsite-code no-copy="" data-copy-event-label=""><pre class="api-signature no-pretty-print" translate="no" dir="ltr" is-upgraded="">public static final int FLAG_EXCLUDE_STOPPED_PACKAGES</pre></devsite-code>
+    
+    
+
+    
+  <p>If set, this intent will not match any components in packages that
+ are currently stopped.  If this is not set, then the default behavior
+ is to include such applications in the result.</p><p></p>
+
+    
+      <p>Constant Value:
+      
+          16
+          (0x00000010)
+      
+    
+</p>
+  </div>
+</details>
+
+
+<details class="flag" data-value="4"><summary>FLAG_FROM_BACKGROUND</summary>
+<div class="content">
+	
+    <h3 class="api-name" id="FLAG_FROM_BACKGROUND" data-text="FLAG_FROM_BACKGROUND">FLAG_<wbr>FROM_<wbr>BACKGROUND</h3>
+    <div class="api-level">
+      
+    Added in <a href="/guide/topics/manifest/uses-sdk-element#ApiLevels">API level 1</a>
+  
+      
+  
+
+    </div>
+<devsite-code no-copy="" data-copy-event-label=""><pre class="api-signature no-pretty-print" translate="no" dir="ltr" is-upgraded="">public static final int FLAG_FROM_BACKGROUND</pre></devsite-code>
+    
+    
+
+    
+  <p>Can be set by the caller to indicate that this Intent is coming from
+ a background operation, not from direct user interaction.</p><p></p>
+
+    
+      <p>Constant Value:
+      
+          4
+          (0x00000004)
+      
+    
+</p>
+  </div>
+</details>
+
+
+<details class="flag" data-value="64"><summary>FLAG_GRANT_PERSISTABLE_URI_PERMISSION</summary>
+<div class="content">
+	
+    <h3 class="api-name" id="FLAG_GRANT_PERSISTABLE_URI_PERMISSION" data-text="FLAG_GRANT_PERSISTABLE_URI_PERMISSION">FLAG_<wbr>GRANT_<wbr>PERSISTABLE_<wbr>URI_<wbr>PERMISSION</h3>
+    <div class="api-level">
+      
+    Added in <a href="/guide/topics/manifest/uses-sdk-element#ApiLevels">API level 19</a>
+  
+      
+  
+
+    </div>
+<devsite-code no-copy="" data-copy-event-label=""><pre class="api-signature no-pretty-print" translate="no" dir="ltr" is-upgraded="">public static final int FLAG_GRANT_PERSISTABLE_URI_PERMISSION</pre></devsite-code>
+    
+    
+
+    
+  <p>When combined with <code translate="no" dir="ltr"><a href="/reference/android/content/Intent#FLAG_GRANT_READ_URI_PERMISSION">FLAG_GRANT_READ_URI_PERMISSION</a></code> and/or
+ <code translate="no" dir="ltr"><a href="/reference/android/content/Intent#FLAG_GRANT_WRITE_URI_PERMISSION">FLAG_GRANT_WRITE_URI_PERMISSION</a></code>, the URI permission grant can be
+ persisted across device reboots until explicitly revoked with
+ <code translate="no" dir="ltr"><a href="/reference/android/content/Context#revokeUriPermission(android.net.Uri,%20int)">Context#revokeUriPermission(Uri, int)</a></code>. This flag only offers the
+ grant for possible persisting; the receiving application must call
+ <code translate="no" dir="ltr"><a href="/reference/android/content/ContentResolver#takePersistableUriPermission(android.net.Uri,%20int)">ContentResolver#takePersistableUriPermission(Uri, int)</a></code> to
+ actually persist.</p><p></p>
+  <div>
+      <p><b>See also:</b></p>
+      <ul class="nolist"><li><code translate="no" dir="ltr"><a href="/reference/android/content/ContentResolver#takePersistableUriPermission(android.net.Uri,%20int)">ContentResolver.takePersistableUriPermission(Uri, int)</a></code></li><li><code translate="no" dir="ltr"><a href="/reference/android/content/ContentResolver#releasePersistableUriPermission(android.net.Uri,%20int)">ContentResolver.releasePersistableUriPermission(Uri, int)</a></code></li><li><code translate="no" dir="ltr"><a href="/reference/android/content/ContentResolver#getPersistedUriPermissions()">ContentResolver.getPersistedUriPermissions()</a></code></li><li><code translate="no" dir="ltr"><a href="/reference/android/content/ContentResolver#getOutgoingPersistedUriPermissions()">ContentResolver.getOutgoingPersistedUriPermissions()</a></code></li>
+      </ul>
+  </div>
+
+    
+      <p>Constant Value:
+      
+          64
+          (0x00000040)
+      
+    
+</p>
+  </div>
+</details>
+
+
+<details class="flag" data-value="128"><summary>FLAG_GRANT_PREFIX_URI_PERMISSION</summary>
+<div class="content">
+	
+    <h3 class="api-name" id="FLAG_GRANT_PREFIX_URI_PERMISSION" data-text="FLAG_GRANT_PREFIX_URI_PERMISSION">FLAG_<wbr>GRANT_<wbr>PREFIX_<wbr>URI_<wbr>PERMISSION</h3>
+    <div class="api-level">
+      
+    Added in <a href="/guide/topics/manifest/uses-sdk-element#ApiLevels">API level 21</a>
+  
+      
+  
+
+    </div>
+<devsite-code no-copy="" data-copy-event-label=""><pre class="api-signature no-pretty-print" translate="no" dir="ltr" is-upgraded="">public static final int FLAG_GRANT_PREFIX_URI_PERMISSION</pre></devsite-code>
+    
+    
+
+    
+  <p>When combined with <code translate="no" dir="ltr"><a href="/reference/android/content/Intent#FLAG_GRANT_READ_URI_PERMISSION">FLAG_GRANT_READ_URI_PERMISSION</a></code> and/or
+ <code translate="no" dir="ltr"><a href="/reference/android/content/Intent#FLAG_GRANT_WRITE_URI_PERMISSION">FLAG_GRANT_WRITE_URI_PERMISSION</a></code>, the URI permission grant
+ applies to any URI that is a prefix match against the original granted
+ URI. (Without this flag, the URI must match exactly for access to be
+ granted.) Another URI is considered a prefix match only when scheme,
+ authority, and all path segments defined by the prefix are an exact
+ match.</p><p></p>
+
+    
+      <p>Constant Value:
+      
+          128
+          (0x00000080)
+      
+    
+</p>
+  </div>
+</details>
+
+
+<details class="flag" data-value="1"><summary>FLAG_GRANT_READ_URI_PERMISSION</summary>
+<div class="content">
+	
+    <h3 class="api-name" id="FLAG_GRANT_READ_URI_PERMISSION" data-text="FLAG_GRANT_READ_URI_PERMISSION" role="presentation"><span class="devsite-heading" role="heading" aria-level="3">FLAG_<wbr>GRANT_<wbr>READ_<wbr>URI_<wbr>PERMISSION</span><button type="button" class="devsite-heading-link button-flat material-icons" aria-label="Copiar el vínculo a esta sección: FLAG_GRANT_READ_URI_PERMISSION" data-title="Copiar el vínculo a esta sección: FLAG_GRANT_READ_URI_PERMISSION" data-id="FLAG_GRANT_READ_URI_PERMISSION"></button></h3>
+    <div class="api-level">
+      
+    Added in <a href="/guide/topics/manifest/uses-sdk-element#ApiLevels">API level 1</a>
+  
+      
+  
+
+    </div>
+<devsite-code no-copy="" data-copy-event-label=""><div class="devsite-code-buttons-container" role="group" aria-label="Botones de acción"><button type="button" class="gc-analytics-event material-icons devsite-icon-code-dark devsite-toggle-dark" data-category="Site-Wide Custom Events" data-label="Dark Code Toggle" track-type="exampleCode" track-name="darkCodeToggle" aria-label="Código en tema oscuro" data-title="Código en tema oscuro"></button><button type="button" class="gc-analytics-event material-icons devsite-icon-code-light devsite-toggle-light" data-category="Site-Wide Custom Events" data-label="Light Code Toggle" track-type="exampleCode" track-name="lightCodeToggle" aria-label="Código en tema claro" data-title="Código en tema claro"></button></div><pre class="api-signature no-pretty-print" translate="no" dir="ltr" is-upgraded="">public static final int FLAG_GRANT_READ_URI_PERMISSION</pre></devsite-code>
+    
+    
+
+    
+  <p>If set, the recipient of this Intent will be granted permission to
+ perform read operations on the URI in the Intent's data and any URIs
+ specified in its ClipData.  When applying to an Intent's ClipData,
+ all URIs as well as recursive traversals through data or other ClipData
+ in Intent items will be granted; only the grant flags of the top-level
+ Intent are used.</p><p></p>
+
+    
+      <p>Constant Value:
+      
+          1
+          (0x00000001)
+      
+    
+</p>
+  </div>
+</details>
+
+
+<details class="flag" data-value="2"><summary>FLAG_GRANT_WRITE_URI_PERMISSION</summary>
+<div class="content">
+	
+    <h3 class="api-name" id="FLAG_GRANT_WRITE_URI_PERMISSION" data-text="FLAG_GRANT_WRITE_URI_PERMISSION" role="presentation"><span class="devsite-heading" role="heading" aria-level="3">FLAG_<wbr>GRANT_<wbr>WRITE_<wbr>URI_<wbr>PERMISSION</span><button type="button" class="devsite-heading-link button-flat material-icons" aria-label="Copiar el vínculo a esta sección: FLAG_GRANT_WRITE_URI_PERMISSION" data-title="Copiar el vínculo a esta sección: FLAG_GRANT_WRITE_URI_PERMISSION" data-id="FLAG_GRANT_WRITE_URI_PERMISSION"></button></h3>
+    <div class="api-level">
+      
+    Added in <a href="/guide/topics/manifest/uses-sdk-element#ApiLevels">API level 1</a>
+  
+      
+  
+
+    </div>
+<devsite-code no-copy="" data-copy-event-label=""><div class="devsite-code-buttons-container" role="group" aria-label="Botones de acción"><button type="button" class="gc-analytics-event material-icons devsite-icon-code-dark devsite-toggle-dark" data-category="Site-Wide Custom Events" data-label="Dark Code Toggle" track-type="exampleCode" track-name="darkCodeToggle" aria-label="Código en tema oscuro" data-title="Código en tema oscuro"></button><button type="button" class="gc-analytics-event material-icons devsite-icon-code-light devsite-toggle-light" data-category="Site-Wide Custom Events" data-label="Light Code Toggle" track-type="exampleCode" track-name="lightCodeToggle" aria-label="Código en tema claro" data-title="Código en tema claro"></button></div><pre class="api-signature no-pretty-print" translate="no" dir="ltr" is-upgraded="">public static final int FLAG_GRANT_WRITE_URI_PERMISSION</pre></devsite-code>
+    
+    
+
+    
+  <p>If set, the recipient of this Intent will be granted permission to
+ perform write operations on the URI in the Intent's data and any URIs
+ specified in its ClipData.  When applying to an Intent's ClipData,
+ all URIs as well as recursive traversals through data or other ClipData
+ in Intent items will be granted; only the grant flags of the top-level
+ Intent are used.</p><p></p>
+
+    
+      <p>Constant Value:
+      
+          2
+          (0x00000002)
+      
+    
+</p>
+  </div>
+</details>
+
+
+<details class="flag" data-value="32"><summary>FLAG_INCLUDE_STOPPED_PACKAGES</summary>
+<div class="content">
+	
+    <h3 class="api-name" id="FLAG_INCLUDE_STOPPED_PACKAGES" data-text="FLAG_INCLUDE_STOPPED_PACKAGES" role="presentation"><span class="devsite-heading" role="heading" aria-level="3">FLAG_<wbr>INCLUDE_<wbr>STOPPED_<wbr>PACKAGES</span><button type="button" class="devsite-heading-link button-flat material-icons" aria-label="Copiar el vínculo a esta sección: FLAG_INCLUDE_STOPPED_PACKAGES" data-title="Copiar el vínculo a esta sección: FLAG_INCLUDE_STOPPED_PACKAGES" data-id="FLAG_INCLUDE_STOPPED_PACKAGES"></button></h3>
+    <div class="api-level">
+      
+    Added in <a href="/guide/topics/manifest/uses-sdk-element#ApiLevels">API level 12</a>
+  
+      
+  
+
+    </div>
+<devsite-code no-copy="" data-copy-event-label=""><div class="devsite-code-buttons-container" role="group" aria-label="Botones de acción"><button type="button" class="gc-analytics-event material-icons devsite-icon-code-dark devsite-toggle-dark" data-category="Site-Wide Custom Events" data-label="Dark Code Toggle" track-type="exampleCode" track-name="darkCodeToggle" aria-label="Código en tema oscuro" data-title="Código en tema oscuro"></button><button type="button" class="gc-analytics-event material-icons devsite-icon-code-light devsite-toggle-light" data-category="Site-Wide Custom Events" data-label="Light Code Toggle" track-type="exampleCode" track-name="lightCodeToggle" aria-label="Código en tema claro" data-title="Código en tema claro"></button></div><pre class="api-signature no-pretty-print" translate="no" dir="ltr" is-upgraded="">public static final int FLAG_INCLUDE_STOPPED_PACKAGES</pre></devsite-code>
+    
+    
+
+    
+  <p>If set, this intent will always match any components in packages that
+ are currently stopped.  This is the default behavior when
+ <code translate="no" dir="ltr"><a href="/reference/android/content/Intent#FLAG_EXCLUDE_STOPPED_PACKAGES">FLAG_EXCLUDE_STOPPED_PACKAGES</a></code> is not set.  If both of these
+ flags are set, this one wins (it allows overriding of exclude for
+ places where the framework may automatically set the exclude flag).</p><p></p>
+
+    
+      <p>Constant Value:
+      
+          32
+          (0x00000020)
+      
+    
+</p>
+  </div>
+</details>
+
+
+<details class="flag" data-value="268435456"><summary>FLAG_RECEIVER_FOREGROUND</summary>
+<div class="content">
+	
+    <h3 class="api-name" id="FLAG_RECEIVER_FOREGROUND" data-text="FLAG_RECEIVER_FOREGROUND">FLAG_<wbr>RECEIVER_<wbr>FOREGROUND</h3>
+    <div class="api-level">
+      
+    Added in <a href="/guide/topics/manifest/uses-sdk-element#ApiLevels">API level 16</a>
+  
+      
+  
+
+    </div>
+<devsite-code no-copy="" data-copy-event-label=""><pre class="api-signature no-pretty-print" translate="no" dir="ltr" is-upgraded="">public static final int FLAG_RECEIVER_FOREGROUND</pre></devsite-code>
+    
+    
+
+    
+  <p>If set, when sending a broadcast the recipient is allowed to run at
+ foreground priority, with a shorter timeout interval.  During normal
+ broadcasts the receivers are not automatically hoisted out of the
+ background priority class.</p><p></p>
+
+    
+      <p>Constant Value:
+      
+          268435456
+          (0x10000000)
+      
+    
+</p>
+  </div>
+</details>
+
+
+<details class="flag" data-value="134217728"><summary>FLAG_RECEIVER_NO_ABORT</summary>
+<div class="content">
+	
+    <h3 class="api-name" id="FLAG_RECEIVER_NO_ABORT" data-text="FLAG_RECEIVER_NO_ABORT">FLAG_<wbr>RECEIVER_<wbr>NO_<wbr>ABORT</h3>
+    <div class="api-level">
+      
+    Added in <a href="/guide/topics/manifest/uses-sdk-element#ApiLevels">API level 19</a>
+  
+      
+  
+
+    </div>
+<devsite-code no-copy="" data-copy-event-label=""><pre class="api-signature no-pretty-print" translate="no" dir="ltr" is-upgraded="">public static final int FLAG_RECEIVER_NO_ABORT</pre></devsite-code>
+    
+    
+
+    
+  <p>If this is an ordered broadcast, don't allow receivers to abort the broadcast.
+ They can still propagate results through to later receivers, but they can not prevent
+ later receivers from seeing the broadcast.</p><p></p>
+
+    
+      <p>Constant Value:
+      
+          134217728
+          (0x08000000)
+      
+    
+</p>
+  </div>
+</details>
+
+
+<details class="flag" data-value="1073741824"><summary>FLAG_RECEIVER_REGISTERED_ONLY</summary>
+<div class="content">
+	
+    <h3 class="api-name" id="FLAG_RECEIVER_REGISTERED_ONLY" data-text="FLAG_RECEIVER_REGISTERED_ONLY" role="presentation"><span class="devsite-heading" role="heading" aria-level="3">FLAG_<wbr>RECEIVER_<wbr>REGISTERED_<wbr>ONLY</span><button type="button" class="devsite-heading-link button-flat material-icons" aria-label="Copiar el vínculo a esta sección: FLAG_RECEIVER_REGISTERED_ONLY" data-title="Copiar el vínculo a esta sección: FLAG_RECEIVER_REGISTERED_ONLY" data-id="FLAG_RECEIVER_REGISTERED_ONLY"></button></h3>
+    <div class="api-level">
+      
+    Added in <a href="/guide/topics/manifest/uses-sdk-element#ApiLevels">API level 1</a>
+  
+      
+  
+
+    </div>
+<devsite-code no-copy="" data-copy-event-label=""><div class="devsite-code-buttons-container" role="group" aria-label="Botones de acción"><button type="button" class="gc-analytics-event material-icons devsite-icon-code-dark devsite-toggle-dark" data-category="Site-Wide Custom Events" data-label="Dark Code Toggle" track-type="exampleCode" track-name="darkCodeToggle" aria-label="Código en tema oscuro" data-title="Código en tema oscuro"></button><button type="button" class="gc-analytics-event material-icons devsite-icon-code-light devsite-toggle-light" data-category="Site-Wide Custom Events" data-label="Light Code Toggle" track-type="exampleCode" track-name="lightCodeToggle" aria-label="Código en tema claro" data-title="Código en tema claro"></button></div><pre class="api-signature no-pretty-print" translate="no" dir="ltr" is-upgraded="">public static final int FLAG_RECEIVER_REGISTERED_ONLY</pre></devsite-code>
+    
+    
+
+    
+  <p>If set, when sending a broadcast only registered receivers will be
+ called -- no BroadcastReceiver components will be launched.</p><p></p>
+
+    
+      <p>Constant Value:
+      
+          1073741824
+          (0x40000000)
+      
+    
+</p>
+  </div>
+</details>
+
+
+<details class="flag" data-value="536870912"><summary>FLAG_RECEIVER_REPLACE_PENDING</summary>
+<div class="content">
+	
+    <h3 class="api-name" id="FLAG_RECEIVER_REPLACE_PENDING" data-text="FLAG_RECEIVER_REPLACE_PENDING" role="presentation"><span class="devsite-heading" role="heading" aria-level="3">FLAG_<wbr>RECEIVER_<wbr>REPLACE_<wbr>PENDING</span><button type="button" class="devsite-heading-link button-flat material-icons" aria-label="Copiar el vínculo a esta sección: FLAG_RECEIVER_REPLACE_PENDING" data-title="Copiar el vínculo a esta sección: FLAG_RECEIVER_REPLACE_PENDING" data-id="FLAG_RECEIVER_REPLACE_PENDING"></button></h3>
+    <div class="api-level">
+      
+    Added in <a href="/guide/topics/manifest/uses-sdk-element#ApiLevels">API level 8</a>
+  
+      
+  
+
+    </div>
+<devsite-code no-copy="" data-copy-event-label=""><div class="devsite-code-buttons-container" role="group" aria-label="Botones de acción"><button type="button" class="gc-analytics-event material-icons devsite-icon-code-dark devsite-toggle-dark" data-category="Site-Wide Custom Events" data-label="Dark Code Toggle" track-type="exampleCode" track-name="darkCodeToggle" aria-label="Código en tema oscuro" data-title="Código en tema oscuro"></button><button type="button" class="gc-analytics-event material-icons devsite-icon-code-light devsite-toggle-light" data-category="Site-Wide Custom Events" data-label="Light Code Toggle" track-type="exampleCode" track-name="lightCodeToggle" aria-label="Código en tema claro" data-title="Código en tema claro"></button></div><pre class="api-signature no-pretty-print" translate="no" dir="ltr" is-upgraded="">public static final int FLAG_RECEIVER_REPLACE_PENDING</pre></devsite-code>
+    
+    
+
+    
+  <p>If set, when sending a broadcast the new broadcast will replace
+ any existing pending broadcast that matches it.  Matching is defined
+ by <code translate="no" dir="ltr"><a href="/reference/android/content/Intent#filterEquals(android.content.Intent)">Intent.filterEquals</a></code> returning
+ true for the intents of the two broadcasts.  When a match is found,
+ the new broadcast (and receivers associated with it) will replace the
+ existing one in the pending broadcast list, remaining at the same
+ position in the list.
+
+ </p><p>This flag is most typically used with sticky broadcasts, which
+ only care about delivering the most recent values of the broadcast
+ to their receivers.</p><p></p>
+
+    
+      <p>Constant Value:
+      
+          536870912
+          (0x20000000)
+      
+    
+</p>
+  </div>
+</details>
+
+
+<details class="flag" data-value="2097152"><summary>FLAG_RECEIVER_VISIBLE_TO_INSTANT_APPS</summary>
+<div class="content">
+	
+    <h3 class="api-name" id="FLAG_RECEIVER_VISIBLE_TO_INSTANT_APPS" data-text="FLAG_RECEIVER_VISIBLE_TO_INSTANT_APPS">FLAG_<wbr>RECEIVER_<wbr>VISIBLE_<wbr>TO_<wbr>INSTANT_<wbr>APPS</h3>
+    <div class="api-level">
+      
+    Added in <a href="/guide/topics/manifest/uses-sdk-element#ApiLevels">API level 26</a>
+  
+      
+  
+
+    </div>
+<devsite-code no-copy="" data-copy-event-label=""><pre class="api-signature no-pretty-print" translate="no" dir="ltr" is-upgraded="">public static final int FLAG_RECEIVER_VISIBLE_TO_INSTANT_APPS</pre></devsite-code>
+    
+    
+
+    
+  <p>If set, the broadcast will be visible to receivers in Instant Apps. By default Instant Apps
+ will not receive broadcasts.
+
+ <em>This flag has no effect when used by an Instant App.</em></p><p></p>
+
+    
+      <p>Constant Value:
+      
+          2097152
+          (0x00200000)
+      
+    
+</p>
+  </div>
+</details>
+
 <!-- end of content -->
 
 </body>
-</html> 
+</html>
