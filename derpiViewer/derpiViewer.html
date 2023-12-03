@@ -162,6 +162,7 @@ This was made for personal use from a mobile device and may or may not update it
         auto_load: ["If enabled, new images will be automatically fetched when scrolling to the end of the page", [1, 'yes', 'no']],
         per_page: ["Images to load in each petition (max 50)", 25],
         max_images: ["Maximum number of images to keep displayed", 50],
+        img_loading: ["Image loading method: if lazy, images will load when you scroll near them. On eager they will load inmediately", [2, 'eager', 'lazy']],
         fix_scroll: ["Enable this if the page jumps when loading images", [2, 'yes', 'no']],
         max_width: ["Maximum width of the page (px)", 1000],
     }
@@ -319,7 +320,7 @@ This was made for personal use from a mobile device and may or may not update it
                 <button class="play" onclick="playListener(this)">...</button>
             </div>`
         } else {
-            imgHtml = `<img id="tmp" loading="lazy" alt="${data.name}" style="aspect-ratio:${data.aspect_ratio}"></img>`
+            imgHtml = `<img id="tmp" loading="${settings.img_loading}" alt="${data.name}" style="aspect-ratio:${data.aspect_ratio}"></img>`
         }
 
         // insert info
@@ -464,11 +465,11 @@ This was made for personal use from a mobile device and may or may not update it
         let e = id instanceof Element ? id : document.getElementById(id);
         e.style.display = (e.offsetWidth > 0 || e.offsetHeight > 0) ? 'none' : 'block';
     }
-	
-	function escape(text){
-		return text.replace(/'/g,"\\'");
-	}
-	
+
+    function escape(text){
+        return text.replace(/'/g,"\\'");
+    }
+
 </script>
 
 </html>
