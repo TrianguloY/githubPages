@@ -2,13 +2,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta id="color-scheme" name="color-scheme" content="dark light" />
     <title>DerpiViewer</title>
 </head>
 
 <style>
     /* dark centered background */
     body {
-        background-color: #333333;
         margin: 0 auto;
     }
     
@@ -48,7 +48,6 @@
     /* white readable keeping-spaces text */
     span,code {
         font-size: 20px;
-        color: #ffffff;
         white-space: pre-line;
         word-break: break-word;
     }
@@ -69,14 +68,6 @@
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
-    }
-    
-    /* links */
-    a:link {
-        color: #00bbff;
-    }
-    a:visited {
-        color: #ffbbff;;
     }
 
 </style>
@@ -165,6 +156,7 @@ This was made for personal use from a mobile device and may or may not update it
         img_loading: ["Image loading method: if lazy, images will load when you scroll near them. On eager they will load inmediately", [2, 'eager', 'lazy']],
         fix_scroll: ["Enable this if the page jumps when loading images", [2, 'yes', 'no']],
         max_width: ["Maximum width of the page (px)", 1000],
+        color_scheme: ["Color scheme", [1, 'dark', 'light']],
     }
 
     function initSettings() {
@@ -237,6 +229,10 @@ This was made for personal use from a mobile device and may or may not update it
         if(s=='max_width'){
             // the max_width needs to sync instantaneously with the css property
             document.body.style.maxWidth = settings[s] + 'px'
+        }
+        if(s=='color_scheme'){
+            // the color scheme must update
+            document.getElementById("color-scheme").content = settings[s];
         }
     }
 
