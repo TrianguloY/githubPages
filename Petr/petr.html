@@ -1,186 +1,218 @@
 <!DOCTYPE html>
 <html>
-  <head>
+
+<head>
     <script src="https://unpkg.com/konva@9.3.11/konva.min.js"></script>
     <meta charset="utf-8" />
     <title>Petr</title>
     <style>
-      body {
-        margin: 0;
-        padding: 0;
-        overflow: hidden;
-        background-color: #f0f0f0;
-      }
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: #f0f0f0;
+          }
     </style>
-  </head>
+</head>
 <!-- WIP -->
-  <body>
+
+<body>
     <div id="container"></div>
-	
-	<input type='number' value="4" onchange="n=this.value;drawAll();" style="position:fixed;top:0;left:0"/>
-	
-	
+    <header style="position:fixed;top:0;left:0">
+        <input id="element_n" type='number' value="4" onchange="draw1();" />
+        <span id="element_angles" />
+        <button onclick="draw2()">suffle</button>
+
+    </header>
     <script>
+        let n;
+        let points;
+        let angles;
 
-var stage = new Konva.Stage({
-  container: 'container',
-  width: window.innerWidth,
-  height: window.innerHeight,
-  draggable: true,
-});
-var pointsLayer = new Konva.Layer();
-var poligonsLayer = new Konva.Layer();
-stage.add(poligonsLayer);
-stage.add(pointsLayer);
+        function draw1() {
+          n = element_n.value;
 
-let n = 4;
-let points = [];
-let angles = [];
+          clearDraggablePoints();
+          points = range(0, n, () => [Math.random() * window.innerWidth, Math.random() * window.innerHeight]);
+          console.log("points", points);
+          points.forEach(([x,y],i) => drawDraggablePoint(x, y, (nx, ny) => {
+            points[i] = [nx, ny];
+            draw3();
+          }));
 
-function drawAll(){
-	pointsLayer.destroyChildren();
-	
-	angles = [];
-	for (let i = 1; i < n-1; ++i) {
-	  angles.push(360 * i / n);
-	}
-	shuffleArray(angles)
-	console.log("angles", angles);
+          draw2();
+        }
 
-	points = []
-	for (let i = 0; i < n; ++i) {
-	  let x = Math.random() * window.innerWidth;
-	  let y = Math.random() * window.innerHeight;
-	  points.push([x, y]);
+        function draw2(){
+          angles = range(1, n - 0, i => 360 * i / n);
 
-	  let point = new Konva.Circle({
-		x: x,
-		y: y,
-		radius: 4,
-		fill: 'white',
-		draggable: true,
-	  });
-	  point.on('dragmove', () => {
-		points[i] = [point.x(), point.y()];
-		draw();
-	  });
-	  pointsLayer.add(point)
+          shuffleArray(angles)
+          element_angles.innerHTML = `Angles: ${angles}`;
+          console.log("angles", angles);
 
-	}
-	console.log("points", points);
-	
-	draw();
-}
+          draw3();
+        }
 
+        function draw3() {
+          clearPolygons();
+          drawPolygon(points, color(0));
 
+          let nextPoints = points;
+          angles.forEach(angle => {
+            let newpoints = [];
+            for (let i = 0; i < n; ++i) {
+              newpoints.push(calculatePoint(nextPoints[i], nextPoints[(i + 1) % n], angle))
+              drawPolygon([nextPoints[i], newpoints[i], nextPoints[(i + 1) % n]], '#4444', false);
+            }
+            console.log("newpoints", newpoints);
+            drawPolygon(newpoints, color(angle));
+            nextPoints = newpoints;
+          });
+        }
 
-function drawPolygon(points, color) {
-  var poly = new Konva.Line({
-    points: points.flatMap(e => e),
-    stroke: color,
-    strokeWidth: 1,
-    closed: true,
-  });
+        //----- utils -------
 
-  // add the shape to the layer
-  poligonsLayer.add(poly);
-  return poly;
-}
+        function calculatePoint([x1, y1], [x2, y2], angle) {
+          // given two points A, B and an angle c, returns the coordinates of the point C (for a triangle ABC isosceles with AC=BC)
+          y1y2 = y1 - y2;
+          x2x1 = x2 - x1;
+          d = Math.sqrt(y1y2 * y1y2 + x2x1 * x2x1);
+          h = d / 2 / Math.tan(angle / 2 * Math.PI / 180);
+          return [
+            (x1 + x2) / 2 + y1y2 / d * h,
+            (y1 + y2) / 2 + x2x1 / d * h,
+          ];
+        }
 
-function draw() {
-	poligonsLayer.destroyChildren();
-  drawPolygon(points, color(0));
+        function color(angle) {
+          let c = Konva.Util.colorToRGBA(`hsl(${Math.round(angle)},100%,50%)`);
+          return `rgba(${c.r},${c.g},${c.b},${c.a})`;
+        }
 
-  let nextPoints = points;
-  angles.forEach(angle => {
-    let newpoints = [];
-    for (let i = 0; i < n; ++i) {
-      newpoints.push(calculatePoint(nextPoints[i], nextPoints[(i + 1) % n], angle))
-    }
-    console.log("newpoints", newpoints);
-    drawPolygon(newpoints, color(angle));
-    nextPoints = newpoints;
-  });
-  [x,y]=nextPoints.reduce(([x1,y1],[x2,y2])=>[x1+x2,y1+y2],[0,0]);
-  let point = new Konva.Circle({
-    x: x/n,
-    y: y/n,
-    radius: 2,
-    fill: 'black',
-    draggable: true,
-  });
-  poligonsLayer.add(point);
-  poligonsLayer.draw();
-}
+        function shuffleArray(array) {
+          for (let i = array.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [array[i], array[j]] = [array[j], array[i]];
+          }
+        }
+
+        function range(start, end, mapper) {
+          let v = [];
+          for (let i = start; i < end; ++i) v.push(mapper(i));
+          return v;
+        }
 
 
+        //------ Konva -----
 
-drawAll();
+        let stage;
+        let pointsLayer;
+        let polygonsLayer;
 
+        function initCanvas() {
 
+          stage = new Konva.Stage({
+            container: 'container',
+            width: window.innerWidth,
+            height: window.innerHeight,
+            draggable: true,
+          });
 
+          polygonsLayer = new Konva.Layer();
+          stage.add(polygonsLayer);
 
-function calculatePoint([x1, y1], [x2, y2], angle) {
-  // given two points A, B and an angle c, returns the coordinates of the point C (for a triangle ABC isosceles with AC=BC)
-  y1y2 = y1 - y2;
-  x2x1 = x2 - x1;
-  d = Math.sqrt(y1y2 * y1y2 + x2x1 * x2x1);
-  h = d / 2 / Math.tan(angle / 2 * Math.PI / 180);
-  return [
-    (x1 + x2) / 2 + y1y2 / d * h,
-    (y1 + y2) / 2 + x2x1 / d * h,
-  ];
-}
-
-function color(angle){
-let c = Konva.Util.colorToRGBA(`hsl(${Math.round(angle)},100%,50%)`);
-return `rgba(${c.r},${c.g},${c.b},${c.a})`;
-}
-
-function shuffleArray(array) {
-    for (let i = array.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [array[i], array[j]] = [array[j], array[i]];
-    }
-}
+          pointsLayer = new Konva.Layer();
+          stage.add(pointsLayer);
 
 
+          // zoom
+          var scaleBy = 2;
+          stage.on('wheel', e => {
+            // stop default scrolling
+            e.evt.preventDefault();
 
-// zoom
-var scaleBy = 2;
-stage.on('wheel', (e) => {
-  // stop default scrolling
-  e.evt.preventDefault();
+            var oldScale = stage.scaleX();
+            var pointer = stage.getPointerPosition();
 
-  var oldScale = stage.scaleX();
-  var pointer = stage.getPointerPosition();
+            // how to scale? Zoom in? Or zoom out?
+            let direction = e.evt.deltaY > 0 ? -1 : 1;
 
-  var mousePointTo = {
-    x: (pointer.x - stage.x()) / oldScale,
-    y: (pointer.y - stage.y()) / oldScale,
-  };
+            // when we zoom on trackpad, e.evt.ctrlKey is true
+            // in that case lets revert direction
+            if (e.evt.ctrlKey) direction = -direction;
 
-  // how to scale? Zoom in? Or zoom out?
-  let direction = e.evt.deltaY > 0 ? -1 : 1;
+            var newScale = direction > 0 ? oldScale * scaleBy : oldScale / scaleBy;
 
-  // when we zoom on trackpad, e.evt.ctrlKey is true
-  // in that case lets revert direction
-  if (e.evt.ctrlKey) {
-    direction = -direction;
-  }
+            stage.scale({
+              x: newScale,
+              y: newScale
+            });
 
-  var newScale = direction > 0 ? oldScale * scaleBy : oldScale / scaleBy;
+            var mousePointTo = {
+              x: (pointer.x - stage.x()) / oldScale,
+              y: (pointer.y - stage.y()) / oldScale,
+            };
 
-  stage.scale({
-    x: newScale,
-    y: newScale
-  });
+            stage.position({
+              x: pointer.x - mousePointTo.x * newScale,
+              y: pointer.y - mousePointTo.y * newScale,
+            });
+          });
 
-  stage.position({
-    x: pointer.x - mousePointTo.x * newScale,
-    y: pointer.y - mousePointTo.y * newScale,
-  });
-});
+        }
+
+        function clearDraggablePoints(){
+          pointsLayer.destroyChildren();
+        }
+
+        function clearPolygons(){
+          polygonsLayer.destroyChildren();
+        }
+
+        function drawDraggablePoint(x, y, ondrag) {
+            let point = new Konva.Circle({
+              x: x,
+              y: y,
+              radius: 5,
+              fill: 'white',
+              draggable: true,
+            });
+            point.on('dragmove', () => ondrag(point.x(), point.y()));
+            pointsLayer.add(point);
+        }
+
+
+        function drawPolygon(points, color, closed = true) {
+
+          let [Mx, My, mx, my] = points.reduce(([Mx, My, mx, my], [x, y]) => [Math.max(x, Mx), Math.max(y, My), Math.min(x, mx), Math.min(y,my)], [-Infinity, -Infinity, Infinity, Infinity]);
+          console.log([Mx, My, mx, my])
+          if(Math.abs(Mx-mx) < 1/100 && Math.abs(My-my) < 1/100){
+            polygonsLayer.add(new Konva.Circle({
+            x: Mx,
+            y: My,
+            radius: 2,
+            fill: color,
+          }));
+          }else{
+
+          polygonsLayer.add(new Konva.Line({
+            points: points.flatMap(e => e),
+            stroke: color,
+            strokeWidth: 1,
+            closed: closed,
+            strokeScaleEnabled: false,
+            lineJoin: "round",
+            lineCap: "round"
+          }));
+          }
+        }
+
+
+        //------ init ------
+
+        initCanvas();
+        draw1();
     </script>
-  </body>
+</body>
+
 </html>
