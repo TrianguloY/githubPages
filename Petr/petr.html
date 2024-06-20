@@ -3,6 +3,7 @@
 
 <head>
     <script src="https://unpkg.com/konva@9.3.11/konva.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
     <meta charset="utf-8" />
     <title>Petr</title>
     <style>
@@ -10,7 +11,19 @@
           margin: 0;
           padding: 0;
           overflow: hidden;
-          background-color: #f0f0f0;
+          background-color: #121212;
+        }
+        span, details {
+          color: white;
+        }
+        .draggable {
+          background-color: gray;
+          margin: 5px;
+        }
+        header {
+          position: fixed;
+          top: 10px;
+          left: 10px;
         }
     </style>
 </head>
@@ -18,16 +31,24 @@
 
 <body>
     <div id="container"></div>
-    <header style="position:fixed;top:0;left:0">
+    <header>
         <input id="element_n" type='number' value="4" min="0" onchange="draw1();" />
-        <span id="element_angles"></span>
-        <button onclick="draw2()">suffle</button>
+        <span>
+          Angles: <span style="color: red">O &gt;</span>
+          <span id="element_angles"></span>
+          &gt; O
+        </span>
+        <details>
+          <summary>ℹ️</summary>
+          <p>
+          Made by TrianguloY
+          </p>
+        </details>
 
     </header>
     <script>
         let n;
         let points = [];
-        let angles;
 
         function draw1() {
           n = element_n.value;
@@ -46,10 +67,9 @@
         }
 
         function draw2() {
-          angles = range(1, n - 0, i => 360 * i / n);
+          let angles = range(1, n - 0, i => 360 * i / n);
 
-          shuffleArray(angles);
-          element_angles.innerHTML = `Angles: ${angles.map(a=>`<span style="color: ${color(a)}">${a.toFixed(2)}º</span>`).join(" => ")}`;
+          element_angles.innerHTML = angles.map(a=>`<span class="draggable" style="color: ${color(a)}" data-angle="${a}">&gt; ${a.toFixed(2)}º &gt;</span>`).join("");
           console.log("angles", angles);
 
           draw3();
@@ -58,6 +78,8 @@
         function draw3() {
           clearPolygons();
           drawPolygon(points, color(0));
+
+          let angles = [...element_angles.querySelectorAll("span[data-angle]")].map(e=>e.dataset.angle);
 
           let nextPoints = points;
           angles.forEach(angle => {
@@ -86,13 +108,6 @@
         function color(angle, alpha=1) {
           let c = Konva.Util.colorToRGBA(`hsl(${Math.round(angle)},100%,50%)`);
           return `rgba(${c.r},${c.g},${c.b},${alpha})`;
-        }
-
-        function shuffleArray(array) {
-          for (let i = array.length - 1; i > 0; i--) {
-            const j = Math.floor(Math.random() * (i + 1));
-            [array[i], array[j]] = [array[j], array[i]];
-          }
         }
 
         function range(start, end, mapper) {
@@ -252,6 +267,8 @@
 
         initCanvas();
         draw1();
+
+        Sortable.create(element_angles, {onChange: draw3});
     </script>
 </body>
 
