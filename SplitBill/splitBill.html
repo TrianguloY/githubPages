@@ -99,7 +99,7 @@ input {
 }
 input[type=text]{
 	width: 0;
-	flex-grow: 4;
+	flex-grow: 3;
 }
 input[type=number]{
 	width: 0;
@@ -109,6 +109,7 @@ input[type=number]{
 .flex {
 	display: flex;
 	align-items: center;
+	flex-wrap: wrap;
 }
 .separator {
 	margin: auto;
@@ -170,7 +171,7 @@ HTMLElement.prototype.center = function() {
 
 
 // data
-const MAX_UNDO = 10;
+const MAX_UNDO = 50;
 let data = loadStorage("data", {
   "persons": [],
   "items": []
@@ -452,9 +453,9 @@ function fill(exclude) {
       set(child.querySelector(".personAmount"), getAmount(person, item));
       const itemPending = calculateItemPending(item);
       child.querySelector(".itemPending").innerText =
-        itemPending > 0 ? `There is still ${itemPending} amount to assign` :
-        itemPending < 0 ? `There is an extra ${-itemPending} amount` :
-        "Item assigned";
+        itemPending > 0 ? `${itemPending} pending` :
+        itemPending < 0 ? `${-itemPending} extra` :
+        "ok";
       child.visible(!hideCompleted || itemPending != 0);
     });
     parent.querySelector(".personTotal").innerText = calculatePersonTotal(person).formatPrice();
