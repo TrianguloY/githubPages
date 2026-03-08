@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Split bill</title>
+	
+	<script data-goatcounter="https://trianguloy.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</head>
+<body>
+
+<div class="block">
+	<h1>Split bill</h1>
+	<hr>
+	<details>
+		<summary>Description:</summary>
+		<p>
+			Personal tool made by <a href="https://github.com/TrianguloY">TrianguloY</a> to split a bill into different persons without using excel/sheets.
+			<br>
+			Add items, add persons, fill what each person used, and get the amount.
+			<br>
+			No ads, no nonsense, just the tool. Any suggestion is welcomed!. Source code available at <a href="https://github.com/TrianguloY/githubPages/tree/master/SplitBill">Github</a>
+		</p>
+		<hr>
+		<button onclick="sample(1)">Fill short finished example</button>
+		<br>
+		<button onclick="sample(2)">Fill long pending example</button>
+	</details>
+</div>
+<hr>
+<div class="info block">
+	<div class="flex">
+		<p><span id="itemsCount"></span> items: <span id="itemsPrice"></span></p>
+			<hr class="separator" />
+		<p><span id="personsCount"></span> persons: <span id="personsPrice"></span></p>
+		<hr class="separator" />
+		<p><span id="status" onclick="gotoError()"></span></p>
+	</div>
+	<hr>
+	<div class="flex">
+		<button onclick="addItem()">New item</button>
+		<button onclick="addPerson()">New person</button>
+		<button onclick="share()">Share</button>
+		<hr class="separator" />
+		<button id="undo" onclick="undo()">Undo</button>
+		<button id="redo" onclick="redo()">Redo</button>
+		<button id="reset" onclick="reset()">Reset</button>
+		<hr class="separator" />
+		<input type="checkbox" id="hideCompleted" name="HideCompleted" onclick="fill()" checked/><label for="hideCompleted">Hide completed</label>
+	</div>
+</div>
+<div>
+	<h3>Items:</h3>
+    <div id="items"></div>
+</div>
+<hr/>
+<div>
+	<h3>Persons:</h3>
+    <div id="persons"></div>
+</div>
+
+<style>
+
+body {
+	max-width: 600px;
+	margin: auto;
+}
+
+details {
+	padding: 5px;
+}
+
+.info {
+	position: sticky;
+	top: 10px;
+	background-color: lightgrey;
+}
+p, summary {
+	margin: auto;
+	text-align: center;
+	font-size: large;
+}
+h1, h3 {
+	margin: auto;
+	text-align: center;
+}
+
+.block {	
+	border-radius: 10px;
+	border-width: 2px;
+	border-color: black;
+	border-style: solid;
+	padding: 5px;
+	margin: 5px;
+}
+
+input {
+	font-size: large;
+	border-radius: 5px;
+}
+input[type=text]{
+	width: 0;
+	flex-grow: 4;
+}
+input[type=number]{
+	width: 0;
+	flex-grow: 1;
+}
+
+.flex {
+	display: flex;
+	align-items: center;
+}
+.separator {
+	margin: auto;
+	width: 1px;
+	height: 20px;
+	display: inline-block;
+}
+
+button {
+	border-radius: 5px;
+	font-size: large;
+}
+
+</style>
+
+<script>
+
+// javascript utils
+function byId(id) {
+  return (element) => element.id == id;
+}
+Array.prototype.sum = function() {
+  return this.reduce((a, b) => a + b, 0);
+}
+Array.prototype.max = function(base = 0) {
+  return this.reduce((a, b) => Math.max(a, b), base);
+}
+
+function loadStorage(key, ifNull = null) {
+  return key in localStorage ? JSON.parse(localStorage[key]) : ifNull;
+}
+
+function storeStorage(key, value, removeIf = null) {
+  if (equals(value, removeIf)) delete localStorage[key];
+  else localStorage[key] = JSON.stringify(value);
+}
+
+function equals(a, b) {
+  return JSON.stringify(a) == JSON.stringify(b);
+}
+HTMLButtonElement.prototype.enabled = function(enabled = true) {
+  if (enabled) this.removeAttribute("disabled");
+  else this.setAttribute("disabled", "disabled");
+}
+Number.prototype.formatPrice = function() {
+  const fixed = Math.round(this * 10 ** 6) / 10 ** 6; // fix imprecision
+  return Math.ceil(fixed * 100) / 100; // round to two decimals
+}
+HTMLElement.prototype.visible = function(visible = true) {
+  this.style.display = visible ? "" : "none";
+}
+HTMLElement.prototype.center = function() {
+  this.scrollIntoView({
+    behavior: 'auto',
+    block: 'center',
+    inline: 'center'
+  });
+}
+
+
+// data
+const MAX_UNDO = 10;
+let data = loadStorage("data", {
+  "persons": [],
+  "items": []
+});
+
+
+// Utils
+
+function newId() {
+  return data.persons.concat(data.items).map(e => e.id).max() + 1;
+}
+
+function save() {
+  const oldData = loadStorage("data");
+  if (equals(data, oldData)) return;
+
+  console.log(data);
+
+  // store
+  storeStorage("data", data);
+
+  // push for undo
+  if (oldData != null) {
+    const undoData = loadStorage("undo", []);
+    undoData.push(oldData);
+    undoData.splice(0, undoData.length - MAX_UNDO);
+    storeStorage("undo", undoData);
+    delete localStorage["redo"];
+  }
+}
+
+function undo() {
+  const undoData = loadStorage("undo", []);
+  if (undoData.length == 0) {
+    console.log("Nothing to undo");
+    return;
+  }
+  const redoData = loadStorage("redo", []);
+
+  redoData.push(data);
+  redoData.splice(0, redoData.length - MAX_UNDO);
+  data = undoData.pop();
+
+  storeStorage("undo", undoData, []);
+  storeStorage("redo", redoData);
+  storeStorage("data", data); // needed to avoid save to delete the redo after build
+
+  build();
+}
+
+function redo() {
+  const redoData = loadStorage("redo", []);
+  if (redoData.length == 0) {
+    console.log("Nothing to redo");
+    return;
+  }
+  const undoData = loadStorage("undo", []);
+
+  undoData.push(data);
+  undoData.splice(0, undoData.length - MAX_UNDO);
+  data = redoData.pop();
+
+  storeStorage("undo", undoData);
+  storeStorage("redo", redoData, []);
+  storeStorage("data", data); // needed to avoid save to delete the redo after build
+
+  build();
+}
+
+
+// methods
+
+function reset() {
+  if (!confirm("Do you really want to reset?")) return;
+  data.persons = [];
+  data.items = [];
+  build();
+}
+
+function getAmount(person, item) {
+  return person.amounts[item.id] || 0;
+}
+
+function addItem() {
+  const id = newId();
+  data.items.push({
+    id: id,
+    name: `Item ${data.items.length + 1}`,
+    price: 0,
+    amount: 1,
+  });
+  build();
+  centerById(id);
+  document.querySelector(`#id_${id} .itemName`).select();
+}
+
+function addPerson() {
+  const id = newId();
+  data.persons.push({
+    id: id,
+    name: `Person ${data.persons.length + 1}`,
+    amounts: {},
+  });
+  build();
+  centerById(id);
+  document.querySelector(`#id_${id} .personName`).select();
+}
+
+function deleteItem(id) {
+  data.items.splice(data.items.indexOf(data.items.find(byId(id))), 1);
+  data.persons.forEach(person => {
+    delete person.amounts[id];
+  });
+  build();
+}
+
+function deletePerson(id) {
+  data.persons.splice(data.persons.indexOf(data.persons.find(byId(id))), 1);
+  build();
+}
+
+function changeItemName(input, id) {
+  data.items.find(byId(id)).name = input.value;
+  fill(input);
+}
+
+function changeItemPrice(input, itemId) {
+  data.items.find(byId(itemId)).price = parseFloat(input.value);
+  fill(input);
+}
+
+function changeItemAmount(input, itemId) {
+  data.items.find(byId(itemId)).amount = parseFloat(input.value);
+  fill(input);
+}
+
+function changePersonName(input, id) {
+  data.persons.find(byId(id)).name = input.value;
+  fill(input);
+}
+
+function changePersonAmount(input, personId, itemId) {
+  data.persons.find(byId(personId)).amounts[itemId] = parseFloat(input.value);
+  fill(input);
+}
+
+function increasePersonAmount(personId, itemId, amount) {
+  const amounts = data.persons.find(byId(personId)).amounts;
+  amounts[itemId] = Math.max(0, (amounts[itemId] || 0) + amount);
+  fill();
+}
+
+function splitEqually(itemId) {
+  const amount = data.items.find(byId(itemId)).amount / data.persons.length;
+  data.persons.forEach(person => {
+    person.amounts[itemId] = amount
+  });
+  fill();
+}
+
+function clearItem(itemId) {
+  data.persons.forEach(person => {
+    person.amounts[itemId] = 0
+  });
+  fill();
+}
+
+function centerById(id) {
+  document.querySelector(`#id_${id}`).center();
+}
+
+function gotoError() {
+  data.items.forEach(item => {
+    if (calculateItemPending(item) != 0) {
+      centerById(item.id);
+      return;
+    }
+  });
+}
+
+// generators
+
+function build() {
+
+  document.getElementById("items").innerHTML = data.items.map(item => `<div id="id_${item.id}" class="block">
+		<div class="flex">
+			<input class="itemName" type="text" value="" oninput="changeItemName(this, ${item.id})" />
+			<span>Price:</span>
+			<input class="itemPrice" type="number" value="" oninput="changeItemPrice(this, ${item.id})" />
+			<span>Amount:</span>
+			<input class="itemAmount" type="number" value="" oninput="changeItemAmount(this, ${item.id})" />
+			<button onclick="deleteItem(${item.id})">X</button>
+		</div>
+		<hr>
+        ${data.persons.map(person=>`<div id="id_${item.id}_${person.id}" class="flex">
+			<button onclick="centerById(${person.id})">&gt;</button>
+        	<input class="personName" type="text" value="" oninput="changePersonName(this, ${person.id})" />
+            <span>Amount:</span>
+        	<input class="personAmount" type="number" onchange="changePersonAmount(this, ${person.id}, ${item.id})" min="0" step="any" value="" />
+			<button onclick="increasePersonAmount(${person.id}, ${item.id}, 1)">+</button>
+			<button onclick="increasePersonAmount(${person.id}, ${item.id}, -1)">-</button>
+        </div>`).join("\n")}
+		<div class="flex">
+			<button onclick="splitEqually(${item.id})">Split equally</button>
+			<button onclick="clearItem(${item.id})">Clear item</button>
+			<p class="itemPending"></p>
+		</div>
+    </div>`).join("\n");
+
+  document.getElementById("persons").innerHTML = data.persons.map(person => `<div id="id_${person.id}" class="block">
+		<div class="flex">
+			<input class="personName" type="text" value="" oninput="changePersonName(this, ${person.id})" />
+			<button onclick="deletePerson(${person.id})">X</button>
+		</div>
+		<hr>
+     	${data.items.map(item =>`<div id="id_${person.id}_${item.id}" class="flex">
+			<button onclick="centerById(${item.id})">&gt;</button>
+        	<input class="itemName" type="text" value="" oninput="changeItemName(this, ${item.id})" />
+            <span>Amount:</span>
+            <input class="personAmount" type="number" onchange="changePersonAmount(this, ${person.id}, ${item.id})" min="0" step="any" value="" />
+			<button onclick="increasePersonAmount(${person.id}, ${item.id}, 1)">+</button>
+			<button onclick="increasePersonAmount(${person.id}, ${item.id}, -1)">-</button>
+			<span class="itemPending"></span>
+        </div>`).join("\n")}
+		<div class="flex">
+			<p>Total: <span class="personTotal"></span></p>
+		</div>
+    </div>`).join("\n");
+
+  fill();
+}
+
+function calculatePersonTotal(person) {
+  return Object.entries(person.amounts)
+    .map(([itemId, amount]) => data.items.find(byId(itemId)).price * amount)
+    .sum();
+}
+
+function calculateItemPending(item) {
+  return (item.amount - data.persons.map(person => getAmount(person, item)).sum()).formatPrice();
+}
+
+function fill(exclude) {
+  // set data
+  function set(element, value) {
+    if (element != exclude) element.value = value;
+  }
+
+  data.items.forEach(item => {
+    let parent = document.querySelector(`#id_${item.id}`);
+    set(parent.querySelector(".itemName"), item.name);
+    set(parent.querySelector(".itemPrice"), item.price);
+    set(parent.querySelector(".itemAmount"), item.amount);
+    data.persons.forEach(person => {
+      let child = parent.querySelector(`#id_${item.id}_${person.id}`);
+      set(child.querySelector(".personName"), person.name);
+      set(child.querySelector(".personAmount"), getAmount(person, item));
+    });
+    const itemPending = calculateItemPending(item);
+    parent.querySelector(".itemPending").innerText =
+      itemPending > 0 ? `There is still ${itemPending} amount to assign` :
+      itemPending < 0 ? `There is an extra ${-itemPending} amount` :
+      "Item assigned";
+    parent.style.backgroundColor =
+      item.price == 0 ? "lightgrey" :
+      itemPending > 0 ? "lightpink" :
+      itemPending < 0 ? "lightyellow" :
+      "lightgreen";
+  });
+
+  const hideCompleted = document.getElementById("hideCompleted").checked;
+
+  data.persons.forEach(person => {
+    let parent = document.querySelector(`#id_${person.id}`);
+    set(parent.querySelector(".personName"), person.name);
+    data.items.forEach(item => {
+      let child = parent.querySelector(`#id_${person.id}_${item.id}`);
+      set(child.querySelector(".itemName"), item.name);
+      set(child.querySelector(".personAmount"), getAmount(person, item));
+      const itemPending = calculateItemPending(item);
+      child.querySelector(".itemPending").innerText =
+        itemPending > 0 ? `There is still ${itemPending} amount to assign` :
+        itemPending < 0 ? `There is an extra ${-itemPending} amount` :
+        "Item assigned";
+      child.visible(!hideCompleted || itemPending != 0);
+    });
+    parent.querySelector(".personTotal").innerText = calculatePersonTotal(person).formatPrice();
+  });
+
+  document.getElementById("itemsCount").innerText = data.items.length;
+  const itemsPrice = data.items.map(item => item.price * item.amount).sum().formatPrice();
+  document.getElementById("itemsPrice").innerText = itemsPrice;
+
+  document.getElementById("personsCount").innerText = data.persons.length;
+  const personsPrice = data.persons.map(calculatePersonTotal).sum().formatPrice();
+  document.getElementById("personsPrice").innerText = personsPrice;
+
+  const totalDiff = (itemsPrice - personsPrice).formatPrice();
+  document.getElementById("status").innerText =
+    totalDiff > 0 ? `There is still a price of ${totalDiff} to assign` :
+    totalDiff < 0 ? `There is an extra assigned price of ${-totalDiff}` :
+    "The bill price matches";
+  document.getElementById("status").style.backgroundColor =
+    itemsPrice == 0 ? "lightgrey" :
+    totalDiff > 0 ? "lightpink" :
+    totalDiff < 0 ? "lightyellow" :
+    "lightgreen";
+
+  save();
+
+  // buttons
+  document.getElementById("reset").enabled(data.items.length + data.items.length > 0);
+  document.getElementById("undo").enabled("undo" in localStorage);
+  document.getElementById("redo").enabled("redo" in localStorage);
+}
+
+function share() {
+  const title = document.title;
+  const totalDiff = (itemsPrice - personsPrice).formatPrice();
+  const text = data.persons.map(person => `${person.name}: ${calculatePersonTotal(person).formatPrice()}`).join("\n") + (
+    totalDiff > 0 ? `\nUnknown: ${totalDiff}` :
+    totalDiff < 0 ? `\nExtra: ${-totalDiff}` :
+    ""
+  );
+
+  if (navigator.share) {
+    // share
+    navigator.share({
+        title: title,
+        text: text,
+      })
+      .then(() => console.log('shared'))
+      .catch((error) => console.log(error));
+  } else {
+    // copy
+    navigator.clipboard.writeText(text)
+      .then(() => alert("Text copied to clipboard"))
+      .catch(() => prompt(title + " (Ctrl+C to copy)", text));
+  }
+}
+
+function sample(id) {
+  data = JSON.parse({
+    1: '{"persons":[{"id":1,"name":"Alice","amounts":{"4":1,"5":1,"7":0.1}},{"id":2,"name":"Bob","amounts":{"4":1,"6":1}},{"id":3,"name":"Charlie","amounts":{"4":1,"7":0.9}}],"items":[{"id":4,"name":"Water","price":2.2,"amount":3},{"id":5,"name":"Hamburger","price":14.95,"amount":1},{"id":6,"name":"Spaguetti","price":13.37,"amount":1},{"id":7,"name":"Pizza","price":15.25,"amount":1}]}',
+    2: '{"persons":[{"id":14,"name":"Emma Crane","amounts":{"1":0.1,"6":0.1,"8":1,"13":1}},{"id":15,"name":"Macy Lucero","amounts":{"1":0.1,"4":1,"6":0.1,"8":1,"12":1,"13":0}},{"id":16,"name":"Iyla Odom","amounts":{"1":0.1,"6":0.1,"7":1}},{"id":17,"name":"Jake Lester","amounts":{"1":0.1,"6":0.1,"9":1,"12":1}},{"id":18,"name":"Castiel Parra","amounts":{"1":0.1,"6":0.1,"8":1,"11":1}},{"id":19,"name":"Karen Hart","amounts":{"1":0.1,"6":0.1,"7":1}},{"id":20,"name":"Wesley Orr","amounts":{"0":1,"1":0.1,"6":0.1,"10":1,"11":1}},{"id":21,"name":"Hudson Castillo","amounts":{"1":0.1,"6":0.1,"7":1,"12":1,"13":1}},{"id":22,"name":"Skyler Wilkinson","amounts":{"1":0.1,"6":0.1,"8":1,"11":1}},{"id":23,"name":"Tiffany Cortes","amounts":{"1":0.1,"6":0.1}}],"items":[{"id":4,"name":"Beer","price":3,"amount":1},{"id":0,"name":"soda","price":2.9,"amount":1},{"id":1,"name":"potatoes","price":7.9,"amount":1},{"id":6,"name":"salad","price":9.9,"amount":1},{"id":7,"name":"beef with cheese","price":13.9,"amount":3},{"id":8,"name":"chicken with bacon","price":14.5,"amount":5},{"id":9,"name":"chicken with curry","price":14.5,"amount":1},{"id":10,"name":"spicy pork","price":10.9,"amount":1},{"id":11,"name":"brownie","price":6.9,"amount":3},{"id":12,"name":"cheese cake","price":5.9,"amount":3},{"id":13,"name":"wine","price":2.9,"amount":2}]}',
+  } [id]);
+  build();
+}
+
+// init
+build();
+
+</script>
+
+
+</body>
+</html>
+
+
