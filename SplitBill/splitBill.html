@@ -45,7 +45,7 @@
 		<button id="redo" onclick="redo()">Redo</button>
 		<button id="reset" onclick="reset()">Reset</button>
 		<hr class="separator" />
-		<input type="checkbox" id="hideCompleted" name="HideCompleted" onclick="fill()" checked/><label for="hideCompleted">Hide completed</label>
+		<label><input type="checkbox" id="hideCompleted" onclick="fill()" checked/>Hide completed</label>
 	</div>
 </div>
 <div>
@@ -274,6 +274,7 @@ function addPerson() {
     id: id,
     name: `Person ${data.persons.length + 1}`,
     amounts: {},
+    paid: false,
   });
   build();
   centerById(id);
@@ -339,17 +340,28 @@ function clearItem(itemId) {
   fill();
 }
 
+function personPaid(personId, paid) {
+  data.persons.find(byId(personId)).paid = paid;
+  fill();
+}
+
 function centerById(id) {
   document.querySelector(`#id_${id}`).center();
 }
 
 function gotoError() {
-  data.items.forEach(item => {
+  for (const item of data.items) {
     if (calculateItemPending(item) != 0) {
       centerById(item.id);
       return;
     }
-  });
+  }
+  for (const person of data.persons) {
+    if (!person.paid) {
+      centerById(person.id);
+      return;
+    }
+  }
 }
 
 // generators
@@ -398,6 +410,7 @@ function build() {
         </div>`).join("\n")}
 		<div class="flex">
 			<p>Total: <span class="personTotal"></span></p>
+			<label><input type="checkbox" class="personPaid" onclick="personPaid(${person.id}, this.checked)"/>Paid</label>
 		</div>
     </div>`).join("\n");
 
@@ -459,6 +472,8 @@ function fill(exclude) {
       child.visible(!hideCompleted || itemPending != 0);
     });
     parent.querySelector(".personTotal").innerText = calculatePersonTotal(person).formatPrice();
+    parent.querySelector(".personPaid").checked = person.paid;
+    parent.style.backgroundColor = person.paid ? "lightgreen" : "lightpink";
   });
 
   document.getElementById("itemsCount").innerText = data.items.length;
@@ -470,14 +485,15 @@ function fill(exclude) {
   document.getElementById("personsPrice").innerText = personsPrice;
 
   const totalDiff = (itemsPrice - personsPrice).formatPrice();
+  const allPaid = data.persons.every(p => p.paid);
   document.getElementById("status").innerText =
     totalDiff > 0 ? `There is still a price of ${totalDiff} to assign` :
     totalDiff < 0 ? `There is an extra assigned price of ${-totalDiff}` :
-    "The bill price matches";
+    `The bill price matches ${allPaid ? 'and everyone payed' : 'but someone still needs to pay'}`;
   document.getElementById("status").style.backgroundColor =
     itemsPrice == 0 ? "lightgrey" :
     totalDiff > 0 ? "lightpink" :
-    totalDiff < 0 ? "lightyellow" :
+    totalDiff < 0 || !allPaid ? "lightyellow" :
     "lightgreen";
 
   save();
@@ -515,8 +531,8 @@ function share() {
 
 function sample(id) {
   data = JSON.parse({
-    1: '{"persons":[{"id":1,"name":"Alice","amounts":{"4":1,"5":1,"7":0.1}},{"id":2,"name":"Bob","amounts":{"4":1,"6":1}},{"id":3,"name":"Charlie","amounts":{"4":1,"7":0.9}}],"items":[{"id":4,"name":"Water","price":2.2,"amount":3},{"id":5,"name":"Hamburger","price":14.95,"amount":1},{"id":6,"name":"Spaguetti","price":13.37,"amount":1},{"id":7,"name":"Pizza","price":15.25,"amount":1}]}',
-    2: '{"persons":[{"id":14,"name":"Emma Crane","amounts":{"1":0.1,"6":0.1,"8":1,"13":1}},{"id":15,"name":"Macy Lucero","amounts":{"1":0.1,"4":1,"6":0.1,"8":1,"12":1,"13":0}},{"id":16,"name":"Iyla Odom","amounts":{"1":0.1,"6":0.1,"7":1}},{"id":17,"name":"Jake Lester","amounts":{"1":0.1,"6":0.1,"9":1,"12":1}},{"id":18,"name":"Castiel Parra","amounts":{"1":0.1,"6":0.1,"8":1,"11":1}},{"id":19,"name":"Karen Hart","amounts":{"1":0.1,"6":0.1,"7":1}},{"id":20,"name":"Wesley Orr","amounts":{"0":1,"1":0.1,"6":0.1,"10":1,"11":1}},{"id":21,"name":"Hudson Castillo","amounts":{"1":0.1,"6":0.1,"7":1,"12":1,"13":1}},{"id":22,"name":"Skyler Wilkinson","amounts":{"1":0.1,"6":0.1,"8":1,"11":1}},{"id":23,"name":"Tiffany Cortes","amounts":{"1":0.1,"6":0.1}}],"items":[{"id":4,"name":"Beer","price":3,"amount":1},{"id":0,"name":"soda","price":2.9,"amount":1},{"id":1,"name":"potatoes","price":7.9,"amount":1},{"id":6,"name":"salad","price":9.9,"amount":1},{"id":7,"name":"beef with cheese","price":13.9,"amount":3},{"id":8,"name":"chicken with bacon","price":14.5,"amount":5},{"id":9,"name":"chicken with curry","price":14.5,"amount":1},{"id":10,"name":"spicy pork","price":10.9,"amount":1},{"id":11,"name":"brownie","price":6.9,"amount":3},{"id":12,"name":"cheese cake","price":5.9,"amount":3},{"id":13,"name":"wine","price":2.9,"amount":2}]}',
+    1: '{"persons":[{"id":1,"name":"Alice","amounts":{"4":1,"5":1,"7":0.1},"paid":true},{"id":2,"name":"Bob","amounts":{"4":1,"6":1},"paid":true},{"id":3,"name":"Charlie","amounts":{"4":1,"7":0.9},"paid":true}],"items":[{"id":4,"name":"Water","price":2.2,"amount":3},{"id":5,"name":"Hamburger","price":14.95,"amount":1},{"id":6,"name":"Spaguetti","price":13.37,"amount":1},{"id":7,"name":"Pizza","price":15.25,"amount":1}]}',
+    2: '{"persons":[{"id":14,"name":"Emma Crane","amounts":{"1":0.1,"6":0.1,"8":1,"13":1},"paid":true},{"id":15,"name":"Macy Lucero","amounts":{"1":0.1,"4":1,"6":0.1,"8":1,"12":1,"13":0},"paid":true},{"id":16,"name":"Iyla Odom","amounts":{"1":0.1,"6":0.1,"7":1},"paid":true},{"id":17,"name":"Jake Lester","amounts":{"1":0.1,"6":0.1,"9":1,"12":1},"paid":true},{"id":18,"name":"Castiel Parra","amounts":{"1":0.1,"6":0.1,"8":1,"11":1},"paid":true},{"id":19,"name":"Karen Hart","amounts":{"1":0.1,"6":0.1,"7":1},"paid":true},{"id":20,"name":"Wesley Orr","amounts":{"0":1,"1":0.1,"6":0.1,"10":1,"11":1},"paid":true},{"id":21,"name":"Hudson Castillo","amounts":{"1":0.1,"6":0.1,"7":1,"12":1,"13":1},"paid":true},{"id":22,"name":"Skyler Wilkinson","amounts":{"1":0.1,"6":0.1,"8":1,"11":1},"paid":true},{"id":23,"name":"Tiffany Cortes","amounts":{"1":0.1,"6":0.1}}],"items":[{"id":4,"name":"Beer","price":3,"amount":1},{"id":0,"name":"soda","price":2.9,"amount":1},{"id":1,"name":"potatoes","price":7.9,"amount":1},{"id":6,"name":"salad","price":9.9,"amount":1},{"id":7,"name":"beef with cheese","price":13.9,"amount":3},{"id":8,"name":"chicken with bacon","price":14.5,"amount":5},{"id":9,"name":"chicken with curry","price":14.5,"amount":1},{"id":10,"name":"spicy pork","price":10.9,"amount":1},{"id":11,"name":"brownie","price":6.9,"amount":3},{"id":12,"name":"cheese cake","price":5.9,"amount":3},{"id":13,"name":"wine","price":2.9,"amount":2}]}',
   } [id]);
   build();
 }
