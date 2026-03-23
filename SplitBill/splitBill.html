@@ -506,8 +506,18 @@ function fill(exclude) {
 
 function share() {
   const title = document.title;
+
+  const detailed = confirm("Include details? (product per person)");
   const totalDiff = (itemsPrice - personsPrice).formatPrice();
-  const text = data.persons.map(person => `${person.name}: ${calculatePersonTotal(person).formatPrice()}`).join("\n") + (
+  const text = data.persons.flatMap(person => [
+    `${person.name}: ${calculatePersonTotal(person).formatPrice()}${person.paid ? ' (paid)' : ''}`,
+    ...(!detailed ? [] :
+      // keep order from data.items array
+      data.items.map(item => [item, getAmount(person, item)])
+      .filter(e => e[1] != 0)
+      .map(([item, amount]) => `  - ${item.name}${amount == 1 ? '' : ` (${amount})`}: ${(item.price*amount).formatPrice()}`)
+    )
+  ]).join("\n") + (
     totalDiff > 0 ? `\nUnknown: ${totalDiff}` :
     totalDiff < 0 ? `\nExtra: ${-totalDiff}` :
     ""
