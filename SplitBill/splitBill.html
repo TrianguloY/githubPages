@@ -366,25 +366,36 @@ function gotoError() {
   }
 }
 
+function selectNext(event, element){
+	if(event.code !== "Enter") return;
+
+	element.classList.add("searching");
+	const elements = [...document.querySelectorAll(".searching, .selectable")].filter(e=>e.offsetParent != null);
+	element.classList.remove("searching");
+	const next = elements[(elements.indexOf(element) + (!event.shiftKey ? 1 : elements.length-1))%elements.length];
+	next.center();
+	next.select();
+}
+
 // generators
 
 function build() {
 
   document.getElementById("items").innerHTML = data.items.map(item => `<div id="id_${item.id}" class="block">
 		<div class="flex">
-			<input class="itemName" type="text" value="" oninput="changeItemName(this, ${item.id})" />
+			<input class="itemName selectable" type="text" value="" oninput="changeItemName(this, ${item.id})" onkeydown="selectNext(event, this)" />
 			<span>Price:</span>
-			<input class="itemPrice" type="number" oninput="changeItemPrice(this, ${item.id})" min="0" step="any" value="" />
+			<input class="itemPrice selectable" type="number" oninput="changeItemPrice(this, ${item.id})" onkeydown="selectNext(event, this)" min="0" step="any" value="" />
 			<span>Amount:</span>
-			<input class="itemAmount" type="number" oninput="changeItemAmount(this, ${item.id})" min="0" step="any" value="" />
+			<input class="itemAmount selectable" type="number" oninput="changeItemAmount(this, ${item.id})" onkeydown="selectNext(event, this)" min="0" step="any" value="" />
 			<button onclick="deleteItem(${item.id})">X</button>
 		</div>
 		<hr>
         ${data.persons.map(person=>`<div id="id_${item.id}_${person.id}" class="flex">
 			<button onclick="centerById(${person.id})">&gt;</button>
-        	<input class="personName" type="text" value="" oninput="changePersonName(this, ${person.id})" />
+        	<input class="personName" type="text" value="" oninput="changePersonName(this, ${person.id})" onkeydown="selectNext(event, this)" />
             <span>Amount:</span>
-        	<input class="personAmount" type="number" onchange="changePersonAmount(this, ${person.id}, ${item.id})" min="0" step="any" value="" />
+        	<input class="personAmount selectable" type="number" onchange="changePersonAmount(this, ${person.id}, ${item.id})" onkeydown="selectNext(event, this)" min="0" step="any" value="" />
 			<button onclick="increasePersonAmount(${person.id}, ${item.id}, 1)">+</button>
 			<button onclick="increasePersonAmount(${person.id}, ${item.id}, -1)">-</button>
         </div>`).join("\n")}
@@ -397,15 +408,15 @@ function build() {
 
   document.getElementById("persons").innerHTML = data.persons.map(person => `<div id="id_${person.id}" class="block">
 		<div class="flex">
-			<input class="personName" type="text" value="" oninput="changePersonName(this, ${person.id})" />
+			<input class="personName selectable" type="text" value="" oninput="changePersonName(this, ${person.id})" onkeydown="selectNext(event, this)" />
 			<button onclick="deletePerson(${person.id})">X</button>
 		</div>
 		<hr>
      	${data.items.map(item =>`<div id="id_${person.id}_${item.id}" class="flex">
 			<button onclick="centerById(${item.id})">&gt;</button>
-        	<input class="itemName" type="text" value="" oninput="changeItemName(this, ${item.id})" />
+        	<input class="itemName" type="text" value="" oninput="changeItemName(this, ${item.id})" onkeydown="selectNext(event, this)" />
             <span>Amount:</span>
-            <input class="personAmount" type="number" onchange="changePersonAmount(this, ${person.id}, ${item.id})" min="0" step="any" value="" />
+            <input class="personAmount selectable" type="number" onchange="changePersonAmount(this, ${person.id}, ${item.id})" onkeydown="selectNext(event, this)" min="0" step="any" value="" />
 			<button onclick="increasePersonAmount(${person.id}, ${item.id}, 1)">+</button>
 			<button onclick="increasePersonAmount(${person.id}, ${item.id}, -1)">-</button>
 			<span class="itemPending"></span>
