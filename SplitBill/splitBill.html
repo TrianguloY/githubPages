@@ -264,8 +264,9 @@ function addItem() {
     amount: 1,
   });
   build();
-  centerById(id);
-  document.querySelector(`#id_${id} .itemName`).select();
+  const text=document.querySelector(`#id_${id} .itemName`);
+  text.center();
+  text.select();
 }
 
 function addPerson() {
@@ -277,8 +278,9 @@ function addPerson() {
     paid: false,
   });
   build();
-  centerById(id);
-  document.querySelector(`#id_${id} .personName`).select();
+  const text=document.querySelector(`#id_${id} .personName`);
+  text.center();
+  text.select();
 }
 
 function deleteItem(id) {
