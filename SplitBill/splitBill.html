@@ -18,7 +18,7 @@
 			<br>
 			Add items, add persons, fill what each person used, and get the amount.
 			<br>
-			No ads, no nonsense, just the tool. Any suggestion is welcomed!. Source code available at <a href="https://github.com/TrianguloY/githubPages/tree/master/SplitBill">Github</a>
+			No ads, no nonsense, just the tool. Any suggestion is welcomed! Source code available at <a href="https://github.com/TrianguloY/githubPages/tree/master/SplitBill">Github</a>
 		</p>
 		<hr>
 		<button onclick="sample(1)">Fill short finished example</button>
@@ -374,7 +374,7 @@ function gotoError() {
 
 function selectNext(event, element){
 	console.log(event)
-	if(event.code !== "Enter") return;
+	if(event.key !== "Enter") return;
 
 	element.classList.add("searching");
 	const elements = [...document.querySelectorAll(".searching, .selectable")].filter(e=>e.offsetParent != null);
