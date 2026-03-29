@@ -16,7 +16,7 @@
 		<p>
 			Personal tool made by <a href="https://github.com/TrianguloY">TrianguloY</a> to split a bill into different persons without using excel/sheets.
 			<br>
-			Add items, add persons, fill what each person used, and get the amount.
+			Add items, add persons, fill what each person used, and get the total price each one should pay.
 			<br>
 			No ads, no nonsense, just the tool. Any suggestion is welcomed! Source code available at <a href="https://github.com/TrianguloY/githubPages/tree/master/SplitBill">Github</a>
 		</p>
@@ -336,7 +336,7 @@ function increasePersonAmount(personId, itemId, amount) {
 function splitEqually(itemId) {
   const amount = data.items.find(byId(itemId)).amount / data.persons.length;
   data.persons.forEach(person => {
-    person.amounts[itemId] = amount
+    person.amounts[itemId] = amount;
   });
   fill();
 }
@@ -373,7 +373,6 @@ function gotoError() {
 }
 
 function selectNext(event, element){
-	console.log(event)
 	if(event.key !== "Enter") return;
 
 	element.classList.add("searching");
@@ -405,7 +404,7 @@ function build() {
         ${data.persons.map(person=>`<div id="id_${item.id}_${person.id}" class="flex">
 			<button onclick="centerById(${person.id})">&gt;</button>
         	<input class="personName" type="text" value="" oninput="changePersonName(this, ${person.id})" onkeydown="selectNext(event, this)" />
-            <span>Amount:</span>
+            <span>Qty:</span>
         	<input class="personAmount selectable" type="number" onchange="changePersonAmount(this, ${person.id}, ${item.id})" onkeydown="selectNext(event, this)" min="0" step="any" value="" />
 			<button onclick="increasePersonAmount(${person.id}, ${item.id}, 1)">+</button>
 			<button onclick="increasePersonAmount(${person.id}, ${item.id}, -1)">-</button>
@@ -426,7 +425,7 @@ function build() {
      	${data.items.map(item =>`<div id="id_${person.id}_${item.id}" class="flex">
 			<button onclick="centerById(${item.id})">&gt;</button>
         	<input class="itemName" type="text" value="" oninput="changeItemName(this, ${item.id})" onkeydown="selectNext(event, this)" />
-            <span>Amount:</span>
+            <span>Qty:</span>
             <input class="personAmount selectable" type="number" onchange="changePersonAmount(this, ${person.id}, ${item.id})" onkeydown="selectNext(event, this)" min="0" step="any" value="" />
 			<button onclick="increasePersonAmount(${person.id}, ${item.id}, 1)">+</button>
 			<button onclick="increasePersonAmount(${person.id}, ${item.id}, -1)">-</button>
@@ -470,8 +469,8 @@ function fill(exclude) {
     });
     const itemPending = calculateItemPending(item);
     parent.querySelector(".itemPending").innerText =
-      itemPending > 0 ? `There is still ${itemPending} amount to assign` :
-      itemPending < 0 ? `There is an extra ${-itemPending} amount` :
+      itemPending > 0 ? `There is still ${itemPending} quantity to assign` :
+      itemPending < 0 ? `There is an extra ${-itemPending} quantity` :
       "Item assigned";
     parent.style.backgroundColor =
       item.price == 0 ? "lightgrey" :
