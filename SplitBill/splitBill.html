@@ -306,6 +306,12 @@ function changeItemPrice(input, itemId) {
   fill(input);
 }
 
+function changeItemPriceTotal(input, itemId) {
+  const item = data.items.find(byId(itemId));
+  item.price = parseFloat(input.value) / (item.amount == 0 ? 1 : item.amount);
+  fill(input);
+}
+
 function changeItemAmount(input, itemId) {
   data.items.find(byId(itemId)).amount = parseFloat(input.value);
   fill(input);
@@ -337,7 +343,7 @@ function splitEqually(itemId) {
 
 function clearItem(itemId) {
   data.persons.forEach(person => {
-    person.amounts[itemId] = 0
+    person.amounts[itemId] = 0;
   });
   fill();
 }
@@ -384,11 +390,15 @@ function build() {
   document.getElementById("items").innerHTML = data.items.map(item => `<div id="id_${item.id}" class="block">
 		<div class="flex">
 			<input class="itemName selectable" type="text" value="" oninput="changeItemName(this, ${item.id})" onkeydown="selectNext(event, this)" />
-			<span>Price:</span>
-			<input class="itemPrice selectable" type="number" oninput="changeItemPrice(this, ${item.id})" onkeydown="selectNext(event, this)" min="0" step="any" value="" />
-			<span>Amount:</span>
-			<input class="itemAmount selectable" type="number" oninput="changeItemAmount(this, ${item.id})" onkeydown="selectNext(event, this)" min="0" step="any" value="" />
 			<button onclick="deleteItem(${item.id})">X</button>
+		</div>
+		<div class="flex">
+			<span>Price(1):</span>
+			<input class="itemPrice selectable" type="number" oninput="changeItemPrice(this, ${item.id})" onkeydown="selectNext(event, this)" min="0" step="any" value="" />
+			<span>Qty:</span>
+			<input class="itemAmount selectable" type="number" oninput="changeItemAmount(this, ${item.id})" onkeydown="selectNext(event, this)" min="0" step="any" value="" />
+			<span>Price:</span>
+			<input class="itemPriceTotal selectable" type="number" oninput="changeItemPriceTotal(this, ${item.id})" onkeydown="selectNext(event, this)" min="0" step="any" value="" />
 		</div>
 		<hr>
         ${data.persons.map(person=>`<div id="id_${item.id}_${person.id}" class="flex">
@@ -443,7 +453,7 @@ function calculateItemPending(item) {
 function fill(exclude) {
   // set data
   function set(element, value) {
-    if (element != exclude) element.value = value;
+    if (element != exclude) element.value = typeof value !== "number" ? value : Number(value.toFixed(6));
   }
 
   data.items.forEach(item => {
@@ -451,6 +461,7 @@ function fill(exclude) {
     set(parent.querySelector(".itemName"), item.name);
     set(parent.querySelector(".itemPrice"), item.price);
     set(parent.querySelector(".itemAmount"), item.amount);
+    set(parent.querySelector(".itemPriceTotal"), item.price * item.amount);
     data.persons.forEach(person => {
       let child = parent.querySelector(`#id_${item.id}_${person.id}`);
       set(child.querySelector(".personName"), person.name);
