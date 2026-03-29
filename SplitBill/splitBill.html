@@ -45,7 +45,7 @@
 		<button id="redo" onclick="redo()">Redo</button>
 		<button id="reset" onclick="reset()">Reset</button>
 		<hr class="separator" />
-		<label><input type="checkbox" id="hideCompleted" onclick="fill()" checked/>Hide completed</label>
+		<label><input type="checkbox" id="hideCompleted" onclick="localStorage['hideCompleted'] = this.checked; fill()" checked/>Hide completed</label>
 	</div>
 </div>
 <div>
@@ -373,6 +373,7 @@ function gotoError() {
 }
 
 function selectNext(event, element){
+	console.log(event)
 	if(event.code !== "Enter") return;
 
 	element.classList.add("searching");
@@ -573,6 +574,7 @@ function sample(id) {
 }
 
 // init
+if("hideCompleted" in localStorage) document.getElementById("hideCompleted").checked = localStorage["hideCompleted"] == "true";
 build();
 
 </script>
