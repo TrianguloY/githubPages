@@ -18,7 +18,7 @@
 			<br>
 			Add items, add persons, fill what each person used, and get the total price each one should pay.
 			<br>
-			No ads, no nonsense, just the tool. Any suggestion is welcomed! Source code available at <a href="https://github.com/TrianguloY/githubPages/tree/master/SplitBill">Github</a>
+			No ads, no nonsense, just the tool. Made without using AI at all. Any suggestion is welcomed! Source code available at <a href="https://github.com/TrianguloY/githubPages/tree/master/SplitBill">Github</a>
 		</p>
 		<hr>
 		<button onclick="sample(1)">Fill short finished example</button>
@@ -155,8 +155,8 @@ HTMLButtonElement.prototype.enabled = function(enabled = true) {
   else this.setAttribute("disabled", "disabled");
 }
 Number.prototype.formatPrice = function() {
-  const fixed = Math.round(this * 10 ** 6) / 10 ** 6; // fix imprecision
-  return Math.ceil(fixed * 100) / 100; // round to two decimals
+  return Math.ceil(Math.round(this * 100 * 10**6)/10**6)/100; // ceil to two decimals
+  // extra round to fix bug: 1.1*100=110.00000000000001
 }
 HTMLElement.prototype.visible = function(visible = true) {
   this.style.display = visible ? "" : "none";
