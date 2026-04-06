@@ -1,445 +1,569 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0, interactive-widget=resizes-content">
-	<title>Split bill</title>
-	
-	<script data-goatcounter="https://trianguloy.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, interactive-widget=resizes-content">
+  <title>Split bill</title>
+
+  <script data-goatcounter="https://trianguloy.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </head>
+
 <body>
 
-<div class="block">
-	<h1>Split bill</h1>
-	<hr>
-	<details>
-		<summary>Description:</summary>
-		<p>
-			Personal tool made by <a href="https://github.com/TrianguloY">TrianguloY</a> to split a bill into different persons without using excel/sheets.
-			<br>
-			Add items, add persons, fill what each person used, and get the total price each one should pay.
-			<br>
-			No ads, no nonsense, just the tool. Made without using AI at all.
-			<br>
-			Any suggestion is welcomed! Source code available at <a href="https://github.com/TrianguloY/githubPages/tree/master/SplitBill">GitHub</a>
-		</p>
-		<hr>
-		<button onclick="sample(1)">Fill short finished example</button>
-		<button onclick="sample(2)">Fill long pending example</button>
-	</details>
-</div>
-<hr>
-<div class="info block">
-	<div class="flex">
-		<p><span id="itemsCount"></span> items: <span id="itemsPrice"></span></p>
-			<hr class="separator" />
-		<p><span id="personsCount"></span> persons: <span id="personsPrice"></span></p>
-		<hr class="separator" />
-		<p><span id="status" onclick="gotoError()"></span></p>
-	</div>
-	<hr>
-	<div class="flex">
-		<button onclick="addItem()">New item</button>
-		<button onclick="addPerson()">New person</button>
-		<button onclick="share()">Share</button>
-		<hr class="separator" />
-		<button id="undo" onclick="undo()">Undo</button>
-		<button id="redo" onclick="redo()">Redo</button>
-		<button id="reset" onclick="reset()">Reset</button>
-		<hr class="separator" />
-		<label><input type="checkbox" id="hideCompleted" onclick="localStorage['hideCompleted'] = this.checked; fill()" checked/>Hide completed</label>
-	</div>
-</div>
-<div>
-	<h3>Items:</h3>
+  <div class="block">
+    <h1>Split bill</h1>
+    <hr>
+    <details>
+      <summary>Description:</summary>
+      <p>
+        Personal tool made by <a href="https://github.com/TrianguloY">TrianguloY</a> to split a bill into different
+        persons without using excel/sheets.
+        <br>
+        Add items, add persons, fill what each person used, and get the total price each one should pay.
+        <br>
+        No ads, no nonsense, just the tool. Made without using AI at all.
+        <br>
+        Any suggestion is welcomed! Source code available at <a
+          href="https://github.com/TrianguloY/githubPages/tree/master/SplitBill">GitHub</a>
+      </p>
+      <hr>
+      <button onclick="sample(1)">Fill short finished example</button>
+      <button onclick="sample(2)">Fill long pending example</button>
+    </details>
+  </div>
+  <hr>
+  <div class="info block">
+    <div class="flex">
+      <p><span id="itemsCount"></span> items: <span id="itemsPrice"></span></p>
+      <hr class="separator" />
+      <p><span id="personsCount"></span> persons: <span id="personsPrice"></span></p>
+      <hr class="separator" />
+      <p><span id="status" onclick="gotoError()"></span></p>
+    </div>
+    <hr>
+    <div class="flex">
+      <button onclick="addItem()">New item</button>
+      <button onclick="addPerson()">New person</button>
+      <button onclick="share()">Share</button>
+      <hr class="separator" />
+      <button id="undo" onclick="undo()">Undo</button>
+      <button id="redo" onclick="redo()">Redo</button>
+      <button id="reset" onclick="reset()">Reset</button>
+      <hr class="separator" />
+      <label><input type="checkbox" id="hideCompleted" onclick="localStorage['hideCompleted'] = this.checked; fill()"
+          checked />Hide completed</label>
+    </div>
+  </div>
+  <div>
+    <h3>Items:</h3>
     <div id="items"></div>
-</div>
-<hr/>
-<div>
-	<h3>Persons:</h3>
+  </div>
+  <hr />
+  <div>
+    <h3>Persons:</h3>
     <div id="persons"></div>
-</div>
+  </div>
 
-<style>
-
-body {
-	max-width: 600px;
-	margin: auto;
-}
-
-details {
-	padding: 5px;
-}
-
-.info {
-	position: sticky;
-	top: 10px;
-	background-color: lightgrey;
-}
-p, summary {
-	margin: auto;
-	text-align: center;
-	font-size: large;
-}
-h1, h3 {
-	margin: auto;
-	text-align: center;
-}
-
-.block {	
-	border-radius: 10px;
-	border-width: 2px;
-	border-color: black;
-	border-style: solid;
-	padding: 5px;
-	margin: 5px;
-}
-
-input {
-	font-size: large;
-	border-radius: 5px;
-}
-input[type=text]{
-	width: 0;
-	flex-grow: 3;
-}
-input[type=number]{
-	width: 0;
-	flex-grow: 1;
-}
-
-.flex {
-	display: flex;
-	align-items: center;
-	flex-wrap: wrap;
-}
-.separator {
-	margin: auto;
-	width: 1px;
-	height: 20px;
-	display: inline-block;
-}
-
-button {
-	border-radius: 5px;
-	font-size: large;
-}
-
-</style>
-
-<script>
-
-// JavaScript utils
-function byId(id) {
-  return (element) => String(element.id) === String(id);
-}
-Array.prototype.sum = function() {
-  return this.reduce((a, b) => a + b, 0);
-}
-Array.prototype.max = function(base = 0) {
-  return this.reduce((a, b) => Math.max(a, b), base);
-}
-
-function loadStorage(key, ifNull = null) {
-  return key in localStorage ? JSON.parse(localStorage[key]) : ifNull;
-}
-
-function storeStorage(key, value, removeIf = null) {
-  if (equals(value, removeIf)) delete localStorage[key];
-  else localStorage[key] = JSON.stringify(value);
-}
-
-function equals(a, b) {
-  return JSON.stringify(a) === JSON.stringify(b);
-}
-HTMLButtonElement.prototype.enabled = function(enabled = true) {
-  if (enabled) this.removeAttribute("disabled");
-  else this.setAttribute("disabled", "disabled");
-}
-Number.prototype.formatPrice = function() {
-  return Math.ceil(Math.round(this * 100 * 10**6)/10**6)/100; // ceil to two decimals
-  // extra round to fix bug: 1.1*100=110.00000000000001
-}
-HTMLElement.prototype.visible = function(visible = true) {
-  this.style.display = visible ? "" : "none";
-}
-HTMLElement.prototype.center = function() {
-  this.scrollIntoView({
-    behavior: 'auto',
-    block: 'center',
-    inline: 'center'
-  });
-}
-
-
-// data
-const MAX_UNDO = 50;
-let data = loadStorage("data", {
-  "persons": [],
-  "items": []
-});
-
-
-// Utils
-
-function newId() {
-  return data.persons.concat(data.items).map(e => e.id).max() + 1;
-}
-
-function save() {
-  const oldData = loadStorage("data");
-  if (equals(data, oldData)) return;
-
-  console.log(data);
-
-  // store
-  storeStorage("data", data);
-
-  // push for undo
-  if (oldData != null) {
-    const undoData = loadStorage("undo", []);
-    undoData.push(oldData);
-    undoData.splice(0, undoData.length - MAX_UNDO);
-    storeStorage("undo", undoData);
-    delete localStorage["redo"];
-  }
-}
-
-function undo() {
-  const undoData = loadStorage("undo", []);
-  if (undoData.length === 0) {
-    console.log("Nothing to undo");
-    return;
-  }
-  const redoData = loadStorage("redo", []);
-
-  redoData.push(data);
-  redoData.splice(0, redoData.length - MAX_UNDO);
-  data = undoData.pop();
-
-  storeStorage("undo", undoData, []);
-  storeStorage("redo", redoData);
-  storeStorage("data", data); // needed to avoid save to delete the redo after build
-
-  build();
-}
-
-function redo() {
-  const redoData = loadStorage("redo", []);
-  if (redoData.length === 0) {
-    console.log("Nothing to redo");
-    return;
-  }
-  const undoData = loadStorage("undo", []);
-
-  undoData.push(data);
-  undoData.splice(0, undoData.length - MAX_UNDO);
-  data = redoData.pop();
-
-  storeStorage("undo", undoData);
-  storeStorage("redo", redoData, []);
-  storeStorage("data", data); // needed to avoid save to delete the redo after build
-
-  build();
-}
-
-
-// methods
-
-function reset() {
-  if (!confirm("Do you really want to reset?")) return;
-  data.persons = [];
-  data.items = [];
-  build();
-}
-
-function getAmount(person, item) {
-  return person.amounts[item.id] || 0;
-}
-
-function addItem() {
-  const id = newId();
-  data.items.push({
-    id: id,
-    name: `Item ${data.items.length + 1}`,
-    price: 0,
-    amount: 1,
-  });
-  build();
-  const text=document.querySelector(`#id_${id} .itemName`);
-  text.center();
-  text.select();
-}
-
-function addPerson() {
-  const id = newId();
-  data.persons.push({
-    id: id,
-    name: `Person ${data.persons.length + 1}`,
-    amounts: {},
-    paid: false,
-  });
-  build();
-  const text=document.querySelector(`#id_${id} .personName`);
-  text.center();
-  text.select();
-}
-
-function deleteItem(id) {
-  data.items.splice(data.items.indexOf(data.items.find(byId(id))), 1);
-  data.persons.forEach(person => {
-    delete person.amounts[id];
-  });
-  build();
-}
-
-function deletePerson(id) {
-  data.persons.splice(data.persons.indexOf(data.persons.find(byId(id))), 1);
-  build();
-}
-
-function changeItemName(input, id) {
-  data.items.find(byId(id)).name = input.value;
-  fill(input);
-}
-
-function changeItemPrice(input, itemId) {
-  data.items.find(byId(itemId)).price = parseFloat(input.value);
-  fill(input);
-}
-
-function changeItemPriceTotal(input, itemId) {
-  const item = data.items.find(byId(itemId));
-  item.price = parseFloat(input.value) / (item.amount === 0 ? 1 : item.amount);
-  fill(input);
-}
-
-function changeItemAmount(input, itemId) {
-  data.items.find(byId(itemId)).amount = parseFloat(input.value);
-  fill(input);
-}
-
-function changePersonName(input, id) {
-  data.persons.find(byId(id)).name = input.value;
-  fill(input);
-}
-
-function changePersonAmount(input, personId, itemId) {
-  data.persons.find(byId(personId)).amounts[itemId] = parseFloat(input.value);
-  fill(input);
-}
-
-function increasePersonAmount(personId, itemId, amount) {
-  const amounts = data.persons.find(byId(personId)).amounts;
-  amounts[itemId] = Math.max(0, (amounts[itemId] || 0) + amount);
-  fill();
-}
-
-function splitEqually(itemId) {
-  const amount = data.items.find(byId(itemId)).amount / data.persons.length;
-  data.persons.forEach(person => {
-    person.amounts[itemId] = amount;
-  });
-  fill();
-}
-
-function clearItem(itemId) {
-  data.persons.forEach(person => {
-    person.amounts[itemId] = 0;
-  });
-  fill();
-}
-
-function normalizeItem(itemId){
-	const item = data.items.find(byId(itemId));
-
-	const sum = data.persons.map(person => getAmount(person, item)).sum();
-	if(sum === 0){
-		return;
-	}
-	data.persons.filter(person => itemId in person.amounts).forEach(person => person.amounts[itemId] *= item.amount / sum);
-	fill();
-}
-
-function personPaid(personId, paid) {
-  data.persons.find(byId(personId)).paid = paid;
-  fill();
-}
-
-function centerById(id) {
-  document.querySelector(`#id_${id}`).center();
-}
-
-function gotoError() {
-  for (const item of data.items) {
-    if (calculateItemPending(item) !== 0) {
-      centerById(item.id);
-      return;
+  <style>
+    body {
+      max-width: 600px;
+      margin: auto;
     }
-  }
-  for (const person of data.persons) {
-    if (!person.paid) {
-      centerById(person.id);
-      return;
+
+    details {
+      padding: 5px;
     }
-  }
-}
 
-function selectNext(event, element){
-	if(event.key !== "Enter") return;
+    .info {
+      position: sticky;
+      top: 10px;
+      background-color: lightgrey;
+    }
 
-	element.classList.add("searching");
-	const elements = [...document.querySelectorAll(".searching, .selectable")].filter(e=>e.offsetParent != null);
-	element.classList.remove("searching");
-	const next = elements[(elements.indexOf(element) + (!event.shiftKey ? 1 : elements.length-1))%elements.length];
-	next.center();
-	next.select();
-}
+    p,
+    summary {
+      margin: auto;
+      text-align: center;
+      font-size: large;
+    }
 
-// generators
+    h1,
+    h3 {
+      margin: auto;
+      text-align: center;
+    }
 
-function build() {
+    .block {
+      border-radius: 10px;
+      border-width: 2px;
+      border-color: black;
+      border-style: solid;
+      padding: 5px;
+      margin: 5px;
+    }
 
-  document.getElementById("items").innerHTML = data.items.map(item => `<div id="id_${item.id}" class="block">
+    input {
+      font-size: large;
+      border-radius: 5px;
+    }
+
+    input[type=text] {
+      width: 0;
+      flex-grow: 3;
+    }
+
+    input[type=number] {
+      width: 0;
+      flex-grow: 1;
+    }
+
+    .flex {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .separator {
+      margin: auto;
+      width: 1px;
+      height: 20px;
+      display: inline-block;
+    }
+
+    button {
+      border-radius: 5px;
+      font-size: large;
+    }
+  </style>
+
+  <script>
+
+    // JavaScript utils //
+
+    /** returns a lambda to select elements by its [id]. To be used as elements.find(byId(123)) */
+    function byId(id) {
+      return (element) => String(element.id) === String(id);
+    }
+
+    /** returns the addition of all elements in the array. */
+    Array.prototype.sum = function () {
+      return this.reduce((a, b) => a + b, 0);
+    }
+    /** returns the maximum value of the array (configurable [base]) */
+    Array.prototype.max = function (base = 0) {
+      return this.reduce((a, b) => Math.max(a, b), base);
+    }
+
+    /** returns the value of a [key] in localStorage, or [ifNull] if not present */
+    function loadStorage(key, ifNull = null) {
+      return key in localStorage ? JSON.parse(localStorage[key]) : ifNull;
+    }
+
+    /** stores a [value] under a [key] in localStorage. Deletes it instead if equals to [removeIf]  */
+    function storeStorage(key, value, removeIf = null) {
+      if (equals(value, removeIf)) delete localStorage[key];
+      else localStorage[key] = JSON.stringify(value);
+    }
+
+    /** true iff both values are equal (recursively, serialized as json) */
+    function equals(a, b) {
+      return JSON.stringify(a) === JSON.stringify(b);
+    }
+
+    /** returns the same value rounded-up if more than 2 decimals: 1.23->1.23, 1.231->1.24 */
+    Number.prototype.ceilCents = function () {
+      return Math.ceil(Math.round(this * 100 * 10 ** 6) / 10 ** 6) / 100; // ceil to two decimals
+      // extra round to fix bug: 1.1*100=110.00000000000001
+    }
+    /** makes an element [visible] (by default) or invisible */
+    HTMLElement.prototype.visible = function (visible = true) {
+      this.style.display = visible ? "" : "none";
+    }
+    /** sets the element in the middle of the screen */
+    HTMLElement.prototype.center = function () {
+      this.scrollIntoView({
+        behavior: 'auto',
+        block: 'center',
+        inline: 'center'
+      });
+    }
+
+    // data //
+
+    /** Maximum number of 'undos' to store */
+    const MAX_UNDO = 50;
+    /** the current live data */
+    let data = loadStorage("data", {
+      "persons": [],
+      "items": []
+    });
+
+    // utils //
+
+    /** returns a new not-yet-used id */
+    function newId() {
+      return data.persons.concat(data.items).map(e => e.id).max() + 1;
+    }
+
+    /** returns the amount of [item] used by a [person] (0 if not used) */
+    function getAmount(person, item) {
+      return person.amounts[item.id] || 0;
+    }
+
+    /** returns the total amount that a [person] needs to pay */
+    function calculatePersonTotal(person) {
+      return Object.entries(person.amounts)
+        .map(([itemId, amount]) => data.items.find(byId(itemId)).price * amount)
+        .sum();
+    }
+
+    /** returns the pending amount of an [item] (ceiled), or negative if extra amount */
+    function calculateItemPending(item) {
+      return (item.amount - data.persons.map(person => getAmount(person, item)).sum()).ceilCents();
+    }
+
+    /** stores the current data (pushes existing into 'undo' and deletes redo) */
+    function save() {
+      const oldData = loadStorage("data");
+      if (equals(data, oldData)) return;
+
+      console.log(data);
+
+      // store
+      storeStorage("data", data);
+
+      // push for undo
+      if (oldData != null) {
+        const undoData = loadStorage("undo", []);
+        undoData.push(oldData);
+        undoData.splice(0, undoData.length - MAX_UNDO);
+        storeStorage("undo", undoData);
+        delete localStorage["redo"];
+      }
+    }
+
+    /** shares the current data */
+    function share() {
+      const title = document.title;
+
+      const detailed = confirm("Include details? (product per person)");
+      const itemsPrice = data.items.map(item => item.price * item.amount).sum().ceilCents();
+      const personsPrice = data.persons.map(calculatePersonTotal).sum().ceilCents();
+      const totalDiff = (itemsPrice - personsPrice).ceilCents();
+      const text = data.persons.flatMap(person => [
+        `${person.name}: ${calculatePersonTotal(person).ceilCents()}${person.paid ? ' (paid)' : ''}`,
+        ...(!detailed ? [] : [
+          // keep order from data.items array
+          ...data.items.map(item => [item, getAmount(person, item)])
+            .filter(e => e[1] !== 0)
+            .map(([item, amount]) => `  - ${item.name}${amount === 1 ? '' : ` (${amount.ceilCents()})`}: ${(item.price * amount).ceilCents()}`),
+          "",
+        ])
+      ]).join("\n") + (
+          totalDiff > 0 ? `\nUnknown: ${totalDiff}` :
+            totalDiff < 0 ? `\nExtra: ${-totalDiff}` :
+              ""
+        );
+
+      if (navigator.share) {
+        // share
+        navigator.share({
+          title: title,
+          text: text,
+        })
+          .then(() => console.log('shared'))
+          .catch((error) => console.log(error));
+      } else if (navigator.clipboard) {
+        // copy
+        navigator.clipboard.writeText(text)
+          .then(() => alert("Text copied to clipboard"))
+          .catch(() => prompt(title + " (Ctrl+C to copy)", text));
+      } else {
+        // just display
+        prompt(title + " (Ctrl+C to copy)", text);
+      }
+    }
+
+    // big actions (modify number of elements, will call build) //
+
+    /** restores the last undo data (stores current into 'redo') */
+    function undo() {
+      const undoData = loadStorage("undo", []);
+      if (undoData.length === 0) {
+        console.log("Nothing to undo");
+        return;
+      }
+      const redoData = loadStorage("redo", []);
+
+      redoData.push(data);
+      redoData.splice(0, redoData.length - MAX_UNDO);
+      data = undoData.pop();
+
+      storeStorage("undo", undoData, []);
+      storeStorage("redo", redoData);
+      storeStorage("data", data); // needed to avoid save to delete the redo after build
+
+      build();
+    }
+
+    /** restores the last redo data (stores current back into 'undo') */
+    function redo() {
+      const redoData = loadStorage("redo", []);
+      if (redoData.length === 0) {
+        console.log("Nothing to redo");
+        return;
+      }
+      const undoData = loadStorage("undo", []);
+
+      undoData.push(data);
+      undoData.splice(0, undoData.length - MAX_UNDO);
+      data = redoData.pop();
+
+      storeStorage("undo", undoData);
+      storeStorage("redo", redoData, []);
+      storeStorage("data", data); // needed to avoid save to delete the redo after build
+
+      build();
+    }
+
+    /** resets the live data */
+    function reset() {
+      if (!confirm("Do you really want to reset?")) return;
+      data.persons = [];
+      data.items = [];
+      build();
+    }
+
+    /** creates a new item */
+    function addItem() {
+      const id = newId();
+      data.items.push({
+        id: id,
+        name: `Item ${id}`,
+        price: 0,
+        amount: 1,
+      });
+      build();
+
+      // selects and centers name
+      const text = document.querySelector(`#id_${id} .itemName`);
+      text.center();
+      text.select();
+    }
+
+    /** creates a new person */
+    function addPerson() {
+      const id = newId();
+      data.persons.push({
+        id: id,
+        name: `Person ${data.persons.length + 1}`,
+        amounts: {},
+        paid: false,
+      });
+      build();
+
+      // selects and centers name
+      const text = document.querySelector(`#id_${id} .personName`);
+      text.center();
+      text.select();
+    }
+
+    /** deletes an item by [id] */
+    function deleteItem(id) {
+      data.items.splice(data.items.indexOf(data.items.find(byId(id))), 1);
+      data.persons.forEach(person => {
+        delete person.amounts[id];
+      });
+      build();
+    }
+
+    /** deletes a person by [id] */
+    function deletePerson(id) {
+      data.persons.splice(data.persons.indexOf(data.persons.find(byId(id))), 1);
+      build();
+    }
+
+    // small actions (only modify values, will call fill) //
+
+    /** sets the name of an item by [id] to the value of an [input] */
+    function changeItemName(input, id) {
+      data.items.find(byId(id)).name = input.value;
+      fill(input);
+    }
+
+    /** sets the price of an item by [id] to the value of an [input] */
+    function changeItemPrice(input, id) {
+      data.items.find(byId(id)).price = parseFloat(input.value);
+      fill(input);
+    }
+
+    /** sets the total (price*amount) price of an item by [id] to the value of an [input] */
+    function changeItemPriceTotal(input, id) {
+      const item = data.items.find(byId(id));
+      item.price = parseFloat(input.value) / (item.amount === 0 ? 1 : item.amount);
+      fill(input);
+    }
+
+    /** Sets the amount of an item by [id] to the value of an [input] */
+    function changeItemAmount(input, id) {
+      data.items.find(byId(id)).amount = parseFloat(input.value);
+      fill(input);
+    }
+
+    /** sets the name of a person by [id] to the value of an [input] */
+    function changePersonName(input, id) {
+      data.persons.find(byId(id)).name = input.value;
+      fill(input);
+    }
+
+    /** sets the amount that a person by [personId] used of an item by [itemId] to the value of an [input] */
+    function changePersonAmount(input, personId, itemId) {
+      data.persons.find(byId(personId)).amounts[itemId] = parseFloat(input.value);
+      fill(input);
+    }
+
+    /** increases the [amount] (can be negative) that a person by [personId] used of an item by [itemId] */
+    function increasePersonAmount(personId, itemId, amount) {
+      const amounts = data.persons.find(byId(personId)).amounts;
+      amounts[itemId] = Math.max(0, (amounts[itemId] || 0) + amount);
+      fill();
+    }
+
+    /** sets the amount that all persons used of an item by [id] to the same value */
+    function splitItemEqually(id) {
+      const amount = data.items.find(byId(id)).amount / data.persons.length;
+      data.persons.forEach(person => {
+        person.amounts[id] = amount;
+      });
+      fill();
+    }
+
+    /** sets the amount that all persons used of an item by [id] to 0 */
+    function clearItem(id) {
+      data.persons.forEach(person => {
+        person.amounts[id] = 0;
+      });
+      fill();
+    }
+
+    /** adjusts the amount that all persons used of an item by [id] proportionately so that the total amount equals the item amount */
+    function normalizeItem(id) {
+      const item = data.items.find(byId(id));
+
+      const sum = data.persons.map(person => getAmount(person, item)).sum();
+      if (sum === 0) {
+        return;
+      }
+      data.persons.filter(person => id in person.amounts).forEach(person => person.amounts[id] *= item.amount / sum);
+      fill();
+    }
+
+    /** marks a person by [id] as [paid] */
+    function personPaid(id, paid) {
+      data.persons.find(byId(id)).paid = paid;
+      fill();
+    }
+
+    /** Loads one of the existing samples by [id] */
+    function sample(id) {
+      data = JSON.parse({
+        1: '{"persons":[{"id":1,"name":"Alice","amounts":{"4":1,"5":1,"7":0.1},"paid":true},{"id":2,"name":"Bob","amounts":{"4":1,"6":1},"paid":true},{"id":3,"name":"Charlie","amounts":{"4":1,"7":0.9},"paid":true}],"items":[{"id":4,"name":"Water","price":2.2,"amount":3},{"id":5,"name":"Hamburger","price":14.95,"amount":1},{"id":6,"name":"Spaghetti","price":13.37,"amount":1},{"id":7,"name":"Pizza","price":15.25,"amount":1}]}',
+        2: '{"persons":[{"id":14,"name":"Emma Crane","amounts":{"1":0.1,"6":0.1,"8":1,"13":1},"paid":true},{"id":15,"name":"Macy Lucero","amounts":{"1":0.1,"4":1,"6":0.1,"8":1,"12":1,"13":0},"paid":true},{"id":16,"name":"Iyla Odom","amounts":{"1":0.1,"6":0.1,"7":1},"paid":true},{"id":17,"name":"Jake Lester","amounts":{"1":0.1,"6":0.1,"9":1,"12":1},"paid":true},{"id":18,"name":"Castiel Parra","amounts":{"1":0.1,"6":0.1,"8":1,"11":1},"paid":true},{"id":19,"name":"Karen Hart","amounts":{"1":0.1,"6":0.1,"7":1},"paid":true},{"id":20,"name":"Wesley Orr","amounts":{"0":1,"1":0.1,"6":0.1,"10":1,"11":1},"paid":true},{"id":21,"name":"Hudson Castillo","amounts":{"1":0.1,"6":0.1,"7":1,"12":1,"13":1},"paid":true},{"id":22,"name":"Skyler Wilkinson","amounts":{"1":0.1,"6":0.1,"8":1,"11":1},"paid":true},{"id":23,"name":"Tiffany Cortes","amounts":{"1":0.1,"6":0.1}}],"items":[{"id":4,"name":"Beer","price":3,"amount":1},{"id":0,"name":"soda","price":2.9,"amount":1},{"id":1,"name":"potatoes","price":7.9,"amount":1},{"id":6,"name":"salad","price":9.9,"amount":1},{"id":7,"name":"beef with cheese","price":13.9,"amount":3},{"id":8,"name":"chicken with bacon","price":14.5,"amount":5},{"id":9,"name":"chicken with curry","price":14.5,"amount":1},{"id":10,"name":"spicy pork","price":10.9,"amount":1},{"id":11,"name":"brownie","price":6.9,"amount":3},{"id":12,"name":"cheese cake","price":5.9,"amount":3},{"id":13,"name":"wine","price":2.9,"amount":2}]}',
+      }[id]);
+      build();
+    }
+
+    // visual actions (don't modify data) //
+
+    /** centers the object (item or person) by a given [id] */
+    function centerById(id) {
+      document.querySelector(`#id_${id}`).center();
+    }
+
+    /** centers the first existing error, if any */
+    function gotoError() {
+      for (const item of data.items) {
+        if (calculateItemPending(item) !== 0) {
+          centerById(item.id);
+          return;
+        }
+      }
+      for (const person of data.persons) {
+        if (!person.paid) {
+          centerById(person.id);
+          return;
+        }
+      }
+    }
+
+    /** actions to run when pressing a key [event] on an [element] */
+    function onSelectableKeypress(event, element) {
+      if (event.key === "Enter") {
+        // pressed enter: selects the next/previous selectable element (wraps)
+        element.classList.add("searching"); // make sure that the current element is returned (even if not selectable)
+        const elements = [...document.querySelectorAll(".searching, .selectable")]
+          // only visible elements
+          .filter(e => e.offsetParent != null);
+        element.classList.remove("searching");
+
+        // get next (previous if shift was held) and center+select
+        const next = elements[(elements.indexOf(element) + (!event.shiftKey ? 1 : elements.length - 1)) % elements.length];
+        next.center();
+        next.select();
+      }
+    }
+
+    // generators //
+
+    /** recreates the full page based on the given live data. Can be called anytime. */
+    function build() {
+
+      // global actions
+      if ("hideCompleted" in localStorage) document.getElementById("hideCompleted").checked = localStorage["hideCompleted"] === "true";
+
+      // build items
+      document.getElementById("items").innerHTML = data.items.map(item => `<div id="id_${item.id}" class="block">
 		<div class="flex">
-			<input class="itemName selectable" type="text" value="" oninput="changeItemName(this, ${item.id})" onkeydown="selectNext(event, this)" />
+			<input class="itemName selectable" type="text" value="" oninput="changeItemName(this, ${item.id})" onkeydown="onSelectableKeypress(event, this)" />
 			<button onclick="deleteItem(${item.id})">X</button>
 		</div>
 		<div class="flex">
 			<span>Price(1):</span>
-			<input class="itemPrice selectable" type="number" oninput="changeItemPrice(this, ${item.id})" onkeydown="selectNext(event, this)" min="0" step="any" value="" />
+			<input class="itemPrice selectable" type="number" oninput="changeItemPrice(this, ${item.id})" onkeydown="onSelectableKeypress(event, this)" min="0" step="any" value="" />
 			<span>Qty:</span>
-			<input class="itemAmount selectable" type="number" oninput="changeItemAmount(this, ${item.id})" onkeydown="selectNext(event, this)" min="0" step="any" value="" />
+			<input class="itemAmount selectable" type="number" oninput="changeItemAmount(this, ${item.id})" onkeydown="onSelectableKeypress(event, this)" min="0" step="any" value="" />
 			<span>Price:</span>
-			<input class="itemPriceTotal selectable" type="number" oninput="changeItemPriceTotal(this, ${item.id})" onkeydown="selectNext(event, this)" min="0" step="any" value="" />
+			<input class="itemPriceTotal selectable" type="number" oninput="changeItemPriceTotal(this, ${item.id})" onkeydown="onSelectableKeypress(event, this)" min="0" step="any" value="" />
 		</div>
 		<hr>
-        ${data.persons.map(person=>`<div id="id_${item.id}_${person.id}" class="flex">
+        ${data.persons.map(person => `<div id="id_${item.id}_${person.id}" class="flex">
 			<button onclick="centerById(${person.id})">&gt;</button>
-        	<input class="personName" type="text" value="" oninput="changePersonName(this, ${person.id})" onkeydown="selectNext(event, this)" />
+        	<input class="personName" type="text" value="" oninput="changePersonName(this, ${person.id})" onkeydown="onSelectableKeypress(event, this)" />
             <span>Qty:</span>
-        	<input class="personAmount selectable" type="number" onchange="changePersonAmount(this, ${person.id}, ${item.id})" onkeydown="selectNext(event, this)" min="0" step="any" value="" />
+        	<input class="personAmount selectable" type="number" onchange="changePersonAmount(this, ${person.id}, ${item.id})" onkeydown="onSelectableKeypress(event, this)" min="0" step="any" value="" />
 			<button onclick="increasePersonAmount(${person.id}, ${item.id}, 1)">+</button>
 			<button onclick="increasePersonAmount(${person.id}, ${item.id}, -1)">-</button>
         </div>`).join("\n")}
 		<div class="flex">
-			<button onclick="splitEqually(${item.id})">Split equally</button>
+			<button onclick="splitItemEqually(${item.id})">Split equally</button>
 			<button onclick="clearItem(${item.id})">Clear</button>
 			<button onclick="normalizeItem(${item.id})">Normalize</button>
 			<p class="itemPending"></p>
 		</div>
     </div>`).join("\n");
 
-  document.getElementById("persons").innerHTML = data.persons.map(person => `<div id="id_${person.id}" class="block">
+      // build persons
+      document.getElementById("persons").innerHTML = data.persons.map(person => `<div id="id_${person.id}" class="block">
 		<div class="flex">
-			<input class="personName selectable" type="text" value="" oninput="changePersonName(this, ${person.id})" onkeydown="selectNext(event, this)" />
+			<input class="personName selectable" type="text" value="" oninput="changePersonName(this, ${person.id})" onkeydown="onSelectableKeypress(event, this)" />
 			<button onclick="deletePerson(${person.id})">X</button>
 		</div>
 		<hr>
-     	${data.items.map(item =>`<div id="id_${person.id}_${item.id}" class="flex">
+     	${data.items.map(item => `<div id="id_${person.id}_${item.id}" class="flex">
 			<button onclick="centerById(${item.id})">&gt;</button>
-        	<input class="itemName" type="text" value="" oninput="changeItemName(this, ${item.id})" onkeydown="selectNext(event, this)" />
+        	<input class="itemName" type="text" value="" oninput="changeItemName(this, ${item.id})" onkeydown="onSelectableKeypress(event, this)" />
             <span>Qty:</span>
-            <input class="personAmount selectable" type="number" onchange="changePersonAmount(this, ${person.id}, ${item.id})" onkeydown="selectNext(event, this)" min="0" step="any" value="" />
+            <input class="personAmount selectable" type="number" onchange="changePersonAmount(this, ${person.id}, ${item.id})" onkeydown="onSelectableKeypress(event, this)" min="0" step="any" value="" />
 			<button onclick="increasePersonAmount(${person.id}, ${item.id}, 1)">+</button>
 			<button onclick="increasePersonAmount(${person.id}, ${item.id}, -1)">-</button>
 			<span class="itemPending"></span>
@@ -450,151 +574,99 @@ function build() {
 		</div>
     </div>`).join("\n");
 
-  fill();
-}
+      // fills values
+      fill();
+    }
 
-function calculatePersonTotal(person) {
-  return Object.entries(person.amounts)
-    .map(([itemId, amount]) => data.items.find(byId(itemId)).price * amount)
-    .sum();
-}
+    /** recreates the page values based on the given live data. Should be called only when values change (not number of elements). Will [exclude] changing an element if provided. */
+    function fill(exclude) {
+      /** sets the [value] of an [element] unless it is the one we should [exclude] */
+      function set(element, value) {
+        if (element !== exclude) element.value = typeof value !== "number" ? value : Number(value.toFixed(6));
+      }
 
-function calculateItemPending(item) {
-  return (item.amount - data.persons.map(person => getAmount(person, item)).sum()).formatPrice();
-}
+      // set item values
+      data.items.forEach(item => {
+        let parent = document.querySelector(`#id_${item.id}`);
+        set(parent.querySelector(".itemName"), item.name);
+        set(parent.querySelector(".itemPrice"), item.price);
+        set(parent.querySelector(".itemAmount"), item.amount);
+        set(parent.querySelector(".itemPriceTotal"), item.price * item.amount);
+        data.persons.forEach(person => {
+          let child = parent.querySelector(`#id_${item.id}_${person.id}`);
+          set(child.querySelector(".personName"), person.name);
+          set(child.querySelector(".personAmount"), getAmount(person, item));
+        });
+        const itemPending = calculateItemPending(item);
+        parent.querySelector(".itemPending").innerText =
+          itemPending > 0 ? `There is still ${itemPending} quantity to assign` :
+            itemPending < 0 ? `There is an extra ${-itemPending} quantity` :
+              "Item assigned";
+        parent.style.backgroundColor =
+          item.price === 0 ? "lightgrey" :
+            itemPending > 0 ? "lightpink" :
+              itemPending < 0 ? "lightyellow" :
+                "lightgreen";
+      });
 
-function fill(exclude) {
-  // set data
-  function set(element, value) {
-    if (element !== exclude) element.value = typeof value !== "number" ? value : Number(value.toFixed(6));
-  }
+      // sets person values
+      const hideCompleted = document.getElementById("hideCompleted").checked;
+      data.persons.forEach(person => {
+        let parent = document.querySelector(`#id_${person.id}`);
+        set(parent.querySelector(".personName"), person.name);
+        data.items.forEach(item => {
+          let child = parent.querySelector(`#id_${person.id}_${item.id}`);
+          set(child.querySelector(".itemName"), item.name);
+          set(child.querySelector(".personAmount"), getAmount(person, item));
+          const itemPending = calculateItemPending(item);
+          child.querySelector(".itemPending").innerText =
+            itemPending > 0 ? `${itemPending} pending` :
+              itemPending < 0 ? `${-itemPending} extra` :
+                "ok";
+          child.visible(!hideCompleted || itemPending !== 0);
+        });
+        parent.querySelector(".personTotal").innerText = calculatePersonTotal(person).ceilCents();
+        parent.querySelector(".personPaid").checked = person.paid;
+        parent.style.backgroundColor = person.paid ? "lightgreen" : "lightpink";
+      });
 
-  data.items.forEach(item => {
-    let parent = document.querySelector(`#id_${item.id}`);
-    set(parent.querySelector(".itemName"), item.name);
-    set(parent.querySelector(".itemPrice"), item.price);
-    set(parent.querySelector(".itemAmount"), item.amount);
-    set(parent.querySelector(".itemPriceTotal"), item.price * item.amount);
-    data.persons.forEach(person => {
-      let child = parent.querySelector(`#id_${item.id}_${person.id}`);
-      set(child.querySelector(".personName"), person.name);
-      set(child.querySelector(".personAmount"), getAmount(person, item));
-    });
-    const itemPending = calculateItemPending(item);
-    parent.querySelector(".itemPending").innerText =
-      itemPending > 0 ? `There is still ${itemPending} quantity to assign` :
-      itemPending < 0 ? `There is an extra ${-itemPending} quantity` :
-      "Item assigned";
-    parent.style.backgroundColor =
-      item.price === 0 ? "lightgrey" :
-      itemPending > 0 ? "lightpink" :
-      itemPending < 0 ? "lightyellow" :
-      "lightgreen";
-  });
+      // set totals
 
-  const hideCompleted = document.getElementById("hideCompleted").checked;
+      document.getElementById("itemsCount").innerText = data.items.length;
+      const itemsPrice = data.items.map(item => item.price * item.amount).sum().ceilCents();
+      document.getElementById("itemsPrice").innerText = itemsPrice;
 
-  data.persons.forEach(person => {
-    let parent = document.querySelector(`#id_${person.id}`);
-    set(parent.querySelector(".personName"), person.name);
-    data.items.forEach(item => {
-      let child = parent.querySelector(`#id_${person.id}_${item.id}`);
-      set(child.querySelector(".itemName"), item.name);
-      set(child.querySelector(".personAmount"), getAmount(person, item));
-      const itemPending = calculateItemPending(item);
-      child.querySelector(".itemPending").innerText =
-        itemPending > 0 ? `${itemPending} pending` :
-        itemPending < 0 ? `${-itemPending} extra` :
-        "ok";
-      child.visible(!hideCompleted || itemPending !== 0);
-    });
-    parent.querySelector(".personTotal").innerText = calculatePersonTotal(person).formatPrice();
-    parent.querySelector(".personPaid").checked = person.paid;
-    parent.style.backgroundColor = person.paid ? "lightgreen" : "lightpink";
-  });
+      document.getElementById("personsCount").innerText = data.persons.length;
+      const personsPrice = data.persons.map(calculatePersonTotal).sum().ceilCents();
+      document.getElementById("personsPrice").innerText = personsPrice;
 
-  document.getElementById("itemsCount").innerText = data.items.length;
-  const itemsPrice = data.items.map(item => item.price * item.amount).sum().formatPrice();
-  document.getElementById("itemsPrice").innerText = itemsPrice;
+      const totalDiff = (itemsPrice - personsPrice).ceilCents();
+      const allPaid = data.persons.every(p => p.paid);
+      document.getElementById("status").innerText =
+        totalDiff > 0 ? `There is still a price of ${totalDiff} to assign` :
+          totalDiff < 0 ? `There is an extra assigned price of ${-totalDiff}` :
+            `The bill price matches ${allPaid ? 'and everyone payed' : 'but someone still needs to pay'}`;
+      document.getElementById("status").style.backgroundColor =
+        itemsPrice === 0 ? "lightgrey" :
+          totalDiff > 0 ? "lightpink" :
+            totalDiff < 0 || !allPaid ? "lightyellow" :
+              "lightgreen";
 
-  document.getElementById("personsCount").innerText = data.persons.length;
-  const personsPrice = data.persons.map(calculatePersonTotal).sum().formatPrice();
-  document.getElementById("personsPrice").innerText = personsPrice;
+      // saves
+      save();
 
-  const totalDiff = (itemsPrice - personsPrice).formatPrice();
-  const allPaid = data.persons.every(p => p.paid);
-  document.getElementById("status").innerText =
-    totalDiff > 0 ? `There is still a price of ${totalDiff} to assign` :
-    totalDiff < 0 ? `There is an extra assigned price of ${-totalDiff}` :
-    `The bill price matches ${allPaid ? 'and everyone payed' : 'but someone still needs to pay'}`;
-  document.getElementById("status").style.backgroundColor =
-    itemsPrice === 0 ? "lightgrey" :
-    totalDiff > 0 ? "lightpink" :
-    totalDiff < 0 || !allPaid ? "lightyellow" :
-    "lightgreen";
+      // sets the state of buttons (after save as they retrieve the status of localStorage)
+      document.getElementById("reset").disabled = !(data.items.length + data.items.length > 0);
+      document.getElementById("undo").disabled = !("undo" in localStorage);
+      document.getElementById("redo").disabled = !("redo" in localStorage);
+    }
 
-  save();
+    // init //
+    build();
 
-  // buttons
-  document.getElementById("reset").enabled(data.items.length + data.items.length > 0);
-  document.getElementById("undo").enabled("undo" in localStorage);
-  document.getElementById("redo").enabled("redo" in localStorage);
-}
-
-function share() {
-  const title = document.title;
-
-  const detailed = confirm("Include details? (product per person)");
-  const itemsPrice = data.items.map(item => item.price * item.amount).sum().formatPrice();
-  const personsPrice = data.persons.map(calculatePersonTotal).sum().formatPrice();
-  const totalDiff = (itemsPrice - personsPrice).formatPrice();
-  const text = data.persons.flatMap(person => [
-    `${person.name}: ${calculatePersonTotal(person).formatPrice()}${person.paid ? ' (paid)' : ''}`,
-    ...(!detailed ? [] : [
-		// keep order from data.items array
-        ...data.items.map(item => [item, getAmount(person, item)])
-        .filter(e => e[1] !== 0)
-        .map(([item, amount]) => `  - ${item.name}${amount === 1 ? '' : ` (${amount.formatPrice()})`}: ${(item.price*amount).formatPrice()}`),
-        "",
-    ])
-  ]).join("\n") + (
-    totalDiff > 0 ? `\nUnknown: ${totalDiff}` :
-    totalDiff < 0 ? `\nExtra: ${-totalDiff}` :
-    ""
-  );
-
-  if (navigator.share) {
-    // share
-    navigator.share({
-        title: title,
-        text: text,
-      })
-      .then(() => console.log('shared'))
-      .catch((error) => console.log(error));
-  } else {
-    // copy
-    navigator.clipboard.writeText(text)
-      .then(() => alert("Text copied to clipboard"))
-      .catch(() => prompt(title + " (Ctrl+C to copy)", text));
-  }
-}
-
-function sample(id) {
-  data = JSON.parse({
-    1: '{"persons":[{"id":1,"name":"Alice","amounts":{"4":1,"5":1,"7":0.1},"paid":true},{"id":2,"name":"Bob","amounts":{"4":1,"6":1},"paid":true},{"id":3,"name":"Charlie","amounts":{"4":1,"7":0.9},"paid":true}],"items":[{"id":4,"name":"Water","price":2.2,"amount":3},{"id":5,"name":"Hamburger","price":14.95,"amount":1},{"id":6,"name":"Spaghetti","price":13.37,"amount":1},{"id":7,"name":"Pizza","price":15.25,"amount":1}]}',
-    2: '{"persons":[{"id":14,"name":"Emma Crane","amounts":{"1":0.1,"6":0.1,"8":1,"13":1},"paid":true},{"id":15,"name":"Macy Lucero","amounts":{"1":0.1,"4":1,"6":0.1,"8":1,"12":1,"13":0},"paid":true},{"id":16,"name":"Iyla Odom","amounts":{"1":0.1,"6":0.1,"7":1},"paid":true},{"id":17,"name":"Jake Lester","amounts":{"1":0.1,"6":0.1,"9":1,"12":1},"paid":true},{"id":18,"name":"Castiel Parra","amounts":{"1":0.1,"6":0.1,"8":1,"11":1},"paid":true},{"id":19,"name":"Karen Hart","amounts":{"1":0.1,"6":0.1,"7":1},"paid":true},{"id":20,"name":"Wesley Orr","amounts":{"0":1,"1":0.1,"6":0.1,"10":1,"11":1},"paid":true},{"id":21,"name":"Hudson Castillo","amounts":{"1":0.1,"6":0.1,"7":1,"12":1,"13":1},"paid":true},{"id":22,"name":"Skyler Wilkinson","amounts":{"1":0.1,"6":0.1,"8":1,"11":1},"paid":true},{"id":23,"name":"Tiffany Cortes","amounts":{"1":0.1,"6":0.1}}],"items":[{"id":4,"name":"Beer","price":3,"amount":1},{"id":0,"name":"soda","price":2.9,"amount":1},{"id":1,"name":"potatoes","price":7.9,"amount":1},{"id":6,"name":"salad","price":9.9,"amount":1},{"id":7,"name":"beef with cheese","price":13.9,"amount":3},{"id":8,"name":"chicken with bacon","price":14.5,"amount":5},{"id":9,"name":"chicken with curry","price":14.5,"amount":1},{"id":10,"name":"spicy pork","price":10.9,"amount":1},{"id":11,"name":"brownie","price":6.9,"amount":3},{"id":12,"name":"cheese cake","price":5.9,"amount":3},{"id":13,"name":"wine","price":2.9,"amount":2}]}',
-  } [id]);
-  build();
-}
-
-// init
-if("hideCompleted" in localStorage) document.getElementById("hideCompleted").checked = localStorage["hideCompleted"] === "true";
-build();
-
-</script>
+  </script>
 
 
 </body>
+
 </html>
-
-
