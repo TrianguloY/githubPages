@@ -348,6 +348,17 @@ function clearItem(itemId) {
   fill();
 }
 
+function normalizeItem(itemId){
+	const item = data.items.find(byId(itemId));
+
+	const sum = data.persons.map(person => getAmount(person, item)).sum();
+	if(sum === 0){
+		return;
+	}
+	data.persons.filter(person => itemId in person.amounts).forEach(person => person.amounts[itemId] *= item.amount / sum);
+	fill();
+}
+
 function personPaid(personId, paid) {
   data.persons.find(byId(personId)).paid = paid;
   fill();
@@ -411,7 +422,8 @@ function build() {
         </div>`).join("\n")}
 		<div class="flex">
 			<button onclick="splitEqually(${item.id})">Split equally</button>
-			<button onclick="clearItem(${item.id})">Clear item</button>
+			<button onclick="clearItem(${item.id})">Clear</button>
+			<button onclick="normalizeItem(${item.id})">Normalize</button>
 			<p class="itemPending"></p>
 		</div>
     </div>`).join("\n");
