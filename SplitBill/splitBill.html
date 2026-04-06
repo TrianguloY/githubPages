@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, interactive-widget=resizes-content">
 	<title>Split bill</title>
@@ -18,11 +18,12 @@
 			<br>
 			Add items, add persons, fill what each person used, and get the total price each one should pay.
 			<br>
-			No ads, no nonsense, just the tool. Made without using AI at all. Any suggestion is welcomed! Source code available at <a href="https://github.com/TrianguloY/githubPages/tree/master/SplitBill">Github</a>
+			No ads, no nonsense, just the tool. Made without using AI at all.
+			<br>
+			Any suggestion is welcomed! Source code available at <a href="https://github.com/TrianguloY/githubPages/tree/master/SplitBill">GitHub</a>
 		</p>
 		<hr>
 		<button onclick="sample(1)">Fill short finished example</button>
-		<br>
 		<button onclick="sample(2)">Fill long pending example</button>
 	</details>
 </div>
@@ -127,9 +128,9 @@ button {
 
 <script>
 
-// javascript utils
+// JavaScript utils
 function byId(id) {
-  return (element) => element.id == id;
+  return (element) => String(element.id) === String(id);
 }
 Array.prototype.sum = function() {
   return this.reduce((a, b) => a + b, 0);
@@ -148,7 +149,7 @@ function storeStorage(key, value, removeIf = null) {
 }
 
 function equals(a, b) {
-  return JSON.stringify(a) == JSON.stringify(b);
+  return JSON.stringify(a) === JSON.stringify(b);
 }
 HTMLButtonElement.prototype.enabled = function(enabled = true) {
   if (enabled) this.removeAttribute("disabled");
@@ -205,7 +206,7 @@ function save() {
 
 function undo() {
   const undoData = loadStorage("undo", []);
-  if (undoData.length == 0) {
+  if (undoData.length === 0) {
     console.log("Nothing to undo");
     return;
   }
@@ -224,7 +225,7 @@ function undo() {
 
 function redo() {
   const redoData = loadStorage("redo", []);
-  if (redoData.length == 0) {
+  if (redoData.length === 0) {
     console.log("Nothing to redo");
     return;
   }
@@ -308,7 +309,7 @@ function changeItemPrice(input, itemId) {
 
 function changeItemPriceTotal(input, itemId) {
   const item = data.items.find(byId(itemId));
-  item.price = parseFloat(input.value) / (item.amount == 0 ? 1 : item.amount);
+  item.price = parseFloat(input.value) / (item.amount === 0 ? 1 : item.amount);
   fill(input);
 }
 
@@ -370,7 +371,7 @@ function centerById(id) {
 
 function gotoError() {
   for (const item of data.items) {
-    if (calculateItemPending(item) != 0) {
+    if (calculateItemPending(item) !== 0) {
       centerById(item.id);
       return;
     }
@@ -465,7 +466,7 @@ function calculateItemPending(item) {
 function fill(exclude) {
   // set data
   function set(element, value) {
-    if (element != exclude) element.value = typeof value !== "number" ? value : Number(value.toFixed(6));
+    if (element !== exclude) element.value = typeof value !== "number" ? value : Number(value.toFixed(6));
   }
 
   data.items.forEach(item => {
@@ -485,7 +486,7 @@ function fill(exclude) {
       itemPending < 0 ? `There is an extra ${-itemPending} quantity` :
       "Item assigned";
     parent.style.backgroundColor =
-      item.price == 0 ? "lightgrey" :
+      item.price === 0 ? "lightgrey" :
       itemPending > 0 ? "lightpink" :
       itemPending < 0 ? "lightyellow" :
       "lightgreen";
@@ -505,7 +506,7 @@ function fill(exclude) {
         itemPending > 0 ? `${itemPending} pending` :
         itemPending < 0 ? `${-itemPending} extra` :
         "ok";
-      child.visible(!hideCompleted || itemPending != 0);
+      child.visible(!hideCompleted || itemPending !== 0);
     });
     parent.querySelector(".personTotal").innerText = calculatePersonTotal(person).formatPrice();
     parent.querySelector(".personPaid").checked = person.paid;
@@ -527,7 +528,7 @@ function fill(exclude) {
     totalDiff < 0 ? `There is an extra assigned price of ${-totalDiff}` :
     `The bill price matches ${allPaid ? 'and everyone payed' : 'but someone still needs to pay'}`;
   document.getElementById("status").style.backgroundColor =
-    itemsPrice == 0 ? "lightgrey" :
+    itemsPrice === 0 ? "lightgrey" :
     totalDiff > 0 ? "lightpink" :
     totalDiff < 0 || !allPaid ? "lightyellow" :
     "lightgreen";
@@ -544,14 +545,16 @@ function share() {
   const title = document.title;
 
   const detailed = confirm("Include details? (product per person)");
+  const itemsPrice = data.items.map(item => item.price * item.amount).sum().formatPrice();
+  const personsPrice = data.persons.map(calculatePersonTotal).sum().formatPrice();
   const totalDiff = (itemsPrice - personsPrice).formatPrice();
   const text = data.persons.flatMap(person => [
     `${person.name}: ${calculatePersonTotal(person).formatPrice()}${person.paid ? ' (paid)' : ''}`,
     ...(!detailed ? [] : [
 		// keep order from data.items array
         ...data.items.map(item => [item, getAmount(person, item)])
-        .filter(e => e[1] != 0)
-        .map(([item, amount]) => `  - ${item.name}${amount == 1 ? '' : ` (${amount.formatPrice()})`}: ${(item.price*amount).formatPrice()}`),
+        .filter(e => e[1] !== 0)
+        .map(([item, amount]) => `  - ${item.name}${amount === 1 ? '' : ` (${amount.formatPrice()})`}: ${(item.price*amount).formatPrice()}`),
         "",
     ])
   ]).join("\n") + (
@@ -578,14 +581,14 @@ function share() {
 
 function sample(id) {
   data = JSON.parse({
-    1: '{"persons":[{"id":1,"name":"Alice","amounts":{"4":1,"5":1,"7":0.1},"paid":true},{"id":2,"name":"Bob","amounts":{"4":1,"6":1},"paid":true},{"id":3,"name":"Charlie","amounts":{"4":1,"7":0.9},"paid":true}],"items":[{"id":4,"name":"Water","price":2.2,"amount":3},{"id":5,"name":"Hamburger","price":14.95,"amount":1},{"id":6,"name":"Spaguetti","price":13.37,"amount":1},{"id":7,"name":"Pizza","price":15.25,"amount":1}]}',
+    1: '{"persons":[{"id":1,"name":"Alice","amounts":{"4":1,"5":1,"7":0.1},"paid":true},{"id":2,"name":"Bob","amounts":{"4":1,"6":1},"paid":true},{"id":3,"name":"Charlie","amounts":{"4":1,"7":0.9},"paid":true}],"items":[{"id":4,"name":"Water","price":2.2,"amount":3},{"id":5,"name":"Hamburger","price":14.95,"amount":1},{"id":6,"name":"Spaghetti","price":13.37,"amount":1},{"id":7,"name":"Pizza","price":15.25,"amount":1}]}',
     2: '{"persons":[{"id":14,"name":"Emma Crane","amounts":{"1":0.1,"6":0.1,"8":1,"13":1},"paid":true},{"id":15,"name":"Macy Lucero","amounts":{"1":0.1,"4":1,"6":0.1,"8":1,"12":1,"13":0},"paid":true},{"id":16,"name":"Iyla Odom","amounts":{"1":0.1,"6":0.1,"7":1},"paid":true},{"id":17,"name":"Jake Lester","amounts":{"1":0.1,"6":0.1,"9":1,"12":1},"paid":true},{"id":18,"name":"Castiel Parra","amounts":{"1":0.1,"6":0.1,"8":1,"11":1},"paid":true},{"id":19,"name":"Karen Hart","amounts":{"1":0.1,"6":0.1,"7":1},"paid":true},{"id":20,"name":"Wesley Orr","amounts":{"0":1,"1":0.1,"6":0.1,"10":1,"11":1},"paid":true},{"id":21,"name":"Hudson Castillo","amounts":{"1":0.1,"6":0.1,"7":1,"12":1,"13":1},"paid":true},{"id":22,"name":"Skyler Wilkinson","amounts":{"1":0.1,"6":0.1,"8":1,"11":1},"paid":true},{"id":23,"name":"Tiffany Cortes","amounts":{"1":0.1,"6":0.1}}],"items":[{"id":4,"name":"Beer","price":3,"amount":1},{"id":0,"name":"soda","price":2.9,"amount":1},{"id":1,"name":"potatoes","price":7.9,"amount":1},{"id":6,"name":"salad","price":9.9,"amount":1},{"id":7,"name":"beef with cheese","price":13.9,"amount":3},{"id":8,"name":"chicken with bacon","price":14.5,"amount":5},{"id":9,"name":"chicken with curry","price":14.5,"amount":1},{"id":10,"name":"spicy pork","price":10.9,"amount":1},{"id":11,"name":"brownie","price":6.9,"amount":3},{"id":12,"name":"cheese cake","price":5.9,"amount":3},{"id":13,"name":"wine","price":2.9,"amount":2}]}',
   } [id]);
   build();
 }
 
 // init
-if("hideCompleted" in localStorage) document.getElementById("hideCompleted").checked = localStorage["hideCompleted"] == "true";
+if("hideCompleted" in localStorage) document.getElementById("hideCompleted").checked = localStorage["hideCompleted"] === "true";
 build();
 
 </script>
