@@ -3,6 +3,7 @@
 
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, interactive-widget=resizes-content">
+  <meta name="color-scheme" content="dark light">
   <title>Split bill</title>
 
   <script data-goatcounter="https://trianguloy.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
@@ -80,7 +81,7 @@
     .info {
       position: sticky;
       top: 10px;
-      background-color: lightgrey;
+      background-color: color-mix(in oklab, Canvas 50%, grey);
     }
 
     p,
@@ -103,8 +104,8 @@
 
     .block {
       border-radius: 10px;
-      border-width: 2px;
-      border-color: black;
+      border-width: 1px;
+      border-color: FieldText;
       border-style: solid;
       padding: 5px;
       margin: 5px;
@@ -194,6 +195,9 @@
         block: 'center',
         inline: 'center'
       });
+    }
+    function color(c){
+      return `color-mix(in oklab, Canvas 50%, ${c})`;
     }
 
     // data //
@@ -612,11 +616,11 @@
           itemPending > 0 ? `There is still ${itemPending} quantity to assign` :
             itemPending < 0 ? `There is an extra ${-itemPending} quantity` :
               "Item assigned";
-        parent.style.backgroundColor =
-          item.price === 0 ? "lightgrey" :
-            itemPending > 0 ? "lightpink" :
-              itemPending < 0 ? "lightyellow" :
-                "lightgreen";
+        parent.style.backgroundColor = color(
+          item.price === 0 ? "grey" :
+            itemPending > 0 ? "red" :
+              itemPending < 0 ? "orange" :
+                "green");
       });
 
       // sets person values
@@ -640,7 +644,7 @@
         const personTotal = calculatePersonTotal(person).ceilCents();
         parent.querySelector(".personTotal").innerText = personTotal;
         parent.querySelector(".personPaid").checked = person.paid;
-        parent.style.backgroundColor = personTotal === 0 ? "lightgrey" : person.paid ? "lightgreen" : "lightpink";
+        parent.style.backgroundColor = color(personTotal === 0 ? "grey" : person.paid ? "green" : "red");
       });
 
       // set totals
@@ -660,11 +664,11 @@
           totalDiff > 0 ? `There is still a price of ${totalDiff} to assign` :
             totalDiff < 0 ? `There is an extra assigned price of ${-totalDiff}` :
               `The bill price matches ${allPaid ? 'and everyone payed' : 'but someone still needs to pay'}`;
-      document.getElementById("status").style.backgroundColor =
-        itemsPrice === 0 ? "lightgrey" :
-          totalDiff > 0 ? "lightpink" :
-            totalDiff < 0 || !allPaid ? "lightyellow" :
-              "lightgreen";
+      document.getElementById("status").style.backgroundColor = color(
+        itemsPrice === 0 ? "grey" :
+          totalDiff > 0 ? "red" :
+            totalDiff < 0 || !allPaid ? "orange" :
+              "green");
 
       // sets the state of global buttons
       document.getElementById("reset").disabled = data.items.length + data.items.length === 0;
