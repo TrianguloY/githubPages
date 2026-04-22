@@ -52,7 +52,7 @@
       <button id="redo" onclick="redo()" title="Undoes the last 'undo' (can be redo)">Redo</button>
       <button id="reset" onclick="reset()" title="Removes any existing data (can be undo)">Reset</button>
       <hr class="separator" />
-      <label title="If checked, items whose amount is already distributed will be hidden from the persons sublist">
+      <label title="If checked: items whose amount is already distributed, and persons that already paid, will be hidden from sublists">
         <input type="checkbox" id="hideCompleted" onclick="localStorage['hideCompleted'] = this.checked; fill()"
           checked />Hide completed</label>
     </div>
@@ -70,7 +70,7 @@
 
   <style>
     body {
-      max-width: 600px;
+      max-width: 70ch;
       margin: auto;
     }
 
@@ -535,55 +535,55 @@
 
       // build items
       document.getElementById("items").innerHTML = data.items.map(item => `<div id="id_${item.id}" class="block">
-		<div class="flex">
-			<input class="itemName selectable" type="text" value="" oninput="changeItemName(this, ${item.id})" onkeydown="onSelectableKeypress(event, this)" title="Item name"/>
-			<button onclick="deleteItem(${item.id})" title="Deletes this item">X</button>
-		</div>
-		<div class="flex">
-			<span>Price(1):</span>
-			<input class="itemPrice selectable" type="number" oninput="changeItemPrice(this, ${item.id})" onkeydown="onSelectableKeypress(event, this)" min="0" step="any" value="" title="Price of an individual item" />
-			<span>Qty:</span>
-			<input class="itemAmount selectable" type="number" oninput="changeItemAmount(this, ${item.id})" onkeydown="onSelectableKeypress(event, this)" min="0" step="any" value="" title="Amount of elements of this item" />
-			<span>Price:</span>
-			<input class="itemPriceTotal selectable" type="number" oninput="changeItemPriceTotal(this, ${item.id})" onkeydown="onSelectableKeypress(event, this)" min="0" step="any" value="" title="Total price of this item (individualPrice*amount)" />
-		</div>
-		<hr>
+    <div class="flex">
+      <input class="itemName selectable" type="text" value="" oninput="changeItemName(this, ${item.id})" onkeydown="onSelectableKeypress(event, this)" title="Item name"/>
+      <button onclick="deleteItem(${item.id})" title="Deletes this item">X</button>
+    </div>
+    <div class="flex">
+      <span>Price(1):</span>
+      <input class="itemPrice selectable" type="number" oninput="changeItemPrice(this, ${item.id})" onkeydown="onSelectableKeypress(event, this)" min="0" step="any" value="" title="Price of an individual item" />
+      <span>Qty:</span>
+      <input class="itemAmount selectable" type="number" oninput="changeItemAmount(this, ${item.id})" onkeydown="onSelectableKeypress(event, this)" min="0" step="any" value="" title="Amount of elements of this item" />
+      <span>Price:</span>
+      <input class="itemPriceTotal selectable" type="number" oninput="changeItemPriceTotal(this, ${item.id})" onkeydown="onSelectableKeypress(event, this)" min="0" step="any" value="" title="Total price of this item (individualPrice*amount)" />
+    </div>
+    <hr>
         ${data.persons.map(person => `<div id="id_${item.id}_${person.id}" class="flex">
-			<button onclick="centerById(${person.id})" title="Scrolls to this person">&gt;</button>
-        	<input class="personName" type="text" value="" oninput="changePersonName(this, ${person.id})" onkeydown="onSelectableKeypress(event, this)" title="Person name"/>
+      <button onclick="centerById(${person.id})" title="Scrolls to this person">&gt;</button>
+          <input class="personName" type="text" value="" oninput="changePersonName(this, ${person.id})" onkeydown="onSelectableKeypress(event, this)" title="Person name"/>
             <span>Qty:</span>
-        	<input class="personAmount selectable" type="number" onchange="changePersonAmount(this, ${person.id}, ${item.id})" onkeydown="onSelectableKeypress(event, this)" min="0" step="any" value="" title="Amount that this person used of this item" />
-			<button onclick="increasePersonAmount(${person.id}, ${item.id}, 1)" title="Increases the amount by 1">+</button>
-			<button class="minus" onclick="increasePersonAmount(${person.id}, ${item.id}, -1)" title="Decreases the amount by 1">-</button>
+          <input class="personAmount selectable" type="number" onchange="changePersonAmount(this, ${person.id}, ${item.id})" onkeydown="onSelectableKeypress(event, this)" min="0" step="any" value="" title="Amount that this person used of this item" />
+      <button onclick="increasePersonAmount(${person.id}, ${item.id}, 1)" title="Increases the amount by 1">+</button>
+      <button class="minus" onclick="increasePersonAmount(${person.id}, ${item.id}, -1)" title="Decreases the amount by 1">-</button>
         </div>`).join("\n")}
-		<div class="flex">
-			<button onclick="splitItemEqually(${item.id})" title="Sets the amount of all persons equally (when everyone wants to pay the same for this item)">Divide</button>
-			<button onclick="normalizeItem(${item.id})" title="Adjusts the amount of all persons proportionately, so that the total amount equals the item amount (for example: set to '1' only those who want to pay, then normalize)">Normalize</button>
-			<button onclick="clearItem(${item.id})" title="Clears all amounts">Clear</button>
-			<p class="itemPending"></p>
-		</div>
+    <div class="flex">
+      <button onclick="splitItemEqually(${item.id})" title="Sets the amount of all persons equally (when everyone wants to pay the same for this item)">Divide</button>
+      <button onclick="normalizeItem(${item.id})" title="Adjusts the amount of all persons proportionately, so that the total amount equals the item amount (for example: set to '1' only those who want to pay, then normalize)">Normalize</button>
+      <button onclick="clearItem(${item.id})" title="Clears all amounts">Clear</button>
+      <p class="itemPending"></p>
+    </div>
     </div>`).join("\n");
 
       // build persons
       document.getElementById("persons").innerHTML = data.persons.map(person => `<div id="id_${person.id}" class="block">
-		<div class="flex">
-			<input class="personName selectable" type="text" value="" oninput="changePersonName(this, ${person.id})" onkeydown="onSelectableKeypress(event, this)" title="Person name"/>
-			<button onclick="deletePerson(${person.id})" title="Deletes this person">X</button>
-		</div>
-		<hr>
-     	${data.items.map(item => `<div id="id_${person.id}_${item.id}" class="flex">
-			<button onclick="centerById(${item.id})" title="Scrolls to this item">&gt;</button>
-        	<input class="itemName" type="text" value="" oninput="changeItemName(this, ${item.id})" onkeydown="onSelectableKeypress(event, this)" title="Item name"/>
+    <div class="flex">
+      <input class="personName selectable" type="text" value="" oninput="changePersonName(this, ${person.id})" onkeydown="onSelectableKeypress(event, this)" title="Person name"/>
+      <button onclick="deletePerson(${person.id})" title="Deletes this person">X</button>
+    </div>
+    <hr>
+      ${data.items.map(item => `<div id="id_${person.id}_${item.id}" class="flex">
+      <button onclick="centerById(${item.id})" title="Scrolls to this item">&gt;</button>
+          <input class="itemName" type="text" value="" oninput="changeItemName(this, ${item.id})" onkeydown="onSelectableKeypress(event, this)" title="Item name"/>
             <span>Qty:</span>
             <input class="personAmount selectable" type="number" onchange="changePersonAmount(this, ${person.id}, ${item.id})" onkeydown="onSelectableKeypress(event, this)" min="0" step="any" value="" title="Amount of this item that this person used"/>
-			<button onclick="increasePersonAmount(${person.id}, ${item.id}, 1)" title="Increases the amount by 1">+</button>
-			<button class="minus"  onclick="increasePersonAmount(${person.id}, ${item.id}, -1)" title="Decreases the amount by 1">-</button>
-			<span class="itemPending"></span>
+      <button onclick="increasePersonAmount(${person.id}, ${item.id}, 1)" title="Increases the amount by 1">+</button>
+      <button class="minus"  onclick="increasePersonAmount(${person.id}, ${item.id}, -1)" title="Decreases the amount by 1">-</button>
+      <span class="itemPending"></span>
         </div>`).join("\n")}
-		<div class="flex">
-			<p>Total: <span class="personTotal"></span></p>
-			<label title="Mark whether this person paid or not (does not affect other data)"><input type="checkbox" class="personPaid" onclick="personPaid(${person.id}, this.checked)"/>Paid</label>
-		</div>
+    <div class="flex">
+      <p>Total: <span class="personTotal"></span></p>
+      <label title="Mark whether this person paid or not (does not affect other data)"><input type="checkbox" class="personPaid" onclick="personPaid(${person.id}, this.checked)"/>Paid</label>
+    </div>
     </div>`).join("\n");
 
       // fills values
@@ -596,6 +596,7 @@
       function set(element, value) {
         if (element !== exclude) element.value = typeof value !== "number" ? value : Number(value.toFixed(6));
       }
+      const hideCompleted = document.getElementById("hideCompleted").checked;
 
       // set item values
       data.items.forEach(item => {
@@ -610,6 +611,7 @@
           const personAmount = getAmount(person, item);
           set(child.querySelector(".personAmount"), personAmount);
           child.querySelector(".minus").disabled = personAmount === 0;
+          child.visible(!hideCompleted || !person.paid);
         });
         const itemPending = calculateItemPending(item);
         parent.querySelector(".itemPending").innerText =
@@ -624,7 +626,6 @@
       });
 
       // sets person values
-      const hideCompleted = document.getElementById("hideCompleted").checked;
       data.persons.forEach(person => {
         const parent = document.querySelector(`#id_${person.id}`);
         set(parent.querySelector(".personName"), person.name);
