@@ -2,14 +2,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="dark light">
     <script data-goatcounter="https://trianguloy.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
     <title>DerpiViewer</title>
 </head>
 
 <style>
-    /* dark centered background */
+    /* centered background */
     body {
-        background-color: #333333;
         margin: 0 auto;
     }
     
@@ -46,10 +46,9 @@
         width: 30px;
     }
 
-    /* white readable keeping-spaces text */
+    /* readable keeping-spaces text */
     span,code {
         font-size: 20px;
-        color: #ffffff;
         white-space: pre-line;
         word-break: break-word;
     }
@@ -70,14 +69,6 @@
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
-    }
-    
-    /* links */
-    a:link {
-        color: #00bbff;
-    }
-    a:visited {
-        color: #ffbbff;;
     }
 
 </style>
@@ -126,9 +117,9 @@ This was made for personal use from a mobile device and may or may not update it
 
     // place here the settings in the format: key:["description",options]
     // if the setting is a simple value, set options: "value"
-    // if the setting is a multiple value set options: [defaultIndex, option1, option2, ...]
-    // if the display option is the same as the internal value, set optionsN: "data"
-    // if the display option is different as the internal value, set optionN: ["key","value"]
+    // if the setting is a multiple value, set options: [defaultIndex, option1, option2, ...]
+    // if the display label is the same as the internal value, set optionsN: "value"
+    // if the display label is different as the internal value, set optionN: ["value","label"]
     // This element will mutate to contain the chosen value on initialization
     let settings = {
         base_url: ["The api main entry point of the booru", "https://derpibooru.org/api/v1/json/search/images"],
@@ -166,6 +157,7 @@ This was made for personal use from a mobile device and may or may not update it
         img_loading: ["Image loading method: if lazy, images will load when you scroll near them. On eager they will load inmediately", [2, 'eager', 'lazy']],
         fix_scroll: ["Enable this if the page jumps when loading images", [2, 'yes', 'no']],
         max_width: ["Maximum width of the page (px)", 1000],
+        theme: ["Page theme", [0, ["dark light","Device default"], ["dark","Dark"], ["light", "Light"]]],
     }
 
     function initSettings() {
@@ -238,6 +230,10 @@ This was made for personal use from a mobile device and may or may not update it
         if(s=='max_width'){
             // the max_width needs to sync instantaneously with the css property
             document.body.style.maxWidth = settings[s] + 'px'
+        }
+        if(s=='theme'){
+            // theme needs to be changed instantaneously too
+            document.querySelector("html").style.colorScheme = settings[s];
         }
     }
 
