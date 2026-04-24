@@ -157,7 +157,7 @@ This was made for personal use from a mobile device and may or may not update it
         img_loading: ["Image loading method: if lazy, images will load when you scroll near them. On eager they will load inmediately", [2, 'eager', 'lazy']],
         fix_scroll: ["Enable this if the page jumps when loading images", [2, 'yes', 'no']],
         max_width: ["Maximum width of the page (px)", 1000],
-        theme: ["Page theme", [0, ["dark light","Device default"], ["dark","Dark"], ["light", "Light"]]],
+        theme: ["Page theme", [1, ["dark light","Device default"], ["dark","Dark"], ["light","Light"], ["force dark","Force dark (for old browsers)"] ]],
     }
 
     function initSettings() {
@@ -234,6 +234,22 @@ This was made for personal use from a mobile device and may or may not update it
         if(s=='theme'){
             // theme needs to be changed instantaneously too
             document.querySelector("html").style.colorScheme = settings[s];
+
+            if(settings[s].indexOf("force") != -1){
+                // compatibility with very old browsers that do not support colorScheme
+                const styleTag = document.createElement('style');
+                styleTag.id = "force-dark-style";
+                styleTag.textContent = `
+                    body { background-color: #333333; }
+                    span,code { color: #ffffff; }
+                    a:link { color: #00bbff; }
+                    a:visited { color: #ffbbff; }
+                `;
+                document.head.appendChild(styleTag);
+            }else{
+                const styleTag = document.getElementById("force-dark-style");
+				if(styleTag != null) styleTag.remove();
+            }
         }
     }
 
