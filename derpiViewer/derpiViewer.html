@@ -23,11 +23,11 @@
         height: 50px;
     }
 
-	/* header */
-	.header {
-		position: sticky;
-		top: 0px;
-	}
+    /* header */
+    .header {
+        position: sticky;
+        top: 0px;
+    }
     
     /* flex container */
     .flex {
@@ -39,12 +39,14 @@
     /* growing flex child */
     .flex input,select {
         flex-grow: 1;
+        min-width: 0;
         font-size: 20px;
     }
     
     /* button size */
     button {
         height: 30px;
+        flex-shrink: 0;
     }
     
     /* square button */
@@ -258,7 +260,7 @@ This was made for personal use from a mobile device and may or may not update it
                 document.head.appendChild(styleTag);
             }else{
                 const styleTag = document.getElementById("force-dark-style");
-				if(styleTag != null) styleTag.remove();
+                if(styleTag != null) styleTag.remove();
             }
         }
     }
@@ -266,6 +268,7 @@ This was made for personal use from a mobile device and may or may not update it
     ////////// image loading //////////
 
     let next_data = null;
+	let data = null; // for debug
 
     function newQuery(start_page=1) {
         // clear
@@ -300,6 +303,7 @@ This was made for personal use from a mobile device and may or may not update it
         fetch(settings.base_url + "?q=" + q + "&page=" + page + optset('filter_id') + optset('sf') + optset('sd') + optset('per_page'))
             .then(v => v.json())
             .then(v => {
+                data = v;
 
                 if (v.images.length == 0){
                     // no more images
