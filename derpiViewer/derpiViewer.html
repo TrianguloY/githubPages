@@ -22,6 +22,12 @@
     #next {
         height: 50px;
     }
+
+	/* header */
+	.header {
+		position: sticky;
+		top: 0px;
+	}
     
     /* flex container */
     .flex {
@@ -42,7 +48,7 @@
     }
     
     /* square button */
-    .flex > button, .play {
+    .play {
         width: 30px;
     }
 
@@ -74,12 +80,14 @@
 </style>
 
 <body>
-    <div class="flex">
+    <div class="flex header">
         <input id="q" autocomplete="off" onkeyup="press(event, 'search')" placeholder="Enter a query (or leave empty) and press the '>' button." />
-        <button id="search" onclick="newQuery()">></button>
-        <button onclick="toggleVisibility('about')">i</button>
-        <button onclick="toggleVisibility('info')">?</button>
-        <button onclick="toggleVisibility(e_settings)">@</button>
+        <button id="search" onclick="newQuery()">🔎 Search</button>
+    </div>
+    <div class="flex">
+        <button onclick="toggleVisibility('about')">ℹ️ About</button>
+        <button onclick="toggleVisibility('info')">❔ Information</button>
+        <button onclick="toggleVisibility(e_settings)">⚙️ Settings</button>
     </div>
     <hr>
     <div id="about">
