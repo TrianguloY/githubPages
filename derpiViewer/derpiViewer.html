@@ -83,6 +83,7 @@
     <div class="flex header">
         <input id="q" autocomplete="off" onkeyup="press(event, 'search')" placeholder="Enter a query (or leave empty) and press the '>' button." />
         <button id="search" onclick="newQuery()">🔎 Search</button>
+        <button id="autoscroll" onclick="autoscroll()">▶️ Scroll</button>
     </div>
     <div class="flex">
         <button onclick="toggleVisibility('about')">ℹ️ About</button>
@@ -163,6 +164,7 @@ This was made for personal use from a mobile device and may or may not update it
         per_page: ["Images to load in each petition (max 50)", 25],
         max_images: ["Maximum number of images to keep displayed", 50],
         img_loading: ["Image loading method: if lazy, images will load when you scroll near them. On eager they will load inmediately", [2, 'eager', 'lazy']],
+        auto_scroll_speed: ["Auto scroll speed (bigger=faster)", 2],
         fix_scroll: ["Enable this if the page jumps when loading images", [2, 'yes', 'no']],
         max_width: ["Maximum width of the page (px)", 1000],
         theme: ["Page theme", [1, ["dark light","Device default"], ["dark","Dark"], ["light","Light"], ["force dark","Force dark (for old browsers)"] ]],
@@ -454,6 +456,22 @@ This was made for personal use from a mobile device and may or may not update it
             // press enter to search
             event.preventDefault();
             document.getElementById(id).click();
+        }
+    }
+
+    ////////// autoscroll //////////
+
+    let autoScrollId = null;
+    let e_autoscroll = document.getElementById("autoscroll");
+
+    function autoscroll(){
+        if(autoScrollId != null){
+            clearInterval(autoScrollId);
+            autoScrollId = null;
+            e_autoscroll.innerText = "▶️ Scroll";
+        }else{
+            autoScrollId = setInterval(() => window.scrollBy(0, settings.auto_scroll_speed), 0);
+            e_autoscroll.innerText = "⏸️ Stop";
         }
     }
 
