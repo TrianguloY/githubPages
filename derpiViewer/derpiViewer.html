@@ -4,6 +4,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="color-scheme" content="dark light">
     <script data-goatcounter="https://trianguloy.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/nosleep/0.12.0/NoSleep.min.js" integrity="sha512-DSzvYfxJWRi3E6vfcGQfL5CqOlApxYrrdqRP3hRCnoiZ0oM6+ccYjbtdzQFUrAOI/ehKk0VKFuKs5GseGPkVjQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <title>DerpiViewer</title>
 </head>
 
@@ -94,7 +95,11 @@
     </div>
     <hr>
     <div id="about">
-        <span>Page made by TrianguloY. Source code available on <a href="https://github.com/TrianguloY/githubPages/tree/master/derpiViewer">Github</a></span>
+        <span>Page made by TrianguloY, without using AI at all.
+Source code available on <a href="https://github.com/TrianguloY/githubPages/tree/master/derpiViewer">Github</a>
+Uses <a href="https://goatcounter.com/">goatcounter.com</a> for privacy-friendly analytics.
+Uses <a href="https://github.com/richtr/NoSleep.js">nosleep.js</a> for keeping the screen on while the automatic scroll is activated.
+        </span>
         <hr>
     </div>
     <div id="info">
@@ -268,7 +273,7 @@ This was made for personal use from a mobile device and may or may not update it
     ////////// image loading //////////
 
     let next_data = null;
-	let data = null; // for debug
+    let data = null; // for debug
 
     function newQuery(start_page=1) {
         // clear
@@ -466,6 +471,7 @@ This was made for personal use from a mobile device and may or may not update it
     ////////// autoscroll //////////
 
     let autoScrollId = null;
+    const noSleep = new NoSleep();
     let e_autoscroll = document.getElementById("autoscroll");
 
     function autoscroll(){
@@ -473,9 +479,11 @@ This was made for personal use from a mobile device and may or may not update it
             clearInterval(autoScrollId);
             autoScrollId = null;
             e_autoscroll.innerText = "▶️ Scroll";
+            noSleep.disable();
         }else{
             autoScrollId = setInterval(() => window.scrollBy(0, settings.auto_scroll_speed), 0);
             e_autoscroll.innerText = "⏸️ Stop";
+            noSleep.enable();
         }
     }
 
