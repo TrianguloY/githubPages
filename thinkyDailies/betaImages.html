@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, interactive-widget=resizes-content">
+    <meta name="color-scheme" content="dark light">
+    <title>Thinky dailies beta images</title>
+    <script data-goatcounter="https://trianguloy.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+
+    <style>
+        /*  https://gist.github.com/JoeyBurzynski/617fb6201335779f8424ad9528b72c41#100-bytes-of-css-to-look-great-everywhere-enhanced-version */
+        html {
+            margin: auto;
+            line-height: 1.75;
+            font-size: 1.25em;
+        }
+    </style>
+
+    <style>
+        /* center images */
+        .scroll-container {
+            display: flex;
+            overflow: auto;
+        }
+
+        img:first-child {
+            margin-inline-start: auto;
+        }
+
+        img:last-child {
+            margin-inline-end: auto;
+        }
+
+        /* images */
+        img {
+            padding: 10px;
+            width: 600px;
+        }
+
+        /* titles */
+        h2 {
+            text-align: center;
+        }
+
+        /* Hide single */
+        .single_active {
+            display: none;
+        }
+
+        /* center */
+        .top, .settings {
+            max-width: 70ch;
+            margin: auto;
+        }
+
+        /* settings */
+        .settings {
+            position: sticky;
+            top: 0;
+            background-color: Canvas;
+            padding: 10px;
+            border-bottom-left-radius: 10px;
+            border-bottom-right-radius: 10px;
+        }
+
+        /* text */
+        p {
+            padding: 1em 1em;
+        }
+    </style>
+
+    <script>
+        Array.prototype.sortByPrefixNumber = function () {
+            return this.sort(([a, _a], [b, _b]) => parseInt(a) - parseInt(b));
+        };
+
+        fetch('./betaImages.json')
+            .then(r => r.json())
+            .then(data => {
+                let html = "";
+                Object.entries(data).sortByPrefixNumber().forEach(([season, season_data]) => {
+                    Object.entries(season_data).sortByPrefixNumber().forEach(([puzzle, urls]) => {
+                        html += `<div class="${urls.length === 1 ? 'single' : ''}">`;
+                        html += `<hr>`;
+                        html += `<h2><a href="https://thinkygames.com/dailies/puzzles/${season}-${puzzle}/">${season}x${puzzle}</a></h2>`;
+                        html += `<div class="scroll-container">`;
+                        urls.forEach(url => {
+                            html += `<img src="${url}" alt="${season}x${puzzle}"/>`;
+                        });
+                        html += `</div>`;
+                        html += `</div>`;
+                    });
+                });
+                document.getElementById("images").innerHTML = html;
+            });
+    </script>
+</head>
+<body>
+
+<!-- details -->
+<div class="top">
+    <h1>Thinky dailies beta images</h1>
+
+    <p>
+        Disclaimer: this page is not associated with <a href="https://thinkygames.com/">thinkygames.com</a>. This simple
+        page was created from a user like you to be able to watch interesting previous image variants.
+        <br>
+        <br>
+        On this page you'll find current and previous images from <a href="https://thinkygames.com/dailies/">thinkygames.com/dailies</a>.
+        All images shown here are technically public (your browser is requesting them from the official server) so be
+        warned that they may be removed at any time.
+        <br>
+        Note: to avoid overloading the server with petitions of pages that do not exist, a precomputed list of
+        available images is used. I'll try to update the list from time to time, but feel free to remind me (at least
+        until I make it automatic!)
+        <br>
+        <br>
+        Made by <a href="https://github.com/TrianguloY">TrianguloY</a> without using any AI at all.
+        <br>
+        Any suggestion is welcomed! Source code available at <a
+            href="https://github.com/TrianguloY/githubPages/tree/master/thinkyDailies">GitHub</a>
+    </p>
+    <hr>
+</div>
+
+<div class="settings">
+    <label>
+        <input type="checkbox"
+               onchange="document.querySelectorAll('.single').forEach(e=>e.classList.toggle('single_active', this.checked))"/>
+        <span>Hide images without variants.</span>
+    </label>
+    <br>
+    <label>
+        <input type="checkbox"
+               onchange="document.documentElement.style.colorScheme = this.checked? 'light' : 'dark'"/>
+        <span>Toggle dark/light theme.</span>
+    </label>
+    <br>
+    <label style="display:flex">
+        Image size:
+        <input type="range" min="1" max="600" value="600" style="flex-grow: 1"
+               oninput="document.querySelectorAll('img').forEach(e=>{e.style.width=this.value+'px';e.style.height=this.value+'px'})">
+    </label>
+</div>
+
+
+<div id="images">
+
+</div>
+
+</body>
+</html>
