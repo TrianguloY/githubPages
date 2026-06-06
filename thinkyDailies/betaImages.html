@@ -37,8 +37,8 @@
             width: 600px;
         }
 
-        /* titles */
-        h2 {
+        /* center text */
+        h1, h2, p, summary {
             text-align: center;
         }
 
@@ -49,9 +49,19 @@
 
         /* center */
         .top, .settings {
-            max-width: 70ch;
             margin: auto;
         }
+        p {
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* limit width */
+        p, .settings {
+            max-width: 70ch;
+        }
+
+
 
         /* settings */
         .settings {
@@ -62,32 +72,43 @@
             border-bottom-left-radius: 10px;
             border-bottom-right-radius: 10px;
         }
-
-        /* text */
-        p {
-            padding: 1em 1em;
-        }
     </style>
 
     <script>
         Array.prototype.sortByPrefixNumber = function () {
             return this.sort(([a, _a], [b, _b]) => parseInt(a) - parseInt(b));
         };
+        Object.prototype.setDefault = function (key, defaultValue) {
+            return this[key] || (this[key] = defaultValue);
+        }
 
         fetch('./betaImages.json')
             .then(r => r.json())
             .then(data => {
+
+                // prepare notes
+                let allNotes = {};
+                data.notes.forEach(([note, ...entries]) => entries.forEach(([season, puzzle]) => allNotes.setDefault(season, {}).setDefault(puzzle, []).push(note)));
+
                 let html = "";
-                Object.entries(data).sortByPrefixNumber().forEach(([season, season_data]) => {
+                Object.entries(data.images).sortByPrefixNumber().forEach(([season, season_data]) => {
                     Object.entries(season_data).sortByPrefixNumber().forEach(([puzzle, urls]) => {
                         html += `<div class="${urls.length === 1 ? 'single' : ''}">`;
                         html += `<hr>`;
-                        html += `<h2><a href="https://thinkygames.com/dailies/puzzles/${season}-${puzzle}/">${season}x${puzzle}</a></h2>`;
+                        html += `<h2><a href="https://thinkygames.com/dailies/puzzles/${season}-${puzzle}/">${season}x${puzzle}</a> (${urls.length})</h2>`;
                         html += `<div class="scroll-container">`;
                         urls.forEach(url => {
-                            html += `<img src="${url}" alt="${season}x${puzzle}"/>`;
+                            html += `<img src="${url}" alt="${season}x${puzzle}" title="${url}"/>`;
                         });
                         html += `</div>`;
+                        let notes = allNotes[season]?.[puzzle] ?? [];
+                        if (notes.length !== 0) {
+                            html += `<details><summary>Notes (${notes.length})</summary>`
+                            notes.forEach(note => {
+                                html += `<p>${note.replace("\n","<br>")}</p>`;
+                            });
+                            html += `</details>`;
+                        }
                         html += `</div>`;
                     });
                 });
@@ -103,20 +124,22 @@
 
     <p>
         Disclaimer: this page is not associated with <a href="https://thinkygames.com/">thinkygames.com</a>. This simple
-        page was created from a user like you to be able to watch interesting previous image variants.
-        <br>
-        <br>
-        On this page you'll find current and previous images from <a href="https://thinkygames.com/dailies/">thinkygames.com/dailies</a>.
+        page was created from a fan like you to be able to watch interesting previous image variants.
+        Some notes and comments are from Joseph Mansfield, technical lead and design, added with permission.
+    </p>
+    <p>
+        On this page you'll find current (maybe even future, beware of spoilers!) and previous images from <a
+            href="https://thinkygames.com/dailies/">thinkygames.com/dailies</a>.
         All images shown here are technically public (your browser is requesting them from the official server) so be
         warned that they may be removed at any time.
-        <br>
+    </p>
+    <p>
         Note: to avoid overloading the server with petitions of pages that do not exist, a precomputed list of
         available images is used. I'll try to update the list from time to time, but feel free to remind me (at least
         until I make it automatic!)
-        <br>
-        <br>
+    </p>
+    <p>
         Made by <a href="https://github.com/TrianguloY">TrianguloY</a> without using any AI at all.
-        <br>
         Any suggestion is welcomed! Source code available at <a
             href="https://github.com/TrianguloY/githubPages/tree/master/thinkyDailies">GitHub</a>
     </p>
