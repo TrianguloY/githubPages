@@ -18,11 +18,11 @@
       <summary>Description:</summary>
       <p>
         Personal tool made by <a href="https://github.com/TrianguloY">TrianguloY</a> to split a bill into different
-        persons without using excel/sheets.
+        people without using excel/sheets.
         <br>
-        Add items, add persons, fill what each person used, and get the total price each one should pay.
+        Add items, add people, fill what each person used, and get the total price each one should pay.
         <br>
-        No ads, no nonsense, just the tool. Made without using AI at all.
+        No ads, no nonsense, just the tool. Made without using any AI at all.
         <br>
         Any suggestion is welcomed! Source code available at <a
           href="https://github.com/TrianguloY/githubPages/tree/master/SplitBill">GitHub</a>
@@ -37,7 +37,7 @@
     <div class="flex">
       <p><span id="itemsCount"></span> items: <span id="itemsPrice"></span></p>
       <hr class="separator" />
-      <p><span id="personsCount"></span> persons: <span id="personsPrice"></span></p>
+      <p><span id="personsCount"></span> people: <span id="personsPrice"></span></p>
       <hr class="separator" />
       <p><span id="status" onclick="gotoError()" title="Press here to go to the first error, if any"></span></p>
     </div>
@@ -52,7 +52,7 @@
       <button id="redo" onclick="redo()" title="Undoes the last 'undo' (can be redo)">Redo</button>
       <button id="reset" onclick="reset()" title="Removes any existing data (can be undo)">Reset</button>
       <hr class="separator" />
-      <label title="If checked: items whose amount is already distributed, and persons that already paid, will be hidden from sublists">
+      <label title="If checked: items whose amount is already distributed, and people that already paid, will be hidden from sublists">
         <input type="checkbox" id="hideCompleted" onclick="localStorage['hideCompleted'] = this.checked; fill()"
           checked />Hide completed</label>
     </div>
@@ -64,7 +64,7 @@
   </div>
   <hr />
   <div>
-    <h3>Persons:</h3>
+    <h3>People:</h3>
     <div id="persons"></div>
   </div>
 
@@ -557,8 +557,8 @@
       <button class="minus" onclick="increasePersonAmount(${person.id}, ${item.id}, -1)" title="Decreases the amount by 1">-</button>
         </div>`).join("\n")}
     <div class="flex">
-      <button onclick="splitItemEqually(${item.id})" title="Sets the amount of all persons equally (when everyone wants to pay the same for this item)">Divide</button>
-      <button onclick="normalizeItem(${item.id})" title="Adjusts the amount of all persons proportionately, so that the total amount equals the item amount (for example: set to '1' only those who want to pay, then normalize)">Normalize</button>
+      <button onclick="splitItemEqually(${item.id})" title="Sets the amount of all people equally (when everyone wants to pay the same for this item)">Divide</button>
+      <button onclick="normalizeItem(${item.id})" title="Adjusts the amount of all people proportionately, so that the total amount equals the item amount (for example: set to '1' only those who want to pay, then normalize)">Normalize</button>
       <button onclick="clearItem(${item.id})" title="Clears all amounts">Clear</button>
       <p class="itemPending"></p>
     </div>

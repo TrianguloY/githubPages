@@ -6,5 +6,5 @@
 
 #### Description:
 
-Personal tool to split a bill into different persons without using excel/sheets.
-Add items, add persons, fill what each person used, and get the amount.
+Personal tool to split a bill into different people without using excel/sheets.
+Add items, add people, fill what each person used, and get the amount.
