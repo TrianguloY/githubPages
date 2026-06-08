@@ -1,0 +1,33 @@
+name: Update ThinkyDailies betaImages
+
+on:
+   # run at 12:00
+   schedule:
+     - cron: "0 12 * * *"
+
+   # manual run
+   workflow_dispatch:
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+        
+      - name: Install uv
+        uses: astral-sh/setup-uv@08807647e7069bb48b6ef5acd8ec9567f424441b # v8.1.0
+        
+      - name: Run
+        working-directory: thinkyDailies
+        run: ./betaImages.py
+        
+      - name: Commit
+        run: |
+          git add -A
+          git diff --quiet && exit 0
+          
+          git config user.name 'github-actions'
+          git config user.email 'github-actions@github.com'
+          git commit -m "Updated ThinkyDailies betaImages"
+          git push
