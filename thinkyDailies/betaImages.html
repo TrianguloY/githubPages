@@ -51,6 +51,7 @@
         .top, .settings {
             margin: auto;
         }
+
         p {
             margin-left: auto;
             margin-right: auto;
@@ -60,7 +61,6 @@
         p, .settings {
             max-width: 70ch;
         }
-
 
 
         /* settings */
@@ -82,38 +82,51 @@
             return this[key] || (this[key] = defaultValue);
         }
 
-        fetch('./betaImages.json')
-            .then(r => r.json())
-            .then(data => {
+        function run() {
+            fetch('./betaImages.json')
+                .then(r => r.json())
+                .then(data => {
 
-                // prepare notes
-                let allNotes = {};
-                data.notes.forEach(([note, ...entries]) => entries.forEach(([season, puzzle]) => allNotes.setDefault(season, {}).setDefault(puzzle, []).push(note)));
+                    // prepare notes
+                    let allNotes = {};
+                    data.notes.forEach(([note, ...entries]) => entries.forEach(([season, puzzle]) => allNotes.setDefault(season, {}).setDefault(puzzle, []).push(note)));
 
-                let html = "";
-                Object.entries(data.images).sortByPrefixNumber().forEach(([season, season_data]) => {
-                    Object.entries(season_data).sortByPrefixNumber().forEach(([puzzle, urls]) => {
-                        html += `<div class="${urls.length === 1 ? 'single' : ''}">`;
-                        html += `<hr>`;
-                        html += `<h2><a href="https://thinkygames.com/dailies/puzzles/${season}-${puzzle}/">${season}x${puzzle}</a> (${urls.length})</h2>`;
-                        html += `<div class="scroll-container">`;
-                        urls.forEach(url => {
-                            html += `<img src="${url}" alt="${season}x${puzzle}" title="${url}"/>`;
-                        });
-                        html += `</div>`;
-                        let notes = allNotes[season]?.[puzzle] ?? [];
-                        if (notes.length !== 0) {
-                            html += `<details><summary>Notes (${notes.length})</summary>`
-                            notes.forEach(note => {
-                                html += `<p>${note.replace("\n","<br>")}</p>`;
+                    let html = "";
+                    Object.entries(data.images).sortByPrefixNumber().forEach(([season, season_data]) => {
+                        Object.entries(season_data).sortByPrefixNumber().forEach(([puzzle, urls]) => {
+                            html += `<div class="${urls.length === 1 ? 'single' : ''}">`;
+                            html += `<hr>`;
+                            html += `<h2><a href="https://thinkygames.com/dailies/puzzles/${season}-${puzzle}/">${season}x${puzzle}</a> (${urls.length})</h2>`;
+                            html += `<div class="scroll-container">`;
+                            urls.forEach(url => {
+                                html += `<img src="${url}" alt="${season}x${puzzle}" title="${url}"/>`;
                             });
-                            html += `</details>`;
-                        }
-                        html += `</div>`;
+                            html += `</div>`;
+                            let notes = allNotes[season]?.[puzzle] ?? [];
+                            if (notes.length !== 0) {
+                                html += `<details><summary>Notes (${notes.length})</summary>`
+                                notes.forEach(note => {
+                                    html += `<p>${note.replace("\n", "<br>")}</p>`;
+                                });
+                                html += `</details>`;
+                            }
+                            html += `</div>`;
+                        });
+                    });
+                    document.getElementById("images").innerHTML = html;
+
+
+                    // restore checkboxes and sliders after loading
+                    document.querySelectorAll("input[type=checkbox]").forEach(e => e.onchange());
+                    document.querySelectorAll("input[type=range]").forEach(e => {
+                        console.log(document.querySelectorAll('img'))
+                        e.oninput(null);
+                        console.log(e.oninput)
                     });
                 });
-                document.getElementById("images").innerHTML = html;
-            });
+        }
+
+        window.addEventListener("load", run);
     </script>
 </head>
 <body>
