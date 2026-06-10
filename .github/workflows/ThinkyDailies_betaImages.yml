@@ -25,10 +25,12 @@ jobs:
         run: ./betaImages.py
         
       - name: Commit
+        working-directory: thinkyDailies
         run: |
-          git add -A
-          git diff --quiet && exit 0
+          git add betaImages.json
+          git diff --staged --quiet && exit 0
           
+          echo Uploading
           git config user.name 'github-actions'
           git config user.email 'github-actions@github.com'
           git commit -m "Updated ThinkyDailies betaImages"
