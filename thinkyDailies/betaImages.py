@@ -36,7 +36,7 @@ InfixNode = Union[str, List["InfixNode"]]
 INFIXES: List[InfixNode] = [
     [""],  # sometimes this may not exist, we allow failing
     ["-1", "-2", "-3"],
-    ["%20(1)", "%20(2)", "%20(3)"],
+    ["%20(1)", ["%20(1)-1", "%20(1)-2"], "%20(2)", "%20(3)"],
     ["a", ["a%20(1)", "a%20(2)"], ["b", ["b%20(1)"], "c"]],
     ["A", "B"],
 ]
