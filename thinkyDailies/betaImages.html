@@ -99,7 +99,7 @@
                             html += `<h2><a href="https://thinkygames.com/dailies/puzzles/${season}-${puzzle}/">${season}x${puzzle}</a> (${urls.length})</h2>`;
                             html += `<div class="scroll-container">`;
                             urls.forEach(url => {
-                                html += `<img src="${url}" alt="${season}x${puzzle}" title="${url}"/>`;
+                                html += `<img src="${url}" alt="${season}x${puzzle}" title="${url}" loading="lazy" width="600" height="600"/>`;
                             });
                             html += `</div>`;
                             let notes = allNotes[season]?.[puzzle] ?? [];
