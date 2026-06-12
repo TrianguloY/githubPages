@@ -642,6 +642,18 @@
       ],
       "11": [
         "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/3x11-600x600.png"
+      ],
+      "12": [
+        "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/3x12-600x600.png"
+      ],
+      "13": [
+        "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/3x13-600x600.png"
+      ],
+      "14": [
+        "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/3x14-600x600.png"
+      ],
+      "15": [
+        "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/3x15-600x600.png"
       ]
     }
   }
