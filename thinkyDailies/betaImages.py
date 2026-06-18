@@ -10,11 +10,42 @@ import json
 import platform
 import random
 from asyncio import sleep
-from typing import List, Optional, Union, Iterable, NamedTuple
+from typing import List, Optional, Union, NamedTuple, Any, Callable, Generator
 
 import aiohttp
 from aiohttp import ClientSession
 
+
+# Infixes
+
+def infix_numeric() -> Generator[str, Any, None]:
+    for i in range(1, 100):
+        yield f"-{i}"
+
+
+def infix_windows() -> Generator[str, Any, None]:
+    for i in range(1, 100):
+        yield f"%20({i})"
+
+
+def infix_lower() -> Generator[str, Any, None]:
+    for l in "abcdefghijklmnopqrstuvwxyz":
+        yield l
+
+
+def infix_upper() -> Generator[str, Any, None]:
+    for l in "ABCDEFGHIJKLMNOPQRSTUVWXYZ":
+        yield l
+
+
+InfixGenerator = Union[Callable[[], Generator[str, Any, None]]]
+INFIXES: List[InfixGenerator] = [infix_numeric, infix_windows, infix_lower, infix_upper]
+
+
+# Script you can run on https://thinkygames.com/dailies/puzzles/1/ (and relative) to extract all the infixes:
+# new Set([...document.querySelectorAll("div[class^=styles_preview] img")].map(e=>e.src).map(l=>l.replace('https://static.prod.thinkygames.com/uploads/puzzle_intro_images/','').replace(/\.png$/,'').replace(/600x600$/,'').replace(/^\dx\d\d/,'')))
+
+# data classes
 
 class Entry(NamedTuple):
     season: int
@@ -30,21 +61,7 @@ class Result(NamedTuple):
     url: str
 
 
-InfixNode = Union[str, List["InfixNode"]]
-
-# If str, no more elements in the list will be checked.
-INFIXES: List[InfixNode] = [
-    [""],  # sometimes this may not exist, we allow failing
-    ["-1", "-2", "-3"],
-    ["%20(1)", ["%20(1)-1", "%20(1)-2"], "%20(2)", "%20(3)"],
-    ["a", ["a%20(1)", "a%20(2)"], ["b", ["b%20(1)"], "c"]],
-    ["A", "B"],
-]
-
-
-# Script to run on https://thinkygames.com/dailies/puzzles/1/ (and relative) to extract all the infixes:
-# new Set([...document.querySelectorAll("div[class^=styles_preview] img")].map(e=>e.src).map(l=>l.replace('https://static.prod.thinkygames.com/uploads/puzzle_intro_images/','').replace(/\.png$/,'').replace(/600x600$/,'').replace(/^\dx\d\d/,'')))
-
+# script
 
 def main() -> None:
     """Main."""
@@ -62,16 +79,11 @@ def main() -> None:
     results = asyncio.run(parse_entries(entries))
 
     print("Statistics:")
-
-    def flatten(xs):
-        for x in xs:
-            if isinstance(x, Iterable) and not isinstance(x, (str, bytes)):
-                yield from flatten(x)
-            else:
-                yield x
-
-    for infix in flatten(INFIXES):
-        print(f"Infix '{infix}' has {sum(infix == result.infix for result in results)} elements")
+    infixes_count = {}
+    for result in results:
+        infixes_count[result.infix] = infixes_count[result.infix] + 1 if result.infix in infixes_count else 1
+    for infix, count in infixes_count.items():
+        print(f"Infix '{infix}' has {count} elements")
 
     print("Writing to file")
     images = {}
@@ -95,32 +107,35 @@ async def parse_entries(entries: List[Entry]) -> List[Result]:
 
 async def parse_entry(entry: Entry, session: ClientSession) -> List[Result]:
     """Parses an entry with all infixes."""
-    return await parse_infix(INFIXES, entry, session)
+    return await parse_infix("", INFIXES, entry, session)
 
 
-async def parse_infix(infix: List[InfixNode], entry: Entry, session: ClientSession) -> List[Result]:
-    """Parses an entry with a list of infixes."""
-    results: List[Result] = []
-    for infx in infix:
-        if isinstance(infx, str):
-            # single value
-            result = await keep_if_exists(
-                Result(
-                    season=str(entry.season),
-                    puzzle=str(entry.puzzle),
-                    infix=infx,
-                    url=entry.prefix + infx + entry.suffix,
-                ),
-                session,
-            )
-            if result is not None:
-                results.append(result)
-            else:
-                # if a value fails, stop evaluating
+async def parse_infix(current_infix: str, infix_generators: List[InfixGenerator], entry: Entry,
+                      session: ClientSession) -> List[Result]:
+    """Parses an entry with a list of infix generators."""
+    # check value
+    result = await keep_if_exists(
+        Result(
+            season=str(entry.season),
+            puzzle=str(entry.puzzle),
+            infix=current_infix,
+            url=entry.prefix + current_infix + entry.suffix,
+        ),
+        session,
+    )
+    if result is None and current_infix != "":
+        # value doesn't exist, stop
+        # note: some variants exist even if the base url does not, so we continue in that case
+        return []
+
+    # url exists, lets try the generators
+    results: List[Result] = [result] if result else []
+    for generator in infix_generators:
+        for infix in generator():
+            partial = await parse_infix(current_infix + infix, infix_generators, entry, session)
+            if not partial:
                 break
-        else:
-            # list, continue regardless
-            results.extend(await parse_infix(infx, entry, session))
+            results.extend(partial)
     return results
 
 
