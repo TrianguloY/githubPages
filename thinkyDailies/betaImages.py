@@ -50,7 +50,8 @@ INFIXES: List[InfixGenerator] = [infix_numeric, infix_windows, infix_lower, infi
 class Entry(NamedTuple):
     season: int
     puzzle: int
-    prefix: str
+    prefix_left: str
+    prefix_right: str
     suffix: str
 
 
@@ -72,7 +73,8 @@ def main() -> None:
         for puzzle in range(1, 61 + 1):
             entries.append(Entry(season,
                                  puzzle,
-                                 f"https://static.prod.thinkygames.com/uploads/puzzle_intro_images/{season}x{puzzle:02}",
+                                 f"https://static.prod.thinkygames.com/uploads/puzzle_intro_images/{season}",
+                                 f"{puzzle:02}",
                                  "-600x600.png"))
 
     print("Requesting")
@@ -107,19 +109,24 @@ async def parse_entries(entries: List[Entry]) -> List[Result]:
 
 async def parse_entry(entry: Entry, session: ClientSession) -> List[Result]:
     """Parses an entry with all infixes."""
-    return await parse_infix("", INFIXES, entry, session)
+    return (
+        await parse_infix("", "x", INFIXES, entry, session)
+    ) + (
+        await parse_infix("", "X", INFIXES, entry, session)
+    )
 
 
-async def parse_infix(current_infix: str, infix_generators: List[InfixGenerator], entry: Entry,
+async def parse_infix(current_infix: str, prefix_infix: str, infix_generators: List[InfixGenerator], entry: Entry,
                       session: ClientSession) -> List[Result]:
     """Parses an entry with a list of infix generators."""
+    # TODO: try to find a generic url-generation to avoid the ugly prefix_infix
     # check value
     result = await keep_if_exists(
         Result(
             season=str(entry.season),
             puzzle=str(entry.puzzle),
-            infix=current_infix,
-            url=entry.prefix + current_infix + entry.suffix,
+            infix=prefix_infix + "/" + current_infix,
+            url=entry.prefix_left + prefix_infix + entry.prefix_right + current_infix + entry.suffix,
         ),
         session,
     )
@@ -132,7 +139,7 @@ async def parse_infix(current_infix: str, infix_generators: List[InfixGenerator]
     results: List[Result] = [result] if result else []
     for generator in infix_generators:
         for infix in generator():
-            partial = await parse_infix(current_infix + infix, infix_generators, entry, session)
+            partial = await parse_infix(current_infix + infix, prefix_infix, infix_generators, entry, session)
             if not partial:
                 break
             results.extend(partial)
