@@ -1,0 +1,96 @@
+<!DOCTYPE htmls>
+<html>
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, interactive-widget=resizes-content">
+	<meta name="color-scheme" content="dark light">
+	<title>Ruffle online viewer</title>
+
+	<script data-goatcounter="https://trianguloy.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+	<script src="https://unpkg.com/@ruffle-rs/ruffle"></script>
+</head>
+<body>
+
+<div>
+	<label>This allows you to play a swf file by its url, using <a href="https://ruffle.rs/">Ruffle</a>, because for some reason all the pages I could find only allowed to upload a local swf file.</label>
+	<br/>
+	<br/>
+	<label>Url:
+		<input id="url" type="url">
+	</label>
+	<button onclick="reload();">Play</button>
+	<button onclick="fullscreen();">Fullscreen</button>
+	<button onclick="pause();">Pause</button>
+	
+</div>
+
+<div id="container" style="flex: 1 1 auto"></div>
+
+<a href="https://github.com/TrianguloY/githubPages/tree/master/Visor"><img style="position: absolute; top: 0; right: 0; border: 0;z-index:-999" src="https://github.blog/wp-content/uploads/2008/12/forkme_right_gray_6d6d6d.png?resize=149%2C149" alt="Fork me on GitHub"></a>
+
+<style>
+label{
+	padding-left: 10px;
+}
+body{
+	height:95%; 
+	width:95%; 
+	display:flex; 
+	flex-flow:column;
+}
+</style>
+<script type="text/javascript">
+var e_container = document.getElementById('container');
+var e_url = document.getElementById("url")
+
+let player = null;
+try {
+	player = window.RufflePlayer.newest().createPlayer();
+	player.style.width = "100%";
+	player.style.height = "100%";
+	
+	window.addEventListener("load", (event) => {
+		e_container.appendChild(player);
+	});
+}catch(e){
+	alert("Ruffle player couldn't be loaded. Try refreshing the page.");
+}
+
+//on button clicked
+function reload(){
+	if(player==null) return;
+
+	var url = e_url.value
+	console.log(url);
+	var settings = window.location.toString().replace(/\?.*/,'')
+	
+	if(url != ""){
+		player.ruffle().load(url);
+		
+		settings += "?" + url;
+	}
+	
+	
+	window.history.pushState({path:settings}, url, settings)
+}
+
+function fullscreen(){
+	if(player==null) return;
+	player.requestFullscreen()
+}
+
+function pause(){
+	if(player==null) return;
+	player.pause();
+}
+
+//run url from parameters (?something) if found
+window.addEventListener("load", () => {
+	var url = location.search;
+	if(url != ""){
+		e_url.value = location.search.substring(1);
+		reload();
+	}
+});
+</script>
+</body>
+</html>
