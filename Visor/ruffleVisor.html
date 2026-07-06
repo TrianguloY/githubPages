@@ -8,18 +8,20 @@
 	<script data-goatcounter="https://trianguloy.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 	<script src="https://unpkg.com/@ruffle-rs/ruffle"></script>
 </head>
-<body>
+<body class="flex">
 
 <div>
 	<label>This allows you to play a swf file by its url, using <a href="https://ruffle.rs/">Ruffle</a>, because for some reason all the pages I could find only allowed to upload a local swf file.</label>
 	<br/>
 	<br/>
-	<label>Url:
-		<input id="url" type="url">
-	</label>
-	<button onclick="reload();">Play</button>
-	<button onclick="fullscreen();">Fullscreen</button>
-	<button onclick="pause();">Pause</button>
+	<div class="flex">
+		<button onclick="pasteAndPlay();">Paste&Play</button>
+		<label for="url">Url:</label>
+		<input id="url" type="url" class="fullwidth">
+		<button onclick="reload();">Play</button>
+		<button onclick="pause();">Pause</button>
+		<button onclick="fullscreen();">Fullscreen</button>
+	</div>
 	
 </div>
 
@@ -28,13 +30,18 @@
 <a href="https://github.com/TrianguloY/githubPages/tree/master/Visor"><img style="position: absolute; top: 0; right: 0; border: 0;z-index:-999" src="https://github.blog/wp-content/uploads/2008/12/forkme_right_gray_6d6d6d.png?resize=149%2C149" alt="Fork me on GitHub"></a>
 
 <style>
+.flex {
+	display: flex; 
+}
+.fullwidth {
+	flex-grow: 1;
+}
 label{
-	padding-left: 10px;
+	padding-left: 5px;
 }
 body{
 	height:95%; 
 	width:95%; 
-	display:flex; 
 	flex-flow:column;
 }
 </style>
@@ -71,6 +78,19 @@ function reload(){
 	
 	
 	window.history.pushState({path:settings}, url, settings)
+}
+
+function pasteAndPlay(){
+	try{
+		navigator.clipboard.readText().then(text => {
+			e_url.value = text;
+			reload()
+		}).catch(clipboardError);
+	} catch(e){clipboardError(e)}
+}
+function clipboardError(e){
+	console.error(e);
+	alert("Can't access clipboard, paste manually.")
 }
 
 function fullscreen(){
