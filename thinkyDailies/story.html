@@ -81,6 +81,12 @@
             border-bottom-right-radius: 10px;
         }
     </style>
+    
+    <style id="hideImages">
+        img {
+            display: none;
+        }
+    </style>
 
     <script>
         Array.prototype.sortByPrefixNumber = function () {
@@ -105,9 +111,9 @@
                             html += `<div class="puzzle">`
                             html += `<a href="https://thinkygames.com/dailies/puzzles/${season}-${puzzle}/"><img src="${data.introImage}" alt="${season}x${puzzle}" title="${data.introImage}" loading="lazy" width="600px" height="600px"/></a>`;
                             html += `<div class="texts">`;
-                            html += `<p>${data.introText}"</p>`;
+                            html += `<p>${data.introText}</p>`;
                             html += `<hr>`;
-                            html += `<p>${data.winText}"</p>`;
+                            html += `<p>${data.winText}</p>`;
                             html += `</div>`;
                             if (data.winImage != null) html += `<a href="https://thinkygames.com/dailies/puzzles/${season}-${puzzle}/"><img src="${data.winImage}" alt="${season}x${puzzle}" title="${data.winImage}" loading="lazy" width="600px" height="600px"/></a>`;
                             html += `</div>`;
@@ -136,7 +142,7 @@
         page was created from a fan like you to be able to watch all the story in a single page.
     </p>
     <p>
-        On this page you'll find all the current (maybe even future, beware of spoilers!) story elements and images from <a
+        On this page you'll find all the current story elements and images from <a
             href="https://thinkygames.com/dailies/">thinkygames.com/dailies</a>.
     </p>
     <p>
@@ -147,7 +153,7 @@
     </p>
     <!--<p>
         Note: to avoid overloading the server with petitions of pages that do not exist, a precomputed list of
-        available textx is used. The list should update automatically, but if it doesn't or you think there is an
+        available texts is used. The list should update automatically, but if it doesn't or you think there is an
         error, don't hesitate to ping me!
     </p>-->
     <p>
@@ -163,6 +169,12 @@
         <input type="checkbox"
                onchange="document.documentElement.style.colorScheme = this.checked? 'light' : 'dark'"/>
         <span>Toggle dark/light theme.</span>
+    </label>
+    <br>
+    <label>
+        <input type="checkbox"
+               onchange="document.getElementById('hideImages').disabled = !this.checked"/>
+        <span>Hide images.</span>
     </label>
 </div>
 

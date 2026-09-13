@@ -1,27 +1,46 @@
+#!/usr/bin/env -S uv run --script
+# /// script
+# requires-python = ">=3.13"
+# dependencies = [
+#    "beautifulsoup4>=4.15.0",
+#    "requests>=2.34.2",
+# ]
+# ///
 import json
 from Tools.scripts.summarize_stats import load_raw_data
 
 import requests
 from bs4 import BeautifulSoup
 
-HEADERS = {"User-Agent": "Mozilla/5.0 (X11; Linux x86_64; rv:155.0) Gecko/20100101 Firefox/155.0"}
+
+def get_html(url):
+    """Returns the html of a url."""
+    return BeautifulSoup(
+        requests.get(
+            url,
+            headers={
+                "User-Agent": "Mozilla/5.0 (X11; Linux x86_64; rv:155.0) Gecko/20100101 Firefox/155.0"}
+        ).text,
+        features="html.parser"
+    )
 
 
 def get_puzzle_data(season, puzzle):
+    """Returns the data of a specific puzzle."""
     print("loading", season, puzzle)
-    html = BeautifulSoup(
-        requests.get(f"https://thinkygames.com/dailies/puzzles/{season}-{puzzle}/", headers=HEADERS).text,
-        features="html.parser")
 
-    prefix = 'self.__next_f.push([1,"f:[\\"$\\",\\"$L1c\\",null,'
-    suffix = ']\\n"])'
+    # load html
+    html = get_html(f"https://thinkygames.com/dailies/puzzles/{season}-{puzzle}/")
+
+    # extract data
     raw = [
         x.text.removeprefix("self.__next_f.push(").removesuffix(')')
         for x in html.find_all("script")
-        if x.text.startswith(prefix) and x.text.endswith(suffix)
+        if x.text.startswith('self.__next_f.push([1,"f:[\\"$\\",\\"$L1c\\",null,')
+           and x.text.endswith(']\\n"])')
     ][0]
-    raw2 = json.loads(raw)
-    parsed = json.loads(raw2[1].removeprefix('f:'))[3]
+    property = json.loads(raw)
+    parsed = json.loads(property[1].removeprefix('f:'))[3]
 
     try:
         title = parsed['title']
@@ -80,6 +99,7 @@ def create_data():
                 print("Error on parsing", s, p)
                 data[s][p] = None
 
+    # save
     with open("story.json", "w") as output:
         json.dump(data, output, indent=2)
 
