@@ -1,0 +1,1289 @@
+{
+  "1": {
+    "1": {
+      "title": "A Shadowy Pursuit",
+      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/1x01.png",
+      "introText": "Steps echo through labyrinthine streets. A mysterious silhouette closes in on our thinky hero as they dash away.",
+      "winImage": null,
+      "winText": "Our hero narrowly escapes, only to be surprised by a loud noise\u2026"
+    },
+    "2": {
+      "title": "An Alarming Sound",
+      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/1x02.png",
+      "introText": "*Riiiiiiiiiiiiiiiiiing* The whole bed seems to leap into the air. Phew, it was just a dream! Now how to turn this thing off?",
+      "winImage": null,
+      "winText": "The alarm clock is finally silent. Wait, did our friend just press the snooze button?"
+    },
+    "3": {
+      "title": "The Perfect Slippers",
+      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/1x03.png",
+      "introText": "The perfect day starts with the perfect slippers, and our thinky friend, of course, has an overly elaborate method for picking them.",
+      "winImage": null,
+      "winText": "Now that they have comfy feet, it\u2019s time for breakfast."
+    },
+    "4": {
+      "title": "Better Latte Than Never!",
+      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/1x04-1.png",
+      "introText": "Not even the perfect slippers can save the day from a broken coffee machine. Maybe pressing the right buttons will fix it?",
+      "winImage": null,
+      "winText": "Our hero isn't aware yet, but they have a big adventure ahead."
+    },
+    "5": {
+      "title": "The Newspaper Puzzle",
+      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/1x05.png",
+      "introText": "As if the day weren't puzzly enough already, it's time to check out the puzzles in today's paper!",
+      "winImage": null,
+      "winText": "After such a nice thinky treat to start the day, it\u2019s time to get freshened up."
+    },
+    "6": {
+      "title": "The Leaky Pipes",
+      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/1x06.png",
+      "introText": "*drip* *drip* Fear not! Just another plumbing puzzle to crack.",
+      "winImage": null,
+      "winText": "Ahh, nothing like a shower with good water pressure. But this peaceful relaxation won\u2019t last for long\u2026"
+    },
+    "7": {
+      "title": "Slippery Steps",
+      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/1x07-1.png",
+      "introText": "Oh, was that the doorbell? Can our puzzle pal spot the wet tiles and make their way to the door?",
+      "winImage": null,
+      "winText": "After some careful tip-toeing, our friend finds something mysterious waiting at the door."
+    },
+    "8": {
+      "title": "A Strange Package",
+      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/1x08.png",
+      "introText": "The mysterious parcel contains an odd-looking box with an even odder looking lock.",
+      "winImage": null,
+      "winText": "With a clunk, the box falls apart, revealing a scrawled message: \u2018We are the Solvers. Find us.\u2019"
+    },
+    "9": {
+      "title": "This Way or That Way?",
+      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/1x09.png",
+      "introText": "Who are these \n\nSolvers\n\n? Someone in town will surely know, but\u2026 which way is that again?",
+      "winImage": null,
+      "winText": "As our hero hikes the country trails, they notice a farm just over the next hill."
+    },
+    "10": {
+      "title": "Herding the Sheep",
+      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/1x10.png",
+      "introText": "The local farmer spots our thinky friend and asks a quick favor: can you build a new enclosure for their puzzle-loving sheep?",
+      "winImage": null,
+      "winText": "Whew, a job well done. But of course, it\u2019s never just one favor!"
+    },
+    "11": {
+      "title": "The Graze Escape",
+      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/1x11-1.png",
+      "introText": "A sheep has gone missing! Can we work out which pastures it stopped in for a tasty snack?",
+      "winImage": null,
+      "winText": "The trail leads to a hidden clearing, where a \n\nvery\n\n happy sheep lays amongst the half-chomped clover."
+    },
+    "12": {
+      "title": "A Distracting Tree",
+      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/1x12.png",
+      "introText": "Unfortunately, our overfed sheep is distracted by a puzzling tree and won't budge until it's solved!",
+      "winImage": null,
+      "winText": "Finally satisfied with both stomach food and brain food, our woolly friend is happy to get moving."
+    },
+    "13": {
+      "title": "A Fluffy Problem",
+      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/1x13-1.png",
+      "introText": "Here's your lost sheep! Oh, now they need shearing? 5 sheep pens, each with 5 sheep - but in what order?",
+      "winImage": null,
+      "winText": "With the fluffiness under control, it's time for our friend to continue their quest... right!?"
+    },
+    "14": {
+      "title": "One More Thing!",
+      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/1x14-1.png",
+      "introText": "Of course, as our thinky friend walks away, the farmer has yet another favor to ask. How will they break free from this infinite loop?",
+      "winImage": null,
+      "winText": "A quick comment about how late it is, a few long strides, and the wave of a hand. It never fails."
+    },
+    "15": {
+      "title": "Of Books and Shelves",
+      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/1x15.png",
+      "introText": "At the local library, our hero scours through dusty books in search of clues about the Solvers, but no luck. A librarian must be \n\nsomewhere \n\nin this maze of bookshelves.",
+      "winImage": null,
+      "winText": "*CLUNK* *CLATTER* One small misstep and books fly everywhere. A stern \"Shhh\" is heard from behind the shelves."
+    },
+    "16": {
+      "title": "Finding the Right Books",
+      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/1x16-1.png",
+      "introText": "After studying the note for a moment, the librarian points towards a towering bookshelf. Can our friend locate the right books?",
+      "winImage": null,
+      "winText": "Huh, one of the books is missing! Perhaps the librarian knows who borrowed it."
+    },
+    "17": {
+      "title": "The Library Records",
+      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/1x17-1.png",
+      "introText": "As the librarian scours through reams of records, our hero spots a puzzle etched into the front desk.",
+      "winImage": null,
+      "winText": "Wow, they found a lead on the book borrower already? Time flies when you're solving puzzles!"
+    },
+    "18": {
+      "title": "That's Quite a Crowd",
+      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/1x18-1.png",
+      "introText": "Outside the library, our hero finds themselves blocked by a bustling crowd. Oh, it's the annual puzzle parade!",
+      "winImage": null,
+      "winText": "After gently nudging their way past parade-goers, our friend is relieved to finally have some space to think."
+    },
+    "19": {
+      "title": "A Grumpy Welcome",
+      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/1x19-1.png",
+      "introText": "At the book borrower's home, the welcome is all grumbles. Puzzles this, puzzles that, hmph! Wait, isn't that a puzzle right there?",
+      "winImage": null,
+      "winText": "Our friend's puzzle-solving daydream is suddenly interrupted by a loud yelp!"
+    },
+    "20": {
+      "title": "Puzzlephobic",
+      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/1x20-1.png",
+      "introText": "A frightened book borrower slumps to the ground, hands over their eye, as a sheet of paper floats to the ground. A puzzle!",
+      "winImage": null,
+      "winText": "The puzzle (solved, of course) is quickly hurled away. Relieved, the borrower introduces themselves as Greg. What's \n\nyour\n\n name?"
+    },
+    "21": {
+      "title": "The Chronicle",
+      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/1x21-1.png",
+      "introText": "Still grumpy but now grateful, the borrower shares their book: the town's chronicle. It contains only a brief mention of the Solvers, but a curious symbol appears beside it.",
+      "winImage": null,
+      "winText": "Aha, it's the family crest of the local lockmaker. A new clue! We know what to do!"
+    },
+    "22": {
+      "title": "A Good Citizen",
+      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/1x22-1.png",
+      "introText": "Before continuing an adventure, a good citizen always returns their library books. Now, where was that shelf again?",
+      "winImage": null,
+      "winText": "Feels good to do good! And luckily enough, the lockmaker lives not too far from here."
+    },
+    "23": {
+      "title": "An Expected Lock",
+      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/1x23-1.png",
+      "introText": "As one might expect, the lockmaker's door is locked, and they're certainly known for making unusual locks!",
+      "winImage": null,
+      "winText": "Don't worry, the lockmaker is always delighted when someone solves their locks!"
+    },
+    "24": {
+      "title": "Testing a New Model",
+      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/1x24.png",
+      "introText": "An excited lockmaker greets our friend, eagerly sharing their new puzzle lock designs: no keys, more fun! (Security? What's that?)",
+      "winImage": null,
+      "winText": "They scribble down some potential improvements - the perfect moment to enquire about the Solvers!"
+    },
+    "25": {
+      "title": "Information Has a Price",
+      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/1x25.png",
+      "introText": "The Solvers? Sure, the lockmaker can help! What about this new lock over here though?",
+      "winImage": null,
+      "winText": "Just as one lock opens, another lock is heard slamming shut with a loud clunk."
+    },
+    "26": {
+      "title": "Locked In",
+      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/1x26.png",
+      "introText": "Our hero peers over at the cupboard door, from which sounds of discomfort can be heard. Has the lockmaker locked themself in?",
+      "winImage": null,
+      "winText": "A flustered lockmaker, along with many brooms and buckets, spills out onto the floor."
+    },
+    "27": {
+      "title": "A Key Clue",
+      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/1x27.png",
+      "introText": "The lockmaker, remaining ever evasive about the Solvers, relunctantly agrees to offer a tiny clue if the questions will stop.",
+      "winImage": null,
+      "winText": "Wait, isn't that the book borrower's name?"
+    },
+    "28": {
+      "title": "D\u00e9j\u00e0 Vu",
+      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/1x28.png",
+      "introText": "On the way back to Greg's house, as our hero admires the sights and sounds of the parade, an uneasy feeling sets in. Are we being followed?",
+      "winImage": null,
+      "winText": "Huh, what was that? A shadow seems to dart around the corner."
+    },
+    "29": {
+      "title": "A Blurry Figure",
+      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/1x29.png",
+      "introText": "Our hero squints over their shoulder, trying to make out a mysterious silhouette amongst the crowds.",
+      "winImage": null,
+      "winText": "Ugh, no luck! They vanished! However, there are more urgent matters - this mystery will have to wait."
+    },
+    "30": {
+      "title": "Stepping on a Puzzle",
+      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/1x30.png",
+      "introText": "Back at Greg's house, where the grumbles continue, our hero scouts every inch for clues. Isn't it weird that these floor tiles are numbered? ",
+      "winImage": null,
+      "winText": "No, not a clue! Just a fun hidden puzzle. What else do we have around here?"
+    },
+    "31": {
+      "title": "The Evidence",
+      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/1x31.png",
+      "introText": "Our enthusiastic friend, always ready to crack a case, starts tagging everything with numbers as if it were a crime scene.",
+      "winImage": null,
+      "winText": "You know, Greg might not appreciate it, but this place is packed with puzzle potential!"
+    },
+    "32": {
+      "title": "Digging for Clues",
+      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/1x32.png",
+      "introText": "Greg, tired of these antics, suggests our hero should look for clues in the garden. Big mistake! There's a shovel!",
+      "winImage": null,
+      "winText": "Several holes later and still no clues, but plenty of mess!"
+    },
+    "33": {
+      "title": "Yet More Digging",
+      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/1x33.png",
+      "introText": "Shocked by the destruction, Greg insists on moving elsewhere, perhaps over that nearby hill. A hill? Something else to dig!",
+      "winImage": null,
+      "winText": "This hill is starting to look like Swiss cheese! But when our thinky hero is on a mission..."
+    },
+    "34": {
+      "title": "The Excavation",
+      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/1x34.png",
+      "introText": "Never one to give up, our friend sets up an amateurish, yet entirely serious, archeological excavation.",
+      "winImage": null,
+      "winText": "*CLUNK* The shovel strikes something metallic. What could it be?"
+    },
+    "35": {
+      "title": "The Buried Chest",
+      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/1x35.png",
+      "introText": "It's a chest! Brute force might have found it, but it certainly won't get us past this unusual lock.",
+      "winImage": null,
+      "winText": "Eh, a few gold coins, who needs those? More importantly, a mysterious photo! Wait, is that..."
+    },
+    "36": {
+      "title": "Kicked Out",
+      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/1x36.png",
+      "introText": "Greg is certainly not pleased with the discovery! Kicked off the premises, our rejected friend goes for a wander around the block.",
+      "winImage": null,
+      "winText": "Just about to find something new to do, our thinky pal overhears the faint sound of sniffling."
+    },
+    "37": {
+      "title": "Taking a Closer Look",
+      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/1x37.png",
+      "introText": "A tearful Greg tells of an estranged friend, a puzzle-solving buddy from years gone by. Fading memories, just like this photograph.",
+      "winImage": null,
+      "winText": "Through the tears, there's the faint glimmer of happy memories. Perhaps it's time to reconnect?"
+    },
+    "38": {
+      "title": "To the Library!",
+      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/1x38.png",
+      "introText": "When in need of answers, always go to your local library! But where's that librarian hiding again?",
+      "winImage": null,
+      "winText": "The librarian recalls the two (very noisy) friends all too well. Surely we can find who you're looking for."
+    },
+    "39": {
+      "title": "Locating a Lost Friend",
+      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/1x39.png",
+      "introText": "A dark and musty room full of annuaries, address books, and town records. We'll need one from each section, but can we find them?",
+      "winImage": null,
+      "winText": "The bad news: Greg's long lost friend has moved far away. The good news: we know where!"
+    },
+    "40": {
+      "title": "D\u00e9j\u00e0d\u00e9j\u00e0 Vu",
+      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/1x40.png",
+      "introText": "As they set off from the library, our hero gets that uneasy feeling again. Just as a precaution, they take an odd path back to Greg's house.",
+      "winImage": null,
+      "winText": "Unfamiliar streets, unfamiliar buildings, and there's not a soul in sight... oh no, we're lost! "
+    },
+    "41": {
+      "title": "Who Goes There?",
+      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/1x41.png",
+      "introText": "What was that shadow in the corner of our hero's eye? Just a friendly passerby?",
+      "winImage": null,
+      "winText": "Squinting into the distance reveals it's just the farmer. Quickly! Or they'll request more favours!"
+    },
+    "42": {
+      "title": "Catching Your Breath",
+      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/1x42.png",
+      "introText": "Finally back at Greg's house, our hero, catching their breath, struggles to get the words out. F... F... FR...",
+      "winImage": null,
+      "winText": "Greg's usual frown turns to great excitement upon hearing the news. Let's write a letter!"
+    },
+    "43": {
+      "title": "The Right Puzzle",
+      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/1x43.png",
+      "introText": "Of course, a letter to an old friend should always include a fun puzzle. What about this one?",
+      "winImage": null,
+      "winText": "Hm, it's a great puzzle, but maybe too on the nose! What about..."
+    },
+    "44": {
+      "title": "Maybe This One?",
+      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/1x44.png",
+      "introText": "Greg mutters to themself as they discard puzzle after puzzle. Their eye sets on a new one. What about this?",
+      "winImage": null,
+      "winText": "Ah, an oldie but goodie. In the blink of an eye, Greg reappears, envelope stamped and sealed."
+    },
+    "45": {
+      "title": "An Important Delivery",
+      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/1x45.png",
+      "introText": "So eager to catch up on years of missed puzzles, Greg dashes away, leaving our hero to find the way through town to send the letter.",
+      "winImage": null,
+      "winText": "After an undisturbed stroll, they arrive at the most reliable delivery service: the local pigeon fancier."
+    },
+    "46": {
+      "title": "You've Got Mail",
+      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/1x46.png",
+      "introText": "Pigeons are, of course, the most popular delivery service for puzzle fans. Now, how to convey an address to them?",
+      "winImage": null,
+      "winText": "With that, one of the pigeons takes the letter in its beak and flaps away. Goodbye, feathered friend!"
+    },
+    "47": {
+      "title": "Street Puzzles",
+      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/1x47.png",
+      "introText": "Another good deed done! Though not much progress on the Solvers. Wait, is that graffiti a puzzle?",
+      "winImage": null,
+      "winText": "How curious! It seems to suggest a direction. How could one not follow a clue like this?"
+    },
+    "48": {
+      "title": "One Leads to Another",
+      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/1x48.png",
+      "introText": "The trail leads to more graffiti - this one, tagged by the Solvers. What an unorthodox way to publish puzzles!",
+      "winImage": null,
+      "winText": "Each mysterious sign points to another, leading finally to the old clock tower at the centre of town."
+    },
+    "49": {
+      "title": "The Old Clock Tower",
+      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/1x49.png",
+      "introText": "At the clock tower, an arrow points inside. Beside it, there's another puzzle with a note: \"This one's just for fun\".",
+      "winImage": null,
+      "winText": "A fun puzzle indeed! Our hero ventures into the old building to see what else awaits them."
+    },
+    "50": {
+      "title": "Up We Go",
+      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/1x50.png",
+      "introText": "Up a maze of rickety stairs we climb, through dark and narrow doorways. People rarely wander around here.",
+      "winImage": null,
+      "winText": "Just as our hero suspects the climb might never end, they stumble into a brightly lit room."
+    },
+    "51": {
+      "title": "Almost There!",
+      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/1x51.png",
+      "introText": "We must be near the top now! In front of an elaborately locked door, we find a table with an intriguing puzzle laid upon it.",
+      "winImage": null,
+      "winText": "After a series of heavy clunks, the wind howls through the door as it slowly opens."
+    },
+    "52": {
+      "title": "Bird's-Eye View",
+      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/1x52 (2).png",
+      "introText": "We're so high up! That's our house over there! Wait, are the buildings below trying to tell us something?",
+      "winImage": null,
+      "winText": "Wow, those buildings point towards a small neighbourhood over there! Who prepared all this!?"
+    },
+    "53": {
+      "title": "A Baa-rricade",
+      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/1x53.png",
+      "introText": "Leaving the tower, our friend stumbles upon a familiar flock of sheep blocking the street, mesmerised by a puzzle!",
+      "winImage": null,
+      "winText": "Satisfied with the solve, the sheep shuffle to the side, revealing... Oh no, the farmer!"
+    },
+    "54": {
+      "title": "Not Again!",
+      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/1x54 (1).png",
+      "introText": "Before we can escape, the farmer sprints forward, requesting help with a particularly confounding puzzle (or so they say).",
+      "winImage": null,
+      "winText": "The farmer seems to have a lot to say about this puzzle! Back away... slowly..."
+    },
+    "55": {
+      "title": "A Slow Getaway",
+      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/1x55.png",
+      "introText": "Our hero steps back, but the farmer approaches again, another puzzle in hand. To onlookers, it seems like an absurdly slow chase!",
+      "winImage": null,
+      "winText": "As they finally make their escape, they could have sworn the farmer signalled to someone else."
+    },
+    "56": {
+      "title": "The Latest Version",
+      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/1x56-1.png",
+      "introText": "Just a few steps away from the farmer, the lockmaker suddenly appears with a fancy new lock. Apparently we simply \n\nmust \n\ntry this latest version!",
+      "winImage": null,
+      "winText": "Well, sure, that was a pretty nice lock... but how did the lockmaker suddenly get here?"
+    },
+    "57": {
+      "title": "No More Interruptions",
+      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/1x57.png",
+      "introText": "That's enough! Time to get out of here! But how do these narrow alleys weave between the buildings?",
+      "winImage": null,
+      "winText": "Well, this is the neighbourhood we saw from the clocktower... but what now?"
+    },
+    "58": {
+      "title": "Making Art",
+      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/1x58.png",
+      "introText": "Beside some suspiciously grid-like wall markings, our friend finds an unused spray can with a note: \"Use this!\"",
+      "winImage": null,
+      "winText": "Oh wow, a hidden number! Perhaps there's a door around here with that number?"
+    },
+    "59": {
+      "title": "A Meandering Path",
+      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/1x59-1.png",
+      "introText": "From behind door 23, a booming (yet oddly familiar) voice emanates: Recall the path you have taken. Apply one step at a time.",
+      "winImage": null,
+      "winText": "A second, meek voice chimes in, asking if our hero brought cookies, then a chorus of grumbling stomachs."
+    },
+    "60": {
+      "title": "A Sweet Treat",
+      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/1x60-1.png",
+      "introText": "If the Solvers need cookies, they need cookies! This bakery is like a maze, but their favourite treat must be in here somewhere.",
+      "winImage": null,
+      "winText": "Aha, here they are! Hm, didn't we see these cookies somewhere before?"
+    },
+    "61": {
+      "title": "The Final Riddle",
+      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/1x61A.png",
+      "introText": "The now appreciative voice speaks again: What is our sigil? Since the clocktower, it has been nearby. Recall the puzzles you have solved. Follow the cookie crumbs.",
+      "winImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/1X61B.png",
+      "winText": "The door opens slowly (dramatic tension!) to reveal a few friendly faces: Welcome, Solver! We have cookies!"
+    }
+  },
+  "2": {
+    "1": {
+      "title": "Making a Connection",
+      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/2x01.png",
+      "introText": "Cookie in hand, our hero is bundled inside the building. The welcome is warm but confusing, so let's take a moment to connect the dots.",
+      "winImage": null,
+      "winText": "As we descend a long stone staircase, they explain the Solvers are dedicated to puzzles and mysteries. Well duh!"
+    },
+    "2": {
+      "title": "From Far Away",
+      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/2x02-1.png",
+      "introText": "The trio pauses to inspect a puzzle. It's been sent in by a fellow Solver, the lockmaker explains. This one's come a long way!",
+      "winImage": null,
+      "winText": "Our hero could make discoveries like this, the farmer says. Just as soon as they pass their apprenticeship!"
+    },
+    "3": {
+      "title": "How Big is this Place?",
+      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/2x03-1.png",
+      "introText": "The trio strolls through room after room, chatting happily as our pal puffs along behind, trying to keep track of the underground sprawl.",
+      "winImage": null,
+      "winText": "The group draws to a halt at the largest rectan...er... room. It appears to be some kind of grand hall..."
+    },
+    "4": {
+      "title": "A Cryptic Crest",
+      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/2x04.png",
+      "introText": "As the lockmaker begins to recite the legend of the Seven Founding Solvers, our hero raises their hand. What's going on with that shield?",
+      "winImage": null,
+      "winText": "Our friend nods happily - that was fun! But the Solvers are exchanging meaningful glances. How odd."
+    },
+    "5": {
+      "title": "What's In Here?",
+      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/2x05.png",
+      "introText": "While the Solvers huddle up, talking in low voices, our hero begins to wander. In a cluttered side room, a piece of wall art catches their eye.",
+      "winImage": null,
+      "winText": "A burst of chatter breaks the silence. Behind a wall of knick-knacks is a ragtag group. Are they Solvers too?"
+    },
+    "6": {
+      "title": "A Meeting of Minds",
+      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/2x06-1.png",
+      "introText": "The strangers pause mid-chat. There's a wary silence, then one gives our hero a friendly wave. They seem to be working on a puzzle!",
+      "winImage": null,
+      "winText": "After a round of high-twos, the group introduces itself properly. These are the other apprentices!"
+    },
+    "7": {
+      "title": "A Rival Arises",
+      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/2x07-1.png",
+      "introText": "One apprentice is less friendly. They glare at our inquisitive pal, fold their arms, and issue a challenge. If you're so smart, show us your best puzzle.",
+      "winImage": null,
+      "winText": "The apprentice answers correctly and smirks, claiming the puzzle was easy peasy. It seems our hero has a rival."
+    },
+    "8": {
+      "title": "Challenge Accepted",
+      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/2x08-1.png",
+      "introText": "The rival informs the group that nobody cool is solving Even/Odd Sudoku anymore. The hot new thing is Parity Partitions! Here's one of mine...",
+      "winImage": null,
+      "winText": "As the rival huffs at our friend's speedy solution, a Senior Solver appears. Everyone to the hall, please!"
+    },
+    "9": {
+      "title": "Getting A Mentor",
+      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/2x09.png",
+      "introText": "The grand hall now contains a selection of puzzles and the Solvers who created them. Solve a puzzle, and its setter becomes your mentor.",
+      "winImage": null,
+      "winText": "Our thinky friend has attracted a mentor! She beams with satisfaction and beckons them to follow her."
+    },
+    "10": {
+      "title": "Wait For Me!",
+      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/2x10.png",
+      "introText": "Mentor and mentee head deeper into the tangle of rooms. It's a struggle to keep pace, and our friend is forced to stop to get their bearings.",
+      "winImage": null,
+      "winText": "Our friend gasps. Instead of an office, they arrive in a cavernous room covered with intricate mosaics."
+    },
+    "11": {
+      "title": "Telling Tiles",
+      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/2x11.png",
+      "introText": "Mosaics, it seems, are this mentor's specialist subject. Her eye lights up as she brandishes a tiny tile. Even the smallest are vital to the whole picture!",
+      "winImage": null,
+      "winText": "She watches appreciatively as our hero handles the tiles with care. This is one of the Solvers' oldest patterns."
+    },
+    "12": {
+      "title": "To The Workshop!",
+      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/2x12.png",
+      "introText": "The mentor appraises our friend. They'll need a toolkit, but there's a spare in the workshop. Come back when you have it!",
+      "winImage": null,
+      "winText": "Our hero finds themself back in the now-empty grand hall. They could swear these passages have shifted!"
+    },
+    "13": {
+      "title": "A Guiding Hum",
+      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/2x13-1.png",
+      "introText": "A distant humming echoes from above. These stairs are in need of better lighting, but perhaps the hummer up there knows the way to the workshop?",
+      "winImage": null,
+      "winText": "Emerging from the newly lit spiral staircase, our hero manages to startle the Solvers' happily humming janitor."
+    },
+    "14": {
+      "title": "The Helpful Janitor",
+      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/2x14.png",
+      "introText": "Once they regain their composure, the janitor is only too happy to help our friend. This simple riddle should take them right to the workshop door.",
+      "winImage": null,
+      "winText": "Our hero calls out their thanks and rushes off towards the workshop as the janitor resumes their cheery tune."
+    },
+    "15": {
+      "title": "A Messy Workshop",
+      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/2x15.png",
+      "introText": "The workshop is a total mess! Our hero's mentor might be a genius, but she doesn't seem to believe in putting things back in the right places.",
+      "winImage": null,
+      "winText": "Hmm. Our puzzle-loving pal has tidied up all the tools in the workshop, so why does the kit have all these gaps?"
+    },
+    "16": {
+      "title": "Tracking the Tools",
+      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/2x16.png",
+      "introText": "Missing tools AND mucky footprints? Our thinky chum is in their element as they grab a torch and follow the splotches down the hallway.",
+      "winImage": null,
+      "winText": "The tracks lead into a busy cafeteria where the janitor is carefully mopping the dirty floor. Our hero must hurry!"
+    },
+    "17": {
+      "title": "Where Did You Find That?",
+      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/2x17-1.png",
+      "introText": "The last of the footprints take our pal to a flock of familiar faces. Who brought the sheep to the cafeteria? And where did they get that puzzle?!",
+      "winImage": null,
+      "winText": "The sheep baa happily at the solution, then CLANG! Lightly chewed tools lie at the feet of a guilty-looking sheep."
+    },
+    "18": {
+      "title": "A Handy Distraction",
+      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/2x18.png",
+      "introText": "As our hero gathers the tools, the farmer runs over, waving a puzzle. They seem keen to avoid the janitor's pointed questions about sheep with muddy feet...",
+      "winImage": null,
+      "winText": "The sheep are enthralled, and crowd round our hero to look at the solution. They like you, says the farmer fondly."
+    },
+    "19": {
+      "title": "The Practice Pen",
+      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/2x19-1.png",
+      "introText": "My hobby is decryptozoology, the farmer explains. It means I train these beauties to sniff out puzzles. Here's a picture of one from their training pen.",
+      "winImage": null,
+      "winText": "Our hero looks up to find the flock heading for the door. It's time to see these woolly wonders in action!"
+    },
+    "20": {
+      "title": "Pathfinding For Puzzles",
+      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/2x20-1.png",
+      "introText": "As our hero watches the flock, the farmer points out how different sheep are attracted to the traces of different types of puzzle. Look at 'em go!",
+      "winImage": null,
+      "winText": "As they pass the workshop, our friend bids the farmer farewell. Time to finish that toolkit and find the mentor!"
+    },
+    "21": {
+      "title": "Nothing To See Here",
+      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/2x21-1.png",
+      "introText": "Next, our thinky friend must find their mentor. Alas! They meet their rival instead. The rival turns away, trying to hide a puzzle from view...",
+      "winImage": null,
+      "winText": "Oh! The rival is trying to hide the fact their solution contains an error. Should our hero offer a helping hand?"
+    },
+    "22": {
+      "title": "Something Similar",
+      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/2x22.png",
+      "introText": "A direct offer of help seems risky. Instead, our hero pretends to be stuck on a similar puzzle. Would the rival mind checking their solution?",
+      "winImage": null,
+      "winText": "The rival eyes their own puzzle, now able to spot the error, then hurries off, gabbling something about vital work..."
+    },
+    "23": {
+      "title": "Navigating the Department",
+      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/2x23-2.png",
+      "introText": "Our friend manages to retrace their steps as far as the mosaic department, but where was the mentor's cavernous room?",
+      "winImage": null,
+      "winText": "Our friend enters the elaborately tiled space, and the mentor rushes over. Where have you been?!"
+    },
+    "24": {
+      "title": "A Mythic Mosaic",
+      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/2x24.png",
+      "introText": "Our hero holds up their toolkit, but the mentor bats it aside and runs to an ancient section of wall. Do these figures seem connected to you?",
+      "winImage": null,
+      "winText": "A tiled inscription reads: \"Our Eight Founding Solvers\". Eight? The lockmaker definitely said seven!"
+    },
+    "25": {
+      "title": "The Archiving System",
+      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/2x25.png",
+      "introText": "In search of information, the mentor sends our hero to the Solver archives. It seems her memory of the classification system is... incomplete.",
+      "winImage": null,
+      "winText": "Our friend scoops up the books, pauses, writes a note to explain the \"loan\" to any irate archivists, and leaves."
+    },
+    "26": {
+      "title": "Stray Puzzles",
+      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/2x26.png",
+      "introText": "Our friend spies the janitor picking puzzle papers off the floor ahead. They stop to help, but are soon distracted by an enticing problem.",
+      "winImage": null,
+      "winText": "Solvers throw their papers in the air to celebrate a solution, says the janitor. I collect them for my teabreaks!"
+    },
+    "27": {
+      "title": "A Puzzle Break",
+      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/2x27.png",
+      "introText": "A break sounds like a great idea to our thinky pal, so they huddle up to chat with the Janitor as they work on a puzzle together.",
+      "winImage": null,
+      "winText": "The pair's chatter turns to the subject of the Founding Solvers. The janitor looks thoughtful."
+    },
+    "28": {
+      "title": "The Way to the Old Wing",
+      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/2x28.png",
+      "introText": "I don't know if it's what you're after, says the janitor, but all the unsorted documents go into the Odds and Ends room in the Old Wing.",
+      "winImage": null,
+      "winText": "Our hero eyes the books from the archive. The Old Wing will be the next port of call if these don't help."
+    },
+    "29": {
+      "title": "A Cry in the Dark",
+      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/2x29-2.png",
+      "introText": "Our friend is about to open the first book when a sob echoes through the air vents. They peek into a darkened doorway. Is someone crying in there?",
+      "winImage": null,
+      "winText": "Padding into a gloomy bathroom, our protagonist spots an even gloomier sight, curled up under a sink."
+    },
+    "30": {
+      "title": "Getting Unstuck",
+      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/2x30.png",
+      "introText": "It's one of the other would-be Solvers. They hold out a tear-stained problem page, and explain their predicament between gasps. I got s-s-stuck!",
+      "winImage": null,
+      "winText": "Our friend holds the soggy paper under a hand dryer, then the pair looks over the solution together."
+    },
+    "31": {
+      "title": "The Anxious Mouse",
+      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/2x31.png",
+      "introText": "Between sniffles we learn that this is Mouse. They love puzzles, but get so anxious under pressure. Our pal offers to help with another practice puzzle.",
+      "winImage": null,
+      "winText": "Watching Mouse work, our hero realises that they are very clever; they just struggle to focus when anxious."
+    },
+    "32": {
+      "title": "A Secret Meeting",
+      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/2x32.png",
+      "introText": "As thanks for our hero's help, Mouse shyly invites them to a secret meeting. Intriguing! But they'll need to decipher Mouse's directions...",
+      "winImage": null,
+      "winText": "The note finally leads the duo to a nondescript door. Mouse gives a timid knock. Hello?"
+    },
+    "33": {
+      "title": "Entry Requirements",
+      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/2x33.png",
+      "introText": "A voice comes from behind the peephole. You know the rules, Mouse! No newbies unless they can solve a most illuminating riddle!",
+      "winImage": null,
+      "winText": "The door swings open to reveal the lively clamour of a party. The cheering is particularly loud in one corner."
+    },
+    "34": {
+      "title": "Speedy Solvers",
+      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/2x34 (1).png",
+      "introText": "It's a speed-solving party! Our thinky friend isn't too fussed about the timer, but the puzzle tables and the lively mood are impossible to resist!",
+      "winImage": null,
+      "winText": "Mouse cheers, but a loud scoff lets our hero know someone beat them. It's the Rival. And they're smirking!"
+    },
+    "35": {
+      "title": "Quick on the Uptake",
+      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/2x35-1.png",
+      "introText": "The Rival starts bragging about their solve times, but our thinky pal is barely listening. They're far more interested in another puzzle!",
+      "winImage": null,
+      "winText": "Our hero watches an expert solve the same puzzle in seconds. It's tempting to stay, but the archive books are calling."
+    },
+    "36": {
+      "title": "A Riveting Read",
+      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/2x36.png",
+      "introText": "Finally, our hero finds a quiet spot and curls up with the books. No more distractio- Oooh! There's a puzzle in this one!",
+      "winImage": null,
+      "winText": "Our friend tries again to focus, but the accounts just don't seem to line up. It's like something's missing."
+    },
+    "37": {
+      "title": "Founders Not Found",
+      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/2x37-1.png",
+      "introText": "Our hero begins to leaf through the images. This one maps part of the labyrinthine Solver building, but the details are so faded.",
+      "winImage": null,
+      "winText": "Why is it so hard to find out about the founders? Our friend sighs and closes the book, just as their mentor arrives."
+    },
+    "38": {
+      "title": "A Solo Quest",
+      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/2x38-1.png",
+      "introText": "The mentor is seeking would-be Solvers. It's time for individual puzzle quests, so you all need starter puzzles, she says. I think this is yours!",
+      "winImage": null,
+      "winText": "A tree? Is there a garden down here? Our hero sets their \"borrowed\" books aside and goes in search of greenery."
+    },
+    "39": {
+      "title": "Branching Off",
+      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/2x39-1.png",
+      "introText": "No trees so far, thinks our pal. Not a single root or branch. Wait! Roots and branches, roots and- Routes and branches! I need a tree-shaped path!",
+      "winImage": null,
+      "winText": "Our thinky pal gasps; one of the halls contains a small meadow??? There must be a botanist in the Solvers!"
+    },
+    "40": {
+      "title": "Puzzling Petals",
+      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/2x40.png",
+      "introText": "Our friend steps onto the grass, crouching to admire the flowers. It looks like they're being bred for their puzzle patterns. Look at this one!",
+      "winImage": null,
+      "winText": "Our pal is reluctant to leave, but the flowers must be part of the quest. Does the archive have botany books?"
+    },
+    "41": {
+      "title": "Directions for Mouse",
+      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/2x41.png",
+      "introText": "On the way to the archive, our pal bumps into a cheery Mouse. Their quest is going great! But, um, would our hero double-check this answer?",
+      "winImage": null,
+      "winText": "Our hero nods. The route is correct! They tactfully turn Mouse to face the right direction and wish them luck!"
+    },
+    "42": {
+      "title": "Locked Out",
+      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/2x42.png",
+      "introText": "The archive is locked! It seems that folks have been taking books and leaving notes in their place. Oops! The lock doesn't seem too tricky, though...",
+      "winImage": null,
+      "winText": "There's a satisfying click, and the door swings open. Our hero hurries in and begins to scan the shelves."
+    },
+    "43": {
+      "title": "Strange Horticulture",
+      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/2x43.png",
+      "introText": "The botany section is tightly packed. Our pal manages to free a volume on breeding puzzle plants, but its author is mainly interested in tomatoes!",
+      "winImage": null,
+      "winText": "Our thinky friend tries to replace the book, but it's impossible to squeeze it back into the over-stuffed shelf."
+    },
+    "44": {
+      "title": "The Missing Book",
+      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/2x44-1.png",
+      "introText": "Our thinky pal scans the shelf, finally spotting a handy gap. But a handy gap means a missing book! Our friend examines the shelf more closely...",
+      "winImage": null,
+      "winText": "What are you doing here? asks the janitor. Between you and that Rival, we won't have any books left!"
+    },
+    "45": {
+      "title": "Hot On The Trail",
+      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/2x45.png",
+      "introText": "It seems the Rival \"borrowed\" a book on puzzle flowers. They didn't even leave a note! Our pal must play detective and work out where they've got to...",
+      "winImage": null,
+      "winText": "Our hero takes a deep breath and opens the door. The Rival is waiting, and they do not seem happy!"
+    },
+    "46": {
+      "title": "The Mix-Up",
+      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/2x46-1.png",
+      "introText": "There's a mix-up, rants the Rival. My mentor studies flowers - I even got their book - but I keep getting mosaics! We're swapping back. THIS is yours.",
+      "winImage": null,
+      "winText": "The shapes match the stone slabs in one corner. As the Rival flounces off, our pal bends down. A slab has come loose!"
+    },
+    "47": {
+      "title": "Some Assembly Required",
+      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/2x47.png",
+      "introText": "Our thinky friend lifts the slab. There's a little hidey-hole underneath, containing a partial mosaic and a handful of tiles. This is more like it!",
+      "winImage": null,
+      "winText": "Caf\u00e9? Oh! The cafeteria! At least our thinky pal knows where they're going for the next puzzle. Probably."
+    },
+    "48": {
+      "title": "A Wrong Turn (Or Two)",
+      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/2x48-1.png",
+      "introText": "Many wrong turns later, our confident hero arrives not at the cafeteria, but the Old Wing. Oh, well! At least they can search for that Odds and Ends room.",
+      "winImage": null,
+      "winText": "Our pal picks their way through the dusty clutter, trying not to disturb anything wriggly or cobwebby."
+    },
+    "49": {
+      "title": "Strange Antiquities",
+      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/2x49-1.png",
+      "introText": "Our dusty hero enters a room heaving with unlabeled junk. This is it! They pick up an old photo album, scanning for the original Solvers.",
+      "winImage": null,
+      "winText": "Hmm, nothing in this one except startling retro fashion! Perhaps there's something further down the pile?"
+    },
+    "50": {
+      "title": "Cropped Out",
+      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/2x50-1.png",
+      "introText": "The album at the bottom of the pile looks ancient. Our hero spots a group picture with... seven people? They squint, trying to make out the details.",
+      "winImage": null,
+      "winText": "Hah! An eighth member has been cut out on one side! Were they written out of the confusing archive book too?"
+    },
+    "51": {
+      "title": "A Little Break",
+      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/2x51-1.png",
+      "introText": "The same seven Solvers appear over and over. Empty spaces show where the eighth has likely been cut out. Ugh! Our pal needs a puzzle break!",
+      "winImage": null,
+      "winText": "Feeling calmer, our friend returns to the Solver conundrum. It seems pretty extreme to cut someone out like this!"
+    },
+    "52": {
+      "title": "A Faded Floorplan",
+      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/2x52.png",
+      "introText": "Poking around behind the boxes, our friend finds some yellowing scrolls. This one might be a blueprint, but the ink has faded. Where are the walls?!",
+      "winImage": null,
+      "winText": "It seems to show part of the Old Wing, but there are no helpful clues, like people's names on the rooms. Drat!"
+    },
+    "53": {
+      "title": "Tracing the Timeline",
+      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/2x53.png",
+      "introText": "As our hero sifts through the rest of the paper, they begin to construct a basic timeline of early Solver events. What a curious history!",
+      "winImage": null,
+      "winText": "These Solvers seem to keep hold of everything EXCEPT details of this eighth member. It's infuriating!"
+    },
+    "54": {
+      "title": "Seating Plan",
+      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/2x54.png",
+      "introText": "Is this a seating chart from a Solver dinner? Our thinky friend turns the chart this way and that, trying to make sense of the shape of the table.",
+      "winImage": null,
+      "winText": "Our hero wonders how the Solvers got furniture like that through the door, let alone down these corridors!"
+    },
+    "55": {
+      "title": "Breaking and Exiting",
+      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/2x55.png",
+      "introText": "Our pal stretches. They should solve the mentor's quest before tackling the rest of the documents. Time to leave and- uh-oh! Who locked the door?!",
+      "winImage": null,
+      "winText": "No sooner has our friend left the Odds and Ends room than another question arises: who turned out the lights?"
+    },
+    "56": {
+      "title": "Feeling the Way",
+      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/2x56-1.png",
+      "introText": "The Old Wing is now pitch dark. Our pal puts a hand on the wall, keeping their panic at bay by feeling around to find the way out.",
+      "winImage": null,
+      "winText": "Our uneasy friend follows the wall along a hallway, but finds only a dead end. Is it time to panic yet?"
+    },
+    "57": {
+      "title": "A Glimmer Of Light",
+      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/2x57.png",
+      "introText": "Taking a deep breath, our hero realises they can make out a soft glow near the floor. Emergency lights! They must lead to the exit!",
+      "winImage": null,
+      "winText": "Nearing the exit, our pal hears familiar humming! They call out, and a horrified janitor rushes to unlock the door."
+    },
+    "58": {
+      "title": "An Apology Puzzle",
+      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/2x58-1.png",
+      "introText": "The janitor had no idea anyone was here! Apologising profusely to our shaken hero, they offer them a calming puzzle.",
+      "winImage": null,
+      "winText": "Our friend feels better now, but the janitor walks them to the cafeteria anyway. Better safe than sorry!"
+    },
+    "59": {
+      "title": "Is This It?",
+      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/2x59.png",
+      "introText": "A huge mosaic has been wheeled into the cafeteria. The hero is definitely following the right quest now! So, what does it say?",
+      "winImage": null,
+      "winText": "The solution has the feeling of a grand reveal, but embark on what? To where? They need to find the mentor..."
+    },
+    "60": {
+      "title": "Marvellous Mouse!",
+      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/2x60.png",
+      "introText": "Our baffled friend steps back, bumping into a jubilant Mouse. They finally finished their quest! Look! This was the last puzzle.",
+      "winImage": null,
+      "winText": "Well done, Mouse! Our pal gives them a high two, then heads to the mentor's office. Time for some answers!"
+    },
+    "61": {
+      "title": "A Transformative Finale",
+      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/2x61a (1).png",
+      "introText": "The mentor has the final clue! She welcomes our pal, then recites, \"Puzzles NOT EMBLEMATIC of the Solvers, will act as vital info holders!\"",
+      "winImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/2x61b.png",
+      "winText": "Spot on! Pack some warm clothes and meet me at the Solvers' mountain outpost! Your apprenticeship project awaits!"
+    }
+  },
+  "3": {
+    "1": {
+      "title": "The Journey Begins",
+      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/3x01.png",
+      "introText": "Our hero arrives at the train station, ready for their snowy adventure! Their first challenge? Navigating the queue for the ticket office...",
+      "winImage": null,
+      "winText": "As our thinky pal arrives on the platform, a familiar face catches their eye. What a nice surprise!"
+    },
+    "2": {
+      "title": "Mouse On Tour",
+      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/3x02-1.png",
+      "introText": "Mouse waves so enthusiastically that their bulging suitcase goes flying! It pings open, and our pal rushes to help Mouse repack their belongings.",
+      "winImage": null,
+      "winText": "As the case clicks shut, our hero spots an address label. Mouse is off to the city for their mentor's project."
+    },
+    "3": {
+      "title": "Just In Case",
+      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/3x03 (1).png",
+      "introText": "The friends bundle onto the train, only to find spilt coffee in the luggage rack! Can our hero arrange the suitcases so nothing gets wet?",
+      "winImage": null,
+      "winText": "Cases safely stowed, our hero turns to look for a seat. There's one left, and it's next to a very unfriendly face!"
+    },
+    "4": {
+      "title": "You Again!",
+      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/3x04.png",
+      "introText": "Our hero slides into the seat, hoping for quiet. Alas, the Rival is in a very chatty mood, and our pal has to concentrate to follow all the bragging!",
+      "winImage": null,
+      "winText": "As our pal listens, they realise the brags hide the fact the Rival appears to be off to petsit for their mentor."
+    },
+    "5": {
+      "title": "A Ticket To Ride",
+      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/3x05 (2).png",
+      "introText": "\"All tickets, please!\" calls the train manager. But when they reach our hero, they frown. \"This ticket's missing a number! No number, no travel...\"",
+      "winImage": null,
+      "winText": "\"Perfect,\" says the inspector. They move on to the Rival's ticket. \"Lovely. And we're just arriving at your stop!\""
+    },
+    "6": {
+      "title": "A Very Mouse-y Map",
+      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/3x06 (1).png",
+      "introText": "As the Rival leaves, Mouse slips into their seat. \"I have to get a bus next, but my map only has the stations, not the route! How will I know where to hop off?\"",
+      "winImage": null,
+      "winText": "\"Oooh!\" says Mouse. \"This bit goes right by the newspaper!\" Mouse's project is at the Thinky Times? Impressive!"
+    },
+    "7": {
+      "title": "Paper Puzzles",
+      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/3x07.png",
+      "introText": "Mouse will be working on the newspaper's puzzle desk. They might even submit one of their own puzzles! What does our pal think of this one?",
+      "winImage": null,
+      "winText": "Our thinky friend nods at the anxious Mouse. This would be perfect for the- WAIT! Isn't this Mouse's stop?"
+    },
+    "8": {
+      "title": "Is this in Celsius?",
+      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/3x08 (1).png",
+      "introText": "Mouse scrambles off the train, and our hero settles in for the long ride to the mountains. An odd device tracks the falling temperature in the cabin.",
+      "winImage": null,
+      "winText": "The multi-thermometer shows where the cabin gets coldest, so our hero makes sure to avoid those seats!"
+    },
+    "9": {
+      "title": "Loop-The-Loop",
+      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/3x09.png",
+      "introText": "As the landscape turns to snow, our shivering hero fetches a scarf from their case. It's been ages since they wore one. Was it over, then under...?",
+      "winImage": null,
+      "winText": "By the time our hero is finished, they're all hot and bothered. This must be how scarves keep folk warm."
+    },
+    "10": {
+      "title": "Clear As Mud",
+      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/3x10.png",
+      "introText": "Suddenly, the ancient tannoy crackles to life. \"We**ill*be*call*ng*at*** ****in**f*ve*min*tes\". Calling where? Is this our hero's station?",
+      "winImage": null,
+      "winText": "That's our protagonist's stop! Thank goodness they managed to solve the tannoy message in time!"
+    },
+    "11": {
+      "title": "A Cautious Climb",
+      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/3x11-1.png",
+      "introText": "From the station, it's a steep, slippery hike to the Old Solver Lodge. Our hero studies the conductor's pocket guide, looking for a safe route.",
+      "winImage": null,
+      "winText": "As our pal leaves, the conductor adds, \"If in doubt, follow cold air for the Lodge, warm air for the town!\""
+    },
+    "12": {
+      "title": "Nearly There!",
+      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/3x12 (1).png",
+      "introText": "On the final stretch of the slippery route, the sun on the snow becomes dazzling. Time to heed the conductor and follow the cold air for the Lodge!",
+      "winImage": null,
+      "winText": "After a very cautious final ascent, our protagonist arrives! They shield their eye and try to make out the building..."
+    },
+    "13": {
+      "title": "A Dramatic Entrance",
+      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/3x13 (1).png",
+      "introText": "Our pal thought the Mentor would pick a mosaic project, but they want to repair the Lodge. That door needs fixing... oooh! What are those symbols?",
+      "winImage": null,
+      "winText": "The Founders built this place, but it's barely in the official Solver history. It reminds our pal of the Eighth Founder."
+    },
+    "14": {
+      "title": "Hello, Darkness",
+      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/3x14.png",
+      "introText": "Our hero enters the Lodge and calls a greeting. No answer. And no working lights either. They sigh and begin to feel their way around the space.",
+      "winImage": null,
+      "winText": "Just as our pal is getting the hang of the layout, a noise echoes through the dark. Were those footsteps?"
+    },
+    "15": {
+      "title": "An Old Fashioned Cuppa",
+      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/3x15.png",
+      "introText": "It's the Mentor! Thrusting a bucket at our pal, she leads the way to a kitchen. \"Hello! We need water for tea. There's a well across the courtyard!\"",
+      "winImage": null,
+      "winText": "When our thinky waterbearer returns, the Mentor has a fire going in the grate. The Lodge is cosier already!"
+    },
+    "16": {
+      "title": "The Messy Mentor",
+      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/3x16.png",
+      "introText": "As the Mentor brews the tea, our friend notices her tools are already out and in total disarray. Might as well tidy them while the kettle boils.",
+      "winImage": null,
+      "winText": "\"This was a busy Solver outpost once,\" says the Mentor, pouring tea. \"One legend says a Founder lived here. Imagine!\""
+    },
+    "17": {
+      "title": "Light Relief",
+      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/3x17.png",
+      "introText": "\"RAAAAGH!\" A terrifying yowl breaks the silence. \"Just the wind,\" says the Mentor, but our pal is rattled. More candles will make this place less scary!",
+      "winImage": null,
+      "winText": "See? The yowl was probably nothing... And what's this? Our pal's activity has knocked something out of the rafters."
+    },
+    "18": {
+      "title": "The Mysterious Bag",
+      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/3X18.png",
+      "introText": "A moth-eaten bag dangles from a wooden beam. The yellowing paper shows signs of decay, but the puzzle still seems solvable. ",
+      "winImage": null,
+      "winText": "Why would a Solver keep a puzzle hidden? Our pal will ponder that later; right now, their stomach is rumbling!"
+    },
+    "19": {
+      "title": "The Uncooperative Stove",
+      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/3X19.png",
+      "introText": "The oven is as unresponsive as the lights, so our thinky chef must brave the Mentor's ancient portable stove and its unpredictable hot spots!",
+      "winImage": null,
+      "winText": "Our pal scrapes off the burnt bits and dishes up. This will keep the tummy rumbling at bay until morning!"
+    },
+    "20": {
+      "title": "There's No \"We\" in \"Mosaic\"",
+      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/3x20.png",
+      "introText": "\"You'll soon fix this place up!\" says the Mentor. Surely she means \"we\"? \"Nope! I'll be in the mosaic caves, just past the frozen path! I found this one earlier!\"",
+      "winImage": null,
+      "winText": "Hmm. Mosaic caves sound cool! But the Lodge had that hidden puzzle... Poking around might reveal more!"
+    },
+    "21": {
+      "title": "Solver Handicrafts",
+      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/3x21.png",
+      "introText": "As the pair clear up, our friend spots a pretty grid adorning the table. \"How retro!\" exclaims the Mentor. \"We used these to hide messages when I was a girl.\"",
+      "winImage": null,
+      "winText": "What a charming decoration. Our pal immediately starts imagining a set of matching coasters!"
+    },
+    "22": {
+      "title": "That's No Lullaby!",
+      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/3x22.png",
+      "introText": "Our pal is heading to bed when a fresh \"RAAAGH!\" shakes the walls. They grab extra pillows and bedding, then make a sleep cave to hide in.",
+      "winImage": null,
+      "winText": "Inside the sleep cave, our thinky friend tries to relax. It's been a long day, and they're exhausted!"
+    },
+    "23": {
+      "title": "A Night On The Tiles",
+      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/3x23.png",
+      "introText": "Our jittery hero soothes themself to sleep by focusing on lovely, non-scary mosaics! In fact, they focus so hard that even their dreams involve mosaics!",
+      "winImage": null,
+      "winText": "Waking up briefly, our friend wants to capture the puzzle. But there's no pen, and the sleep cave is so comfyzzzzz..."
+    },
+    "24": {
+      "title": "A Slippery Morning Walk",
+      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/3x24.png",
+      "introText": "Morning! Our hero heads to the kitchen. It's empty, as is the water bucket. Yawning, our pal crosses the new courtyard ice to reach the well.",
+      "winImage": null,
+      "winText": "Our friend skids back to the kitchen and boils the trusty kettle. They'll need a cup of tea before getting started!"
+    },
+    "25": {
+      "title": "Penmanship Counts!",
+      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/3x25.png",
+      "introText": "The Mentor has already gone to the caves, leaving our pal a list of tasks for the Lodge. The first task will be deciphering the Mentor's scribbles.",
+      "winImage": null,
+      "winText": "Relief washes over our pal as they finally make sense of the note. Time to get to work!"
+    },
+    "26": {
+      "title": "In a Dark Dark Room",
+      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/3x26.png",
+      "introText": "Our hero's first task is to restore electricity to the Lodge. There's a fuse box in the basement. The dark, dark basement...",
+      "winImage": null,
+      "winText": "CLONK! Our friend's hand hits the fuse box while they're flailing at a cobweb. Thank goodness for that."
+    },
+    "27": {
+      "title": "Under The Planks",
+      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/3x27.png",
+      "introText": "Electricity! Our pal does a celebratory jig aaaand... puts their foot through a rotten floorboard. Hmm. Probably best to check the size of that hole...",
+      "winImage": null,
+      "winText": "It doesn't seem too big, although what's this? Our friend pulls out damp fungus and another mysterious bag."
+    },
+    "28": {
+      "title": "Someone Else's Treasure",
+      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/3x28.png",
+      "introText": "The bag contains another scrap of yellowing paper. It has begun to sprout mushrooms in one corner, but our hero can still make out a puzzle.",
+      "winImage": null,
+      "winText": "Our friend tries to imagine the kind of Solver who hides little path puzzles in bags. Perhaps it's part of a game?"
+    },
+    "29": {
+      "title": "It'll Probably Dry",
+      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/3x29.png",
+      "introText": "Next up? \"Fix plumbing!\" After a struggle with the water valve, our pal patrols the lodge. Several leaks are already producing ice patches.",
+      "winImage": null,
+      "winText": "Our soggy pal sighs. The plumbing here is more like a nest made from metal tubes than a functional system!"
+    },
+    "30": {
+      "title": "A Plumbing Genius",
+      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/3x30.png",
+      "introText": "For each leak our hero fixes, more appear. It'd be easier to dismantle the whole thing and start from scratch. In fact, that's not such a bad idea...",
+      "winImage": null,
+      "winText": "Our plumbing pal cautiously turns a tap on. Water flows into the sink and not onto the floor. SUCCESS!"
+    },
+    "31": {
+      "title": "Stubborn Herd",
+      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/3x31.png",
+      "introText": "Last task: \"Evict the goats.\" Huh?! Our hero finds an entire herd in the dining room. They won't leave, so our pal tries to arrange them neatly instead.",
+      "winImage": null,
+      "winText": "Our friend coaxes the last goat into place. It harrumphs, then swallows. Hey! Was that the task list?!"
+    },
+    "32": {
+      "title": "The Mentor Returns",
+      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/3x32.png",
+      "introText": "\"I like what you've done with the goats,\" says the Mentor. She's back from the caves, holding a picture of a new mosaic. \"Look what I found!\"",
+      "winImage": null,
+      "winText": "Yet another mosaic showing eight similar figures? Our hero squints. They look kind of like the Founders..."
+    },
+    "33": {
+      "title": "The Lodge Library",
+      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/3x33.png",
+      "introText": "A loud \"RAAAAGH!\" startles our hero. The Mentor insists it's the wind, but it sounded more like an animal. Perhaps there are books on local critters in the Lodge library?",
+      "winImage": null,
+      "winText": "There's a whole shelf on local fauna, but it's the perfect height for local goats. Tattered pages are all that remain."
+    },
+    "34": {
+      "title": "Lightly Chewed",
+      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/3x34 (1).png",
+      "introText": "Behind the leftover literature, our hero spots a little hidey-hole. It contains another yellowing sheet of paper - only lightly nibbled, thank goodness!",
+      "winImage": null,
+      "winText": "What an odd collection our friend is amassing. Best keep them out of reach of hungry creatures!"
+    },
+    "35": {
+      "title": "Goated",
+      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/3x35.png",
+      "introText": "After a little supper from the electric oven, our hero heads to bed. Stubborn goats haunt their dreams, each demanding to be rearranged.",
+      "winImage": null,
+      "winText": "Finally, the dream goats are happy! Their leader nods at our hero and then begins to tap dance..."
+    },
+    "36": {
+      "title": "Special Delivery",
+      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/3x36.png",
+      "introText": "TAPPITY-TAP! Wha-? Oh! There's a delivery pigeon at the window. It's got a letter from Mouse, including their first published Thinky Times puzzle!",
+      "winImage": null,
+      "winText": "That was great! And it sounds like Mouse is enjoying the paper. Our pal wonders what to say in reply."
+    },
+    "37": {
+      "title": "Penpals",
+      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/3x37.png",
+      "introText": "Our hero pads downstairs for paper. They tell Mouse about the scary noise and the hidden puzzles, and sign off with a goat-inspired brainteaser.",
+      "winImage": null,
+      "winText": "The pigeon accepts a little breakfast, then flies off with our pal's letter. Stay safe, feathery friend!"
+    },
+    "38": {
+      "title": "It's Cold Outside",
+      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/3x38.png",
+      "introText": "A thunderous \"RAAAAGH!\" spooks our pal. Time for a walk down the slope - the locals might know about the noise. If it's not too cold, that is.",
+      "winImage": null,
+      "winText": "Our pal frowns, then checks the thermometer again. Gosh, that's cold! They'll need all their woollens for this walk!"
+    },
+    "39": {
+      "title": "Hitting the Slopes",
+      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/3x39-1.png",
+      "introText": "Our hero was dreading the journey to the tiny town, but some kind soul has marked a safe ski route down the slippery slopes. How neighbourly!",
+      "winImage": null,
+      "winText": "Our friend decides to ask about the noise at the train station. There are bound to be one or two people there."
+    },
+    "40": {
+      "title": "Perfect Timing",
+      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/3x40.png",
+      "introText": "\"Can't talk!\" yells the station manager. \"I'm regrouting the welcome mosaic, and it's all gone wrong! If only a mosaic scholar would stop by...\"",
+      "winImage": null,
+      "winText": "Mosaic mended, our pal mentions the scary noise. \"No idea,\" says the station manager. \"I'd ask at the bookstore!\""
+    },
+    "41": {
+      "title": "A Little Treat",
+      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/3x41.png",
+      "introText": "The bookshop is just past a cocoa stand. A delicious-smelling cocoa stand... Our pal's tummy rumbles. Time for a little treat! But which one?",
+      "winImage": null,
+      "winText": "A spicy aroma fills the air as the barista brews the custom order. Our friend takes a cautious sip. Heavenly!"
+    },
+    "42": {
+      "title": "Local Legends",
+      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/3x42.png",
+      "introText": "Asking around at the bookshop, it seems the patrons know the noise \n\nand\n\n have theories on the culprit! One person even gets out a blurry photo.",
+      "winImage": null,
+      "winText": "\"That thing was huge,\" says the photo's owner. \"Spooked me good and proper, I don't mind telling you!\""
+    },
+    "43": {
+      "title": "Surrounded By Wildlife",
+      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/3x43.png",
+      "introText": "Perhaps a creature in these books will match the blurry shape in that photo? Our hero makes a workspace amid the teetering piles of the wildlife section.",
+      "winImage": null,
+      "winText": "There's no mention of the creature, but these are great books. Our pal orders one about goat-proofing for the Lodge."
+    },
+    "44": {
+      "title": "Forgotten Deliveries",
+      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/3x44.png",
+      "introText": "\"You're at Solver Lodge?\" The bookseller pulls out a box of uncollected packages. \"One of 'em's for you lot! Spread 'em out, and I'll find it!\"",
+      "winImage": null,
+      "winText": "\"Sluver Leorgu\"? Our pal frowns at the smudged ink. Oh! \"Solver Lodge\"! From... Tr Sther? Tne Secle?... The Setter?"
+    },
+    "45": {
+      "title": "A Hasty Retreat",
+      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/3x45-1.png",
+      "introText": "Suddenly, a siren blares. A blizzard is coming! Our pal rushes out, clutching the parcel. They have to get back up the mountain and warn the Mentor!",
+      "winImage": null,
+      "winText": "There's so much ice! Our hero worries they've started going in circles, but the Lodge finally appears up ahead."
+    },
+    "46": {
+      "title": "Mentor: Missing",
+      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/3x46.png",
+      "introText": "The Mentor is still in the caves! Our hero drops off the bookshop packet and thinks. The caves are by a frozen path, so... head towards the cold?",
+      "winImage": null,
+      "winText": "Our hero's eye is streaming by the time the cave mouth comes into view. It's a relief to be out of the biting wind."
+    },
+    "47": {
+      "title": "Anyone In Here?",
+      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/3x47.png",
+      "introText": "The cave interior is swathed in darkness. Our hero takes a nervous breath, then shuffles forward, feeling their way into the space.",
+      "winImage": null,
+      "winText": "Our pal traces a wall with their fingers, moving deeper with only a few stubbed toes and awkward stumbles."
+    },
+    "48": {
+      "title": "In The Mosaic Caves",
+      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/3x48.png",
+      "introText": "As our friend's eye adjusts to the darkness, they can make out a faint glow to one side. Drawing closer, they find a lantern illuminating a mosaic...",
+      "winImage": null,
+      "winText": "The tiles are set into the cave wall itself. This place clearly meant a lot to the artist. Maybe they lived in here?"
+    },
+    "49": {
+      "title": "Light Trails",
+      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/3x49.png",
+      "introText": "There's another lantern further in... and another. The Mentor must have been working here. Our hero plunges onward, trying to catch up!",
+      "winImage": null,
+      "winText": "Some mosaics show Solvers; others feature that menacing shape from the photo. Were they friends? Enemies?"
+    },
+    "50": {
+      "title": "The Yowls Get Closer",
+      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/3x50.png",
+      "introText": "\"RAAAAAAGH!\" A yowl so loud and so close seems to shake the entire mountain. Oh no! The Mentor! Our pal must find them before the shape does!",
+      "winImage": null,
+      "winText": "Our hero spots the Mentor in another cave, but the shape is beside her, looming and opening its maw..."
+    },
+    "51": {
+      "title": "Yowls Can Be Deceiving",
+      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/3x51.png",
+      "introText": "The poor Mentor! Our pal can hardly bear to watch. It's so- Wait, are these two bickering?! Over a MOSAIC?! Our friend looks for a way to reach them...",
+      "winImage": null,
+      "winText": "As our pal squeezes past stalagmites and stalagnates, the shape comes into focus..."
+    },
+    "52": {
+      "title": "BLIZZARD!",
+      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/3x52.png",
+      "introText": "It's a YETI! But there's no time to marvel. Instead, our hero shouts into the cave, trying to be heard above the yelling and yowling - BLIZZARD!!!",
+      "winImage": null,
+      "winText": "An absolute cacophony fills the echoey space. Mentor and yeti finally look round: \"Did you say blizzard?!\""
+    },
+    "53": {
+      "title": "They're Coming Down!",
+      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/3x53.png",
+      "introText": "All that noise sent vibrations through the stone, and stalactites start to smash down. Our pal sprints forward, dodging falling icicles of rock.",
+      "winImage": null,
+      "winText": "Our hero safely reaches Mentor and yeti, but the blizzard will cause more rockfall - it's too dangerous to stay. "
+    },
+    "54": {
+      "title": "Let's Get Out Of Here",
+      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/3x54.png",
+      "introText": "The Mentor is frantically tracing the mosaic, but there's NO TIME! Our pal pulls the Mentor away, looking for a safe route out.",
+      "winImage": null,
+      "winText": "The yeti stays close. It clutches a tile bag and a little grouting trowel. Is this who makes the mosaics?"
+    },
+    "55": {
+      "title": "Freezy Breezy",
+      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/3x55.png",
+      "introText": "The trio stop at a blocked passage. Where now? Our hero shivers in a cold draught, then claps excitedly. It must be coming from the cave entrance!",
+      "winImage": null,
+      "winText": "Peering out of the cave, the world is a flurry of white flakes. No lodge, no path, just snow whirling past."
+    },
+    "56": {
+      "title": "The Yeti Express",
+      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/3x56.png",
+      "introText": "The yeti snorts then steps forward, scooping the Mentor and our hero up as it strides into the howling wind, looking for signs of the Lodge.",
+      "winImage": null,
+      "winText": "CRUNCH! The yeti barrels through the door of the Lodge, leaving a yeti-shaped hole and lots of splinters in its wake."
+    },
+    "57": {
+      "title": "Repairing A Repair",
+      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/3x57.png",
+      "introText": "The Mentor is freezing! The yeti hunkers down to light the kitchen fire while our pal starts to repair the hole in the door. That'll keep the warmth in!",
+      "winImage": null,
+      "winText": "As the Mentor thaws, she drops the mosaic tracing from the cave. It's wet and creased, so our pal spreads it out to dry."
+    },
+    "58": {
+      "title": "Nibbled Again",
+      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/3x58-1.png",
+      "introText": "A goat watches our hero get mugs for cocoa. A goat with a familiar package. A familiar \n\nnewly-nibbled\n\n package with yellowing paper sticking out...",
+      "winImage": null,
+      "winText": "The puzzle was tucked into a blank notebook. No clues there, but the wrapping has a curious spiral signature."
+    },
+    "59": {
+      "title": "Mosaic Messaging",
+      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/3x59-1.png",
+      "introText": "The yeti points at the spiral signature and makes a rumbly noise, but our pal is baffled. The yeti reaches for its tile bag. An image will help.",
+      "winImage": null,
+      "winText": "It's a mosaic of the Founders. All eight of them! The yeti points at the spiral signature, then taps the eighth Founder."
+    },
+    "60": {
+      "title": "Mugs And Mallows",
+      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/3x60.png",
+      "introText": "Did the Eighth Founder send all these notes? Why?! Our pal sits at the table, idly placing marshmallows in their cocoa as they ponder the question.",
+      "winImage": null,
+      "winText": "The Mentor's now-dry tracing sits nearby. It's more of a grid than a mosaic. Kinda like the letter grid in this tabletop..."
+    },
+    "61": {
+      "title": "The Secret Message",
+      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/3x61intro.png",
+      "introText": "Our hero grabs the tracing. It IS a letter grid! There's even a question at the top! Something round here MUST show our pal how to answer it.",
+      "winImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/3x61outro.png",
+      "winText": "The Thinky Times? Our hero re-reads the message, eye wide. That's the newspaper Mouse is working for!"
+    }
+  }
+}

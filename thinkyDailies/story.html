@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, interactive-widget=resizes-content">
+    <meta name="color-scheme" content="dark light">
+    <title>Thinky dailies story</title>
+    <script data-goatcounter="https://trianguloy.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+
+    <style>
+        /*  https://gist.github.com/JoeyBurzynski/617fb6201335779f8424ad9528b72c41#100-bytes-of-css-to-look-great-everywhere-enhanced-version */
+        html {
+            margin: auto;
+            line-height: 1.75;
+            font-size: 1.25em;
+        }
+    </style>
+
+    <style>
+        /* center elements */
+        .puzzle , .texts {
+            display: flex;
+            overflow: auto;
+        }
+        .texts {
+            flex-direction: column;
+        }
+
+        .puzzle {
+            max-width: max-content;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .puzzle a {
+            max-width: 25%;
+        }
+
+        .texts hr {
+            width: 90%;
+        }
+
+        img {
+            width: 100%;
+            height: auto;
+            object-fit: contain;
+        }
+
+        h2 {
+            display:inline-block;
+        }
+
+        /* center text */
+        h1, h2, p, summary {
+            text-align: center;
+        }
+
+        /* center */
+        .top, .settings {
+            margin: auto;
+        }
+
+        p, .puzzle {
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* limit width */
+        p, .settings {
+            max-width: 70ch;
+        }
+
+
+        /* settings */
+        .settings {
+            position: sticky;
+            top: 0;
+            background-color: Canvas;
+            padding: 10px;
+            border-bottom-left-radius: 10px;
+            border-bottom-right-radius: 10px;
+        }
+    </style>
+
+    <script>
+        Array.prototype.sortByPrefixNumber = function () {
+            return this.sort(([a, _a], [b, _b]) => parseInt(a) - parseInt(b));
+        };
+        Object.prototype.setDefault = function (key, defaultValue) {
+            return this[key] || (this[key] = defaultValue);
+        }
+
+        function run() {
+            fetch('./story.json')
+                .then(r => r.json())
+                .then(data => {
+
+
+                    let html = "";
+                    Object.entries(data).sortByPrefixNumber().forEach(([season, season_data]) => {
+                        Object.entries(season_data).sortByPrefixNumber().forEach(([puzzle, data]) => {
+                            html += `<hr>`;
+                            html += `<details>`;
+                            html += `<summary><h2>${season}x${puzzle}: ${data.title}</h2></summary>`;
+                            html += `<div class="puzzle">`
+                            html += `<a href="https://thinkygames.com/dailies/puzzles/${season}-${puzzle}/"><img src="${data.introImage}" alt="${season}x${puzzle}" title="${data.introImage}" loading="lazy" width="600px" height="600px"/></a>`;
+                            html += `<div class="texts">`;
+                            html += `<p>${data.introText}"</p>`;
+                            html += `<hr>`;
+                            html += `<p>${data.winText}"</p>`;
+                            html += `</div>`;
+                            if (data.winImage != null) html += `<a href="https://thinkygames.com/dailies/puzzles/${season}-${puzzle}/"><img src="${data.winImage}" alt="${season}x${puzzle}" title="${data.winImage}" loading="lazy" width="600px" height="600px"/></a>`;
+                            html += `</div>`;
+                            html += `</details>`;
+                        });
+                    });
+                    document.getElementById("puzzles").innerHTML = html;
+
+
+                    // restore checkboxes after loading
+                    document.querySelectorAll("input[type=checkbox]").forEach(e => e.onchange());
+                });
+        }
+
+        window.addEventListener("load", run);
+    </script>
+</head>
+<body>
+
+<!-- details -->
+<div class="top">
+    <h1>Thinky dailies story</h1>
+
+    <p>
+        Disclaimer: this page is not associated with <a href="https://thinkygames.com/">thinkygames.com</a>. This simple
+        page was created from a fan like you to be able to watch all the story in a single page.
+    </p>
+    <p>
+        On this page you'll find all the current (maybe even future, beware of spoilers!) story elements and images from <a
+            href="https://thinkygames.com/dailies/">thinkygames.com/dailies</a>.
+    </p>
+    <p>
+        This will show both the intro and win texts (and images) regardless of your personal completion.
+        For this reason everything is hidden on a collapsible element.
+        But if you have solved everything (or you don't care about spoilers) you can
+        <button onclick="[...document.querySelectorAll('details')].forEach(d=>d.open=true)">expand all</button>.
+    </p>
+    <!--<p>
+        Note: to avoid overloading the server with petitions of pages that do not exist, a precomputed list of
+        available textx is used. The list should update automatically, but if it doesn't or you think there is an
+        error, don't hesitate to ping me!
+    </p>-->
+    <p>
+        Made by <a href="https://github.com/TrianguloY">TrianguloY</a> without using any AI at all.
+        Any suggestion is welcomed! Source code available at <a
+            href="https://github.com/TrianguloY/githubPages/tree/master/thinkyDailies">GitHub</a>
+    </p>
+    <hr>
+</div>
+
+<div class="settings">
+    <label>
+        <input type="checkbox"
+               onchange="document.documentElement.style.colorScheme = this.checked? 'light' : 'dark'"/>
+        <span>Toggle dark/light theme.</span>
+    </label>
+</div>
+
+
+<div id="puzzles">
+</div>
+
+</body>
+</html>
