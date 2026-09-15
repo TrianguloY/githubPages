@@ -11,9 +11,29 @@ from Tools.scripts.summarize_stats import load_raw_data
 
 import requests
 from bs4 import BeautifulSoup
+from utils import SEASONS, PUZZLES
 
 
-def get_html(url):
+def main() -> None:
+    """Main."""
+    data = {}
+
+    for season in SEASONS:
+        data[season] = {}
+        for puzzle in PUZZLES:
+
+            try:
+                data[season][puzzle] = get_puzzle_data(season, puzzle)
+            except Exception as e:
+                print("Error on parsing", season, puzzle)
+                data[season][puzzle] = None
+
+    # save
+    with open("story.json", "w") as output:
+        json.dump(data, output, indent=2)
+
+
+def get_html(url: str) -> BeautifulSoup:
     """Returns the html of a url."""
     return BeautifulSoup(
         requests.get(
@@ -25,7 +45,7 @@ def get_html(url):
     )
 
 
-def get_puzzle_data(season, puzzle):
+def get_puzzle_data(season: str, puzzle: str) -> dict[str, str]:
     """Returns the data of a specific puzzle."""
     print("loading", season, puzzle)
 
@@ -44,13 +64,13 @@ def get_puzzle_data(season, puzzle):
 
     try:
         title = parsed['title']
-    except:
+    except Exception as e:
         print("Error on", "title", season, puzzle)
         title = None
 
     try:
         introImage = parsed['introImage']['url']
-    except:
+    except Exception as e:
         print("Error on", "introImage", season, puzzle)
         introImage = None
 
@@ -58,14 +78,14 @@ def get_puzzle_data(season, puzzle):
         introText = "\n\n".join(
             subchildren['text'] for children in parsed['intro']['root']['children'] for subchildren in
             children['children'])
-    except:
+    except Exception as e:
         print("Error on", "introText", season, puzzle)
         introText = None
 
     try:
         winImage = parsed['winImage']['url'] if puzzle == 61 else None
 
-    except:
+    except Exception as e:
         print("Error on", "winImage", season, puzzle)
         winImage = None
 
@@ -73,7 +93,7 @@ def get_puzzle_data(season, puzzle):
         winText = "\n\n".join(
             subchildren['text'] for children in parsed['winMessage']['root']['children'] for subchildren in
             children['children'])
-    except:
+    except Exception as e:
         print("Error on", "winText", season, puzzle)
         winText = None
 
@@ -84,24 +104,6 @@ def get_puzzle_data(season, puzzle):
         'winImage': winImage,
         'winText': winText,
     }
-
-
-def create_data():
-    data = {}
-
-    for s in range(1, 3 + 1):
-        data[s] = {}
-        for p in range(1, 61 + 1):
-
-            try:
-                data[s][p] = get_puzzle_data(s, p)
-            except:
-                print("Error on parsing", s, p)
-                data[s][p] = None
-
-    # save
-    with open("story.json", "w") as output:
-        json.dump(data, output, indent=2)
 
 
 if __name__ == '__main__':

@@ -15,6 +15,8 @@ from typing import List, Optional, Union, NamedTuple, Any, Callable, Generator
 import aiohttp
 from aiohttp import ClientSession
 
+from utils import SEASONS, PUZZLES
+
 
 # Infixes
 
@@ -69,8 +71,8 @@ def main() -> None:
 
     print("Building entries")
     entries: List[Entry] = []
-    for season in [1, 2, 3, 4]:
-        for puzzle in range(1, 61 + 1):
+    for season in SEASONS:
+        for puzzle in PUZZLES:
             entries.append(Entry(season,
                                  puzzle,
                                  f"https://static.prod.thinkygames.com/uploads/puzzle_intro_images/{season}",
