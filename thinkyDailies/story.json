@@ -1285,5 +1285,14 @@
       "winImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/3x61outro.png",
       "winText": "The Thinky Times? Our hero re-reads the message, eye wide. That's the newspaper Mouse is working for!"
     }
+  },
+  "4": {
+    "1": {
+      "title": "Ready To Go?",
+      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/4x01.png",
+      "introText": "Our hero is so keen to follow their mysterious new lead from the Lodge to the city newspaper that they almost forget to pack!",
+      "winImage": null,
+      "winText": "All done! There's only the warm woolly scarf left, and that's for the trip down the mountain!"
+    }
   }
 }

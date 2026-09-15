@@ -2,55 +2,57 @@
 # /// script
 # requires-python = ">=3.13"
 # dependencies = [
-#    "beautifulsoup4>=4.15.0",
-#    "requests>=2.34.2",
+#     "beautifulsoup4>=4.15.0",
+#     "requests>=2.34.2",
+#     "aiohttp>=3.14.0",
 # ]
 # ///
+import asyncio
 import json
-from Tools.scripts.summarize_stats import load_raw_data
+import platform
+import random
+from asyncio import sleep
+from typing import Optional
 
-import requests
+import aiohttp
+from aiohttp import ClientSession
 from bs4 import BeautifulSoup
-from utils import SEASONS, PUZZLES
+
+from utils import SEASONS, PUZZLES, group_by
 
 
-def main() -> None:
+async def main() -> None:
     """Main."""
-    data = {}
 
-    for season in SEASONS:
-        data[season] = {}
-        for puzzle in PUZZLES:
+    async with aiohttp.ClientSession() as session:
+        raw_data = await asyncio.gather(
+            *(get_puzzle_data(season, puzzle, session) for season in SEASONS for puzzle in PUZZLES))
 
-            try:
-                data[season][puzzle] = get_puzzle_data(season, puzzle)
-            except Exception as e:
-                print("Error on parsing", season, puzzle)
-                data[season][puzzle] = None
+    raw_data = [d for d in raw_data if d is not None]
+    tupled_data = [(season, (puzzle, data)) for season, puzzle, data in raw_data]
+
+    data = {
+        season: {
+            puzzle: puzzle_data
+            for puzzle, puzzle_data in season_tupled_data
+        }
+        for season, season_tupled_data in group_by(tupled_data)
+    }
 
     # save
     with open("story.json", "w") as output:
         json.dump(data, output, indent=2)
 
 
-def get_html(url: str) -> BeautifulSoup:
-    """Returns the html of a url."""
-    return BeautifulSoup(
-        requests.get(
-            url,
-            headers={
-                "User-Agent": "Mozilla/5.0 (X11; Linux x86_64; rv:155.0) Gecko/20100101 Firefox/155.0"}
-        ).text,
-        features="html.parser"
-    )
-
-
-def get_puzzle_data(season: str, puzzle: str) -> dict[str, str]:
+async def get_puzzle_data(season: str, puzzle: str, session: ClientSession) -> tuple[str, str, dict[
+    str, str | None]] | None:
     """Returns the data of a specific puzzle."""
     print("loading", season, puzzle)
 
     # load html
-    html = get_html(f"https://thinkygames.com/dailies/puzzles/{season}-{puzzle}/")
+    html = await get_html(f"https://thinkygames.com/dailies/puzzles/{season}-{puzzle}/", session)
+
+    if html is None: return None
 
     # extract data
     raw = [
@@ -97,7 +99,7 @@ def get_puzzle_data(season: str, puzzle: str) -> dict[str, str]:
         print("Error on", "winText", season, puzzle)
         winText = None
 
-    return {
+    return season, puzzle, {
         'title': title,
         'introImage': introImage,
         'introText': introText,
@@ -106,5 +108,27 @@ def get_puzzle_data(season: str, puzzle: str) -> dict[str, str]:
     }
 
 
+async def get_html(url: str, session: ClientSession) -> Optional[BeautifulSoup]:
+    """Returns the html of a url if it exists, None if not. Retries on network error"""
+    exc = None
+    for retry in range(1, 10 + 1):
+        try:
+            await sleep(random.random() * retry)
+            async with session.get(url=url, headers={
+                "User-Agent": "Mozilla/5.0 (X11; Linux x86_64; rv:155.0) Gecko/20100101 Firefox/155.0"}) as response:
+                ok = response.ok
+                print("OK" if ok else "ko", url)
+                return BeautifulSoup(await response.text(), features="html.parser") if ok else None
+        except Exception as e:
+            exc = e
+            await sleep(random.randint(1, retry))
+    raise exc
+
+
 if __name__ == '__main__':
-    create_data()
+
+    # https://stackoverflow.com/a/70758881
+    if platform.system() == 'Windows':
+        asyncio.set_event_loop_policy(asyncio.WindowsSelectorEventLoopPolicy())
+
+    asyncio.run(main())
