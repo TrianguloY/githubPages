@@ -69,7 +69,7 @@ def main() -> None:
 
     print("Building entries")
     entries: List[Entry] = []
-    for season in [1, 2, 3]:
+    for season in [1, 2, 3, 4]:
         for puzzle in range(1, 61 + 1):
             entries.append(Entry(season,
                                  puzzle,
