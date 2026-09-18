@@ -1293,6 +1293,27 @@
       "introText": "Our hero is so keen to follow their mysterious new lead from the Lodge to the city newspaper that they almost forget to pack!",
       "winImage": null,
       "winText": "All done! There's only the warm woolly scarf left, and that's for the trip down the mountain!"
+    },
+    "2": {
+      "title": "A Fond Farewell",
+      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/4x02.png",
+      "introText": "The yeti carries our hero to the train station. They're staying here to \n\nargue\n\n discuss mosaics with the Mentor, so they bid our pal a mosaic farewell.",
+      "winImage": null,
+      "winText": "The tiles show the three new friends - yeti, Mentor and hero - sharing a hug. Our hero squeezes the yeti's hand."
+    },
+    "3": {
+      "title": "Entertainment Station",
+      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/4x03.png",
+      "introText": "The station has a new information screen. The train time is part of a puzzle that passengers can solve while they wait. Delightful!",
+      "winImage": null,
+      "winText": "Our hero boards the train. It's a long journey to the city and the rocking of the carriage soon lulls our pal to sleep."
+    },
+    "4": {
+      "title": "A Built Up Area",
+      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/4x04.png",
+      "introText": "The city is coming into view as our pal wakes. After so long in the snow and trees, the tower blocks and skyscrapers feel very exotic!",
+      "winImage": null,
+      "winText": "As the train gets closer, the buildings loom larger. Our pal wonders if Mouse lives in one of them?"
     }
   }
 }
