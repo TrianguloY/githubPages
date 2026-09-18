@@ -18,19 +18,20 @@ import aiohttp
 from aiohttp import ClientSession
 from bs4 import BeautifulSoup
 
-from utils import SEASONS, PUZZLES, group_by
+from utils import SEASONS, PUZZLES, group_by, network_request
 
 
 async def main() -> None:
     """Main."""
 
+    # get data from urls
     async with aiohttp.ClientSession() as session:
-        raw_data = await asyncio.gather(
+        raw_puzzle_data = await asyncio.gather(
             *(get_puzzle_data(season, puzzle, session) for season in SEASONS for puzzle in PUZZLES))
+    puzzle_data = [d for d in raw_puzzle_data if d is not None]
 
-    raw_data = [d for d in raw_data if d is not None]
-    tupled_data = [(season, (puzzle, data)) for season, puzzle, data in raw_data]
-
+    # structure data
+    tupled_data = [(season, (puzzle, data)) for season, puzzle, data in puzzle_data]
     data = {
         season: {
             puzzle: puzzle_data
@@ -47,58 +48,60 @@ async def main() -> None:
 async def get_puzzle_data(season: str, puzzle: str, session: ClientSession) -> tuple[str, str, dict[
     str, str | None]] | None:
     """Returns the data of a specific puzzle."""
-    print("loading", season, puzzle)
 
     # load html
-    html = await get_html(f"https://thinkygames.com/dailies/puzzles/{season}-{puzzle}/", session)
-
-    if html is None: return None
+    async with network_request(
+            "GET", f"https://thinkygames.com/dailies/puzzles/{season}-{puzzle}/", session) as response:
+        if not response.ok: return None
+        html = BeautifulSoup(await response.text(), features="html.parser")
 
     # extract data
-    raw = [
+    raw_script = [
         x.text.removeprefix("self.__next_f.push(").removesuffix(')')
         for x in html.find_all("script")
         if x.text.startswith('self.__next_f.push([1,"f:[\\"$\\",\\"$L1c\\",null,')
            and x.text.endswith(']\\n"])')
     ][0]
-    property = json.loads(raw)
-    parsed = json.loads(property[1].removeprefix('f:'))[3]
+    raw_value = json.loads(raw_script)
+    data = json.loads(raw_value[1].removeprefix('f:'))[3]
 
+    # extract wanted fields
     try:
-        title = parsed['title']
+        title = data['title']
     except Exception as e:
-        print("Error on", "title", season, puzzle)
+        print("Error on", "title", season, puzzle, e)
         title = None
 
     try:
-        introImage = parsed['introImage']['url']
+        introImage = data['introImage']['url']
     except Exception as e:
-        print("Error on", "introImage", season, puzzle)
+        print("Error on", "introImage", season, puzzle, e)
         introImage = None
 
     try:
         introText = "\n\n".join(
-            subchildren['text'] for children in parsed['intro']['root']['children'] for subchildren in
+            subchildren['text'] for children in data['intro']['root']['children'] for subchildren in
             children['children'])
     except Exception as e:
-        print("Error on", "introText", season, puzzle)
+        print("Error on", "introText", season, puzzle, e)
         introText = None
 
     try:
-        winImage = parsed['winImage']['url'] if puzzle == 61 else None
+        winImage = data['winImage']['url'] if puzzle == 61 else None
 
     except Exception as e:
-        print("Error on", "winImage", season, puzzle)
+        print("Error on", "winImage", season, puzzle, e)
         winImage = None
 
     try:
         winText = "\n\n".join(
-            subchildren['text'] for children in parsed['winMessage']['root']['children'] for subchildren in
+            subchildren['text'] for children in data['winMessage']['root']['children'] for subchildren in
             children['children'])
     except Exception as e:
-        print("Error on", "winText", season, puzzle)
+        print("Error on", "winText", season, puzzle, e)
         winText = None
 
+    # return
     return season, puzzle, {
         'title': title,
         'introImage': introImage,
@@ -110,19 +113,8 @@ async def get_puzzle_data(season: str, puzzle: str, session: ClientSession) -> t
 
 async def get_html(url: str, session: ClientSession) -> Optional[BeautifulSoup]:
     """Returns the html of a url if it exists, None if not. Retries on network error"""
-    exc = None
-    for retry in range(1, 10 + 1):
-        try:
-            await sleep(random.random() * retry)
-            async with session.get(url=url, headers={
-                "User-Agent": "Mozilla/5.0 (X11; Linux x86_64; rv:155.0) Gecko/20100101 Firefox/155.0"}) as response:
-                ok = response.ok
-                print("OK" if ok else "ko", url)
-                return BeautifulSoup(await response.text(), features="html.parser") if ok else None
-        except Exception as e:
-            exc = e
-            await sleep(random.randint(1, retry))
-    raise exc
+    async with network_request("GET", url, session) as response:
+        return BeautifulSoup(await response.text(), features="html.parser") if response is not None else None
 
 
 if __name__ == '__main__':

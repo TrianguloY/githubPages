@@ -15,7 +15,7 @@ from typing import List, Optional, Union, NamedTuple, Any, Callable, Generator
 import aiohttp
 from aiohttp import ClientSession
 
-from utils import SEASONS, PUZZLES
+from utils import SEASONS, PUZZLES, network_request
 
 
 # Infixes
@@ -66,7 +66,7 @@ class Result(NamedTuple):
 
 # script
 
-def main() -> None:
+async def main() -> None:
     """Main."""
 
     print("Building entries")
@@ -80,7 +80,9 @@ def main() -> None:
                                  "-600x600.png"))
 
     print("Requesting")
-    results = asyncio.run(parse_entries(entries))
+    async with aiohttp.ClientSession() as session:
+        filtered = await asyncio.gather(*(parse_entry(entry, session) for entry in entries))
+    results = [entry for result in filtered for entry in result]
 
     print("Statistics:")
     infixes_count = {}
@@ -102,15 +104,8 @@ def main() -> None:
     print("done")
 
 
-async def parse_entries(entries: List[Entry]) -> List[Result]:
-    """Removes invalid entries (where the url doesn't exist)."""
-    async with aiohttp.ClientSession() as session:
-        filtered = await asyncio.gather(*(parse_entry(entry, session) for entry in entries))
-    return [entry for result in filtered for entry in result]
-
-
 async def parse_entry(entry: Entry, session: ClientSession) -> List[Result]:
-    """Parses an entry with all infixes."""
+    """Parses an entry with all infixes. Returns all valid found entries."""
     return (
         await parse_infix("", "x", INFIXES, entry, session)
     ) + (
@@ -122,16 +117,17 @@ async def parse_infix(current_infix: str, prefix_infix: str, infix_generators: L
                       session: ClientSession) -> List[Result]:
     """Parses an entry with a list of infix generators."""
     # TODO: try to find a generic url-generation to avoid the ugly prefix_infix
-    # check value
-    result = await keep_if_exists(
-        Result(
-            season=str(entry.season),
-            puzzle=str(entry.puzzle),
-            infix=prefix_infix + "/" + current_infix,
-            url=entry.prefix_left + prefix_infix + entry.prefix_right + current_infix + entry.suffix,
-        ),
-        session,
+
+    result = Result(
+        season=str(entry.season),
+        puzzle=str(entry.puzzle),
+        infix=prefix_infix + "/" + current_infix,
+        url=entry.prefix_left + prefix_infix + entry.prefix_right + current_infix + entry.suffix,
     )
+    # discard result if a HEAD request fails
+    async with network_request("HEAD", result.url, session) as response:
+        if not response.ok: result = None
+
     if result is None and current_infix != "":
         # value doesn't exist, stop
         # note: some variants exist even if the base url does not, so we continue in that case
@@ -148,26 +144,10 @@ async def parse_infix(current_infix: str, prefix_infix: str, infix_generators: L
     return results
 
 
-async def keep_if_exists(result: Result, session: ClientSession) -> Optional[Result]:
-    """Returns the entry if it exists (based on a HEAD request), None if not. Retries on network error"""
-    exc = None
-    for retry in range(1, 10 + 1):
-        try:
-            await sleep(random.random() * retry)
-            async with session.head(url=result.url) as response:
-                ok = response.ok
-                print("OK" if ok else "ko", result.url)
-                return result if ok else None
-        except Exception as e:
-            exc = e
-            await sleep(random.randint(1, retry))
-    raise exc
-
-
 if __name__ == '__main__':
 
     # https://stackoverflow.com/a/70758881
     if platform.system() == 'Windows':
         asyncio.set_event_loop_policy(asyncio.WindowsSelectorEventLoopPolicy())
 
-    main()
+    asyncio.run(main())
