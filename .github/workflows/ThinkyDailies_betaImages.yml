@@ -1,9 +1,9 @@
 name: Update ThinkyDailies betaImages
 
 on:
-   # run at 12:00
+   # run at 08:00
    schedule:
-     - cron: "0 12 * * *"
+     - cron: "0 8 * * *"
 
    # manual run
    workflow_dispatch:
