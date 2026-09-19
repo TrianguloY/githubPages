@@ -1314,6 +1314,13 @@
       "introText": "The city is coming into view as our pal wakes. After so long in the snow and trees, the tower blocks and skyscrapers feel very exotic!",
       "winImage": null,
       "winText": "As the train gets closer, the buildings loom larger. Our pal wonders if Mouse lives in one of them?"
+    },
+    "5": {
+      "title": "A Spot of Lunch",
+      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/4x05.png",
+      "introText": "When our friend alights from the train, they're famished! They buy lunch and pick up an abandoned paper, flipping through to Mouse's latest puzzle.",
+      "winImage": null,
+      "winText": "Mouse must have been peckish when they wrote this one. Our pal holds out a crust to a hopeful rat. You too, eh?"
     }
   }
 }
