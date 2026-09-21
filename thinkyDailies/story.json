@@ -1328,6 +1328,13 @@
       "introText": "Speaking of Mouse, that\u2019s who our hero plans to visit first at the Times. They love a good puzzle! But where on this new bus route is the paper?",
       "winImage": null,
       "winText": "This bus goes right past the office! Our hero hops aboard, and learns the magic of... stop-start traffic jams."
+    },
+    "7": {
+      "title": "Bumper To Bumper",
+      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/4x07.png",
+      "introText": "Near the office, our pal spots Mouse in a coffee shop. Traffic is so bad that it's quicker to squeeze past the cars on foot than to stay on the bus!",
+      "winImage": null,
+      "winText": "After the quiet of the Lodge, the city bustle is overwhelming. Our friend hopes the coffee shop will be quieter."
     }
   }
 }
