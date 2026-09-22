@@ -1335,6 +1335,13 @@
       "introText": "Near the office, our pal spots Mouse in a coffee shop. Traffic is so bad that it's quicker to squeeze past the cars on foot than to stay on the bus!",
       "winImage": null,
       "winText": "After the quiet of the Lodge, the city bustle is overwhelming. Our friend hopes the coffee shop will be quieter."
+    },
+    "8": {
+      "title": "Friends Reunited!",
+      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/4x08.png",
+      "introText": "Mouse is delighted to see our pal and pulls them in for a bear hug! \"I had no idea you were coming!\" they say. \"I was just working on a new puzzle!\"",
+      "winImage": null,
+      "winText": "It's a solid puzzle. It's also clear that Mouse could see - and hear - the traffic problems from their seat!"
     }
   }
 }
