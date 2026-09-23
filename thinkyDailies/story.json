@@ -1342,6 +1342,13 @@
       "introText": "Mouse is delighted to see our pal and pulls them in for a bear hug! \"I had no idea you were coming!\" they say. \"I was just working on a new puzzle!\"",
       "winImage": null,
       "winText": "It's a solid puzzle. It's also clear that Mouse could see - and hear - the traffic problems from their seat!"
+    },
+    "9": {
+      "title": "Mouse Starts To Spiral",
+      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/4x09.png",
+      "introText": "As the pair catch up, Mouse examines the notes from the Lodge. \"Hmm. That spiral shape... \" Mouse starts to doodle, trying to place the memory.",
+      "winImage": null,
+      "winText": "Our thinky friend sees Mouse's eye light up with recognition. They know where to go next!"
     }
   }
 }
