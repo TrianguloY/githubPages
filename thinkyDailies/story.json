@@ -1349,6 +1349,13 @@
       "introText": "As the pair catch up, Mouse examines the notes from the Lodge. \"Hmm. That spiral shape... \" Mouse starts to doodle, trying to place the memory.",
       "winImage": null,
       "winText": "Our thinky friend sees Mouse's eye light up with recognition. They know where to go next!"
+    },
+    "10": {
+      "title": "Things Of The Past",
+      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/4x10.png",
+      "introText": "Huh! The newspaper has been running for so long it has its own museum! The puzzle section must be in here somewhere.",
+      "winImage": null,
+      "winText": "At last, the friends locate the puzzle section. It doesn't look like it's had visitors in quite a while."
     }
   }
 }
