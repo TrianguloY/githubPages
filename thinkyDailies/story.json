@@ -1356,6 +1356,13 @@
       "introText": "Huh! The newspaper has been running for so long it has its own museum! The puzzle section must be in here somewhere.",
       "winImage": null,
       "winText": "At last, the friends locate the puzzle section. It doesn't look like it's had visitors in quite a while."
+    },
+    "11": {
+      "title": "Sets of Setters",
+      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/4x11.png",
+      "introText": "\"There!\" says Mouse, pointing at a set of tiles. \"Those are Setter symbols! But I'm not sure how the museum assigns these category numbers.\"",
+      "winImage": null,
+      "winText": "\"Neat!\" says Mouse. \"If I were a Setter, I'd be an 11 or a 28. You'd be a great 5 or 15 or- WAIT! What about... a 1!\""
     }
   }
 }
