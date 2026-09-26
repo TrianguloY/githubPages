@@ -1363,6 +1363,13 @@
       "introText": "\"There!\" says Mouse, pointing at a set of tiles. \"Those are Setter symbols! But I'm not sure how the museum assigns these category numbers.\"",
       "winImage": null,
       "winText": "\"Neat!\" says Mouse. \"If I were a Setter, I'd be an 11 or a 28. You'd be a great 5 or 15 or- WAIT! What about... a 1!\""
+    },
+    "12": {
+      "title": "Recruitment Remnant",
+      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/4x12.png",
+      "introText": "\"Look at this!\" gasps Mouse. Their face is pressed against a very dusty glass case, trying to make out the puzzle on a piece of paper inside.",
+      "winImage": null,
+      "winText": "\"Setters somehow used these puzzles to recruit new Setters,\" reads the text. \"Nowadays, we have an internship!\""
     }
   }
 }
