@@ -77,7 +77,7 @@ async def main() -> None:
                                  puzzle,
                                  f"https://static.prod.thinkygames.com/uploads/puzzle_intro_images/{season}",
                                  f"{puzzle:02}",
-                                 "-600x600.png"))
+                                 ".png"))
 
     print("Requesting")
     async with aiohttp.ClientSession() as session:
