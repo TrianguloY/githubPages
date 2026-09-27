@@ -1370,6 +1370,13 @@
       "introText": "\"Look at this!\" gasps Mouse. Their face is pressed against a very dusty glass case, trying to make out the puzzle on a piece of paper inside.",
       "winImage": null,
       "winText": "\"Setters somehow used these puzzles to recruit new Setters,\" reads the text. \"Nowadays, we have an internship!\""
+    },
+    "13": {
+      "title": "Mi Casa Es Tu Casa!",
+      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/4x13.png",
+      "introText": "Is that the time? Mouse is due back at work! They press a key into our pal's hand and gabble directions to their flat. \"Stay at mine while you're here!\"",
+      "winImage": null,
+      "winText": "Our pal notes the route down. Traffic is still at a standstill outside, so they decide to walk. It'll be nice to see the city!"
     }
   }
 }
