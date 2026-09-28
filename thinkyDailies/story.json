@@ -1377,6 +1377,13 @@
       "introText": "Is that the time? Mouse is due back at work! They press a key into our pal's hand and gabble directions to their flat. \"Stay at mine while you're here!\"",
       "winImage": null,
       "winText": "Our pal notes the route down. Traffic is still at a standstill outside, so they decide to walk. It'll be nice to see the city!"
+    },
+    "14": {
+      "title": "Under The Hood",
+      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/4x14.png",
+      "introText": "Well, this explains the jam! A motorist dabs the engine of their broken-down car with a grubby towel. \"There's too much grime to see the parts,\" they wail.",
+      "winImage": null,
+      "winText": "\"Much better!\" says the motorist, handing our pal the filthy towel. \"Now, let's see what's going on...\""
     }
   }
 }
