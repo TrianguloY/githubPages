@@ -1384,6 +1384,13 @@
       "introText": "Well, this explains the jam! A motorist dabs the engine of their broken-down car with a grubby towel. \"There's too much grime to see the parts,\" they wail.",
       "winImage": null,
       "winText": "\"Much better!\" says the motorist, handing our pal the filthy towel. \"Now, let's see what's going on...\""
+    },
+    "15": {
+      "title": "A Skilled Mechanic",
+      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/4x15.png",
+      "introText": "\"It's the pistons!\" the motorist says. They seem to have adopted our pal as an assistant. \"Tell me the dashboard readout, while I use the hammer!\"",
+      "winImage": null,
+      "winText": "It works! The motorist gives our hero a friendly beep, then trundles off, much to the relief of the other drivers."
     }
   }
 }
