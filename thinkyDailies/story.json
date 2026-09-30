@@ -1391,6 +1391,13 @@
       "introText": "\"It's the pistons!\" the motorist says. They seem to have adopted our pal as an assistant. \"Tell me the dashboard readout, while I use the hammer!\"",
       "winImage": null,
       "winText": "It works! The motorist gives our hero a friendly beep, then trundles off, much to the relief of the other drivers."
+    },
+    "16": {
+      "title": "In Storage",
+      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/4x16.png",
+      "introText": "Our pal arrives at Mouse's flat and washes their oily hands. The guest room drawers are half full, so our pal rearranges it to fit their luggage.",
+      "winImage": null,
+      "winText": "Perfect! And now for a hot shower to get rid of the rest of the day's grime. It's pretty dusty in the big city!"
     }
   }
 }
