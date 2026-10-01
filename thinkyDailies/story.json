@@ -1398,6 +1398,13 @@
       "introText": "Our pal arrives at Mouse's flat and washes their oily hands. The guest room drawers are half full, so our pal rearranges it to fit their luggage.",
       "winImage": null,
       "winText": "Perfect! And now for a hot shower to get rid of the rest of the day's grime. It's pretty dusty in the big city!"
+    },
+    "17": {
+      "title": "Taking Work Home",
+      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/4x17.png",
+      "introText": "Mouse arrives with takeout and a note. The note shows the current Setter's symbol below an edited version of one of Mouse's puzzles.",
+      "winImage": null,
+      "winText": "While our pal was solving the puzzle, Mouse was dishing up the noodles. They smell so good. Thanks, Mouse!"
     }
   }
 }
