@@ -8,9 +8,7 @@
 import asyncio
 import json
 import platform
-import random
-from asyncio import sleep
-from typing import List, Optional, Union, NamedTuple, Any, Callable, Generator
+from typing import List, Union, NamedTuple, Any, Callable, Generator
 
 import aiohttp
 from aiohttp import ClientSession

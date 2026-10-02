@@ -1405,6 +1405,13 @@
       "introText": "Mouse arrives with takeout and a note. The note shows the current Setter's symbol below an edited version of one of Mouse's puzzles.",
       "winImage": null,
       "winText": "While our pal was solving the puzzle, Mouse was dishing up the noodles. They smell so good. Thanks, Mouse!"
+    },
+    "18": {
+      "title": "A Wild Puzzle Appears",
+      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/4x18.png",
+      "introText": "Our hero pats their full tummy, then idly turns the Setter's note over. What's this about a puzzle \"escaping into the wild\"?",
+      "winImage": null,
+      "winText": "It seems this caterpillar only moves according to a set of strict rules. Maybe it's a special puzzle breed?"
     }
   }
 }

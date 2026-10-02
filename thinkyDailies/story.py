@@ -10,8 +10,6 @@
 import asyncio
 import json
 import platform
-import random
-from asyncio import sleep
 from typing import Optional
 
 import aiohttp
@@ -59,11 +57,10 @@ async def get_puzzle_data(season: str, puzzle: str, session: ClientSession) -> t
     raw_script = [
         x.text.removeprefix("self.__next_f.push(").removesuffix(')')
         for x in html.find_all("script")
-        if x.text.startswith('self.__next_f.push([1,"f:[\\"$\\",\\"$L1c\\",null,')
-           and x.text.endswith(']\\n"])')
+        if "puzzleData" in x.text
     ][0]
-    raw_value = json.loads(raw_script)
-    data = json.loads(raw_value[1].removeprefix('f:'))[3]
+    raw_value = json.loads(raw_script)[1].split(":", 1)[1]
+    data = json.loads(raw_value)[3]
 
     # extract wanted fields
     try:
