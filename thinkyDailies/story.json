@@ -1412,6 +1412,13 @@
       "introText": "Our hero pats their full tummy, then idly turns the Setter's note over. What's this about a puzzle \"escaping into the wild\"?",
       "winImage": null,
       "winText": "It seems this caterpillar only moves according to a set of strict rules. Maybe it's a special puzzle breed?"
+    },
+    "19": {
+      "title": "Doodles In The Mist",
+      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/4x19.png",
+      "introText": "On the way to bed, our hero passes the bathroom. The mirror is cloudy from Mouse's shower, and our pal can't resist doodling in the steam.",
+      "winImage": null,
+      "winText": "What starts as a smily face turns into... a mountain goat? Kinda? If you squint?? Hmm. It's definitely bedtime!"
     }
   }
 }
