@@ -1419,6 +1419,13 @@
       "introText": "On the way to bed, our hero passes the bathroom. The mirror is cloudy from Mouse's shower, and our pal can't resist doodling in the steam.",
       "winImage": null,
       "winText": "What starts as a smily face turns into... a mountain goat? Kinda? If you squint?? Hmm. It's definitely bedtime!"
+    },
+    "20": {
+      "title": "Re-Routed",
+      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/4x20.png",
+      "introText": "Our sleepy pal joins Mouse on their morning commute. \"The Setter is an employee, so their contact details will be on file! Wait, what's this detour?\"",
+      "winImage": null,
+      "winText": "The detour is because there's a parade in this part of the city tomorrow. Maybe our hero can watch!"
     }
   }
 }
