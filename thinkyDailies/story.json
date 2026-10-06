@@ -1433,6 +1433,13 @@
       "introText": "At Mouse's desk is an angry-looking letter. \"It's a reader called Greg,\" sighs Mouse. \"He complains the puzzles are impossible if he can't solve them.\"",
       "winImage": null,
       "winText": "\"I knew you'd get it,\" says Mouse. \"Fun eh? But I should get to work while you look for those Setter details.\""
+    },
+    "22": {
+      "title": "It's Here Somewhere",
+      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/4x22.png",
+      "introText": "Armed with typically vague directions, our hero leaves Mouse crafting a new puzzle and heads off to find the employee records department.",
+      "winImage": null,
+      "winText": "Aha! This must be the right place. And it's sufficiently well hidden that staff don't even bother locking the door!"
     }
   }
 }
