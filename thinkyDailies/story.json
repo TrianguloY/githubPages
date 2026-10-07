@@ -1243,13 +1243,6 @@
       "winImage": null,
       "winText": "Peering out of the cave, the world is a flurry of white flakes. No lodge, no path, just snow whirling past."
     },
-    "56": {
-      "title": "The Yeti Express",
-      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/3x56.png",
-      "introText": "The yeti snorts then steps forward, scooping the Mentor and our hero up as it strides into the howling wind, looking for signs of the Lodge.",
-      "winImage": null,
-      "winText": "CRUNCH! The yeti barrels through the door of the Lodge, leaving a yeti-shaped hole and lots of splinters in its wake."
-    },
     "57": {
       "title": "Repairing A Repair",
       "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/3x57.png",
@@ -1440,6 +1433,13 @@
       "introText": "Armed with typically vague directions, our hero leaves Mouse crafting a new puzzle and heads off to find the employee records department.",
       "winImage": null,
       "winText": "Aha! This must be the right place. And it's sufficiently well hidden that staff don't even bother locking the door!"
+    },
+    "23": {
+      "title": "An \u2587nfo\u2587m\u2587ti\u2587n G\u2587p",
+      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/4x23.png",
+      "introText": "The current employee files account for every member of staff EXCEPT the Setter. The remaining blurry photo and heavily redacted file must be theirs!",
+      "winImage": null,
+      "winText": "If this is all our puzzle-loving pal has to go on, it'll have to do. They grab the photo and head back to Mouse's floor."
     }
   }
 }
