@@ -1454,6 +1454,13 @@
       "introText": "Mouse stares at the blurry photo, then calls to a reporter. \"Do you still have that detective's card? The one from the submarine mystery story?\"",
       "winImage": null,
       "winText": "Our hero dials the number on the card. \"Hello? Yes, we can meet. The caf\u00e9 by the newspaper? We're on our way!\""
+    },
+    "25": {
+      "title": "The Missing Teapot",
+      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/4x25.png",
+      "introText": "Detectives Grimoire and Sally arrive at the caf\u00e9. They can't take our hero's case, but a hunt for Grimoire's lost tea gives our pal a chance to solve a mystery!",
+      "winImage": null,
+      "winText": "Facts are clearly vital to solving cases! A missing person poster might help our hero gather facts about the Setter."
     }
   }
 }
