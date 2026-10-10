@@ -1461,6 +1461,13 @@
       "introText": "Detectives Grimoire and Sally arrive at the caf\u00e9. They can't take our hero's case, but a hunt for Grimoire's lost tea gives our pal a chance to solve a mystery!",
       "winImage": null,
       "winText": "Facts are clearly vital to solving cases! A missing person poster might help our hero gather facts about the Setter."
+    },
+    "26": {
+      "title": "Poster Pals",
+      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/4x26.png",
+      "introText": "Back at the office, Mouse grabs pens and paper, eager to help with the missing person poster. First things first: the pals must decide the layout!",
+      "winImage": null,
+      "winText": "Our hero watches Mouse scrawl their contact details onto the poster. This is looking pretty good!"
     }
   }
 }
