@@ -1468,6 +1468,13 @@
       "introText": "Back at the office, Mouse grabs pens and paper, eager to help with the missing person poster. First things first: the pals must decide the layout!",
       "winImage": null,
       "winText": "Our hero watches Mouse scrawl their contact details onto the poster. This is looking pretty good!"
+    },
+    "27": {
+      "title": "Marching Order",
+      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/4x27.png",
+      "introText": "While our puzzlers work, nearby reporters unfold a map. Arrows show start points for tomorrow's parade, but which route will they take to the finish?",
+      "winImage": null,
+      "winText": "The reporters are a lot happier now they know the parade route. Now to stake out the prime locations ..."
     }
   }
 }
