@@ -1475,6 +1475,13 @@
       "introText": "While our puzzlers work, nearby reporters unfold a map. Arrows show start points for tomorrow's parade, but which route will they take to the finish?",
       "winImage": null,
       "winText": "The reporters are a lot happier now they know the parade route. Now to stake out the prime locations ..."
+    },
+    "28": {
+      "title": "Let's Get This Straight",
+      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/4x28.png",
+      "introText": "Our hero takes the finished poster and heads to the photocopier. It's ... out of order? Well, the power cord is tangled and unplugged, so let's fix that.",
+      "winImage": null,
+      "winText": "Hmm. It's turning on, but what a horrible noise! And what's a paper jam when it's at home?"
     }
   }
 }
