@@ -1482,6 +1482,13 @@
       "introText": "Our hero takes the finished poster and heads to the photocopier. It's ... out of order? Well, the power cord is tangled and unplugged, so let's fix that.",
       "winImage": null,
       "winText": "Hmm. It's turning on, but what a horrible noise! And what's a paper jam when it's at home?"
+    },
+    "29": {
+      "title": "Cogs in the Machine",
+      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/4x29.png",
+      "introText": "Our thinky friend wrestles crumpled paper out of the copier and examines the feed mechanism. It's all out of alignment. No wonder it jammed!",
+      "winImage": null,
+      "winText": "The copier whirrs and hums, finally churning out crisp copies of the missing person poster."
     }
   }
 }
