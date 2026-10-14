@@ -1489,6 +1489,13 @@
       "introText": "Our thinky friend wrestles crumpled paper out of the copier and examines the feed mechanism. It's all out of alignment. No wonder it jammed!",
       "winImage": null,
       "winText": "The copier whirrs and hums, finally churning out crisp copies of the missing person poster."
+    },
+    "30": {
+      "title": "Splitting the Bill",
+      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/4x30.png",
+      "introText": "The posters are ready to put up tomorrow, so our friends stroll to a local eatery. The food is excellent, but the pricing is a little unclear!",
+      "winImage": null,
+      "winText": "\"The Setter would hate that place,\" says Mouse as the pair head home. \"They think puzzles should stay in the Times.\""
     }
   }
 }
