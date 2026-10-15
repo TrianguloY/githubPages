@@ -1496,6 +1496,13 @@
       "introText": "The posters are ready to put up tomorrow, so our friends stroll to a local eatery. The food is excellent, but the pricing is a little unclear!",
       "winImage": null,
       "winText": "\"The Setter would hate that place,\" says Mouse as the pair head home. \"They think puzzles should stay in the Times.\""
+    },
+    "31": {
+      "title": "Frozen Assets",
+      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/4x31.png",
+      "introText": "Banging from the kitchen interrupts our hero's bedtime routine. \"Sorry!\" says a sheepish Mouse. \"I fancied ice cream, but the tub is stuck in the freezer ice!\"",
+      "winImage": null,
+      "winText": "A chisel and some teamwork soon free the tub, and the pals savour their treat before finally retiring for the night."
     }
   }
 }
