@@ -1510,6 +1510,13 @@
       "introText": "A postcard arrives for Mouse on the morning pigeon. \"Tortoise bored again!\" it reads. \"Needs new maze!\" Odd! And there's a diagram of a yard?",
       "winImage": null,
       "winText": "Our hero sketches a solution in between bites of cereal. It's a weird but pleasant start to the day!"
+    },
+    "33": {
+      "title": "Stick 'em Up",
+      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/4x33.png",
+      "introText": "Time to get these missing person posters up! Mouse has marked busy areas on a map, so our hero draws a route and starts peppering it with posters!",
+      "winImage": null,
+      "winText": "Our hero finally feels like they're making progress on their task. It's also lovely to see more of the city."
     }
   }
 }
