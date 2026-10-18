@@ -1517,6 +1517,13 @@
       "introText": "Time to get these missing person posters up! Mouse has marked busy areas on a map, so our hero draws a route and starts peppering it with posters!",
       "winImage": null,
       "winText": "Our hero finally feels like they're making progress on their task. It's also lovely to see more of the city."
+    },
+    "34": {
+      "title": "Drawing Focus",
+      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/4x34.png",
+      "introText": "At our pal's final poster spot, they see a crowd watching an artist at work. \"Look! The shapes all guide your eye to the focal point,\" one whispers.",
+      "winImage": null,
+      "winText": "\"I'm in the city most days,\" says the artist. \"I love the people-watching.\" Our hero perks up. People-watching?"
     }
   }
 }
