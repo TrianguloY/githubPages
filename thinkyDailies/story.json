@@ -1524,6 +1524,13 @@
       "introText": "At our pal's final poster spot, they see a crowd watching an artist at work. \"Look! The shapes all guide your eye to the focal point,\" one whispers.",
       "winImage": null,
       "winText": "\"I'm in the city most days,\" says the artist. \"I love the people-watching.\" Our hero perks up. People-watching?"
+    },
+    "35": {
+      "title": "Have You Seen This Setter?",
+      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/4x35.png",
+      "introText": "Our hero holds up a poster. \"Those blurry shapes look familiar,\" frowns the artist. \"Let's check the people scenes in my sketch pile.\"",
+      "winImage": null,
+      "winText": "\"Your poster's purple pixels match THIS perfect pompadour!\" gasps the artist. Pompa-what? Oh! It's the hairstyle!"
     }
   }
 }
