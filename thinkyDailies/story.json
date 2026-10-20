@@ -1531,6 +1531,13 @@
       "introText": "Our hero holds up a poster. \"Those blurry shapes look familiar,\" frowns the artist. \"Let's check the people scenes in my sketch pile.\"",
       "winImage": null,
       "winText": "\"Your poster's purple pixels match THIS perfect pompadour!\" gasps the artist. Pompa-what? Oh! It's the hairstyle!"
+    },
+    "36": {
+      "title": "The Scene Of The Setter",
+      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/4x36.png",
+      "introText": "\"Then I HAVE seen your Setter!\" beams the artist. \"The specific site escapes me, but search the sketch. Perhaps I scribbled some structures or signs?\"",
+      "winImage": null,
+      "winText": "Hah! Behind the crowd, the artist has drawn a little bridge. How cute! And it has a little bench with a streetlight!"
     }
   }
 }
