@@ -1545,6 +1545,13 @@
       "introText": "As our friend ponders their next move, a sheet of paper is pushed into their hand. It's a flier for the parade! And there's a discount code for snacks!",
       "winImage": null,
       "winText": "The parade sounds like a lot of fun; our hero wonders if Mouse is free to attend with them. Let's go and find out!"
+    },
+    "38": {
+      "title": "The Tiny Tail",
+      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/4x38.png",
+      "introText": "Aboard the bus, our pal feels a prickle of recognition. Are they being tailed?! They turn to confront their follower, but the tiny target makes a break for it!",
+      "winImage": null,
+      "winText": "Our hero finally catches up with their quarry, but this is no spy; it's a child. \"Again!\" beams the child. \"Again!\""
     }
   }
 }
