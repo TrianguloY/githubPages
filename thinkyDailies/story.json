@@ -1552,6 +1552,20 @@
       "introText": "Aboard the bus, our pal feels a prickle of recognition. Are they being tailed?! They turn to confront their follower, but the tiny target makes a break for it!",
       "winImage": null,
       "winText": "Our hero finally catches up with their quarry, but this is no spy; it's a child. \"Again!\" beams the child. \"Again!\""
+    },
+    "39": {
+      "title": "A Garbled Story",
+      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/4x39.png",
+      "introText": "\"Er, what's going on!?\" Uh oh! It's the child's guardian. Our hero is mortified, and it takes a while to make sense of their flustered explanation.",
+      "winImage": null,
+      "winText": "\"A tiny spy?!\" The guardian roars with laughter. \"Juni just loves buses, so we ride them a lot!\""
+    },
+    "40": {
+      "title": "The Setter On The Bus",
+      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/4x40.png",
+      "introText": "Juni points at our hero's posters. \"I seen them LOADS!\" they say proudly. \"Onna BUS! The one that goes along and turns like THIS and THIS!\"",
+      "winImage": null,
+      "winText": "Hmm. This route must be very handy for the Setter! Our pal thanks Juni and dings the bell for Mouse's office stop."
     }
   }
 }
