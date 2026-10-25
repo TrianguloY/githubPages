@@ -1566,6 +1566,13 @@
       "introText": "Juni points at our hero's posters. \"I seen them LOADS!\" they say proudly. \"Onna BUS! The one that goes along and turns like THIS and THIS!\"",
       "winImage": null,
       "winText": "Hmm. This route must be very handy for the Setter! Our pal thanks Juni and dings the bell for Mouse's office stop."
+    },
+    "41": {
+      "title": "About That Tortoise",
+      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/4x41.png",
+      "introText": "Setter update given, our hero eyes a stack of postcards on Mouse's desk. Every one requests an obstacle puzzle for a bored tortoise. What is going on?!",
+      "winImage": null,
+      "winText": "\"It's that other apprentice Solver,\" sighs Mouse. \"They're pet-sitting a tortoise, and it's gotten really intense.\""
     }
   }
 }
