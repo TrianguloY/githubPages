@@ -1573,6 +1573,13 @@
       "introText": "Setter update given, our hero eyes a stack of postcards on Mouse's desk. Every one requests an obstacle puzzle for a bored tortoise. What is going on?!",
       "winImage": null,
       "winText": "\"It's that other apprentice Solver,\" sighs Mouse. \"They're pet-sitting a tortoise, and it's gotten really intense.\""
+    },
+    "42": {
+      "title": "Inconvenience Store",
+      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/4x42.png",
+      "introText": "\"Want to come to the pigeon post room?\" asks Mouse. \"The Setter asked for new puzzles. They also ranted about a shop layout, but I ignored that. Look.\"",
+      "winImage": null,
+      "winText": "Huh! Apparently, the shop owner had no interest in puzzles, then changed their entire store using puzzle rules."
     }
   }
 }
