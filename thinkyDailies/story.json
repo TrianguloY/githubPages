@@ -1580,6 +1580,13 @@
       "introText": "\"Want to come to the pigeon post room?\" asks Mouse. \"The Setter asked for new puzzles. They also ranted about a shop layout, but I ignored that. Look.\"",
       "winImage": null,
       "winText": "Huh! Apparently, the shop owner had no interest in puzzles, then changed their entire store using puzzle rules."
+    },
+    "43": {
+      "title": "Coo Runnings",
+      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/4X43.png",
+      "introText": "As Mouse hands a note marked 'Setter' to the pigeon-keeper, our hero gasps. What if they just follow the pigeon to the Setter? Only one way to find out!",
+      "winImage": null,
+      "winText": "Mouse stands back as our hero races past. Outside the office, they scan the sky, trying to find the right bird!"
     }
   }
 }
