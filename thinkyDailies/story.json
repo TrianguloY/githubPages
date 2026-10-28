@@ -1587,6 +1587,13 @@
       "introText": "As Mouse hands a note marked 'Setter' to the pigeon-keeper, our hero gasps. What if they just follow the pigeon to the Setter? Only one way to find out!",
       "winImage": null,
       "winText": "Mouse stands back as our hero races past. Outside the office, they scan the sky, trying to find the right bird!"
+    },
+    "44": {
+      "title": "Stop That Pigeon!",
+      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/4x44.png",
+      "introText": "Aha! Our pal spots the right pigeon, and the chase is on! But is this bird taking evasive manoeuvres? Our hero struggles to keep pace!",
+      "winImage": null,
+      "winText": "Our pal rounds one last corner and stops, panting heavily. There's the pigeon, but the letter has vanished!"
     }
   }
 }
