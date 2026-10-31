@@ -1594,6 +1594,27 @@
       "introText": "Aha! Our pal spots the right pigeon, and the chase is on! But is this bird taking evasive manoeuvres? Our hero struggles to keep pace!",
       "winImage": null,
       "winText": "Our pal rounds one last corner and stops, panting heavily. There's the pigeon, but the letter has vanished!"
+    },
+    "45": {
+      "title": "Cool Customer",
+      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/4x45.png",
+      "introText": "Loud chimes reveal an ice cream van nearby. It's here for the parade crowd! Our sweaty hero orders a cone, then spots some hopeful rats. Make that two cones!",
+      "winImage": null,
+      "winText": "Our pal recites the discount code, but the ice cream seller waves them off. \"You're kind to animals; it's on the house!\""
+    },
+    "46": {
+      "title": "Dance Dance Step Solution",
+      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/4x46.png",
+      "introText": "The parade begins in earnest. It's so colourful and lively! Suddenly, a passing troupe pulls our hero into an energetic dance! Quick! What are the steps?",
+      "winImage": null,
+      "winText": "With a final twirl, our giddy hero rejoins the cheering spectators. What a rush!"
+    },
+    "47": {
+      "title": "Stalled Progress",
+      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/4x47.png",
+      "introText": "As the last float passes by, our hero turns to head home. Looks like they'll need to push through the throng of food carts and puzzle vendors first!",
+      "winImage": null,
+      "winText": "Finally, our pal is past the carts. They stroll home, and are still humming parade tunes as they go to sleep."
     }
   }
 }
