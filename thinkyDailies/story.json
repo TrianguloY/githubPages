@@ -1615,6 +1615,13 @@
       "introText": "As the last float passes by, our hero turns to head home. Looks like they'll need to push through the throng of food carts and puzzle vendors first!",
       "winImage": null,
       "winText": "Finally, our pal is past the carts. They stroll home, and are still humming parade tunes as they go to sleep."
+    },
+    "48": {
+      "title": "Surfing the Airwaves",
+      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/4x48.png",
+      "introText": "It's Mouse's day off, so our hero is the first one up. To thank them for all their help, our pal is cooking breakfast. Let's tune this radio to something fun!",
+      "winImage": null,
+      "winText": "Our pal is soon boogieing around the kitchen! They keep the volume down so as not to wake Mouse too early."
     }
   }
 }
