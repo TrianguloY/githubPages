@@ -1622,6 +1622,13 @@
       "introText": "It's Mouse's day off, so our hero is the first one up. To thank them for all their help, our pal is cooking breakfast. Let's tune this radio to something fun!",
       "winImage": null,
       "winText": "Our pal is soon boogieing around the kitchen! They keep the volume down so as not to wake Mouse too early."
+    },
+    "49": {
+      "title": "A Well-Packed Plate",
+      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/4x49.png",
+      "introText": "Uh oh! Our hero may have gone slightly overboard with the food. How will they fit everything onto the plates?",
+      "winImage": null,
+      "winText": "\"Something smells good!\" says Mouse, opening the door. They're carrying the morning paper and - Oh no!"
     }
   }
 }
