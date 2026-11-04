@@ -10,10 +10,9 @@
 import asyncio
 import json
 import platform
-from typing import Optional
 
 import aiohttp
-from aiohttp import ClientSession
+from aiohttp import ClientSession, ClientResponse
 from bs4 import BeautifulSoup
 
 from utils import SEASONS, PUZZLES, group_by, network_request
@@ -48,10 +47,17 @@ async def get_puzzle_data(season: str, puzzle: str, session: ClientSession) -> t
     """Returns the data of a specific puzzle."""
 
     # load html
-    async with network_request(
-            "GET", f"https://thinkygames.com/dailies/puzzles/{season}-{puzzle}/", session) as response:
+    async def map_html(response: ClientResponse) -> BeautifulSoup | None:
         if not response.ok: return None
-        html = BeautifulSoup(await response.text(), features="html.parser")
+        return BeautifulSoup(await response.text(), features="html.parser")
+
+    html = await network_request(
+        "GET",
+        f"https://thinkygames.com/dailies/puzzles/{season}-{puzzle}/",
+        session,
+        map_html)
+
+    if html is None: return None
 
     # extract data
     raw_script = [
@@ -106,12 +112,6 @@ async def get_puzzle_data(season: str, puzzle: str, session: ClientSession) -> t
         'winImage': winImage,
         'winText': winText,
     }
-
-
-async def get_html(url: str, session: ClientSession) -> Optional[BeautifulSoup]:
-    """Returns the html of a url if it exists, None if not. Retries on network error"""
-    async with network_request("GET", url, session) as response:
-        return BeautifulSoup(await response.text(), features="html.parser") if response is not None else None
 
 
 if __name__ == '__main__':

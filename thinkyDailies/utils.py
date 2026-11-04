@@ -1,8 +1,7 @@
 import random
 from asyncio import sleep
-from contextlib import asynccontextmanager
 from itertools import groupby
-from typing import Iterable, Tuple, AsyncGenerator
+from typing import Iterable, Tuple, Callable, TypeVar, Awaitable
 
 from aiohttp import ClientSession, ClientResponse
 
@@ -18,11 +17,15 @@ def group_by[K, V](elements: Iterable[Tuple[K, V]]) -> list[Tuple[
         for key, grouped_elements in groupby(elements, key=lambda x: x[0])
     ]
 
-@asynccontextmanager
-async def network_request(method: str, url: str, session: ClientSession) -> AsyncGenerator[ClientResponse]:
+
+T = TypeVar('T')
+
+
+async def network_request(method: str, url: str, session: ClientSession,
+                          mapper: Callable[[ClientResponse], Awaitable[T]]) -> T:
     """
     Performs a network request with random delay and automatic retry if response fails.
-    yields the response.
+    yields the response, mapped by the async mapper.
     Throws exception after several retries.
     """
     exc = None
@@ -32,8 +35,7 @@ async def network_request(method: str, url: str, session: ClientSession) -> Asyn
             async with session.request(method=method, url=url, headers={
                 "User-Agent": "Mozilla/5.0 (X11; Linux x86_64; rv:155.0) Gecko/20100101 Firefox/155.0"}) as response:
                 print("OK" if response.ok else "ko", url)
-                yield response
-            return
+                return await mapper(response)
         except Exception as e:
             exc = e
             await sleep(random.randint(1, retry))
