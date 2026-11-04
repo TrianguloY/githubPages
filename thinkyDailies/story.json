@@ -1629,6 +1629,20 @@
       "introText": "Uh oh! Our hero may have gone slightly overboard with the food. How will they fit everything onto the plates?",
       "winImage": null,
       "winText": "\"Something smells good!\" says Mouse, opening the door. They're carrying the morning paper and - Oh no!"
+    },
+    "50": {
+      "title": "Cover Story",
+      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/4x50.png",
+      "introText": "Our hero's parade dancing made the front page! Mouse starts to giggle, while our pal blushes and buries themself in the puzzle pages.",
+      "winImage": null,
+      "winText": "Elsewhere in the paper is a little story about the reopening of a place called Solver Lodge, up in the mountains ..."
+    },
+    "51": {
+      "title": "A Little Twist",
+      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/4x51.png",
+      "introText": "Mouse sees the puzzle our hero solved and dashes out of the kitchen. They return with a new puzzle. \"It's a variant I'm trying. What do you think?\"",
+      "winImage": null,
+      "winText": "Mouse seems to be flourishing at the Times. \"I still panic over tests,\" they say, \"But work is different!\""
     }
   }
 }
