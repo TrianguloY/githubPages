@@ -1643,6 +1643,13 @@
       "introText": "Mouse sees the puzzle our hero solved and dashes out of the kitchen. They return with a new puzzle. \"It's a variant I'm trying. What do you think?\"",
       "winImage": null,
       "winText": "Mouse seems to be flourishing at the Times. \"I still panic over tests,\" they say, \"But work is different!\""
+    },
+    "52": {
+      "title": "Hopping Mad",
+      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/4x52.png",
+      "introText": "\"The Setter read about Solver Lodge reopening,\" says Mouse. \"They say more Solvers mean more wild puzzle trouble. First, the caterpillar, now a hopscotch board.\"",
+      "winImage": null,
+      "winText": "Our pal sips their coffee, lost in thought. The Setter thinks these new puzzles are trouble, but why?"
     }
   }
 }
