@@ -1650,6 +1650,13 @@
       "introText": "\"The Setter read about Solver Lodge reopening,\" says Mouse. \"They say more Solvers mean more wild puzzle trouble. First, the caterpillar, now a hopscotch board.\"",
       "winImage": null,
       "winText": "Our pal sips their coffee, lost in thought. The Setter thinks these new puzzles are trouble, but why?"
+    },
+    "53": {
+      "title": "Prongs And Tongs",
+      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/4x53.png",
+      "introText": "It's washing-up time! Mouse cleans, while our hero dries. Fitting everything back into the cutlery drawer, however, takes a combined effort!",
+      "winImage": null,
+      "winText": "That was quite the mental workout! Perhaps a drawer organiser would be a good gift for Mouse?"
     }
   }
 }
