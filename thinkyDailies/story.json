@@ -1657,6 +1657,13 @@
       "introText": "It's washing-up time! Mouse cleans, while our hero dries. Fitting everything back into the cutlery drawer, however, takes a combined effort!",
       "winImage": null,
       "winText": "That was quite the mental workout! Perhaps a drawer organiser would be a good gift for Mouse?"
+    },
+    "54": {
+      "title": "A Snap Of The Setter",
+      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/4x54.png",
+      "introText": "*DING DONG!* A neighbour is at the door, clutching a photo. \"I've seen your Setter! I was going through photos of city parks and recognised the hair!\"",
+      "winImage": null,
+      "winText": "Our hero takes the photo to the kitchen and shows it to Mouse. \"I wish I had cool hair like that!\" sighs Mouse."
     }
   }
 }
