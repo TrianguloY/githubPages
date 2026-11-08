@@ -1664,6 +1664,13 @@
       "introText": "*DING DONG!* A neighbour is at the door, clutching a photo. \"I've seen your Setter! I was going through photos of city parks and recognised the hair!\"",
       "winImage": null,
       "winText": "Our hero takes the photo to the kitchen and shows it to Mouse. \"I wish I had cool hair like that!\" sighs Mouse."
+    },
+    "55": {
+      "title": "Another Visitor",
+      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/4x55.png",
+      "introText": "*DING DONG!* This time, Mouse answers the door. Our hero looks up from the photo and strains to hear who it might be. Another Neighbour?",
+      "winImage": null,
+      "winText": "Our pal lets out a delighted squeak of recognition! But what on earth has brought \n\nthem \n\nto the city?"
     }
   }
 }
