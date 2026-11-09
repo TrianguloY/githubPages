@@ -1671,6 +1671,13 @@
       "introText": "*DING DONG!* This time, Mouse answers the door. Our hero looks up from the photo and strains to hear who it might be. Another Neighbour?",
       "winImage": null,
       "winText": "Our pal lets out a delighted squeak of recognition! But what on earth has brought \n\nthem \n\nto the city?"
+    },
+    "56": {
+      "title": "Flower Re-Arrangement",
+      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/4x56.png",
+      "introText": "It's the Janitor! They're in the city for cleaning supplies and decided to call on Mouse. Aww! And they've brought a wreath of enig-marigolds!",
+      "winImage": null,
+      "winText": "Enig-marigolds are a traditional Solver gift. Their baffling aroma is said to ward off logical fallacies."
     }
   }
 }
