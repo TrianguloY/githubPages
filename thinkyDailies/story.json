@@ -1678,6 +1678,13 @@
       "introText": "It's the Janitor! They're in the city for cleaning supplies and decided to call on Mouse. Aww! And they've brought a wreath of enig-marigolds!",
       "winImage": null,
       "winText": "Enig-marigolds are a traditional Solver gift. Their baffling aroma is said to ward off logical fallacies."
+    },
+    "57": {
+      "title": "How Illuminating",
+      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/4x57.png",
+      "introText": "The Janitor notices our hero. \"Why aren't you at the Lodge?\" they ask. Mouse begins to explain, trying to shed light on the situation.",
+      "winImage": null,
+      "winText": "Our pal takes up the tale, recounting the pigeon chase, and showing the others the new photo of the Setter."
     }
   }
 }
