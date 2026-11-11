@@ -1685,6 +1685,13 @@
       "introText": "The Janitor notices our hero. \"Why aren't you at the Lodge?\" they ask. Mouse begins to explain, trying to shed light on the situation.",
       "winImage": null,
       "winText": "Our pal takes up the tale, recounting the pigeon chase, and showing the others the new photo of the Setter."
+    },
+    "58": {
+      "title": "Where Is the Setter?",
+      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/4x58-1.png",
+      "introText": "The Janitor thinks, then asks Mouse for a city map. \"The letter vanished in \n\nthis \n\nneighbourhood. If we focus the search here, we can find your Setter!\"",
+      "winImage": null,
+      "winText": "That must be the place! Our hero pulls Mouse towards the door, almost forgetting to say farewell to the Janitor."
     }
   }
 }
