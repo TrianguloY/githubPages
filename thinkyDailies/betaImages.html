@@ -37,8 +37,13 @@
             width: 600px;
         }
 
+        /* fix summary headers */
+        h2 {
+            display: inline;
+        }
+
         /* center text */
-        h1, h2, p, summary {
+        h1, h2, h3, p, summary {
             text-align: center;
         }
 
@@ -108,10 +113,14 @@
 
                     let html = "";
                     Object.entries(data.images).sortByPrefixNumber().forEach(([season, season_data]) => {
+                        html += `<hr>`;
+                        html += `<details data-season="${season}" data-puzzle="0">`;
+                        const variants = Object.entries(season_data).filter(e => e[1].length > 1).length;
+                        html += `<summary><h2>Season ${season} (${variants})</h2></summary>`;
                         Object.entries(season_data).sortByPrefixNumber().forEach(([puzzle, urls]) => {
                             html += `<div class="${urls.length === 1 ? 'single' : ''}">`;
                             html += `<hr>`;
-                            html += `<h2><a href="https://thinkygames.com/dailies/puzzles/${season}-${puzzle}/">${season}x${puzzle}</a> (${urls.length})</h2>`;
+                            html += `<h3><a href="https://thinkygames.com/dailies/puzzles/${season}-${puzzle}/">${season}x${puzzle}</a> (${urls.length})</h3>`;
                             html += `<div class="scroll-container">`;
                             urls.forEach(url => {
                                 html += `<img src="${url}" alt="${season}x${puzzle}" title="${url}" loading="lazy" width="600" height="600"/>`;
@@ -119,7 +128,7 @@
                             html += `</div>`;
                             let notes = allNotes[season]?.[puzzle] ?? [];
                             if (notes.length !== 0) {
-                                html += `<details><summary>Notes (${notes.length})</summary>`
+                                html += `<details data-season="${season}" data-puzzle="${puzzle}"><summary>Notes (${notes.length})</summary>`
                                 notes.forEach(note => {
                                     html += `<p>${note.replace("\n", "<br>")}</p>`;
                                 });
@@ -127,16 +136,35 @@
                             }
                             html += `</div>`;
                         });
+                        html += `</details>`;
                     });
                     document.getElementById("images").innerHTML = html;
 
+                    document.querySelectorAll("details").forEach(details => {
+                        const item = `thinkyDaily-betaImages-details`;
+                        const tag = `${details.dataset['season']}-${details.dataset['puzzle']}`;
+
+                        // restore details from localStorage
+                        details.open = (localStorage.getItem(item) || "").split("\n").includes(tag);
+
+                        // store state
+                        details.addEventListener('toggle', () => {
+                            const value = new Set((localStorage.getItem(item) || "").split("\n"));
+                            if (details.open) {
+                                value.add(tag);
+                            } else {
+                                value.delete(tag);
+                            }
+                            localStorage.setItem(item, [...value].join("\n"));
+                        });
+                    });
 
                     // restore checkboxes and sliders after loading
                     document.querySelectorAll("input[type=checkbox]").forEach(e => e.onchange());
                     document.querySelectorAll("input[type=range]").forEach(e => {
-                        console.log(document.querySelectorAll('img'))
+                        //console.log(document.querySelectorAll('img'))
                         e.oninput(null);
-                        console.log(e.oninput)
+                        //console.log(e.oninput)
                     });
                 });
         }

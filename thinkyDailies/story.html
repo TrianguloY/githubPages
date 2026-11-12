@@ -18,10 +18,11 @@
 
     <style>
         /* center elements */
-        .puzzle , .texts {
+        .puzzle, .texts {
             display: flex;
             overflow: auto;
         }
+
         .texts {
             flex-direction: column;
         }
@@ -46,12 +47,13 @@
             object-fit: contain;
         }
 
-        h2 {
-            display:inline;
+        /* fix summary headers */
+        h2, h3 {
+            display: inline;
         }
 
         /* center text */
-        h1, h2, p, summary {
+        h1, h2, h3, p, summary {
             text-align: center;
         }
 
@@ -87,7 +89,7 @@
             display: block;
         }
     </style>
-    
+
     <style id="hideImages">
         img {
             display: none;
@@ -110,10 +112,13 @@
 
                     let html = "";
                     Object.entries(data).sortByPrefixNumber().forEach(([season, season_data]) => {
+                        html += `<hr>`;
+                        html += `<details data-season="${season}" data-puzzle="0">`;
+                        html += `<summary><h2>Season ${season}</h2></summary>`;
                         Object.entries(season_data).sortByPrefixNumber().forEach(([puzzle, data]) => {
                             html += `<hr>`;
-                            html += `<details>`;
-                            html += `<summary><h2>${season}x${puzzle}: ${data.title}</h2></summary>`;
+                            html += `<details data-season="${season}" data-puzzle="${puzzle}">`;
+                            html += `<summary><h3>${season}x${puzzle}: ${data.title}</h3></summary>`;
                             html += `<div class="puzzle">`
                             html += `<a href="https://thinkygames.com/dailies/puzzles/${season}-${puzzle}/"><img src="${data.introImage}" alt="${season}x${puzzle}" title="${data.introImage}" loading="lazy" width="600px" height="600px"/></a>`;
                             html += `<div class="texts">`;
@@ -125,9 +130,28 @@
                             html += `</div>`;
                             html += `</details>`;
                         });
+                        html += `</details>`;
                     });
                     document.getElementById("puzzles").innerHTML = html;
 
+                    document.querySelectorAll("details").forEach(details => {
+                        const item = `thinkyDaily-story-details`;
+                        const tag = `${details.dataset['season']}-${details.dataset['puzzle']}`;
+
+                        // restore details from localStorage
+                        details.open = (localStorage.getItem(item) || "").split("\n").includes(tag);
+
+                        // store state
+                        details.addEventListener('toggle', () => {
+                            const value = new Set((localStorage.getItem(item) || "").split("\n"));
+                            if (details.open) {
+                                value.add(tag);
+                            } else {
+                                value.delete(tag);
+                            }
+                            localStorage.setItem(item, [...value].join("\n"));
+                        });
+                    });
 
                     // restore checkboxes after loading
                     document.querySelectorAll("input[type=checkbox]").forEach(e => e.onchange());
@@ -157,7 +181,8 @@
         This will show both the intro and win texts (and images) regardless of your personal completion.
         For this reason everything is hidden on a collapsible element.
         But if you have solved everything (or you don't care about spoilers) you can
-        <button onclick="[...document.querySelectorAll('details')].forEach(d=>d.open=true)">expand all</button>.
+        <button onclick="[...document.querySelectorAll('details')].forEach(d=>d.open=true)">expand all</button>
+        .
     </p>
     <p>
         Note: to avoid overloading the server with petitions of pages that do not exist, a precomputed list of
