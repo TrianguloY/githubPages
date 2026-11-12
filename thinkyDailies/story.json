@@ -1692,6 +1692,13 @@
       "introText": "The Janitor thinks, then asks Mouse for a city map. \"The letter vanished in \n\nthis \n\nneighbourhood. If we focus the search here, we can find your Setter!\"",
       "winImage": null,
       "winText": "That must be the place! Our hero pulls Mouse towards the door, almost forgetting to say farewell to the Janitor."
+    },
+    "59": {
+      "title": "Knock Knock",
+      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/4x59.png",
+      "introText": "The pair hop off the bus and eye the building. A note signed by the Setter is taped near the front door lock. \"Let yourself in ... if you can!\" it reads.",
+      "winImage": null,
+      "winText": "Mouse tenses as the door opens. \"This will be like when you bump into a teacher outside school,\" they mutter."
     }
   }
 }
