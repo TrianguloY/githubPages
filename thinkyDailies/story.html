@@ -88,6 +88,15 @@
             text-align: center;
             display: block;
         }
+
+        /* footer */
+        .footer {
+            width: 25px;
+            height: 25px;
+            position: fixed;
+            bottom: 10px;
+            right: 10px;
+        }
     </style>
 
     <style id="hideImages">
@@ -214,6 +223,8 @@
 
 <div id="puzzles">
 </div>
+
+<button class="footer" onclick="window.scrollTo({top:document.body.scrollHeight, behavior:'smooth'})">▼</button>
 
 </body>
 </html>
