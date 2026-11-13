@@ -1699,6 +1699,13 @@
       "introText": "The pair hop off the bus and eye the building. A note signed by the Setter is taped near the front door lock. \"Let yourself in ... if you can!\" it reads.",
       "winImage": null,
       "winText": "Mouse tenses as the door opens. \"This will be like when you bump into a teacher outside school,\" they mutter."
+    },
+    "60": {
+      "title": "Special Delivery",
+      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/4x60.png",
+      "introText": "\"Hello? Anyone there?\" calls Mouse, then yelps as a little shape bounds forward. It's a rat clutching a letter and a puzzle! Wait - rats deliver mail?",
+      "winImage": null,
+      "winText": "The Setter is using Mouse's own puzzle invention to congratulate them! Mouse blushes at the compliment."
     }
   }
 }
