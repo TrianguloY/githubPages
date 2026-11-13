@@ -87,6 +87,7 @@
         .subtitle {
             text-align: center;
             display: block;
+            font-size: 0.8em;
         }
 
         /* footer */
@@ -175,7 +176,7 @@
 <!-- details -->
 <div class="top">
     <h1>Thinky dailies story</h1>
-    <span class="subtitle"><a href="./betaImages.html">Beta images</a></span>
+    <span class="subtitle">Check also <a href="./betaImages.html">Thinky dailies beta images</a></span>
     <hr>
 
     <p>
@@ -191,6 +192,8 @@
         For this reason everything is hidden on a collapsible element.
         But if you have solved everything (or you don't care about spoilers) you can
         <button onclick="[...document.querySelectorAll('details')].forEach(d=>d.open=true)">expand all</button>
+        or
+        <button onclick="[...document.querySelectorAll('details')].forEach(d=>d.open=false)">collapse all</button>
         .
     </p>
     <p>
