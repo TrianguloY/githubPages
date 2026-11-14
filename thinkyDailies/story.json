@@ -1706,6 +1706,13 @@
       "introText": "\"Hello? Anyone there?\" calls Mouse, then yelps as a little shape bounds forward. It's a rat clutching a letter and a puzzle! Wait - rats deliver mail?",
       "winImage": null,
       "winText": "The Setter is using Mouse's own puzzle invention to congratulate them! Mouse blushes at the compliment."
+    },
+    "61": {
+      "title": "On The Floorpath",
+      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/4x61.png",
+      "introText": "The note asks Mouse to become the next Setter! But being a Setter means leaving the Solvers. Mouse begins to pace, treading a complex path as they fret.",
+      "winImage": null,
+      "winText": "Our hero frowns. They came here for answers, not new problems! Where on earth is this exasperating Setter?!"
     }
   }
 }
