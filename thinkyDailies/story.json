@@ -419,6 +419,13 @@
       "introText": "If the Solvers need cookies, they need cookies! This bakery is like a maze, but their favourite treat must be in here somewhere.",
       "winImage": null,
       "winText": "Aha, here they are! Hm, didn't we see these cookies somewhere before?"
+    },
+    "61": {
+      "title": "The Final Riddle",
+      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/1x61A.png",
+      "introText": "The now appreciative voice speaks again: What is our sigil? Since the clocktower, it has been nearby. Recall the puzzles you have solved. Follow the cookie crumbs.",
+      "winImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/1X61B.png",
+      "winText": "The door opens slowly (dramatic tension!) to reveal a few friendly faces: Welcome, Solver! We have cookies!"
     }
   },
   "2": {
@@ -1322,6 +1329,13 @@
       "winImage": null,
       "winText": "This bus goes right past the office! Our hero hops aboard, and learns the magic of... stop-start traffic jams."
     },
+    "7": {
+      "title": "Bumper To Bumper",
+      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/4x07.png",
+      "introText": "Near the office, our pal spots Mouse in a coffee shop. Traffic is so bad that it's quicker to squeeze past the cars on foot than to stay on the bus!",
+      "winImage": null,
+      "winText": "After the quiet of the Lodge, the city bustle is overwhelming. Our friend hopes the coffee shop will be quieter."
+    },
     "8": {
       "title": "Friends Reunited!",
       "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/4x08.png",
@@ -1391,6 +1405,13 @@
       "introText": "Mouse arrives with takeout and a note. The note shows the current Setter's symbol below an edited version of one of Mouse's puzzles.",
       "winImage": null,
       "winText": "While our pal was solving the puzzle, Mouse was dishing up the noodles. They smell so good. Thanks, Mouse!"
+    },
+    "18": {
+      "title": "A Wild Puzzle Appears",
+      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/4x18.png",
+      "introText": "Our hero pats their full tummy, then idly turns the Setter's note over. What's this about a puzzle \"escaping into the wild\"?",
+      "winImage": null,
+      "winText": "It seems this caterpillar only moves according to a set of strict rules. Maybe it's a special puzzle breed?"
     },
     "19": {
       "title": "Doodles In The Mist",
@@ -1531,6 +1552,13 @@
       "introText": "Aboard the bus, our pal feels a prickle of recognition. Are they being tailed?! They turn to confront their follower, but the tiny target makes a break for it!",
       "winImage": null,
       "winText": "Our hero finally catches up with their quarry, but this is no spy; it's a child. \"Again!\" beams the child. \"Again!\""
+    },
+    "39": {
+      "title": "A Garbled Story",
+      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/4x39.png",
+      "introText": "\"Er, what's going on!?\" Uh oh! It's the child's guardian. Our hero is mortified, and it takes a while to make sense of their flustered explanation.",
+      "winImage": null,
+      "winText": "\"A tiny spy?!\" The guardian roars with laughter. \"Juni just loves buses, so we ride them a lot!\""
     },
     "40": {
       "title": "The Setter On The Bus",
