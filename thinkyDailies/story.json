@@ -1739,7 +1739,7 @@
       "title": "A Mouse And A Rat",
       "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/4x65.png",
       "introText": "Without warning, our hero dives left, scooping up the postal rat before it can flee. \"Where's your Setter friend?\" asks Mouse. \"They might need help!\"",
-      "winImage": null,
+      "winImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/4x66.png",
       "winText": "Mouse gently takes the postal rat and looks at our hero. \"You go; we'll cover for the Setter at the Times.\" Our hero nods. It's time to go home."
     }
   }

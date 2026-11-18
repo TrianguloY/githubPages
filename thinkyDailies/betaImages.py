@@ -11,7 +11,7 @@ import platform
 from typing import List, Union, NamedTuple, Any, Callable, Generator
 
 import aiohttp
-from aiohttp import ClientSession, ClientResponse
+from aiohttp import ClientSession
 
 from utils import SEASONS, PUZZLES, network_request
 
@@ -123,10 +123,7 @@ async def parse_infix(current_infix: str, prefix_infix: str, infix_generators: L
         url=entry.prefix_left + prefix_infix + entry.prefix_right + current_infix + entry.suffix,
     )
     # discard result if a HEAD request fails
-    async def valid(response: ClientResponse) -> bool:
-        return response.ok
-
-    if not await network_request("HEAD", result.url, session, valid):
+    if not await network_request("HEAD", result.url, session):
         result = None
 
     if result is None and current_infix != "":

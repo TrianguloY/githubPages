@@ -48,7 +48,6 @@ async def get_puzzle_data(season: str, puzzle: str, session: ClientSession) -> t
 
     # load html
     async def map_html(response: ClientResponse) -> BeautifulSoup | None:
-        if not response.ok: return None
         return BeautifulSoup(await response.text(), features="html.parser")
 
     html = await network_request(
@@ -90,8 +89,9 @@ async def get_puzzle_data(season: str, puzzle: str, session: ClientSession) -> t
         introText = None
 
     try:
-        winImage = data['winImage']['url'] if puzzle == 61 else None
-
+        # season 1 winImages are the previous puzzle (except for the final) so we explicitly ignore them
+        winImage = data['winImage']['url'] if data['winImage'] is not None and not (
+                    season == 1 and puzzle != 61) else None
     except Exception as e:
         print("Error on", "winImage", season, puzzle, e)
         winImage = None

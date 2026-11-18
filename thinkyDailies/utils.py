@@ -5,7 +5,7 @@ from typing import Iterable, Tuple, Callable, TypeVar, Awaitable
 
 from aiohttp import ClientSession, ClientResponse
 
-SEASONS = range(1, 4 + 1)
+SEASONS = range(1, 5 + 1)
 PUZZLES = range(1, 65 + 1) # todo: only season 4 has 65, the rest has 61
 
 
@@ -22,7 +22,7 @@ T = TypeVar('T')
 
 
 async def network_request(method: str, url: str, session: ClientSession,
-                          mapper: Callable[[ClientResponse], Awaitable[T]]) -> T:
+                          mapper: Callable[[ClientResponse], Awaitable[T]] = lambda _: as_future(True)) -> T:
     """
     Performs a network request with random delay and automatic retry if response fails.
     yields the response, mapped by the async mapper.
@@ -34,9 +34,17 @@ async def network_request(method: str, url: str, session: ClientSession,
             await sleep(random.random() * retry)
             async with session.request(method=method, url=url, headers={
                 "User-Agent": "Mozilla/5.0 (X11; Linux x86_64; rv:155.0) Gecko/20100101 Firefox/155.0"}) as response:
-                print("OK" if response.ok else "ko", url)
-                return await mapper(response)
+                print(f"{'OK' if response.ok else 'ko'} ({response.status}) {url}")
+                if response.status == 200: return await mapper(response)
+                if response.status == 403: return None
+                if response.status == 404: return None
+                raise Exception(f"Obtained status {response.status} for url {url}")
         except Exception as e:
             exc = e
             await sleep(random.randint(1, retry))
     raise exc
+
+
+async def as_future(arg: T) -> T:
+    """How come there is no built-in thing for this??"""
+    return arg
