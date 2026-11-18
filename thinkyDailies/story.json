@@ -224,13 +224,6 @@
       "winImage": null,
       "winText": "Several holes later and still no clues, but plenty of mess!"
     },
-    "33": {
-      "title": "Yet More Digging",
-      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/1x33.png",
-      "introText": "Shocked by the destruction, Greg insists on moving elsewhere, perhaps over that nearby hill. A hill? Something else to dig!",
-      "winImage": null,
-      "winText": "This hill is starting to look like Swiss cheese! But when our thinky hero is on a mission..."
-    },
     "34": {
       "title": "The Excavation",
       "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/1x34.png",
@@ -492,13 +485,6 @@
       "winImage": null,
       "winText": "Our thinky friend has attracted a mentor! She beams with satisfaction and beckons them to follow her."
     },
-    "10": {
-      "title": "Wait For Me!",
-      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/2x10.png",
-      "introText": "Mentor and mentee head deeper into the tangle of rooms. It's a struggle to keep pace, and our friend is forced to stop to get their bearings.",
-      "winImage": null,
-      "winText": "Our friend gasps. Instead of an office, they arrive in a cavernous room covered with intricate mosaics."
-    },
     "11": {
       "title": "Telling Tiles",
       "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/2x11.png",
@@ -554,13 +540,6 @@
       "introText": "As our hero gathers the tools, the farmer runs over, waving a puzzle. They seem keen to avoid the janitor's pointed questions about sheep with muddy feet...",
       "winImage": null,
       "winText": "The sheep are enthralled, and crowd round our hero to look at the solution. They like you, says the farmer fondly."
-    },
-    "19": {
-      "title": "The Practice Pen",
-      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/2x19-1.png",
-      "introText": "My hobby is decryptozoology, the farmer explains. It means I train these beauties to sniff out puzzles. Here's a picture of one from their training pen.",
-      "winImage": null,
-      "winText": "Our hero looks up to find the flock heading for the door. It's time to see these woolly wonders in action!"
     },
     "20": {
       "title": "Pathfinding For Puzzles",
@@ -977,13 +956,6 @@
       "winImage": null,
       "winText": "See? The yowl was probably nothing... And what's this? Our pal's activity has knocked something out of the rafters."
     },
-    "18": {
-      "title": "The Mysterious Bag",
-      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/3X18.png",
-      "introText": "A moth-eaten bag dangles from a wooden beam. The yellowing paper shows signs of decay, but the puzzle still seems solvable. ",
-      "winImage": null,
-      "winText": "Why would a Solver keep a puzzle hidden? Our pal will ponder that later; right now, their stomach is rumbling!"
-    },
     "19": {
       "title": "The Uncooperative Stove",
       "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/3X19.png",
@@ -1011,20 +983,6 @@
       "introText": "Our pal is heading to bed when a fresh \"RAAAGH!\" shakes the walls. They grab extra pillows and bedding, then make a sleep cave to hide in.",
       "winImage": null,
       "winText": "Inside the sleep cave, our thinky friend tries to relax. It's been a long day, and they're exhausted!"
-    },
-    "23": {
-      "title": "A Night On The Tiles",
-      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/3x23.png",
-      "introText": "Our jittery hero soothes themself to sleep by focusing on lovely, non-scary mosaics! In fact, they focus so hard that even their dreams involve mosaics!",
-      "winImage": null,
-      "winText": "Waking up briefly, our friend wants to capture the puzzle. But there's no pen, and the sleep cave is so comfyzzzzz..."
-    },
-    "24": {
-      "title": "A Slippery Morning Walk",
-      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/3x24.png",
-      "introText": "Morning! Our hero heads to the kitchen. It's empty, as is the water bucket. Yawning, our pal crosses the new courtyard ice to reach the well.",
-      "winImage": null,
-      "winText": "Our friend skids back to the kitchen and boils the trusty kettle. They'll need a cup of tea before getting started!"
     },
     "25": {
       "title": "Penmanship Counts!",
@@ -1109,13 +1067,6 @@
       "introText": "TAPPITY-TAP! Wha-? Oh! There's a delivery pigeon at the window. It's got a letter from Mouse, including their first published Thinky Times puzzle!",
       "winImage": null,
       "winText": "That was great! And it sounds like Mouse is enjoying the paper. Our pal wonders what to say in reply."
-    },
-    "37": {
-      "title": "Penpals",
-      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/3x37.png",
-      "introText": "Our hero pads downstairs for paper. They tell Mouse about the scary noise and the hidden puzzles, and sign off with a goat-inspired brainteaser.",
-      "winImage": null,
-      "winText": "The pigeon accepts a little breakfast, then flies off with our pal's letter. Stay safe, feathery friend!"
     },
     "38": {
       "title": "It's Cold Outside",
@@ -1518,13 +1469,6 @@
       "winImage": null,
       "winText": "Our hero finally feels like they're making progress on their task. It's also lovely to see more of the city."
     },
-    "34": {
-      "title": "Drawing Focus",
-      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/4x34.png",
-      "introText": "At our pal's final poster spot, they see a crowd watching an artist at work. \"Look! The shapes all guide your eye to the focal point,\" one whispers.",
-      "winImage": null,
-      "winText": "\"I'm in the city most days,\" says the artist. \"I love the people-watching.\" Our hero perks up. People-watching?"
-    },
     "35": {
       "title": "Have You Seen This Setter?",
       "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/4x35.png",
@@ -1734,6 +1678,13 @@
       "introText": "Our hero steps forward, keen for any clues related to the missing object. Aha! There's some paper here, but it seems to be trapped. Let's see ...",
       "winImage": null,
       "winText": "\"SETTER! DO NOT FALTER IN THY CARE OF THIS DEVICE!\" It's a warning, but the device is gone! Is the Setter in trouble?"
+    },
+    "65": {
+      "title": "A Mouse And A Rat",
+      "introImage": "https://static.prod.thinkygames.com/uploads/puzzle_intro_images/4x65.png",
+      "introText": "Without warning, our hero dives left, scooping up the postal rat before it can flee. \"Where's your Setter friend?\" asks Mouse. \"They might need help!\"",
+      "winImage": null,
+      "winText": "Mouse gently takes the postal rat and looks at our hero. \"You go; we'll cover for the Setter at the Times.\" Our hero nods. It's time to go home."
     }
   }
 }
