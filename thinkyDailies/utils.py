@@ -6,7 +6,7 @@ from typing import Iterable, Tuple, Callable, TypeVar, Awaitable
 from aiohttp import ClientSession, ClientResponse
 
 SEASONS = range(1, 4 + 1)
-PUZZLES = range(1, 61 + 1)
+PUZZLES = range(1, 65 + 1) # todo: only season 4 has 65, the rest has 61
 
 
 def group_by[K, V](elements: Iterable[Tuple[K, V]]) -> list[Tuple[
